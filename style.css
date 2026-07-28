@@ -190,7 +190,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 
 .curious {
   display: grid;
-  grid-template-columns: .9fr 1.1fr;
+  grid-template-columns: .7fr 1.3fr;
   gap: 70px;
   padding: 100px 0;
   align-items: center;
@@ -214,10 +214,10 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   list-style: none;
 }
 .curious li {
-  padding: 14px 20px;
+  padding: 11px 17px;
   border: 1.5px solid var(--ink);
   border-radius: 999px;
-  font: 700 15px/1 "Courier New", monospace;
+  font: 700 13px/1 "Courier New", monospace;
   transform: rotate(var(--tilt, 0));
 }
 .curious li:nth-child(odd) { --tilt: -2deg; }
