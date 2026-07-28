@@ -17,3 +17,55 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".project").forEach((element) => {
   observer.observe(element);
 });
+
+const featuredProjects = new Set([
+  "gtfs-accessibility-auditor",
+  "web-a11y-regression-guard",
+  "DanielCuevas1208.github.io",
+  "DanielCuevas1208",
+  "localprofilecoder",
+]);
+
+async function loadRecentProjects() {
+  const response = await fetch(
+    "https://api.github.com/users/DanielCuevas1208/repos?sort=pushed&per_page=100",
+    { headers: { Accept: "application/vnd.github+json" } },
+  );
+  if (!response.ok) return;
+  const repositories = await response.json();
+  const projects = repositories
+    .filter((repo) =>
+      !repo.fork &&
+      !featuredProjects.has(repo.name) &&
+      Array.isArray(repo.topics) &&
+      repo.topics.includes("portfolio")
+    )
+    .slice(0, 6);
+  if (projects.length === 0) return;
+
+  const shelf = document.querySelector("#github-projects");
+  for (const repo of projects) {
+    const article = document.createElement("article");
+    article.className = "shelf-card";
+
+    const label = document.createElement("p");
+    label.className = "project-type";
+    label.textContent = repo.language || "Software project";
+
+    const title = document.createElement("h3");
+    title.textContent = repo.name.replaceAll("-", " ");
+
+    const description = document.createElement("p");
+    description.textContent = repo.description || "A recent software experiment.";
+
+    const link = document.createElement("a");
+    link.href = repo.html_url;
+    link.textContent = "View project ↗";
+
+    article.append(label, title, description, link);
+    shelf.append(article);
+  }
+  document.querySelector("#fresh").hidden = false;
+}
+
+loadRecentProjects().catch(() => undefined);
