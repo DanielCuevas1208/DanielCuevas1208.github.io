@@ -1,10 +1,10 @@
 :root {
-  --ink: #0b0c0b;
-  --paper: #e9e6dc;
-  --muted: #a4a39c;
-  --line: rgba(233, 230, 220, 0.22);
-  --lime: #c7ff34;
-  --orange: #ff4d16;
+  --ink: #11130f;
+  --paper: #eee9dd;
+  --muted: #aaa99f;
+  --line: rgba(238, 233, 221, 0.22);
+  --lime: #d8f790;
+  --orange: #e97b5f;
   --max: 1500px;
   color-scheme: dark;
   font-family: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
@@ -733,6 +733,10 @@ footer a {
   .contact {
     min-height: 570px;
     padding-top: 100px;
+  }
+
+  .stack {
+    margin-inline: 0;
   }
 
   footer {
