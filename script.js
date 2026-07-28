@@ -14,6 +14,6 @@ const observer = new IntersectionObserver((entries) => {
   }
 }, { threshold: 0.15 });
 
-document.querySelectorAll(".project, .method li").forEach((element) => {
+document.querySelectorAll(".project").forEach((element) => {
   observer.observe(element);
 });
