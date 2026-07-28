@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0c0b">
+    <meta name="description" content="Daniel Cuevas builds data systems, accessibility tools, and developer software.">
+    <meta property="og:title" content="Daniel Cuevas — Build systems. Ship signal.">
+    <meta property="og:description" content="Compact systems that turn messy inputs into clear, useful evidence.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://danielcuevas1208.github.io">
+    <meta property="og:image" content="https://danielcuevas1208.github.io/assets/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daniel Cuevas — Build systems. Ship signal.">
+    <meta name="twitter:description" content="Data systems, accessibility, and developer tools.">
+    <meta name="twitter:image" content="https://danielcuevas1208.github.io/assets/og.png">
+    <title>Daniel Cuevas — Software with a spine</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#work">Skip to selected work</a>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Daniel Cuevas, home">
+        <span>DC</span><sup>1208</sup>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#method">Method</a>
+        <a href="https://github.com/DanielCuevas1208">GitHub</a>
+      </nav>
+      <span class="status"><i aria-hidden="true"></i> Building in public</span>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-index" aria-hidden="true">001 / SIGNAL</div>
+        <p class="eyebrow">Daniel Cuevas — Software engineer</p>
+        <h1 id="hero-title">
+          Build systems.<br>
+          <span>Ship signal.</span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="lede">
+            I turn messy inputs into clear, useful evidence through data systems,
+            accessibility tools, and developer software.
+          </p>
+          <a class="action" href="#work">
+            Inspect the work
+            <span aria-hidden="true">↘</span>
+          </a>
+        </div>
+        <div class="signal-line" aria-hidden="true">
+          <span></span>
+        </div>
+      </section>
+
+      <section class="proof" aria-label="Portfolio summary">
+        <div>
+          <strong>02</strong>
+          <span>Public tools</span>
+        </div>
+        <div>
+          <strong>63</strong>
+          <span>Deterministic tests</span>
+        </div>
+        <div>
+          <strong>04</strong>
+          <span>Core disciplines</span>
+        </div>
+        <p>
+          Small systems.<br>
+          Strong interfaces.<br>
+          No mystery output.
+        </p>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <span>002 / SELECTED WORK</span>
+          <h2 id="work-title">Proof, not promises.</h2>
+        </div>
+
+        <article class="project project-lime">
+          <div class="project-number">01</div>
+          <div class="project-copy">
+            <p class="project-type">Data engineering / TypeScript CLI</p>
+            <h3>GTFS Accessibility Auditor</h3>
+            <p>
+              Audits public-transit feeds for wheelchair coverage, data quality,
+              and route-level gaps. Every score includes evidence.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Streaming CSV ingestion</li>
+              <li>Explainable scoring</li>
+              <li>HTML and JSON reports</li>
+              <li>Property-based tests</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/gtfs-accessibility-auditor">
+              Read the source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="route-map">
+              <span class="route r1"></span>
+              <span class="route r2"></span>
+              <span class="route r3"></span>
+              <i class="stop s1"></i>
+              <i class="stop s2"></i>
+              <i class="stop s3"></i>
+              <i class="stop s4"></i>
+              <b>87</b>
+              <small>coverage signal</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-orange">
+          <div class="project-number">02</div>
+          <div class="project-copy">
+            <p class="project-type">Accessibility / CI tooling</p>
+            <h3>Web Accessibility Regression Guard</h3>
+            <p>
+              Compares accessibility scans between builds. It blocks only new
+              regressions and supplies focused GitHub annotations.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Playwright integration</li>
+              <li>Baseline diffing</li>
+              <li>GitHub annotations</li>
+              <li>Fixture-driven tests</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/web-a11y-regression-guard">
+              Read the source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="diff-window">
+              <div class="window-bar"><i></i><i></i><i></i></div>
+              <p><span>−</span> existing.issue</p>
+              <p class="clean"><span>+</span> fixed.issue</p>
+              <p class="alert"><span>!</span> new.regression</p>
+              <strong>BLOCK / EVIDENCE ATTACHED</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <span>003 / OPERATING SYSTEM</span>
+          <h2 id="method-title">How I build.</h2>
+        </div>
+        <ol>
+          <li>
+            <span>01</span>
+            <h3>Make it visible.</h3>
+            <p>Expose the state, evidence, and tradeoffs before adding abstraction.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Test the center.</h3>
+            <p>Keep core behavior deterministic and separate from external systems.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>Finish the loop.</h3>
+            <p>Ship setup, samples, CI, limits, and documentation with the code.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="stack" aria-label="Capabilities">
+        <p>TYPE SCRIPT</p>
+        <p>DATA PIPELINES</p>
+        <p>ACCESSIBILITY</p>
+        <p>TEST DESIGN</p>
+        <p>DEVELOPER TOOLS</p>
+        <p>CI SYSTEMS</p>
+      </section>
+
+      <section class="contact">
+        <p class="eyebrow">004 / NEXT SIGNAL</p>
+        <h2>Want to inspect<br>how I think?</h2>
+        <a class="action action-invert" href="https://github.com/DanielCuevas1208">
+          Open GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <span>Daniel Cuevas / 2026</span>
+      <span>Built for clarity under pressure.</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
