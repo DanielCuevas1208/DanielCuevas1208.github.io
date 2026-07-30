@@ -19,9 +19,10 @@ document.querySelectorAll(".project").forEach((element) => {
 });
 
 const featuredProjects = new Set([
-  "gtfs-accessibility-auditor",
-  "web-a11y-regression-guard",
   "signal-garden",
+  "local-first-job-queue",
+  "packet-forensics-lab",
+  "personal-ledger-lab",
   "DanielCuevas1208.github.io",
   "DanielCuevas1208",
   "localprofilecoder",

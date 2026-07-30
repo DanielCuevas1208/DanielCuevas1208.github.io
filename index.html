@@ -94,8 +94,8 @@
 
       <section class="work" id="work" aria-labelledby="work-title">
         <div class="section-heading">
-          <p class="eyebrow">Recent projects</p>
-          <h2 id="work-title">Selected work,<br>with room to grow.</h2>
+          <p class="eyebrow">Showcase projects</p>
+          <h2 id="work-title">The bigger ideas<br>get more room.</h2>
         </div>
 
         <article class="project project-green">
@@ -128,60 +128,87 @@
           </div>
         </article>
 
-        <article class="project project-blue">
+        <article class="project project-pink">
           <div class="project-copy">
-            <p class="project-type">Supporting / Data engineering / TypeScript</p>
-            <h3>GTFS Accessibility Auditor</h3>
+            <p class="project-type">Showcase / Go / Durable systems</p>
+            <h3>Local-First Job Queue</h3>
             <p>
-              A command-line tool that finds wheelchair-accessibility gaps in
-              public-transit data and explains every score.
+              A durable background queue that makes leases, retries, idempotency,
+              and crash recovery easy to inspect.
             </p>
             <ul aria-label="Technical highlights">
-              <li>Streaming CSV</li>
-              <li>Evidence-based scores</li>
-              <li>HTML reports</li>
-              <li>Property tests</li>
+              <li>Leases</li>
+              <li>Retries</li>
+              <li>Crash recovery</li>
+              <li>Event log</li>
             </ul>
-            <a href="https://github.com/DanielCuevas1208/gtfs-accessibility-auditor">
+            <a href="https://github.com/DanielCuevas1208/local-first-job-queue">
               View project <span aria-hidden="true">↗</span>
             </a>
           </div>
           <div class="project-visual" aria-hidden="true">
-            <div class="route-map">
-              <span class="route r1"></span>
-              <span class="route r2"></span>
-              <span class="route r3"></span>
-              <i class="stop s1"></i><i class="stop s2"></i><i class="stop s3"></i><i class="stop s4"></i>
-              <b>87</b><small>coverage</small>
+            <div class="queue-map">
+              <div class="queue-row"><i></i><span>leased</span><b>01</b></div>
+              <div class="queue-row active"><i></i><span>working</span><b>02</b></div>
+              <div class="queue-row"><i></i><span>retrying</span><b>03</b></div>
+              <div class="queue-row"><i></i><span>complete</span><b>04</b></div>
+              <small>durable queue</small>
             </div>
           </div>
         </article>
 
-        <article class="project project-pink">
+        <article class="project project-blue">
           <div class="project-copy">
-            <p class="project-type">Supporting / Accessibility / CI tooling</p>
-            <h3>Web Accessibility Regression Guard</h3>
+            <p class="project-type">Showcase / Rust / Defensive analysis</p>
+            <h3>Packet Forensics Lab</h3>
             <p>
-              A focused CI tool that compares accessibility scans and reports
-              only the regressions introduced by a new build.
+              An offline workbench that explains suspicious patterns in safe
+              packet fixtures without performing active scans.
             </p>
             <ul aria-label="Technical highlights">
-              <li>Playwright</li>
-              <li>Baseline diffs</li>
-              <li>GitHub annotations</li>
-              <li>Test fixtures</li>
+              <li>Binary parsing</li>
+              <li>DNS analysis</li>
+              <li>Safe fixtures</li>
+              <li>Terminal UI</li>
             </ul>
-            <a href="https://github.com/DanielCuevas1208/web-a11y-regression-guard">
+            <a href="https://github.com/DanielCuevas1208/packet-forensics-lab">
               View project <span aria-hidden="true">↗</span>
             </a>
           </div>
           <div class="project-visual" aria-hidden="true">
-            <div class="diff-window">
+            <div class="packet-window">
               <div class="window-bar"><i></i><i></i><i></i></div>
-              <p><span>−</span> known.issue</p>
-              <p class="clean"><span>+</span> fixed.issue</p>
-              <p class="alert"><span>!</span> new.regression</p>
-              <strong>1 NEW ISSUE</strong>
+              <p><span>DNS</span> unusual.query</p>
+              <p class="clean"><span>TCP</span> stable.flow</p>
+              <p class="alert"><span>!</span> timing.anomaly</p>
+              <strong>FIXTURE REVIEW</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-yellow">
+          <div class="project-copy">
+            <p class="project-type">Showcase / C# / Local-first finance</p>
+            <h3>Personal Ledger Lab</h3>
+            <p>
+              A local-first finance tracker that imports statements, applies
+              transparent rules, and explains every monthly summary.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Double-entry model</li>
+              <li>Rule explanations</li>
+              <li>Offline storage</li>
+              <li>Data export</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/personal-ledger-lab">
+              View project <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="ledger-window">
+              <div class="ledger-total"><small>MONTHLY BALANCE</small><b>$2,480</b></div>
+              <div class="ledger-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <small>local summary</small>
             </div>
           </div>
         </article>
@@ -189,8 +216,8 @@
 
       <section class="fresh" id="fresh" aria-labelledby="fresh-title" hidden>
         <div class="section-heading">
-          <p class="eyebrow">Fresh from GitHub</p>
-          <h2 id="fresh-title">More recent experiments.</h2>
+          <p class="eyebrow">Supporting projects</p>
+          <h2 id="fresh-title">Smaller tools,<br>useful on their own.</h2>
         </div>
         <div class="project-shelf" id="github-projects"></div>
       </section>
