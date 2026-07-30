@@ -4,6 +4,10 @@ This repository contains the source for [danielcuevas1208.github.io](https://dan
 
 The site uses semantic HTML, responsive CSS, and a small progressive enhancement script.
 
+The home page presents showcase projects first, then supporting tools and a broad
+set of current interests. Project copy stays factual and keeps the interface
+light, warm, and easy to scan.
+
 ## Run locally
 
 Start any static file server in this directory.

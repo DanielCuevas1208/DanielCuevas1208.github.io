@@ -249,6 +249,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 .project[data-visible="true"] { opacity: 1; transform: none; }
 .project-blue { background: #dceafa; }
 .project-pink { background: #f6d9df; }
+.project-green { background: #dcebdd; }
 .project-copy { padding: clamp(38px, 6vw, 78px); }
 .project-copy h3 {
   max-width: 650px;
@@ -345,6 +346,47 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 .diff-window .clean { background: #e4f1df; }
 .diff-window .alert { background: #f6d9df; }
 .diff-window strong { display: block; padding: 22px 20px; color: #a94f60; }
+
+.network-map {
+  position: relative;
+  width: min(80%, 450px);
+  aspect-ratio: 1.15;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 28px;
+  background: radial-gradient(circle at 20% 25%, rgba(185, 215, 176, .8), transparent 14rem), var(--white);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.network-map .link {
+  position: absolute;
+  height: 3px;
+  border-radius: 4px;
+  background: #759b71;
+  transform-origin: left center;
+}
+.network-map .l1 { top: 28%; left: 24%; width: 42%; transform: rotate(20deg); }
+.network-map .l2 { top: 28%; left: 24%; width: 43%; transform: rotate(78deg); }
+.network-map .l3 { top: 70%; left: 24%; width: 42%; transform: rotate(-21deg); }
+.network-map .l4 { top: 28%; left: 66%; width: 32%; transform: rotate(102deg); }
+.network-map .l5 { top: 70%; left: 24%; width: 61%; transform: rotate(-36deg); }
+.network-map .node {
+  position: absolute;
+  z-index: 1;
+  width: 27px;
+  height: 27px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.network-map .n1 { top: 18%; left: 17%; background: var(--pink); }
+.network-map .n2 { top: 18%; left: 61%; }
+.network-map .n3 { top: 61%; left: 17%; background: var(--blue); }
+.network-map .n4 { top: 61%; left: 61%; background: var(--purple); }
+.network-map .n5 { top: 38%; left: 39%; background: var(--green); }
+.network-map .n6 { top: 39%; left: 82%; background: var(--orange); }
+.network-map b { position: absolute; right: 22px; bottom: 25px; font: 500 72px/.7 Georgia, serif; }
+.network-map small { position: absolute; right: 23px; bottom: 10px; font: 12px/1 "Courier New", monospace; }
 
 .project-shelf {
   display: grid;

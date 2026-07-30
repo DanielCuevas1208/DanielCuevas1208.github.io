@@ -21,6 +21,7 @@ document.querySelectorAll(".project").forEach((element) => {
 const featuredProjects = new Set([
   "gtfs-accessibility-auditor",
   "web-a11y-regression-guard",
+  "signal-garden",
   "DanielCuevas1208.github.io",
   "DanielCuevas1208",
   "localprofilecoder",
@@ -50,7 +51,7 @@ async function loadRecentProjects() {
 
     const label = document.createElement("p");
     label.className = "project-type";
-    label.textContent = repo.language || "Software project";
+    label.textContent = `${repo.language || "Software project"}${repo.topics?.includes("showcase-project") ? " / Showcase" : ""}`;
 
     const title = document.createElement("h3");
     title.textContent = repo.name.replaceAll("-", " ");
@@ -60,7 +61,7 @@ async function loadRecentProjects() {
 
     const link = document.createElement("a");
     link.href = repo.html_url;
-    link.textContent = "View project ↗";
+    link.textContent = "View project ->";
 
     article.append(label, title, description, link);
     shelf.append(article);
