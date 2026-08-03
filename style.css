@@ -236,7 +236,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 .project {
   display: grid;
   grid-template-columns: 1.05fr .95fr;
-  min-height: 530px;
+  min-height: 430px;
   margin-top: 24px;
   overflow: hidden;
   border: 2px solid var(--ink);
@@ -251,7 +251,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 .project-pink { background: #f6d9df; }
 .project-green { background: #dcebdd; }
 .project-yellow { background: #f8e9aa; }
-.project-copy { padding: clamp(38px, 6vw, 78px); }
+.project-copy { padding: clamp(32px, 4.5vw, 58px); }
 .project-copy h3 {
   max-width: 650px;
   margin: 22px 0;
@@ -281,10 +281,85 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
 
 .project-visual {
   display: grid;
-  min-height: 400px;
+  min-height: 340px;
   place-items: center;
   border-left: 2px solid var(--ink);
   background: rgba(255, 253, 249, .5);
+}
+
+.compact-project {
+  min-height: 360px;
+}
+
+.compact-project .project-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.compact-project .project-copy h3 {
+  font-size: clamp(40px, 4.8vw, 64px);
+}
+
+.compact-project .project-copy > p:not(.project-type) {
+  max-width: 700px;
+}
+
+.compact-project .project-visual {
+  min-height: 300px;
+}
+
+.auto-visual {
+  position: relative;
+  width: min(76%, 430px);
+  aspect-ratio: 1.35;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  background:
+    linear-gradient(rgba(41,39,34,.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41,39,34,.1) 1px, transparent 1px),
+    var(--white);
+  background-size: 26px 26px;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.auto-visual::after {
+  position: absolute;
+  right: 12%;
+  bottom: 18%;
+  width: 48%;
+  height: 3px;
+  border-radius: 4px;
+  background: var(--ink);
+  content: "";
+  transform: rotate(-12deg);
+}
+
+.auto-visual strong {
+  position: absolute;
+  top: 18%;
+  left: 12%;
+  max-width: 70%;
+  font: 700 13px/1.2 "Courier New", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.auto-visual b {
+  position: absolute;
+  right: 12%;
+  bottom: 18%;
+  font: 500 74px/.7 Georgia, serif;
+}
+
+.auto-visual small {
+  position: absolute;
+  right: 13%;
+  bottom: 10%;
+  font: 12px/1 "Courier New", monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 .route-map {
   position: relative;

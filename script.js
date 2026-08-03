@@ -14,9 +14,9 @@ const observer = new IntersectionObserver((entries) => {
   }
 }, { threshold: 0.15 });
 
-document.querySelectorAll(".project").forEach((element) => {
-  observer.observe(element);
-});
+const observeProject = (element) => observer.observe(element);
+
+document.querySelectorAll(".project").forEach(observeProject);
 
 const featuredProjects = new Set([
   "engineer-mcp",
@@ -43,9 +43,11 @@ function renderProjects(targetId, sectionId, repositories, category) {
   const shelf = document.querySelector(`#${targetId}`);
   if (!shelf) return;
 
-  for (const repo of repositories) {
+  repositories.forEach((repo, index) => {
+    const showcase = category === "Showcase";
     const article = document.createElement("article");
-    article.className = "shelf-card";
+    const palette = ["project-blue", "project-pink", "project-yellow", "project-green"][index % 4];
+    article.className = showcase ? `project compact-project ${palette}` : "shelf-card";
 
     const label = document.createElement("p");
     label.className = "project-type";
@@ -57,13 +59,44 @@ function renderProjects(targetId, sectionId, repositories, category) {
     const description = document.createElement("p");
     description.textContent = repo.description || "A recent software experiment.";
 
+    const copy = document.createElement("div");
+    copy.className = "project-copy";
+
     const link = document.createElement("a");
     link.href = repo.html_url;
     link.textContent = "View project ->";
 
-    article.append(label, title, description, link);
+    if (showcase) {
+      const highlights = document.createElement("ul");
+      highlights.setAttribute("aria-label", "Project details");
+      for (const detail of [repo.language || "Software", "Showcase project"]) {
+        const item = document.createElement("li");
+        item.textContent = detail;
+        highlights.append(item);
+      }
+
+      const visual = document.createElement("div");
+      visual.className = "project-visual";
+      visual.setAttribute("aria-hidden", "true");
+      const card = document.createElement("div");
+      card.className = "auto-visual";
+      const indexLabel = document.createElement("b");
+      indexLabel.textContent = String(index + 7).padStart(2, "0");
+      const languageLabel = document.createElement("strong");
+      languageLabel.textContent = repo.language || "SOFTWARE";
+      const caption = document.createElement("small");
+      caption.textContent = "showcase project";
+      card.append(languageLabel, indexLabel, caption);
+      visual.append(card);
+
+      copy.append(label, title, description, highlights, link);
+      article.append(copy, visual);
+      observeProject(article);
+    } else {
+      article.append(label, title, description, link);
+    }
     shelf.append(article);
-  }
+  });
 
   const section = document.querySelector(`#${sectionId}`);
   if (section) section.hidden = false;
