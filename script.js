@@ -19,12 +19,12 @@ document.querySelectorAll(".project").forEach((element) => {
 });
 
 const featuredProjects = new Set([
+  "engineer-mcp",
+  "agent-trace-workbench",
   "engineer-profile",
   "signal-garden",
-  "local-first-job-queue",
-  "packet-forensics-lab",
-  "personal-ledger-lab",
-  "shader-sketchbook",
+  "dot-matrix-deck",
+  "cinderstore",
   "DanielCuevas1208.github.io",
   "DanielCuevas1208",
   "localprofilecoder",

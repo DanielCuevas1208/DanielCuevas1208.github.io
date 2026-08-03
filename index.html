@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f7f1e8">
     <meta name="description" content="Daniel Cuevas builds thoughtful software across systems, data, security, and engineering.">
-    <meta property="og:title" content="Daniel Cuevas — Projects and experiments">
+    <meta property="og:title" content="Daniel Cuevas - Projects and experiments">
     <meta property="og:description" content="A growing collection of software projects across systems, data, security, and engineering.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://danielcuevas1208.github.io">
     <meta property="og:image" content="https://danielcuevas1208.github.io/assets/og.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Daniel Cuevas — Projects and experiments">
+    <meta name="twitter:title" content="Daniel Cuevas - Projects and experiments">
     <meta name="twitter:description" content="A growing collection of software projects across systems, data, security, and engineering.">
     <meta name="twitter:image" content="https://danielcuevas1208.github.io/assets/og.png">
-    <title>Daniel Cuevas — Projects and experiments</title>
+    <title>Daniel Cuevas - Projects and experiments</title>
     <link rel="icon" type="image/png" href="assets/og.png">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -34,7 +34,7 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="doodle doodle-flower" aria-hidden="true">✦</div>
+        <div class="doodle doodle-flower" aria-hidden="true">*</div>
         <div class="doodle doodle-loop" aria-hidden="true"></div>
         <p class="eyebrow">Software, systems, and the physical world.</p>
         <h1 id="hero-title">I build things<br>to understand <span>how they work.</span></h1>
@@ -44,7 +44,7 @@
             engineering ideas. Each project starts with a question worth making
             concrete.
           </p>
-          <a class="action" href="#work">Browse projects <span aria-hidden="true">↓</span></a>
+          <a class="action" href="#work">Browse projects <span aria-hidden="true">-&gt;</span></a>
         </div>
       </section>
 
@@ -100,6 +100,63 @@
 
         <article class="project project-blue">
           <div class="project-copy">
+            <p class="project-type">Showcase / TypeScript / Mechanical engineering</p>
+            <h3>EngineerMCP</h3>
+            <p>
+              An MCP server that gives coding agents reliable engineering
+              calculations, references, material data, and result provenance.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Beam calculations</li>
+              <li>Material lookup</li>
+              <li>Unit checks</li>
+              <li>Evidence trails</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/engineer-mcp">
+              View project <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="diff-window">
+              <p><span>+</span> load case checked</p>
+              <p class="clean"><span>+</span> material found</p>
+              <p class="alert"><span>!</span> source recorded</p>
+              <strong>ENGINEERKIT TOOL</strong>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-green">
+          <div class="project-copy">
+            <p class="project-type">Showcase / Python / Agent tooling</p>
+            <h3>Agent Trace Workbench</h3>
+            <p>
+              A local workbench for recording, replaying, comparing, and
+              inspecting tool-using agent runs.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Local traces</li>
+              <li>Run replay</li>
+              <li>Side-by-side comparison</li>
+              <li>Hosted-data free</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/agent-trace-workbench">
+              View project <span aria-hidden="true">-></span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="network-map">
+              <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span>
+              <span class="node n4"></span><span class="node n5"></span><span class="node n6"></span>
+              <span class="link l1"></span><span class="link l2"></span><span class="link l3"></span>
+              <span class="link l4"></span><span class="link l5"></span>
+              <b>03</b><small>replayable run</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-pink">
+          <div class="project-copy">
             <p class="project-type">Showcase / TypeScript / Developer tooling</p>
             <h3>EngineerProfile</h3>
             <p>
@@ -117,23 +174,23 @@
             </a>
           </div>
           <div class="project-visual" aria-hidden="true">
-            <div class="diff-window">
-              <p><span>+</span> project captured</p>
-              <p class="clean"><span>+</span> preview published</p>
-              <p class="alert"><span>!</span> private data filtered</p>
-              <strong>PORTFOLIO REFRESH</strong>
+            <div class="queue-map">
+              <div class="queue-row"><i></i><span>captured</span><b>01</b></div>
+              <div class="queue-row active"><i></i><span>reviewed</span><b>02</b></div>
+              <div class="queue-row"><i></i><span>previewed</span><b>03</b></div>
+              <div class="queue-row"><i></i><span>published</span><b>04</b></div>
+              <small>portfolio refresh</small>
             </div>
           </div>
         </article>
 
-        <article class="project project-green">
+        <article class="project project-blue">
           <div class="project-copy">
-            <p class="project-type">Showcase / Elixir / Phoenix LiveView</p>
+            <p class="project-type">Showcase / Elixir / Distributed systems</p>
             <h3>Signal Garden</h3>
             <p>
-              A repeatable distributed-systems simulator. Watch a rumor move
-              through a network while delay, message loss, and partitions shape
-              what happens next.
+              A repeatable simulator that makes delay, partitions, retries, and
+              eventual convergence visible.
             </p>
             <ul aria-label="Technical highlights">
               <li>Deterministic scenarios</li>
@@ -142,7 +199,7 @@
               <li>Live network view</li>
             </ul>
             <a href="https://github.com/DanielCuevas1208/signal-garden">
-              View project <span aria-hidden="true">-></span>
+              View project <span aria-hidden="true">-&gt;</span>
             </a>
           </div>
           <div class="project-visual" aria-hidden="true">
@@ -156,106 +213,21 @@
           </div>
         </article>
 
-        <article class="project project-pink">
-          <div class="project-copy">
-            <p class="project-type">Showcase / Go / Durable systems</p>
-            <h3>Local-First Job Queue</h3>
-            <p>
-              A durable background queue that makes leases, retries, idempotency,
-              and crash recovery easy to inspect.
-            </p>
-            <ul aria-label="Technical highlights">
-              <li>Leases</li>
-              <li>Retries</li>
-              <li>Crash recovery</li>
-              <li>Event log</li>
-            </ul>
-            <a href="https://github.com/DanielCuevas1208/local-first-job-queue">
-              View project <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="project-visual" aria-hidden="true">
-            <div class="queue-map">
-              <div class="queue-row"><i></i><span>leased</span><b>01</b></div>
-              <div class="queue-row active"><i></i><span>working</span><b>02</b></div>
-              <div class="queue-row"><i></i><span>retrying</span><b>03</b></div>
-              <div class="queue-row"><i></i><span>complete</span><b>04</b></div>
-              <small>durable queue</small>
-            </div>
-          </div>
-        </article>
-
-        <article class="project project-blue">
-          <div class="project-copy">
-            <p class="project-type">Showcase / Rust / Defensive analysis</p>
-            <h3>Packet Forensics Lab</h3>
-            <p>
-              An offline workbench that explains suspicious patterns in safe
-              packet fixtures without performing active scans.
-            </p>
-            <ul aria-label="Technical highlights">
-              <li>Binary parsing</li>
-              <li>DNS analysis</li>
-              <li>Safe fixtures</li>
-              <li>Terminal UI</li>
-            </ul>
-            <a href="https://github.com/DanielCuevas1208/packet-forensics-lab">
-              View project <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="project-visual" aria-hidden="true">
-            <div class="packet-window">
-              <div class="window-bar"><i></i><i></i><i></i></div>
-              <p><span>DNS</span> unusual.query</p>
-              <p class="clean"><span>TCP</span> stable.flow</p>
-              <p class="alert"><span>!</span> timing.anomaly</p>
-              <strong>FIXTURE REVIEW</strong>
-            </div>
-          </div>
-        </article>
-
         <article class="project project-yellow">
           <div class="project-copy">
-            <p class="project-type">Showcase / C# / Local-first finance</p>
-            <h3>Personal Ledger Lab</h3>
+            <p class="project-type">Showcase / Zig / Emulation</p>
+            <h3>Dot Matrix Deck</h3>
             <p>
-              A local-first finance tracker that imports statements, applies
-              transparent rules, and explains every monthly summary.
+              A Game Boy emulator with a CPU, memory bus, timers, pixel pipeline,
+              and headless test mode.
             </p>
             <ul aria-label="Technical highlights">
-              <li>Double-entry model</li>
-              <li>Rule explanations</li>
-              <li>Offline storage</li>
-              <li>Data export</li>
+              <li>SM83 CPU</li>
+              <li>Memory bus</li>
+              <li>Pixel pipeline</li>
+              <li>Headless tests</li>
             </ul>
-            <a href="https://github.com/DanielCuevas1208/personal-ledger-lab">
-              View project <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <div class="project-visual" aria-hidden="true">
-            <div class="ledger-window">
-              <div class="ledger-total"><small>MONTHLY BALANCE</small><b>$2,480</b></div>
-              <div class="ledger-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <small>local summary</small>
-            </div>
-          </div>
-        </article>
-
-        <article class="project project-pink">
-          <div class="project-copy">
-            <p class="project-type">Showcase / C++ / Graphics</p>
-            <h3>Shader Sketchbook</h3>
-            <p>
-              A compact graphics playground for signed-distance field scenes,
-              live shader edits, and deterministic reference renders.
-            </p>
-            <ul aria-label="Technical highlights">
-              <li>OpenGL renderer</li>
-              <li>GLSL reload</li>
-              <li>CPU reference</li>
-              <li>Visual checks</li>
-            </ul>
-            <a href="https://github.com/DanielCuevas1208/shader-sketchbook">
+            <a href="https://github.com/DanielCuevas1208/dot-matrix-deck">
               View project <span aria-hidden="true">-&gt;</span>
             </a>
           </div>
@@ -265,7 +237,36 @@
               <span class="route r3"></span>
               <span class="stop s1"></span><span class="stop s2"></span>
               <span class="stop s3"></span><span class="stop s4"></span>
-              <b>01</b><small>reference render</small>
+              <b>04</b><small>headless test</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project-pink">
+          <div class="project-copy">
+            <p class="project-type">Showcase / Crystal / Storage engine</p>
+            <h3>Cinderstore</h3>
+            <p>
+              An embeddable key-value store built on a log-structured merge tree
+              with a write-ahead log and background compaction.
+            </p>
+            <ul aria-label="Technical highlights">
+              <li>Embedded API</li>
+              <li>Write-ahead log</li>
+              <li>Sorted data files</li>
+              <li>Background merges</li>
+            </ul>
+            <a href="https://github.com/DanielCuevas1208/cinderstore">
+              View project <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+          <div class="project-visual" aria-hidden="true">
+            <div class="route-map">
+              <span class="route r1"></span><span class="route r2"></span>
+              <span class="route r3"></span>
+              <span class="stop s1"></span><span class="stop s2"></span>
+              <span class="stop s3"></span><span class="stop s4"></span>
+              <b>05</b><small>storage merge</small>
             </div>
           </div>
         </article>
@@ -273,18 +274,18 @@
 
       <section class="fresh" id="fresh" aria-labelledby="fresh-title" hidden>
         <div class="section-heading">
-          <p class="eyebrow">Supporting projects</p>
+          <p class="eyebrow">More projects</p>
           <h2 id="fresh-title">Smaller tools,<br>useful on their own.</h2>
         </div>
         <div class="project-shelf" id="github-projects"></div>
       </section>
 
       <section class="more">
-        <div class="orbit" aria-hidden="true"><span>✦</span></div>
+        <div class="orbit" aria-hidden="true"><span>*</span></div>
         <p class="eyebrow">There is more to explore.</p>
         <h2>Small tools, larger builds,<br>and work in progress.</h2>
         <a class="action" href="https://github.com/DanielCuevas1208">
-          Visit my GitHub <span aria-hidden="true">↗</span>
+          Visit my GitHub <span aria-hidden="true">-&gt;</span>
         </a>
       </section>
     </main>
