@@ -283,6 +283,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   display: grid;
   min-height: 340px;
   place-items: center;
+  position: relative;
   border-left: 2px solid var(--ink);
   background: rgba(255, 253, 249, .5);
 }
@@ -324,18 +325,6 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   box-shadow: 5px 5px 0 var(--ink);
 }
 
-.auto-visual::after {
-  position: absolute;
-  right: 12%;
-  bottom: 18%;
-  width: 48%;
-  height: 3px;
-  border-radius: 4px;
-  background: var(--ink);
-  content: "";
-  transform: rotate(-12deg);
-}
-
 .auto-visual strong {
   position: absolute;
   top: 18%;
@@ -346,21 +335,250 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   text-transform: uppercase;
 }
 
-.auto-visual b {
-  position: absolute;
-  right: 12%;
-  bottom: 18%;
-  font: 500 74px/.7 Georgia, serif;
-}
-
 .auto-visual small {
   position: absolute;
-  right: 13%;
   bottom: 10%;
+  left: 12%;
   font: 12px/1 "Courier New", monospace;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
+
+.project-number {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  z-index: 2;
+  font: 500 74px/.7 Georgia, serif;
+  letter-spacing: -.06em;
+}
+
+.network-map > b,
+.route-map > b {
+  display: none;
+}
+
+.graphic-marks {
+  position: absolute;
+  inset: 0;
+}
+
+.graphic-marks span {
+  position: absolute;
+  display: block;
+}
+
+.graphic-map .graphic-marks::before,
+.graphic-network .graphic-marks::before,
+.graphic-merge .graphic-marks::before {
+  position: absolute;
+  inset: 22% 14%;
+  background:
+    linear-gradient(24deg, transparent 48%, #628cc7 49%, #628cc7 51%, transparent 52%),
+    linear-gradient(-31deg, transparent 48%, #759b71 49%, #759b71 51%, transparent 52%),
+    linear-gradient(7deg, transparent 49%, #d97f90 50%, #d97f90 51%, transparent 52%);
+  content: "";
+}
+
+.graphic-map .graphic-marks span,
+.graphic-network .graphic-marks span,
+.graphic-merge .graphic-marks span,
+.graphic-physics .graphic-marks span {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.graphic-map .mark-1 { top: 30%; left: 22%; }
+.graphic-map .mark-2 { top: 26%; left: 66%; background: var(--pink); }
+.graphic-map .mark-3 { top: 68%; left: 30%; background: var(--green); }
+.graphic-map .mark-4 { top: 62%; left: 74%; background: var(--blue); }
+.graphic-map .mark-5 { top: 45%; left: 49%; background: var(--purple); }
+.graphic-map .mark-6 { top: 72%; left: 56%; background: var(--orange); }
+
+.graphic-network .graphic-marks::before { inset: 30% 20%; }
+.graphic-network .mark-1 { top: 25%; left: 22%; background: var(--pink); }
+.graphic-network .mark-2 { top: 24%; left: 68%; }
+.graphic-network .mark-3 { top: 64%; left: 23%; background: var(--blue); }
+.graphic-network .mark-4 { top: 64%; left: 68%; background: var(--purple); }
+.graphic-network .mark-5 { top: 44%; left: 45%; background: var(--green); }
+.graphic-network .mark-6 { top: 43%; left: 80%; background: var(--orange); }
+
+.graphic-merge .graphic-marks::before { inset: 33% 18%; }
+.graphic-merge .mark-1 { top: 29%; left: 20%; background: var(--blue); }
+.graphic-merge .mark-2 { top: 57%; left: 20%; background: var(--pink); }
+.graphic-merge .mark-3 { top: 43%; left: 46%; background: var(--yellow); }
+.graphic-merge .mark-4 { top: 43%; left: 72%; background: var(--green); }
+.graphic-merge .mark-5,
+.graphic-merge .mark-6 { display: none; }
+
+.graphic-logic .graphic-marks::before {
+  position: absolute;
+  inset: 28% 16%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) 0 25% / 100% 2px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 0 75% / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 48%, var(--ink) 49%, var(--ink) 51%, transparent 52%) 0 0 / 100% 100% no-repeat;
+  content: "";
+}
+
+.graphic-logic .graphic-marks span {
+  width: 44px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--yellow);
+}
+
+.graphic-logic .mark-1 { top: 23%; left: 19%; }
+.graphic-logic .mark-2 { top: 62%; left: 19%; background: var(--pink); }
+.graphic-logic .mark-3 { top: 42%; left: 43%; background: var(--green); }
+.graphic-logic .mark-4 { top: 42%; left: 70%; background: var(--blue); }
+.graphic-logic .mark-5,
+.graphic-logic .mark-6 { display: none; }
+
+.graphic-terminal .graphic-marks span,
+.graphic-packets .graphic-marks span,
+.graphic-queue .graphic-marks span {
+  left: 16%;
+  width: 68%;
+  height: 10px;
+  border-left: 26px solid var(--blue);
+  border-radius: 4px;
+  background: var(--ink);
+  opacity: .82;
+}
+
+.graphic-terminal .mark-1 { top: 31%; width: 62%; }
+.graphic-terminal .mark-2 { top: 39%; border-left-color: var(--pink); width: 72%; }
+.graphic-terminal .mark-3 { top: 47%; width: 48%; }
+.graphic-terminal .mark-4 { top: 55%; border-left-color: var(--green); width: 64%; }
+.graphic-terminal .mark-5 { top: 63%; width: 38%; }
+.graphic-terminal .mark-6 { top: 71%; border-left-color: var(--yellow); width: 58%; }
+
+.graphic-packets .graphic-marks span { height: 16px; border-left-width: 38px; }
+.graphic-packets .mark-1 { top: 29%; border-left-color: var(--pink); }
+.graphic-packets .mark-2 { top: 39%; border-left-color: var(--yellow); }
+.graphic-packets .mark-3 { top: 49%; border-left-color: var(--blue); }
+.graphic-packets .mark-4 { top: 59%; border-left-color: var(--green); }
+.graphic-packets .mark-5 { top: 69%; border-left-color: var(--orange); }
+.graphic-packets .mark-6 { display: none; }
+
+.graphic-queue .graphic-marks span { height: 3px; border-left: 12px solid var(--green); }
+.graphic-queue .mark-1 { top: 32%; }
+.graphic-queue .mark-2 { top: 42%; border-left-color: var(--yellow); }
+.graphic-queue .mark-3 { top: 52%; border-left-color: var(--blue); }
+.graphic-queue .mark-4 { top: 62%; border-left-color: var(--pink); }
+.graphic-queue .mark-5 { top: 72%; border-left-color: var(--purple); }
+.graphic-queue .mark-6 { display: none; }
+
+.graphic-board .graphic-marks {
+  inset: 25% 16%;
+  border: 2px solid var(--ink);
+  background:
+    linear-gradient(rgba(41,39,34,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41,39,34,.16) 1px, transparent 1px),
+    var(--white);
+  background-size: 22px 22px;
+}
+
+.graphic-board .graphic-marks span,
+.graphic-physics .graphic-marks span {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.graphic-board .mark-1 { top: 17%; left: 17%; }
+.graphic-board .mark-2 { top: 38%; left: 40%; background: var(--white); }
+.graphic-board .mark-3 { top: 61%; left: 67%; }
+.graphic-board .mark-4 { top: 67%; left: 27%; background: var(--white); }
+.graphic-board .mark-5 { top: 24%; left: 72%; }
+.graphic-board .mark-6 { display: none; }
+
+.graphic-physics .graphic-marks::before {
+  position: absolute;
+  top: 64%;
+  left: 16%;
+  width: 68%;
+  height: 3px;
+  border-radius: 4px;
+  background: var(--ink);
+  content: "";
+  transform: rotate(-16deg);
+}
+
+.graphic-physics .mark-1 { top: 30%; left: 22%; background: var(--pink); }
+.graphic-physics .mark-2 { top: 47%; left: 42%; background: var(--yellow); }
+.graphic-physics .mark-3 { top: 62%; left: 69%; background: var(--blue); }
+.graphic-physics .mark-4 { top: 68%; left: 32%; background: var(--green); }
+.graphic-physics .mark-5,
+.graphic-physics .mark-6 { display: none; }
+
+.graphic-wave .graphic-marks {
+  inset: 30% 15%;
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.graphic-wave .graphic-marks span,
+.graphic-bars .graphic-marks span {
+  position: relative;
+  flex: 1;
+  height: 50%;
+  border: 2px solid var(--ink);
+  border-bottom: 0;
+  background: var(--orange);
+}
+
+.graphic-wave .mark-1 { height: 38%; background: var(--blue); }
+.graphic-wave .mark-2 { height: 68%; background: var(--pink); }
+.graphic-wave .mark-3 { height: 52%; background: var(--yellow); }
+.graphic-wave .mark-4 { height: 82%; background: var(--green); }
+.graphic-wave .mark-5 { height: 61%; background: var(--purple); }
+.graphic-wave .mark-6 { height: 73%; background: var(--orange); }
+
+.graphic-bars .graphic-marks {
+  inset: 27% 16%;
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.graphic-bars .mark-1 { height: 42%; }
+.graphic-bars .mark-2 { height: 68%; background: var(--pink); }
+.graphic-bars .mark-3 { height: 54%; background: var(--blue); }
+.graphic-bars .mark-4 { height: 84%; background: var(--green); }
+.graphic-bars .mark-5 { height: 64%; background: var(--purple); }
+.graphic-bars .mark-6 { height: 92%; background: var(--yellow); }
+
+.graphic-shader .graphic-marks {
+  inset: 27% 18%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.graphic-shader .graphic-marks span {
+  position: relative;
+  border: 2px solid var(--ink);
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+}
+
+.graphic-shader .mark-2 { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+.graphic-shader .mark-3 { background: linear-gradient(135deg, var(--yellow), var(--green)); }
+.graphic-shader .mark-4 { background: linear-gradient(135deg, var(--green), var(--blue)); }
+.graphic-shader .mark-5 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+.graphic-shader .mark-6 { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
 .route-map {
   position: relative;
   width: min(78%, 430px);
@@ -559,8 +777,7 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   margin-top: 0;
 }
 
-.project-list { margin-top: 84px; }
-.project-list > .eyebrow { margin-bottom: 24px; }
+.project-list { margin-top: 36px; }
 
 .shelf-card {
   display: flex;

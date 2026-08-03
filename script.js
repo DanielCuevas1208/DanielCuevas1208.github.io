@@ -18,6 +18,19 @@ const observeProject = (element) => observer.observe(element);
 
 document.querySelectorAll(".project").forEach(observeProject);
 
+const addProjectNumber = (project, number) => {
+  const visual = project.querySelector(".project-visual");
+  if (!visual || visual.querySelector(".project-number")) return;
+  const label = document.createElement("b");
+  label.className = "project-number";
+  label.textContent = String(number).padStart(2, "0");
+  visual.append(label);
+};
+
+document.querySelectorAll(".work > article.project").forEach((project, index) => {
+  addProjectNumber(project, index + 1);
+});
+
 const featuredProjects = new Set([
   "engineer-mcp",
   "agent-trace-workbench",
@@ -37,6 +50,41 @@ const displayName = (name) => name
   .split("-")
   .map((word) => word ? `${word[0].toUpperCase()}${word.slice(1)}` : word)
   .join(" ");
+
+const graphicByRepo = {
+  "dungeonwright": "map",
+  "gatework": "logic",
+  "sprout-lang": "terminal",
+  "latch": "network",
+  "driftlog": "merge",
+  "stonehue": "board",
+  "tumble-lab": "physics",
+  "patchbay-synth": "wave",
+  "personal-ledger-lab": "bars",
+  "packet-forensics-lab": "packets",
+  "local-first-job-queue": "queue",
+  "shader-sketchbook": "shader",
+};
+
+const createGraphic = (repo) => {
+  const variant = graphicByRepo[repo.name] || "network";
+  const graphic = document.createElement("div");
+  graphic.className = `auto-visual graphic-${variant}`;
+
+  const languageLabel = document.createElement("strong");
+  languageLabel.textContent = repo.language || "SOFTWARE";
+  const marks = document.createElement("div");
+  marks.className = "graphic-marks";
+  for (let index = 0; index < 6; index += 1) {
+    const mark = document.createElement("span");
+    mark.className = `mark-${index + 1}`;
+    marks.append(mark);
+  }
+  const caption = document.createElement("small");
+  caption.textContent = "showcase project";
+  graphic.append(languageLabel, marks, caption);
+  return graphic;
+};
 
 function renderProjects(targetId, sectionId, repositories, category) {
   if (repositories.length === 0) return;
@@ -78,19 +126,11 @@ function renderProjects(targetId, sectionId, repositories, category) {
       const visual = document.createElement("div");
       visual.className = "project-visual";
       visual.setAttribute("aria-hidden", "true");
-      const card = document.createElement("div");
-      card.className = "auto-visual";
-      const indexLabel = document.createElement("b");
-      indexLabel.textContent = String(index + 7).padStart(2, "0");
-      const languageLabel = document.createElement("strong");
-      languageLabel.textContent = repo.language || "SOFTWARE";
-      const caption = document.createElement("small");
-      caption.textContent = "showcase project";
-      card.append(languageLabel, indexLabel, caption);
-      visual.append(card);
+      visual.append(createGraphic(repo));
 
       copy.append(label, title, description, highlights, link);
       article.append(copy, visual);
+      addProjectNumber(article, index + 7);
       observeProject(article);
     } else {
       article.append(label, title, description, link);
