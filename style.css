@@ -473,6 +473,9 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   gap: 18px;
 }
 
+.project-list { margin-top: 84px; }
+.project-list > .eyebrow { margin-bottom: 24px; }
+
 .shelf-card {
   display: flex;
   min-height: 270px;

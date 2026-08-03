@@ -30,7 +30,46 @@ const featuredProjects = new Set([
   "localprofilecoder",
 ]);
 
-async function loadRecentProjects() {
+const hasTopic = (repo, topic) =>
+  Array.isArray(repo.topics) && repo.topics.includes(topic);
+
+const displayName = (name) => name
+  .split("-")
+  .map((word) => word ? `${word[0].toUpperCase()}${word.slice(1)}` : word)
+  .join(" ");
+
+function renderProjects(targetId, sectionId, repositories, category) {
+  if (repositories.length === 0) return;
+  const shelf = document.querySelector(`#${targetId}`);
+  if (!shelf) return;
+
+  for (const repo of repositories) {
+    const article = document.createElement("article");
+    article.className = "shelf-card";
+
+    const label = document.createElement("p");
+    label.className = "project-type";
+    label.textContent = `${repo.language || "Software project"} / ${category}`;
+
+    const title = document.createElement("h3");
+    title.textContent = displayName(repo.name);
+
+    const description = document.createElement("p");
+    description.textContent = repo.description || "A recent software experiment.";
+
+    const link = document.createElement("a");
+    link.href = repo.html_url;
+    link.textContent = "View project ->";
+
+    article.append(label, title, description, link);
+    shelf.append(article);
+  }
+
+  const section = document.querySelector(`#${sectionId}`);
+  if (section) section.hidden = false;
+}
+
+async function loadPortfolioProjects() {
   const response = await fetch(
     "https://api.github.com/users/DanielCuevas1208/repos?sort=pushed&per_page=100",
     { headers: { Accept: "application/vnd.github+json" } },
@@ -44,32 +83,13 @@ async function loadRecentProjects() {
       Array.isArray(repo.topics) &&
       repo.topics.includes("portfolio")
     )
-    .slice(0, 6);
-  if (projects.length === 0) return;
+  const showcase = projects.filter((repo) => hasTopic(repo, "showcase-project"));
+  const supporting = projects.filter((repo) =>
+    !hasTopic(repo, "showcase-project") && hasTopic(repo, "supporting-project")
+  );
 
-  const shelf = document.querySelector("#github-projects");
-  for (const repo of projects) {
-    const article = document.createElement("article");
-    article.className = "shelf-card";
-
-    const label = document.createElement("p");
-    label.className = "project-type";
-    label.textContent = `${repo.language || "Software project"}${repo.topics?.includes("showcase-project") ? " / Showcase" : ""}`;
-
-    const title = document.createElement("h3");
-    title.textContent = repo.name.replaceAll("-", " ");
-
-    const description = document.createElement("p");
-    description.textContent = repo.description || "A recent software experiment.";
-
-    const link = document.createElement("a");
-    link.href = repo.html_url;
-    link.textContent = "View project ->";
-
-    article.append(label, title, description, link);
-    shelf.append(article);
-  }
-  document.querySelector("#fresh").hidden = false;
+  renderProjects("github-showcase-projects", "github-showcase", showcase, "Showcase");
+  renderProjects("github-supporting-projects", "supporting", supporting, "Supporting");
 }
 
-loadRecentProjects().catch(() => undefined);
+loadPortfolioProjects().catch(() => undefined);
