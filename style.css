@@ -548,13 +548,13 @@ nav a:hover, nav a:focus-visible, footer a:hover, footer a:focus-visible { text-
   gap: 18px;
 }
 
-#github-showcase-projects.project-shelf {
+.showcase-stack {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-#github-showcase-projects.project-shelf > .project {
+.showcase-stack > .project {
   width: 100%;
   margin-top: 0;
 }
