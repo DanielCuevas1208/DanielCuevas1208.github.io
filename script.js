@@ -31,21 +31,6 @@ document.querySelectorAll(".work > article.project").forEach((project, index) =>
   addProjectNumber(project, index + 1);
 });
 
-const featuredProjects = new Set([
-  "engineer-mcp",
-  "agent-trace-workbench",
-  "engineer-profile",
-  "signal-garden",
-  "dot-matrix-deck",
-  "cinderstore",
-  "DanielCuevas1208.github.io",
-  "DanielCuevas1208",
-  "localprofilecoder",
-]);
-
-const hasTopic = (repo, topic) =>
-  Array.isArray(repo.topics) && repo.topics.includes(topic);
-
 const displayName = (name) => name
   .split("-")
   .map((word) => word ? `${word[0].toUpperCase()}${word.slice(1)}` : word)
@@ -55,16 +40,39 @@ const graphicByRepo = {
   "dungeonwright": "map",
   "gatework": "logic",
   "sprout-lang": "terminal",
-  "latch": "network",
-  "driftlog": "merge",
-  "stonehue": "board",
-  "tumble-lab": "physics",
-  "patchbay-synth": "wave",
-  "personal-ledger-lab": "bars",
-  "packet-forensics-lab": "packets",
   "local-first-job-queue": "queue",
-  "shader-sketchbook": "shader",
 };
+
+const reviewedProjects = [
+  {
+    name: "sprout-lang",
+    language: "Go",
+    category: "Showcase",
+    description: "A small programming language with an interpreter and a bytecode virtual machine. It supports file modules, imports, exports, and cycle checks.",
+    html_url: "https://github.com/DanielCuevas1208/sprout-lang",
+  },
+  {
+    name: "gatework",
+    language: "Haskell",
+    category: "Showcase",
+    description: "A digital-logic simulator that reads text netlists and writes standard VCD waveform files.",
+    html_url: "https://github.com/DanielCuevas1208/gatework",
+  },
+  {
+    name: "dungeonwright",
+    language: "GDScript",
+    category: "Showcase",
+    description: "A Godot dungeon crawler with seeded maps and multi-floor runs. Dungeon depth controls enemy scaling.",
+    html_url: "https://github.com/DanielCuevas1208/dungeonwright",
+  },
+  {
+    name: "local-first-job-queue",
+    language: "Go",
+    category: "Showcase",
+    description: "A Go and SQLite background job queue with leases, retries, idempotency, a dead-letter queue, metrics, and a read-only dashboard.",
+    html_url: "https://github.com/DanielCuevas1208/local-first-job-queue",
+  },
+];
 
 const createGraphic = (repo) => {
   const variant = graphicByRepo[repo.name] || "network";
@@ -105,7 +113,7 @@ function renderProjects(targetId, sectionId, repositories, category) {
     title.textContent = displayName(repo.name);
 
     const description = document.createElement("p");
-    description.textContent = repo.description || "A recent software experiment.";
+    description.textContent = repo.description;
 
     const copy = document.createElement("div");
     copy.className = "project-copy";
@@ -117,7 +125,7 @@ function renderProjects(targetId, sectionId, repositories, category) {
     if (showcase) {
       const highlights = document.createElement("ul");
       highlights.setAttribute("aria-label", "Project details");
-      for (const detail of [repo.language || "Software", "Showcase project"]) {
+      for (const detail of [repo.language, "Showcase project"]) {
         const item = document.createElement("li");
         item.textContent = detail;
         highlights.append(item);
@@ -142,27 +150,8 @@ function renderProjects(targetId, sectionId, repositories, category) {
   if (section) section.hidden = false;
 }
 
-async function loadPortfolioProjects() {
-  const response = await fetch(
-    "https://api.github.com/users/DanielCuevas1208/repos?sort=pushed&per_page=100",
-    { headers: { Accept: "application/vnd.github+json" } },
-  );
-  if (!response.ok) return;
-  const repositories = await response.json();
-  const projects = repositories
-    .filter((repo) =>
-      !repo.fork &&
-      !featuredProjects.has(repo.name) &&
-      Array.isArray(repo.topics) &&
-      repo.topics.includes("portfolio")
-    )
-  const showcase = projects.filter((repo) => hasTopic(repo, "showcase-project"));
-  const supporting = projects.filter((repo) =>
-    !hasTopic(repo, "showcase-project") && hasTopic(repo, "supporting-project")
-  );
+const showcase = reviewedProjects.filter((project) => project.category === "Showcase");
+const supporting = reviewedProjects.filter((project) => project.category === "Supporting");
 
-  renderProjects("github-showcase-projects", "github-showcase", showcase, "Showcase");
-  renderProjects("github-supporting-projects", "supporting", supporting, "Supporting");
-}
-
-loadPortfolioProjects().catch(() => undefined);
+renderProjects("github-showcase-projects", "github-showcase", showcase, "Showcase");
+renderProjects("github-supporting-projects", "supporting", supporting, "Supporting");
