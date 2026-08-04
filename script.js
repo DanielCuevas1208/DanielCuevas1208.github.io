@@ -46,51 +46,55 @@ const featuredProjects = new Set([
 const projectOverrides = {
   "sprout-lang": {
     language: "Go",
-    description: "A small programming language with a tree-walking interpreter, a bytecode virtual machine, and file modules with imports, exports, and cycle checks.",
+    description: "A small programming language with an interpreter and a bytecode virtual machine. It supports file modules, imports, exports, and cycle checks.",
   },
   "gatework": {
     language: "Haskell",
-    description: "An event-driven digital-logic simulator that reads plain-text netlists and writes VCD waveform files and text reports.",
+    description: "An event-driven digital-logic simulator. It reads plain-text netlists and writes VCD waveform files and text reports.",
   },
   "tumble-lab": {
     language: "Lua",
-    description: "A deterministic 2D rigid-body simulation lab with fixed-step worlds, collision handling, record and replay, and a headless runner. Interactive presentation remains under development.",
+    description: "A deterministic 2D rigid-body simulation lab with collision handling and a headless runner. Interactive presentation is planned.",
   },
   "latch": {
     language: "Erlang",
-    description: "An experimental encrypted-messaging library with X25519, AES-256-GCM, and ratchet-based message keys. Handshake authentication is planned; the current release requires a trusted transport.",
+    description: "An experimental encrypted-messaging library with ratchet-based message keys. Handshake authentication is planned. The current release requires a trusted transport.",
   },
   "inkline-maps": {
     language: "Kotlin",
-    description: "An offline Kotlin renderer for local OpenStreetMap XML extracts. It applies a plain-text style sheet and writes PNG and SVG maps.",
+    description: "An offline renderer for local OpenStreetMap XML extracts. It uses a plain-text style sheet and writes PNG and SVG maps.",
+  },
+  "engineering-design-assistant": {
+    language: "Dart",
+    description: "A local tool that stores typed engineering requirements and checks units and constraints. It provides a Flutter app, a CLI, and an MCP server.",
   },
   "turtleyard": {
     language: "Pharo Smalltalk",
-    description: "A compact Pharo Smalltalk environment for turtle graphics, live Morphic drawing, L-system expansion, and PNG export.",
+    description: "A compact Pharo Smalltalk environment for turtle graphics. It supports live drawing, L-system expansion, and PNG export.",
   },
   "paper-orrery": {
     language: "F#",
-    description: "An F# astronomy calculator that propagates bundled orbital elements, converts positions to a local horizon frame, and renders SVG sky charts.",
+    description: "An astronomy calculator that uses bundled orbital elements. It converts positions to the local horizon and writes SVG sky charts.",
   },
   "rota-forge": {
     language: "Scala",
-    description: "A Scala staff-rostering solver that reads staff, shifts, and rules from CSV files and writes scored schedules as CSV and HTML.",
+    description: "A staff-rostering solver that reads staff, shifts, and rules from CSV files. It writes scored schedules as CSV and HTML.",
   },
   "specimen-press": {
     language: "Swift",
-    description: "A Swift font-inspection toolkit that reads TrueType tables, extracts glyph outlines and metrics, and renders SVG specimen sheets.",
+    description: "A font-inspection toolkit that reads TrueType tables. It extracts glyph outlines and metrics and writes SVG specimen sheets.",
   },
   "morphoscope": {
     language: "Prolog",
-    description: "A SWI-Prolog morphological analyzer that applies documented English and Spanish inflection rules in analysis and generation directions.",
+    description: "A SWI-Prolog morphological analyzer. It applies documented English and Spanish inflection rules in both directions.",
   },
   "clausecraft": {
     language: "OCaml",
-    description: "A compact OCaml SAT solver with DIMACS input, DPLL search, unit propagation, independent model checks, and a Sudoku demo. Watched literals, clause learning, and restarts are planned.",
+    description: "A compact SAT solver with DIMACS input, DPLL search, unit propagation, model checks, and a Sudoku demo. Clause learning and restarts are planned.",
   },
   "gtfs-accessibility-auditor": {
     language: "TypeScript",
-    description: "A TypeScript CLI that audits GTFS wheelchair data, data quality, trip coverage, and route-level accessibility gaps, then writes JSON and HTML reports.",
+    description: "A CLI that audits GTFS wheelchair data and route-level gaps. It writes JSON and HTML reports.",
   },
 };
 
