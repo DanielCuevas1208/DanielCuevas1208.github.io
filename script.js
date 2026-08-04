@@ -43,6 +43,57 @@ const featuredProjects = new Set([
   "localprofilecoder",
 ]);
 
+const projectOverrides = {
+  "sprout-lang": {
+    language: "Go",
+    description: "A small programming language with a tree-walking interpreter, a bytecode virtual machine, and file modules with imports, exports, and cycle checks.",
+  },
+  "gatework": {
+    language: "Haskell",
+    description: "An event-driven digital-logic simulator that reads plain-text netlists and writes VCD waveform files and text reports.",
+  },
+  "tumble-lab": {
+    language: "Lua",
+    description: "A deterministic 2D rigid-body simulation lab with fixed-step worlds, collision handling, record and replay, and a headless runner. Interactive presentation remains under development.",
+  },
+  "latch": {
+    language: "Erlang",
+    description: "An experimental encrypted-messaging library with X25519, AES-256-GCM, and ratchet-based message keys. Handshake authentication is planned; the current release requires a trusted transport.",
+  },
+  "inkline-maps": {
+    language: "Kotlin",
+    description: "An offline Kotlin renderer for local OpenStreetMap XML extracts. It applies a plain-text style sheet and writes PNG and SVG maps.",
+  },
+  "turtleyard": {
+    language: "Pharo Smalltalk",
+    description: "A compact Pharo Smalltalk environment for turtle graphics, live Morphic drawing, L-system expansion, and PNG export.",
+  },
+  "paper-orrery": {
+    language: "F#",
+    description: "An F# astronomy calculator that propagates bundled orbital elements, converts positions to a local horizon frame, and renders SVG sky charts.",
+  },
+  "rota-forge": {
+    language: "Scala",
+    description: "A Scala staff-rostering solver that reads staff, shifts, and rules from CSV files and writes scored schedules as CSV and HTML.",
+  },
+  "specimen-press": {
+    language: "Swift",
+    description: "A Swift font-inspection toolkit that reads TrueType tables, extracts glyph outlines and metrics, and renders SVG specimen sheets.",
+  },
+  "morphoscope": {
+    language: "Prolog",
+    description: "A SWI-Prolog morphological analyzer that applies documented English and Spanish inflection rules in analysis and generation directions.",
+  },
+  "clausecraft": {
+    language: "OCaml",
+    description: "A compact OCaml SAT solver with DIMACS input, DPLL search, unit propagation, independent model checks, and a Sudoku demo. Watched literals, clause learning, and restarts are planned.",
+  },
+  "gtfs-accessibility-auditor": {
+    language: "TypeScript",
+    description: "A TypeScript CLI that audits GTFS wheelchair data, data quality, trip coverage, and route-level accessibility gaps, then writes JSON and HTML reports.",
+  },
+};
+
 const hasTopic = (repo, topic) =>
   Array.isArray(repo.topics) && repo.topics.includes(topic);
 
@@ -156,6 +207,7 @@ async function loadPortfolioProjects() {
       Array.isArray(repo.topics) &&
       repo.topics.includes("portfolio")
     )
+    .map((repo) => ({ ...repo, ...(projectOverrides[repo.name] || {}) }));
   const showcase = projects.filter((repo) => hasTopic(repo, "showcase-project"));
   const supporting = projects.filter((repo) =>
     !hasTopic(repo, "showcase-project") && hasTopic(repo, "supporting-project")
