@@ -1,14 +1,448 @@
 {
   "schemaVersion": 1,
-  "generatedAt": null,
-  "revision": "fnv1a64:cbf29ce484222325",
+  "generatedAt": "2026-09-10T21:27:36.867Z",
+  "revision": "fnv1a64:5960d86b85a57261",
   "pathTemplate": "{server}/{courseId}/{style}.json",
   "servers": {
     "global": {
-      "courses": {}
+      "courses": {
+        "10105": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10301": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10302": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10501": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10504": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10506": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10507": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10602": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10603": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10604": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10606": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10611": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10701": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10708": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10801": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10805": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10807": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10808": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10810": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10811": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10901": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10902": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10903": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10905": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10906": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10907": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11101": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11102": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11103": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11302": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11303": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11402": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11502": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11504": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11703": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11709": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ]
+      }
     },
     "jp": {
-      "courses": {}
+      "courses": {
+        "10105": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10301": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10302": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10501": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10504": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10506": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10507": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10602": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10603": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10604": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10606": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10611": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10701": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10708": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10801": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10805": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10807": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10808": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10810": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10811": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10901": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10902": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10903": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10905": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10906": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "10907": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11101": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11102": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11103": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11302": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11303": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11402": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11502": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11504": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11703": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ],
+        "11709": [
+          "runner",
+          "leader",
+          "betweener",
+          "chaser"
+        ]
+      }
     }
   }
 }
