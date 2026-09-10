@@ -7,9 +7,14 @@ on:
     paths:
       - ".github/workflows/benchmark-uma-skill-effects.yml"
       - ".github/scripts/benchmark-uma-effects.mjs"
+      - "uma-training-lab-data/tools/build-global-skill-data.mjs"
 
 permissions:
   contents: read
+
+concurrency:
+  group: uma-skill-effect-benchmark
+  cancel-in-progress: true
 
 jobs:
   benchmark:
