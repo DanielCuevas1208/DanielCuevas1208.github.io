@@ -51,9 +51,10 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
     const dest = effectFile(root, 'global', courseId, style);
     const existing = fs.existsSync(dest) ? readJson(dest) : null;
     const byId = new Map(rows.map((row) => [Number(row.id), row]));
+    const preservedSources = new Set(['utools-delta-global', 'simulation', 'manual']);
 
     for (const row of existing?.skills || []) {
-      if (row.source !== 'simulation' && row.source !== 'manual') continue;
+      if (!preservedSources.has(row.source)) continue;
       const skill = skills.get(Number(row.id));
       const currentHash = isGlobalReleased(skill) ? mechanicsHash(skill, 'global') : null;
       if (!currentHash || row.mechanicsHash !== currentHash) {
@@ -70,7 +71,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
       generatedAt: new Date().toISOString(),
       profile: {
         evaluator: 'mixed',
-        note: 'Mechanically identical JP rows bridged from U-tools; current Global simulations override them when present.',
+        note: 'Mechanically identical JP rows bridge directly from U-tools; changed Global mechanics use U-tools-anchored JP→Global simulation deltas.',
       },
       skills: [...byId.values()],
     });
