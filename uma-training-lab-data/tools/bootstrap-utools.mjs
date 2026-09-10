@@ -12,6 +12,7 @@ import {
   mechanicsHash,
   normalizeEffectFile,
   parseArgs,
+  readJson,
   writeJson,
 } from './lib.mjs';
 import { fetchUtoolsExpectedEffects } from './utools-live.mjs';
@@ -24,7 +25,14 @@ const discoveryRoot = args['discovery-root'] || DEFAULT_UTOOLS_EFFECT_ROOT;
 const onlyCourse = args.course ? Number(args.course) : null;
 const onlyStyle = args.style || null;
 
-const skills = indexSkills(await loadSkills(skillsUrl));
+const skillList = await loadSkills(skillsUrl);
+const skills = indexSkills(skillList);
+const nameToId = new Map();
+for (const skill of skillList) {
+  const name = String(skill?.jpname || '').trim();
+  if (name && !nameToId.has(name)) nameToId.set(name, Number(skill.id));
+}
+
 const localJpRoot = path.join(root, 'jp');
 let discovered = [];
 if (fs.existsSync(localJpRoot)) {
@@ -44,45 +52,64 @@ const styles = onlyStyle ? [onlyStyle] : STYLES;
 let written = 0;
 const failures = [];
 
+function sameNumber(a, b) {
+  if (a == null && b == null) return true;
+  return Number.isFinite(Number(a)) && Number.isFinite(Number(b)) && Math.abs(Number(a) - Number(b)) <= 1e-12;
+}
+
 for (const courseId of courseIds) {
   for (const style of styles) {
     try {
-      const source = await fetchUtoolsExpectedEffects(courseId, style);
+      const dest = effectFile(root, 'jp', courseId, style);
+      const existing = fs.existsSync(dest) ? readJson(dest) : null;
+      const oldById = new Map((existing?.skills || []).map((row) => [Number(row.id), row]));
+      const source = await fetchUtoolsExpectedEffects(courseId, style, nameToId);
+      let changed = !existing;
       const rows = source.rows
         .map((row) => {
           const skill = skills.get(Number(row.id));
           if (!skill) return null;
+          const hash = mechanicsHash(skill, 'jp');
+          const old = oldById.get(Number(row.id));
+          const unchanged = !!old
+            && sameNumber(old.expectedEffect, row.expectedEffect)
+            && sameNumber(old.minEffect, row.minEffect)
+            && sameNumber(old.maxEffect, row.maxEffect)
+            && old.mechanicsHash === hash;
+          if (!unchanged) changed = true;
           return {
             id: Number(row.id),
             expectedEffect: Number(row.expectedEffect),
-            minEffect: null,
+            minEffect: row.minEffect == null ? null : Number(row.minEffect),
             medianEffect: null,
-            maxEffect: null,
+            maxEffect: row.maxEffect == null ? null : Number(row.maxEffect),
             p05Effect: null,
             p95Effect: null,
             samples: null,
-            mechanicsHash: mechanicsHash(skill, 'jp'),
+            mechanicsHash: hash,
             source: 'utools-live',
-            sourceUpdatedAt: source.fetchedAt,
+            sourceUpdatedAt: unchanged ? (old.sourceUpdatedAt || source.fetchedAt) : source.fetchedAt,
           };
         })
         .filter(Boolean);
       if (rows.length < 10) throw new Error(`Only ${rows.length} live rows matched the current skill catalog`);
+      if (existing && rows.length !== (existing.skills || []).length) changed = true;
       const out = normalizeEffectFile({
         server: 'jp',
         courseId,
         style,
-        generatedAt: source.fetchedAt,
+        generatedAt: changed ? source.fetchedAt : (existing.generatedAt || source.fetchedAt),
         profile: {
           evaluator: 'U-tools live',
           sourceUrl: source.url,
-          importedFrom: 'live U-tools race-course effects page',
+          importedFrom: source.transport,
+          precision: source.transport === 'direct-rsc' ? 'full source precision' : 'U-tools displayed precision via reader proxy',
         },
         skills: rows,
       });
-      writeJson(effectFile(root, 'jp', courseId, style), out);
+      writeJson(dest, out);
       written += 1;
-      process.stdout.write(`jp ${courseId}/${style}: ${rows.length} live U-tools rows\n`);
+      process.stdout.write(`jp ${courseId}/${style}: ${rows.length} live U-tools rows via ${source.transport}${changed ? ' (changed)' : ''}\n`);
     } catch (error) {
       failures.push(`${courseId}/${style}: ${error.message}`);
       process.stderr.write(`FAIL ${courseId}/${style}: ${error.message}\n`);
@@ -91,6 +118,4 @@ for (const courseId of courseIds) {
 }
 
 process.stdout.write(`wrote ${written} JP course/style files from live U-tools\n`);
-if (failures.length) {
-  throw new Error(`Live U-tools refresh failed for ${failures.length} course/style pages; refusing a partial refresh`);
-}
+if (failures.length) throw new Error(`Live U-tools refresh failed for ${failures.length} course/style pages; refusing a partial refresh`);
