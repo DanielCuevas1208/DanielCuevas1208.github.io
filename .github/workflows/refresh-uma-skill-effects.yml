@@ -45,13 +45,13 @@ jobs:
           count=$(node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync('pending.json','utf8')); process.stdout.write(String(x.count||0));")
           echo "count=$count" >> "$GITHUB_OUTPUT"
 
-      - name: Clone skill evaluator
+      - name: Clone modern Umalator evaluator
         if: steps.pending.outputs.count != '0'
-        run: git clone --depth 1 https://github.com/alpha123/uma-skill-tools.git .cache/uma-skill-tools
+        run: git clone --depth 1 https://github.com/kachi-dev/uma-tools.git .cache/uma-tools
 
       - name: Install evaluator dependencies
         if: steps.pending.outputs.count != '0'
-        working-directory: .cache/uma-skill-tools
+        working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
 
       - name: Build current JP and Global skill definitions
@@ -68,7 +68,7 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: |
           node evaluate-pending.mjs \
-            --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" \
+            --tools-dir "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools" \
             --jp-data "$GITHUB_WORKSPACE/.cache/skill_data.jp.json" \
             --global-data "$GITHUB_WORKSPACE/.cache/skill_data.global.json" \
             --samples 2000
@@ -100,5 +100,5 @@ jobs:
       - name: Fail if any Global corrections failed
         if: steps.evaluate.outcome == 'failure'
         run: |
-          echo "One or more Global-specific delta evaluations failed. Successful current rows were published; inspect the evaluator log for unresolved skills."
+          echo "One or more Global-specific Umalator delta evaluations failed. Successful current rows were published; inspect the evaluator log for unresolved skills."
           exit 1
