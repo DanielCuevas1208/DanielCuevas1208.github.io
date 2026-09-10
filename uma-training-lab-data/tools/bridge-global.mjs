@@ -26,6 +26,7 @@ const skills = indexSkills(await loadSkills(skillsUrl));
 const jpRoot = path.join(root, 'jp');
 let written = 0;
 let droppedStale = 0;
+let droppedLegacySimulation = 0;
 
 if (!fs.existsSync(jpRoot)) throw new Error('No JP files found. Run bootstrap-utools.mjs first or add JP data.');
 
@@ -51,9 +52,13 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
     const dest = effectFile(root, 'global', courseId, style);
     const existing = fs.existsSync(dest) ? readJson(dest) : null;
     const byId = new Map(rows.map((row) => [Number(row.id), row]));
-    const preservedSources = new Set(['utools-delta-global', 'simulation', 'manual']);
+    const preservedSources = new Set(['utools-delta-global', 'manual']);
 
     for (const row of existing?.skills || []) {
+      if (row.source === 'simulation') {
+        droppedLegacySimulation += 1;
+        continue;
+      }
       if (!preservedSources.has(row.source)) continue;
       const skill = skills.get(Number(row.id));
       const currentHash = isGlobalReleased(skill) ? mechanicsHash(skill, 'global') : null;
@@ -81,4 +86,4 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
   }
 }
 
-process.stdout.write(`wrote ${written} Global bridge files; dropped ${droppedStale} stale derived row(s)\n`);
+process.stdout.write(`wrote ${written} Global bridge files; dropped ${droppedStale} stale row(s) and ${droppedLegacySimulation} legacy absolute-simulation row(s)\n`);
