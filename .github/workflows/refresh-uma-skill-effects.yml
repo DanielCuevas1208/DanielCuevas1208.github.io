@@ -20,31 +20,74 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - name: Import current JP values
         working-directory: uma-training-lab-data/tools
         run: npm run bootstrap:utools
+
       - name: Bridge mechanically identical values to Global
         working-directory: uma-training-lab-data/tools
         run: npm run bridge:global
+
+      - name: Find Global values that need simulation
+        id: pending
+        working-directory: uma-training-lab-data/tools
+        shell: bash
+        run: |
+          node pending.mjs --json > pending.json
+          cat pending.json
+          count=$(node -e "const fs=require('fs'); const x=JSON.parse(fs.readFileSync('pending.json','utf8')); process.stdout.write(String(x.count||0));")
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Clone skill evaluator
+        if: steps.pending.outputs.count != '0'
+        run: git clone --depth 1 https://github.com/alpha123/uma-skill-tools.git .cache/uma-skill-tools
+
+      - name: Install evaluator dependencies
+        if: steps.pending.outputs.count != '0'
+        working-directory: .cache/uma-skill-tools
+        run: npm ci
+
+      - name: Build current Global skill definitions for evaluator
+        if: steps.pending.outputs.count != '0'
+        working-directory: uma-training-lab-data/tools
+        run: node build-global-skill-data.mjs --out "$GITHUB_WORKSPACE/.cache/uma-skill-tools/data/skill_data.json"
+
+      - name: Simulate Global-specific skill versions
+        if: steps.pending.outputs.count != '0'
+        id: evaluate
+        continue-on-error: true
+        working-directory: uma-training-lab-data/tools
+        run: node evaluate-pending.mjs --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" --samples 2000
+
       - name: Rebuild manifest
         working-directory: uma-training-lab-data/tools
         run: npm run manifest
+
       - name: Validate database
         working-directory: uma-training-lab-data/tools
         run: npm run validate
+
       - name: Commit refreshed data
         run: |
           if git diff --quiet -- uma-training-lab-data/skill-effects; then
             echo "Skill-effect database is already current."
-            exit 0
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add uma-training-lab-data/skill-effects
+            git commit -m "data: refresh Uma skill effects"
+            git push
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add uma-training-lab-data/skill-effects
-          git commit -m "data: refresh Uma skill effects"
-          git push
+
+      - name: Fail if any Global simulations failed
+        if: steps.evaluate.outcome == 'failure'
+        run: |
+          echo "One or more Global-specific skill evaluations failed. Successful rows were still published; inspect the evaluator log for the remaining pending skills."
+          exit 1
