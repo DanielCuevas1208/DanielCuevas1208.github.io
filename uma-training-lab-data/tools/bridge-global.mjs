@@ -25,6 +25,7 @@ const onlyStyle = args.style || null;
 const skills = indexSkills(await loadSkills(skillsUrl));
 const jpRoot = path.join(root, 'jp');
 let written = 0;
+let droppedStale = 0;
 
 if (!fs.existsSync(jpRoot)) throw new Error('No JP files found. Run bootstrap-utools.mjs first or add JP data.');
 
@@ -46,13 +47,22 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
         source: row.source === 'utools' ? 'utools-compatible' : row.source,
       });
     }
+
     const dest = effectFile(root, 'global', courseId, style);
-    let existing = null;
-    if (fs.existsSync(dest)) existing = readJson(dest);
+    const existing = fs.existsSync(dest) ? readJson(dest) : null;
     const byId = new Map(rows.map((row) => [Number(row.id), row]));
+
     for (const row of existing?.skills || []) {
-      if (row.source === 'simulation' || row.source === 'manual') byId.set(Number(row.id), row);
+      if (row.source !== 'simulation' && row.source !== 'manual') continue;
+      const skill = skills.get(Number(row.id));
+      const currentHash = isGlobalReleased(skill) ? mechanicsHash(skill, 'global') : null;
+      if (!currentHash || row.mechanicsHash !== currentHash) {
+        droppedStale += 1;
+        continue;
+      }
+      byId.set(Number(row.id), row);
     }
+
     const out = normalizeEffectFile({
       server: 'global',
       courseId,
@@ -60,7 +70,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
       generatedAt: new Date().toISOString(),
       profile: {
         evaluator: 'mixed',
-        note: 'Mechanically identical JP rows bridged from U-tools; Global simulations override them when present.',
+        note: 'Mechanically identical JP rows bridged from U-tools; current Global simulations override them when present.',
       },
       skills: [...byId.values()],
     });
@@ -70,4 +80,4 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
   }
 }
 
-process.stdout.write(`wrote ${written} Global bridge files\n`);
+process.stdout.write(`wrote ${written} Global bridge files; dropped ${droppedStale} stale derived row(s)\n`);
