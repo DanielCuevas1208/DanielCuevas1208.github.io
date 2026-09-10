@@ -35,7 +35,7 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: npm run bridge:global
 
-      - name: Find Global values that need simulation
+      - name: Find Global values that need correction
         id: pending
         working-directory: uma-training-lab-data/tools
         shell: bash
@@ -54,17 +54,24 @@ jobs:
         working-directory: .cache/uma-skill-tools
         run: npm ci
 
-      - name: Build current Global skill definitions for evaluator
+      - name: Build current JP and Global skill definitions
         if: steps.pending.outputs.count != '0'
         working-directory: uma-training-lab-data/tools
-        run: node build-global-skill-data.mjs --out "$GITHUB_WORKSPACE/.cache/uma-skill-tools/data/skill_data.json"
+        run: |
+          node build-skill-data.mjs --server jp --out "$GITHUB_WORKSPACE/.cache/skill_data.jp.json"
+          node build-skill-data.mjs --server global --out "$GITHUB_WORKSPACE/.cache/skill_data.global.json"
 
-      - name: Simulate Global-specific skill versions
+      - name: Correct Global-specific skill versions
         if: steps.pending.outputs.count != '0'
         id: evaluate
         continue-on-error: true
         working-directory: uma-training-lab-data/tools
-        run: node evaluate-pending.mjs --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" --samples 2000
+        run: |
+          node evaluate-pending.mjs \
+            --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" \
+            --jp-data "$GITHUB_WORKSPACE/.cache/skill_data.jp.json" \
+            --global-data "$GITHUB_WORKSPACE/.cache/skill_data.global.json" \
+            --samples 2000
 
       - name: Rebuild manifest
         working-directory: uma-training-lab-data/tools
@@ -90,8 +97,8 @@ jobs:
             git push
           fi
 
-      - name: Fail if any Global simulations failed
+      - name: Fail if any Global corrections failed
         if: steps.evaluate.outcome == 'failure'
         run: |
-          echo "One or more Global-specific skill evaluations failed. Successful current rows were still published; inspect the evaluator log for the remaining pending skills."
+          echo "One or more Global-specific delta evaluations failed. Successful current rows were published; inspect the evaluator log for unresolved skills."
           exit 1
