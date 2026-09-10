@@ -17,9 +17,16 @@ const courseId = Number(data.courseId);
 const rows = (data.skills || [])
   .filter((row) => row.source === 'utools-compatible' && Number.isFinite(Number(row.expectedEffect)))
   .slice(0, limit);
-const horse = path.join(toolsDir, 'tools', `${profile}.json`);
-const results = [];
 
+const sourceHorse = path.join(toolsDir, 'tools', `${profile}.json`);
+const evaluatorSkills = JSON.parse(fs.readFileSync(path.join(toolsDir, 'data', 'skill_data.json'), 'utf8'));
+const horseData = JSON.parse(fs.readFileSync(sourceHorse, 'utf8'));
+horseData.skills = (Array.isArray(horseData.skills) ? horseData.skills : [])
+  .filter((id) => Object.prototype.hasOwnProperty.call(evaluatorSkills, String(id)));
+const horse = path.join(toolsDir, `.training-lab-benchmark-${profile}.json`);
+fs.writeFileSync(horse, `${JSON.stringify(horseData)}\n`);
+
+const results = [];
 for (const row of rows) {
   const id = Number(row.id);
   const seed = (0x6d2b79f5 ^ courseId ^ id) >>> 0;
