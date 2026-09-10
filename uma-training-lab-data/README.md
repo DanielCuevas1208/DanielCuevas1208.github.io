@@ -33,6 +33,36 @@ npm run validate
 
 `bridge:global` copies a JP value into Global only when the current Global and JP mechanical definitions are identical. Existing `simulation` or `manual` Global rows are preserved.
 
+## Normal update cycle
+
+After refreshing the live skill source, the useful path is:
+
+```bash
+cd uma-training-lab-data/tools
+npm run bootstrap:utools
+npm run bridge:global
+npm run pending
+```
+
+`pending` compares the current Global mechanics fingerprint against every Global-different skill that appears in the JP course-effect set. It prints only missing or stale course/style/skill combinations.
+
+If your Global-correct `uma-skill-tools` checkout is ready, the whole pending matrix can be evaluated in one command:
+
+```bash
+node evaluate-pending.mjs \
+  --tools-dir /path/to/uma-skill-tools-global \
+  --samples 2000
+```
+
+Then rebuild and validate the published index:
+
+```bash
+npm run manifest
+npm run validate
+```
+
+This means routine skill updates do not require rerunning every skill on every course. Unchanged fingerprints remain valid; only newly missing/stale Global-different values are recomputed.
+
 ## Recalculate a Global-different skill
 
 Clone or maintain an `uma-skill-tools` checkout whose `data/skill_data.json` represents the server/version you intend to evaluate, then run:
