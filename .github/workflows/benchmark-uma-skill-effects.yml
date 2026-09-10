@@ -9,6 +9,8 @@ on:
       - ".github/scripts/benchmark-uma-effects.mjs"
       - ".github/scripts/umalator-current-gain.ts"
       - "uma-training-lab-data/tools/build-skill-data.mjs"
+      - "uma-training-lab-data/tools/bootstrap-utools.mjs"
+      - "uma-training-lab-data/tools/utools-live.mjs"
 
 permissions:
   contents: read
@@ -31,6 +33,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Refresh this JP reference page directly from live U-tools
+        working-directory: uma-training-lab-data/tools
+        run: node bootstrap-utools.mjs --course ${{ matrix.course }} --style ${{ matrix.style }}
       - name: Clone modern Umalator evaluator
         run: git clone --depth 1 https://github.com/kachi-dev/uma-tools.git .cache/uma-tools
       - name: Install evaluator dependencies
@@ -38,14 +43,13 @@ jobs:
         run: npm ci
       - name: Patch upstream benchmark compatibility
         working-directory: .cache/uma-tools/uma-skill-tools
-        run: |
-          sed -i "/EnhancedHpPolicy/d" RaceSolverBuilder.ts
+        run: sed -i "/EnhancedHpPolicy/d" RaceSolverBuilder.ts
       - name: Build current JP skill definitions
         working-directory: uma-training-lab-data/tools
         run: node build-skill-data.mjs --server jp --out "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools/data/skill_data.json"
       - name: Install current RaceSolverBuilder benchmark adapter
         run: cp .github/scripts/umalator-current-gain.ts .cache/uma-tools/uma-skill-tools/.training-lab-current-gain.ts
-      - name: Compare JP Umalator output against JP U-tools reference values
+      - name: Compare JP Umalator output against live JP U-tools reference values
         shell: bash
         run: |
           case "${{ matrix.style }}" in
