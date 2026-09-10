@@ -1,0 +1,11 @@
+{
+  "name": "uma-training-lab-skill-effects",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bootstrap:utools": "node bootstrap-utools.mjs",
+    "bridge:global": "node bridge-global.mjs",
+    "manifest": "node build-manifest.mjs",
+    "validate": "node validate.mjs"
+  }
+}

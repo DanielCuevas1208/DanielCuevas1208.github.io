@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": null,
+  "revision": "fnv1a64:cbf29ce484222325",
+  "pathTemplate": "{server}/{courseId}/{style}.json",
+  "servers": {
+    "global": {
+      "courses": {}
+    },
+    "jp": {
+      "courses": {}
+    }
+  }
+}
