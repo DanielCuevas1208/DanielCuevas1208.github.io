@@ -6,6 +6,7 @@ import {
   STYLES,
   effectFile,
   indexSkills,
+  isGlobalReleased,
   loadSkills,
   mechanicsEqualAcrossServers,
   mechanicsHash,
@@ -38,7 +39,7 @@ export async function findGlobalPending({ skillsUrl = DEFAULT_SKILLS_URL, course
       for (const jpRow of jp.skills || []) {
         const id = Number(jpRow.id);
         const skill = skillIndex.get(id);
-        if (!skill?.loc?.en) continue;
+        if (!isGlobalReleased(skill)) continue;
         if (mechanicsEqualAcrossServers(skill)) continue;
         const expectedHash = mechanicsHash(skill, 'global');
         const row = globalRows.get(id);
@@ -60,12 +61,15 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     course: args.course ? Number(args.course) : null,
     style: args.style || null,
   });
-  if (!groups.length) {
+  const count = groups.reduce((sum, group) => sum + group.skillIds.length, 0);
+  if (args.json) {
+    process.stdout.write(`${JSON.stringify({ count, groups })}\n`);
+  } else if (!groups.length) {
     process.stdout.write('No missing/stale Global-different values.\n');
   } else {
     for (const group of groups) {
       process.stdout.write(`${group.courseId}/${group.style}: ${group.skillIds.join(',')}\n`);
     }
-    process.stdout.write(`\n${groups.reduce((sum, group) => sum + group.skillIds.length, 0)} evaluations across ${groups.length} course/style groups.\n`);
+    process.stdout.write(`\n${count} evaluations across ${groups.length} course/style groups.\n`);
   }
 }
