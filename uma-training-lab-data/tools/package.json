@@ -10,6 +10,7 @@
     "pending": "node pending.mjs",
     "evaluate:pending": "node evaluate-pending.mjs",
     "manifest": "node build-manifest.mjs",
-    "validate": "node validate.mjs"
+    "validate": "node validate.mjs",
+    "validate:live": "node validate-live.mjs"
   }
 }
