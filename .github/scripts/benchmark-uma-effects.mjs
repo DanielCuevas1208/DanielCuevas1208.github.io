@@ -12,10 +12,12 @@ const dbFile = path.resolve(arg('db'));
 const samples = Math.max(50, Number(arg('samples', '500')));
 const limit = Math.max(1, Number(arg('limit', '48')));
 const profile = arg('profile', 'senkou');
+const runner = arg('runner', '.training-lab-current-gain.ts');
 const data = JSON.parse(fs.readFileSync(dbFile, 'utf8'));
 const courseId = Number(data.courseId);
+const server = data.server || 'unknown';
 const rows = (data.skills || [])
-  .filter((row) => row.source === 'utools-compatible' && Number.isFinite(Number(row.expectedEffect)))
+  .filter((row) => String(row.source || '').startsWith('utools') && Number.isFinite(Number(row.expectedEffect)))
   .slice(0, limit);
 
 const sourceHorse = path.join(toolsDir, 'tools', `${profile}.json`);
@@ -29,16 +31,20 @@ try {
   evaluatorRevision = execFileSync('git', ['-C', toolsDir, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 } catch {}
 
+if (!rows.length) throw new Error(`No U-tools reference rows found in ${dbFile}`);
+
 const results = [];
+const failures = [];
 for (const row of rows) {
   const id = Number(row.id);
   const seed = (0x6d2b79f5 ^ courseId ^ id) >>> 0;
   try {
     const stdout = execFileSync('npx', [
-      'ts-node', 'tools/gain.ts', horse,
-      '-c', String(courseId),
-      '-s', String(id),
-      '-N', String(samples),
+      'ts-node', runner,
+      '--horse', horse,
+      '--course', String(courseId),
+      '--skill', String(id),
+      '--samples', String(samples),
       '--seed', String(seed),
       '--csv', String(id),
     ], { cwd: toolsDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
@@ -51,6 +57,7 @@ for (const row of rows) {
     results.push({ id, reference, simulated, error, absError: Math.abs(error) });
     console.log(`${id}\tU-tools=${reference.toFixed(4)}\tUmalator=${simulated.toFixed(4)}\tdelta=${error >= 0 ? '+' : ''}${error.toFixed(4)}`);
   } catch (error) {
+    failures.push({ id, error: error.message });
     console.error(`${id}\tFAILED\t${error.message}`);
   }
 }
@@ -109,32 +116,46 @@ const calibration = {
   },
 };
 
+const worst = [...results].sort((a, b) => b.absError - a.absError).slice(0, 10);
 const summary = {
   evaluator: 'kachi-dev/uma-tools/uma-skill-tools',
   evaluatorRevision,
+  evaluatorPath: 'RaceSolverBuilder',
+  positionKeepMode: 'Approximate',
+  server,
   courseId,
   profile,
   samples,
+  attempted: rows.length,
   count: results.length,
+  failureCount: failures.length,
   mae,
   bias,
   rmse,
   correlation,
   calibration,
+  worst,
   results,
+  failures,
 };
 console.log('\nSUMMARY');
 console.log(JSON.stringify({
   evaluator: summary.evaluator,
   evaluatorRevision,
+  evaluatorPath: summary.evaluatorPath,
+  positionKeepMode: summary.positionKeepMode,
+  server,
   courseId,
   profile,
   samples,
+  attempted: rows.length,
   count: results.length,
+  failureCount: failures.length,
   mae,
   bias,
   rmse,
   correlation,
   calibration,
+  worst,
 }, null, 2));
 fs.writeFileSync('uma-effect-benchmark.json', `${JSON.stringify(summary, null, 2)}\n`);
