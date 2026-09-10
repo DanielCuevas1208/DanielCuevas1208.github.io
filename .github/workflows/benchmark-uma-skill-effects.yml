@@ -31,6 +31,10 @@ jobs:
       - name: Install evaluator dependencies
         working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
+      - name: Patch upstream benchmark compatibility
+        working-directory: .cache/uma-tools/uma-skill-tools
+        run: |
+          sed -i "/EnhancedHpPolicy/d" RaceSolverBuilder.ts
       - name: Build current JP skill definitions
         working-directory: uma-training-lab-data/tools
         run: node build-skill-data.mjs --server jp --out "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools/data/skill_data.json"
