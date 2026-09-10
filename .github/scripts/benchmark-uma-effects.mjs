@@ -10,7 +10,7 @@ function arg(name, fallback = null) {
 const toolsDir = path.resolve(arg('tools-dir'));
 const dbFile = path.resolve(arg('db'));
 const samples = Math.max(50, Number(arg('samples', '500')));
-const limit = Math.max(1, Number(arg('limit', '24')));
+const limit = Math.max(1, Number(arg('limit', '48')));
 const profile = arg('profile', 'senkou');
 const data = JSON.parse(fs.readFileSync(dbFile, 'utf8'));
 const courseId = Number(data.courseId);
@@ -19,12 +19,15 @@ const rows = (data.skills || [])
   .slice(0, limit);
 
 const sourceHorse = path.join(toolsDir, 'tools', `${profile}.json`);
-const evaluatorSkills = JSON.parse(fs.readFileSync(path.join(toolsDir, 'data', 'skill_data.json'), 'utf8'));
 const horseData = JSON.parse(fs.readFileSync(sourceHorse, 'utf8'));
-horseData.skills = (Array.isArray(horseData.skills) ? horseData.skills : [])
-  .filter((id) => Object.prototype.hasOwnProperty.call(evaluatorSkills, String(id)));
+horseData.skills = [];
 const horse = path.join(toolsDir, `.training-lab-benchmark-${profile}.json`);
 fs.writeFileSync(horse, `${JSON.stringify(horseData)}\n`);
+
+let evaluatorRevision = null;
+try {
+  evaluatorRevision = execFileSync('git', ['-C', toolsDir, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+} catch {}
 
 const results = [];
 for (const row of rows) {
@@ -46,18 +49,34 @@ for (const row of rows) {
     const reference = Number(row.expectedEffect);
     const error = simulated - reference;
     results.push({ id, reference, simulated, error, absError: Math.abs(error) });
-    console.log(`${id}\tU-tools=${reference.toFixed(4)}\tgain.ts=${simulated.toFixed(4)}\tdelta=${error >= 0 ? '+' : ''}${error.toFixed(4)}`);
+    console.log(`${id}\tU-tools=${reference.toFixed(4)}\tUmalator=${simulated.toFixed(4)}\tdelta=${error >= 0 ? '+' : ''}${error.toFixed(4)}`);
   } catch (error) {
     console.error(`${id}\tFAILED\t${error.message}`);
   }
 }
 
 if (!results.length) throw new Error('No benchmark rows succeeded');
-const mae = results.reduce((sum, row) => sum + row.absError, 0) / results.length;
-const bias = results.reduce((sum, row) => sum + row.error, 0) / results.length;
-const rmse = Math.sqrt(results.reduce((sum, row) => sum + row.error * row.error, 0) / results.length);
-const meanRef = results.reduce((sum, row) => sum + row.reference, 0) / results.length;
-const meanSim = results.reduce((sum, row) => sum + row.simulated, 0) / results.length;
+
+function mean(values) {
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
+
+function rmseFor(predict) {
+  return Math.sqrt(mean(results.map((row) => {
+    const e = predict(row.simulated) - row.reference;
+    return e * e;
+  })));
+}
+
+function maeFor(predict) {
+  return mean(results.map((row) => Math.abs(predict(row.simulated) - row.reference)));
+}
+
+const mae = mean(results.map((row) => row.absError));
+const bias = mean(results.map((row) => row.error));
+const rmse = Math.sqrt(mean(results.map((row) => row.error * row.error)));
+const meanRef = mean(results.map((row) => row.reference));
+const meanSim = mean(results.map((row) => row.simulated));
 let cov = 0, varRef = 0, varSim = 0;
 for (const row of results) {
   const a = row.reference - meanRef;
@@ -67,7 +86,55 @@ for (const row of results) {
   varSim += b * b;
 }
 const correlation = varRef && varSim ? cov / Math.sqrt(varRef * varSim) : null;
-const summary = { courseId, profile, samples, count: results.length, mae, bias, rmse, correlation, results };
+
+const throughOriginDenom = results.reduce((sum, row) => sum + row.simulated * row.simulated, 0);
+const multiplicativeScale = throughOriginDenom
+  ? results.reduce((sum, row) => sum + row.simulated * row.reference, 0) / throughOriginDenom
+  : null;
+const linearSlope = varSim ? cov / varSim : null;
+const linearIntercept = linearSlope == null ? null : meanRef - linearSlope * meanSim;
+
+const calibration = {
+  raw: { mae, rmse },
+  multiplicative: multiplicativeScale == null ? null : {
+    scale: multiplicativeScale,
+    mae: maeFor((x) => x * multiplicativeScale),
+    rmse: rmseFor((x) => x * multiplicativeScale),
+  },
+  affine: linearSlope == null ? null : {
+    intercept: linearIntercept,
+    slope: linearSlope,
+    mae: maeFor((x) => linearIntercept + linearSlope * x),
+    rmse: rmseFor((x) => linearIntercept + linearSlope * x),
+  },
+};
+
+const summary = {
+  evaluator: 'kachi-dev/uma-tools/uma-skill-tools',
+  evaluatorRevision,
+  courseId,
+  profile,
+  samples,
+  count: results.length,
+  mae,
+  bias,
+  rmse,
+  correlation,
+  calibration,
+  results,
+};
 console.log('\nSUMMARY');
-console.log(JSON.stringify({ courseId, profile, samples, count: results.length, mae, bias, rmse, correlation }, null, 2));
+console.log(JSON.stringify({
+  evaluator: summary.evaluator,
+  evaluatorRevision,
+  courseId,
+  profile,
+  samples,
+  count: results.length,
+  mae,
+  bias,
+  rmse,
+  correlation,
+  calibration,
+}, null, 2));
 fs.writeFileSync('uma-effect-benchmark.json', `${JSON.stringify(summary, null, 2)}\n`);
