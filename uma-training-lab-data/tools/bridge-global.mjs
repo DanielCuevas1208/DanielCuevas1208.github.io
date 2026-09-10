@@ -38,6 +38,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
     const jpFile = effectFile(root, 'jp', courseId, style);
     if (!fs.existsSync(jpFile)) continue;
     const jp = readJson(jpFile);
+    const jpById = new Map((jp.skills || []).map((row) => [Number(row.id), row]));
     const rows = [];
     for (const row of jp.skills || []) {
       const skill = skills.get(Number(row.id));
@@ -45,7 +46,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
       rows.push({
         ...row,
         mechanicsHash: mechanicsHash(skill, 'global'),
-        source: row.source === 'utools' ? 'utools-compatible' : row.source,
+        source: String(row.source || '').startsWith('utools') ? 'utools-compatible' : row.source,
       });
     }
 
@@ -62,7 +63,12 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
       if (!preservedSources.has(row.source)) continue;
       const skill = skills.get(Number(row.id));
       const currentHash = isGlobalReleased(skill) ? mechanicsHash(skill, 'global') : null;
-      if (!currentHash || row.mechanicsHash !== currentHash) {
+      const currentRef = jpById.get(Number(row.id));
+      const anchorChanged = row.source === 'utools-delta-global'
+        && (!currentRef
+          || !Number.isFinite(Number(row.referenceExpectedEffect))
+          || Math.abs(Number(row.referenceExpectedEffect) - Number(currentRef.expectedEffect)) > 1e-12);
+      if (!currentHash || row.mechanicsHash !== currentHash || anchorChanged) {
         droppedStale += 1;
         continue;
       }
@@ -76,7 +82,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
       generatedAt: new Date().toISOString(),
       profile: {
         evaluator: 'mixed',
-        note: 'Mechanically identical JP rows bridge directly from U-tools; changed Global mechanics use U-tools-anchored JP→Global simulation deltas.',
+        note: 'Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.',
       },
       skills: [...byId.values()],
     });
