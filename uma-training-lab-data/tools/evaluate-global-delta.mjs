@@ -31,7 +31,7 @@ const skillsUrl = args['skills-url'] || DEFAULT_SKILLS_URL;
 const force = !!args.force;
 const seedBase = Number.isInteger(Number(args.seed)) ? Number(args.seed) >>> 0 : 0x6d2b79f5;
 const EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
-const METHOD_VERSION = 2;
+const METHOD_VERSION = 3;
 
 if (!toolsDir) throw new Error('--tools-dir is required');
 if (!jpDataPath || !fs.existsSync(jpDataPath)) throw new Error('--jp-data is required');
