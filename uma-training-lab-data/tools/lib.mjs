@@ -56,7 +56,7 @@ export function serverField(skill, server, key) {
 export function serverMechanics(skill, server) {
   if (!skill) return null;
   if (server === 'global' && !isGlobalReleased(skill)) return null;
-  const keys = ['activation', 'condition_groups', 'cost', 'rarity', 'type'];
+  const keys = ['activation', 'condition_groups', 'rarity', 'type'];
   const out = {};
   for (const key of keys) out[key] = serverField(skill, server, key);
   return out;
