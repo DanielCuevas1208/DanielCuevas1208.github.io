@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/benchmark-uma-skill-effects.yml"
       - ".github/scripts/benchmark-uma-effects.mjs"
+      - ".github/scripts/umalator-current-gain.ts"
       - "uma-training-lab-data/tools/build-skill-data.mjs"
 
 permissions:
@@ -30,19 +31,23 @@ jobs:
       - name: Install evaluator dependencies
         working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
-      - name: Build current Global skill definitions
+      - name: Build current JP skill definitions
         working-directory: uma-training-lab-data/tools
-        run: node build-skill-data.mjs --server global --out "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools/data/skill_data.json"
-      - name: Compare modern Umalator output against U-tools reference values
+        run: node build-skill-data.mjs --server jp --out "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools/data/skill_data.json"
+      - name: Install current RaceSolverBuilder benchmark adapter
+        run: cp .github/scripts/umalator-current-gain.ts .cache/uma-tools/uma-skill-tools/.training-lab-current-gain.ts
+      - name: Compare JP Umalator output against JP U-tools reference values
         run: |
           node .github/scripts/benchmark-uma-effects.mjs \
             --tools-dir "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools" \
-            --db "$GITHUB_WORKSPACE/uma-training-lab-data/skill-effects/global/10606/leader.json" \
+            --db "$GITHUB_WORKSPACE/uma-training-lab-data/skill-effects/jp/10606/leader.json" \
             --profile senkou \
             --samples 500 \
             --limit 48
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: uma-effect-benchmark
           path: uma-effect-benchmark.json
+          if-no-files-found: ignore
           retention-days: 7
