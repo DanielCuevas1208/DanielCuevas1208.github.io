@@ -5,6 +5,8 @@
   "scripts": {
     "bootstrap:utools": "node bootstrap-utools.mjs",
     "bridge:global": "node bridge-global.mjs",
+    "pending": "node pending.mjs",
+    "evaluate:pending": "node evaluate-pending.mjs",
     "manifest": "node build-manifest.mjs",
     "validate": "node validate.mjs"
   }
