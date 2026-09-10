@@ -6,6 +6,7 @@
   "scripts": {
     "bootstrap:utools": "node bootstrap-utools.mjs",
     "bridge:global": "node bridge-global.mjs",
+    "build:global-skill-data": "node build-global-skill-data.mjs",
     "pending": "node pending.mjs",
     "evaluate:pending": "node evaluate-pending.mjs",
     "manifest": "node build-manifest.mjs",
