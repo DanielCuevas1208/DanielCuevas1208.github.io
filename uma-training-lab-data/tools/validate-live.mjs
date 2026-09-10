@@ -23,7 +23,7 @@ const errors = [];
 const warnings = [];
 let rowsChecked = 0;
 const CURRENT_DELTA_EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
-const CURRENT_DELTA_METHOD_VERSION = 2;
+const CURRENT_DELTA_METHOD_VERSION = 3;
 
 for (const server of ['jp', 'global']) {
   const serverRoot = path.join(root, server);
