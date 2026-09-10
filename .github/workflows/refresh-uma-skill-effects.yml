@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/refresh-uma-skill-effects.yml"
+      - ".github/scripts/umalator-current-gain.ts"
+      - ".github/scripts/umalator-gain-compat.ts"
       - "uma-training-lab-data/tools/**"
   workflow_dispatch:
   schedule:
@@ -53,6 +55,17 @@ jobs:
         if: steps.pending.outputs.count != '0'
         working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
+
+      - name: Patch upstream builder compatibility
+        if: steps.pending.outputs.count != '0'
+        working-directory: .cache/uma-tools/uma-skill-tools
+        run: sed -i "/EnhancedHpPolicy/d" RaceSolverBuilder.ts
+
+      - name: Install current condition-aware evaluator adapter
+        if: steps.pending.outputs.count != '0'
+        run: |
+          cp .github/scripts/umalator-current-gain.ts .cache/uma-tools/uma-skill-tools/.training-lab-current-gain.ts
+          cp .github/scripts/umalator-gain-compat.ts .cache/uma-tools/uma-skill-tools/tools/gain.ts
 
       - name: Build current JP and Global skill definitions
         if: steps.pending.outputs.count != '0'
