@@ -39,16 +39,26 @@ export function fnv1a64(text) {
   return `fnv1a64:${hash.toString(16).padStart(16, '0')}`;
 }
 
+export function isGlobalReleased(skill) {
+  return !!skill && !(Array.isArray(skill.unreleased) && skill.unreleased.includes('en'));
+}
+
+export function serverField(skill, server, key) {
+  if (!skill) return undefined;
+  if (server === 'global') {
+    if (!isGlobalReleased(skill)) return undefined;
+    const loc = skill?.loc?.en;
+    if (loc && Object.prototype.hasOwnProperty.call(loc, key)) return loc[key];
+  }
+  return skill[key];
+}
+
 export function serverMechanics(skill, server) {
   if (!skill) return null;
-  const loc = server === 'global' ? skill?.loc?.en : null;
-  if (server === 'global' && !loc) return null;
-  const keys = ['activation', 'condition_groups', 'cost', 'type'];
+  if (server === 'global' && !isGlobalReleased(skill)) return null;
+  const keys = ['activation', 'condition_groups', 'cost', 'rarity', 'type'];
   const out = {};
-  for (const key of keys) {
-    if (loc && Object.prototype.hasOwnProperty.call(loc, key)) out[key] = loc[key];
-    else out[key] = skill[key];
-  }
+  for (const key of keys) out[key] = serverField(skill, server, key);
   return out;
 }
 
