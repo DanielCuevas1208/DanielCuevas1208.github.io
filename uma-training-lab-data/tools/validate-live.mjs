@@ -22,6 +22,8 @@ const skills = indexSkills(await loadSkills(skillsUrl));
 const errors = [];
 const warnings = [];
 let rowsChecked = 0;
+const CURRENT_DELTA_EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
+const CURRENT_DELTA_METHOD_VERSION = 2;
 
 for (const server of ['jp', 'global']) {
   const serverRoot = path.join(root, server);
@@ -53,6 +55,17 @@ for (const server of ['jp', 'global']) {
         }
         if (server === 'global' && row.source === 'utools-compatible' && !mechanicsEqualAcrossServers(skill)) {
           errors.push(`global/${courseId}/${style}/${id}: U-tools-compatible row no longer has identical JP/Global mechanics`);
+        }
+        if (server === 'global' && row.source === 'utools-delta-global') {
+          if (row.evaluator !== CURRENT_DELTA_EVALUATOR) {
+            errors.push(`global/${courseId}/${style}/${id}: legacy delta evaluator ${row.evaluator || 'missing'}`);
+          }
+          if (Number(row.methodVersion) < CURRENT_DELTA_METHOD_VERSION) {
+            errors.push(`global/${courseId}/${style}/${id}: legacy delta method ${row.methodVersion || 'missing'}`);
+          }
+          if (!Number.isInteger(Number(row.samples))) {
+            errors.push(`global/${courseId}/${style}/${id}: delta row has no sample count`);
+          }
         }
         if (row.source === 'simulation' && !Number.isInteger(Number(row.samples))) {
           warnings.push(`${server}/${courseId}/${style}/${id}: simulation row has no sample count`);
