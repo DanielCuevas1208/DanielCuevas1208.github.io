@@ -17,14 +17,16 @@ import {
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
 const CURRENT_DELTA_EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
-const CURRENT_DELTA_METHOD_VERSION = 3;
+const CURRENT_DELTA_METHOD_VERSION = 4;
 
-function isCurrentGlobalDifferenceRow(row, expectedHash) {
+function isCurrentGlobalDifferenceRow(row, expectedHash, referenceExpectedEffect) {
   if (!row || row.mechanicsHash !== expectedHash || !Number.isFinite(Number(row.expectedEffect))) return false;
   if (row.source === 'manual') return true;
   return row.source === 'utools-delta-global'
     && row.evaluator === CURRENT_DELTA_EVALUATOR
-    && Number(row.methodVersion) >= CURRENT_DELTA_METHOD_VERSION;
+    && Number(row.methodVersion) >= CURRENT_DELTA_METHOD_VERSION
+    && Number.isFinite(Number(row.referenceExpectedEffect))
+    && Math.abs(Number(row.referenceExpectedEffect) - Number(referenceExpectedEffect)) <= 1e-12;
 }
 
 export async function findGlobalPending({ skillsUrl = DEFAULT_SKILLS_URL, course = null, style = null } = {}) {
@@ -53,7 +55,7 @@ export async function findGlobalPending({ skillsUrl = DEFAULT_SKILLS_URL, course
         if (mechanicsEqualAcrossServers(skill)) continue;
         const expectedHash = mechanicsHash(skill, 'global');
         const row = globalRows.get(id);
-        if (!isCurrentGlobalDifferenceRow(row, expectedHash)) pending.push(id);
+        if (!isCurrentGlobalDifferenceRow(row, expectedHash, Number(jpRow.expectedEffect))) pending.push(id);
       }
 
       if (pending.length) groups.push({ courseId, style: runStyle, skillIds: pending });
