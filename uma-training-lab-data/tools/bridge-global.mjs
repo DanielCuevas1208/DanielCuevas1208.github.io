@@ -1,0 +1,72 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  DEFAULT_SKILLS_URL,
+  STYLES,
+  effectFile,
+  indexSkills,
+  loadSkills,
+  mechanicsEqualAcrossServers,
+  mechanicsHash,
+  normalizeEffectFile,
+  parseArgs,
+  readJson,
+  writeJson,
+} from './lib.mjs';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..', 'skill-effects');
+const args = parseArgs(process.argv.slice(2));
+const skillsUrl = args['skills-url'] || DEFAULT_SKILLS_URL;
+const onlyCourse = args.course ? Number(args.course) : null;
+const onlyStyle = args.style || null;
+const skills = indexSkills(await loadSkills(skillsUrl));
+const jpRoot = path.join(root, 'jp');
+let written = 0;
+
+if (!fs.existsSync(jpRoot)) throw new Error('No JP files found. Run bootstrap-utools.mjs first or add JP data.');
+
+for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
+  if (!courseDir.isDirectory() || !/^\d+$/.test(courseDir.name)) continue;
+  const courseId = Number(courseDir.name);
+  if (onlyCourse && courseId !== onlyCourse) continue;
+  for (const style of onlyStyle ? [onlyStyle] : STYLES) {
+    const jpFile = effectFile(root, 'jp', courseId, style);
+    if (!fs.existsSync(jpFile)) continue;
+    const jp = readJson(jpFile);
+    const rows = [];
+    for (const row of jp.skills || []) {
+      const skill = skills.get(Number(row.id));
+      if (!skill?.loc?.en || !mechanicsEqualAcrossServers(skill)) continue;
+      rows.push({
+        ...row,
+        mechanicsHash: mechanicsHash(skill, 'global'),
+        source: row.source === 'utools' ? 'utools-compatible' : row.source,
+      });
+    }
+    const dest = effectFile(root, 'global', courseId, style);
+    let existing = null;
+    if (fs.existsSync(dest)) existing = readJson(dest);
+    const byId = new Map(rows.map((row) => [Number(row.id), row]));
+    for (const row of existing?.skills || []) {
+      if (row.source === 'simulation' || row.source === 'manual') byId.set(Number(row.id), row);
+    }
+    const out = normalizeEffectFile({
+      server: 'global',
+      courseId,
+      style,
+      generatedAt: new Date().toISOString(),
+      profile: {
+        evaluator: 'mixed',
+        note: 'Mechanically identical JP rows bridged from U-tools; Global simulations override them when present.',
+      },
+      skills: [...byId.values()],
+    });
+    writeJson(dest, out);
+    written += 1;
+    process.stdout.write(`global ${courseId}/${style}: ${out.skills.length}\n`);
+  }
+}
+
+process.stdout.write(`wrote ${written} Global bridge files\n`);
