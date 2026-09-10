@@ -8,6 +8,7 @@ import {
   STYLES,
   effectFile,
   indexSkills,
+  isGlobalReleased,
   loadSkillIds,
   loadSkills,
   mechanicsHash,
@@ -103,7 +104,7 @@ for (const skillId of skillIds) {
     skipped += 1;
     continue;
   }
-  if (server === 'global' && !skill?.loc?.en) {
+  if (server === 'global' && !isGlobalReleased(skill)) {
     process.stderr.write(`skip ${skillId}: not available on Global\n`);
     skipped += 1;
     continue;
