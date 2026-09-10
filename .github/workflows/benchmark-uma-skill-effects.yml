@@ -7,7 +7,7 @@ on:
     paths:
       - ".github/workflows/benchmark-uma-skill-effects.yml"
       - ".github/scripts/benchmark-uma-effects.mjs"
-      - "uma-training-lab-data/tools/build-global-skill-data.mjs"
+      - "uma-training-lab-data/tools/build-skill-data.mjs"
 
 permissions:
   contents: read
@@ -32,8 +32,8 @@ jobs:
         run: npm ci
       - name: Build current Global skill definitions
         working-directory: uma-training-lab-data/tools
-        run: node build-global-skill-data.mjs --out "$GITHUB_WORKSPACE/.cache/uma-skill-tools/data/skill_data.json"
-      - name: Compare simulator against U-tools reference values
+        run: node build-skill-data.mjs --server global --out "$GITHUB_WORKSPACE/.cache/uma-skill-tools/data/skill_data.json"
+      - name: Compare absolute simulator output against U-tools reference values
         run: |
           node .github/scripts/benchmark-uma-effects.mjs \
             --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" \
