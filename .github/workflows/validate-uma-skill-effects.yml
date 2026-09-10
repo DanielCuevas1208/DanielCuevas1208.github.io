@@ -1,0 +1,25 @@
+name: Validate Uma skill effects
+
+on:
+  push:
+    paths:
+      - "uma-training-lab-data/skill-effects/**"
+      - "uma-training-lab-data/tools/**"
+      - ".github/workflows/validate-uma-skill-effects.yml"
+  pull_request:
+    paths:
+      - "uma-training-lab-data/skill-effects/**"
+      - "uma-training-lab-data/tools/**"
+      - ".github/workflows/validate-uma-skill-effects.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node uma-training-lab-data/tools/build-manifest.mjs
+      - run: git diff --exit-code -- uma-training-lab-data/skill-effects/manifest.json
+      - run: node uma-training-lab-data/tools/validate.mjs
