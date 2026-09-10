@@ -3,7 +3,7 @@
   "server": "jp",
   "courseId": 10611,
   "style": "chaser",
-  "generatedAt": "2026-09-10T21:27:25.124Z",
+  "generatedAt": "2026-09-10T23:19:58.904Z",
   "profile": {
     "evaluator": "U-tools",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10611/effects/chaser",
@@ -17,7 +17,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:4ccb322705e55060",
+      "mechanicsHash": "fnv1a64:cf849d46655fe1d4",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -28,7 +28,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e70fc53fa293c189",
+      "mechanicsHash": "fnv1a64:3f7079a23613735b",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -39,7 +39,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:a3d5f45878ebb7f6",
+      "mechanicsHash": "fnv1a64:8991be7f7f4eec40",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -50,7 +50,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e1d53af81ad2ab6f",
+      "mechanicsHash": "fnv1a64:4f000df527016fa9",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -61,7 +61,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ada34aca6354bf71",
+      "mechanicsHash": "fnv1a64:1f114457ca8a531d",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -72,7 +72,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:59a1d844c3b8cc1c",
+      "mechanicsHash": "fnv1a64:ac3691b6361dc8f0",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -83,7 +83,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:6cd82513fb16bac8",
+      "mechanicsHash": "fnv1a64:be0b6d387139682c",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -94,7 +94,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:d933ef8483be9d6b",
+      "mechanicsHash": "fnv1a64:265458c142ad99c7",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -105,7 +105,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:949722a5c35f0f6b",
+      "mechanicsHash": "fnv1a64:9dbc5dbef1abebd9",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -116,7 +116,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:21c58ec9382b0589",
+      "mechanicsHash": "fnv1a64:cf2689337b530de7",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -127,7 +127,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:da99a117d0f92cab",
+      "mechanicsHash": "fnv1a64:9391fd997fcf2f91",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -138,7 +138,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f63880930a69448d",
+      "mechanicsHash": "fnv1a64:bcba46170b0d9bca",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -149,7 +149,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:5c2410f2fc2e9d17",
+      "mechanicsHash": "fnv1a64:0ea6f0c48b0438c8",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -160,7 +160,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:50fbb8be509bf743",
+      "mechanicsHash": "fnv1a64:8d7e70821b67e815",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -171,7 +171,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:c3213e0daf123f38",
+      "mechanicsHash": "fnv1a64:fac30961714bde77",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -182,7 +182,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:01dd7debadd20138",
+      "mechanicsHash": "fnv1a64:b281abe34f71519e",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -193,7 +193,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:16838f378cc2e1a7",
+      "mechanicsHash": "fnv1a64:7f944451df6204b1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -204,7 +204,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:30ab9dd9e8bb0301",
+      "mechanicsHash": "fnv1a64:1a95c39b427179d3",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -215,7 +215,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ff445a289e4f207c",
+      "mechanicsHash": "fnv1a64:bba760113707e3b3",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -226,7 +226,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:791096bbad046b0d",
+      "mechanicsHash": "fnv1a64:2ff8b2cac2bc3913",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -237,7 +237,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:aeda038b2c41bcf2",
+      "mechanicsHash": "fnv1a64:abd729229da06bc1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -248,7 +248,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:b65f71172bf5ecf3",
+      "mechanicsHash": "fnv1a64:d176130fdf28e8f7",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -259,7 +259,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:685db1e4741268a7",
+      "mechanicsHash": "fnv1a64:369d4fbcfbe406db",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -270,7 +270,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:6075cd853325bbe2",
+      "mechanicsHash": "fnv1a64:73989d97ed90038e",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -281,7 +281,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e35778e2b54646f0",
+      "mechanicsHash": "fnv1a64:505b29c3f4e096bc",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -292,7 +292,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:b0258453d80c6e7a",
+      "mechanicsHash": "fnv1a64:14d432f87af65888",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -303,7 +303,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:9d85610acab28c33",
+      "mechanicsHash": "fnv1a64:7c8baab65375ca26",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -314,7 +314,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:a12145d9c8e561b7",
+      "mechanicsHash": "fnv1a64:f202d521ee1d9c42",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -325,7 +325,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:2b5cea97847cbba7",
+      "mechanicsHash": "fnv1a64:f18f4dd365a741c1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -336,7 +336,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bff620bad9cd3155",
+      "mechanicsHash": "fnv1a64:645d4febeb513f18",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -347,7 +347,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:421579406193cf78",
+      "mechanicsHash": "fnv1a64:c3f85598af03a9d6",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -358,7 +358,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:0b6e42a8200a99e7",
+      "mechanicsHash": "fnv1a64:9998c819073605a0",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -369,7 +369,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:a4dfeb3d1c52dbb2",
+      "mechanicsHash": "fnv1a64:c0bb38bfb4b208f1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -380,7 +380,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:7b10935ac611f062",
+      "mechanicsHash": "fnv1a64:bd3919c0e81367e1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -391,7 +391,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:d9874acf3679ea8e",
+      "mechanicsHash": "fnv1a64:82ebf11e16d936c4",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -402,7 +402,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e918621f3ac2a449",
+      "mechanicsHash": "fnv1a64:cfc3fbac3ab4b2fe",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -413,7 +413,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:de63b020e95f0394",
+      "mechanicsHash": "fnv1a64:4bc488af727eb772",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -424,7 +424,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:80daab3cbaf9996b",
+      "mechanicsHash": "fnv1a64:5dae9d56f18f7da5",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -435,7 +435,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:cf4fbd298c9939b7",
+      "mechanicsHash": "fnv1a64:c848f4488962d745",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -446,7 +446,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:6e4899e7e3dd044a",
+      "mechanicsHash": "fnv1a64:b2695ea927fe6204",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -457,7 +457,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:9ff5ebc42ec62f8b",
+      "mechanicsHash": "fnv1a64:312425b6abf88105",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -468,7 +468,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f7e675f69c3381d9",
+      "mechanicsHash": "fnv1a64:081d27878b853452",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -479,7 +479,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:41d4dd977748ae38",
+      "mechanicsHash": "fnv1a64:e44d339b68446734",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -490,7 +490,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:8bd67196650220c7",
+      "mechanicsHash": "fnv1a64:e39126e7ba7ec8eb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -501,7 +501,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:b27fbd6ae4032489",
+      "mechanicsHash": "fnv1a64:07fa5cc389cc6c35",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -512,7 +512,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:63da53a4115d062b",
+      "mechanicsHash": "fnv1a64:f358ff053a74b840",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -523,7 +523,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f4bc25cabe7b7927",
+      "mechanicsHash": "fnv1a64:ad58bbfb5debcbfd",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -534,7 +534,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:4bb74fa007c3f610",
+      "mechanicsHash": "fnv1a64:09d1a61a498d04fb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -545,7 +545,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:02d392cc1c809346",
+      "mechanicsHash": "fnv1a64:d289af9edb43ce40",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -556,7 +556,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:99fb80bb89603488",
+      "mechanicsHash": "fnv1a64:154ce0e36ebf2c24",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -567,7 +567,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:7a14d4d55047a108",
+      "mechanicsHash": "fnv1a64:64b87926e869f7eb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -578,7 +578,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:af78a6fbdf7e4579",
+      "mechanicsHash": "fnv1a64:1e958e5807ead7bb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -589,7 +589,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:84bab7f46d266547",
+      "mechanicsHash": "fnv1a64:da3bc681b3a67ec5",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -600,7 +600,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:c6b77d195bb4c2e4",
+      "mechanicsHash": "fnv1a64:0271c09c84eec732",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -611,7 +611,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:1e10957e08a438e9",
+      "mechanicsHash": "fnv1a64:bed4eb81f82caa65",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -622,7 +622,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e14cd259523ab37d",
+      "mechanicsHash": "fnv1a64:674969172205a5bb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -633,7 +633,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:3fb94a51740e1774",
+      "mechanicsHash": "fnv1a64:46d1b18763fb5fc6",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -644,7 +644,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ee86f97a92d852a3",
+      "mechanicsHash": "fnv1a64:756e56bc2ead9c49",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -655,7 +655,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:61407d244e5e744b",
+      "mechanicsHash": "fnv1a64:752681cc71b557c5",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -666,7 +666,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:8c0b074af615dcdf",
+      "mechanicsHash": "fnv1a64:9f406549ba900620",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -677,7 +677,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:09a09c8e1ee34d7a",
+      "mechanicsHash": "fnv1a64:1c64f1f268878334",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -688,7 +688,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:959c0940f181dcd8",
+      "mechanicsHash": "fnv1a64:bf0468985bd90bc4",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -699,7 +699,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:79ef8d62ac6d7d58",
+      "mechanicsHash": "fnv1a64:a113dd85a12feaa6",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -710,7 +710,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:baba78a99a979201",
+      "mechanicsHash": "fnv1a64:8e526921ef076e87",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -721,7 +721,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:8f275185029344cb",
+      "mechanicsHash": "fnv1a64:384a912bdfe21e71",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -732,7 +732,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:4d21e4c2442697a0",
+      "mechanicsHash": "fnv1a64:e6b66d3390d6a6ba",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -743,7 +743,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bb44013d37a551f9",
+      "mechanicsHash": "fnv1a64:41b8ca9cfcf1c73b",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -754,7 +754,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e68483cb141aa3e9",
+      "mechanicsHash": "fnv1a64:e0caf70746ad91eb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -765,7 +765,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:9e137d2fb0408e89",
+      "mechanicsHash": "fnv1a64:64233fa87d6325b2",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -776,7 +776,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:982ed58ee9a8bda8",
+      "mechanicsHash": "fnv1a64:f073aa1f1fc70865",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -787,7 +787,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:349b681f8cee16e8",
+      "mechanicsHash": "fnv1a64:30edf5f2c9b13d2d",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -798,7 +798,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:d7d453f7a7a4408b",
+      "mechanicsHash": "fnv1a64:a01da082d632adb1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -809,7 +809,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:3f3fad834b63ba8d",
+      "mechanicsHash": "fnv1a64:261e3da9ce9d1b40",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -820,7 +820,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f8a4d4093c65c4a0",
+      "mechanicsHash": "fnv1a64:99ea7eeb32e495ea",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -831,7 +831,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:74a17458b9bda588",
+      "mechanicsHash": "fnv1a64:ff3cd250d49615d6",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -842,7 +842,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:122b926703fe8e7f",
+      "mechanicsHash": "fnv1a64:52ce41de2ec58e63",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -853,7 +853,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f5e100c76b1cf714",
+      "mechanicsHash": "fnv1a64:978b68fc4ca27e7c",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -864,7 +864,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:00e2024e876d0bf3",
+      "mechanicsHash": "fnv1a64:bd07dfda95e04fef",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -875,7 +875,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:63a520a827080e5b",
+      "mechanicsHash": "fnv1a64:f1b7225a49e221f1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -886,7 +886,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:0f747777154d9e7c",
+      "mechanicsHash": "fnv1a64:04f4521b5dcafdc2",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -897,7 +897,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:13ddba0a025b5188",
+      "mechanicsHash": "fnv1a64:8a5e0c493336ef54",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -908,7 +908,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f1aad4ac810044db",
+      "mechanicsHash": "fnv1a64:69164ef7ba191bb5",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -919,7 +919,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:8b1a123db60d3cc6",
+      "mechanicsHash": "fnv1a64:5e411dfc9136ec4d",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -930,7 +930,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:11681f68ef27743b",
+      "mechanicsHash": "fnv1a64:8962c1edb5d468e1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -941,7 +941,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:08530cfc1c968cf4",
+      "mechanicsHash": "fnv1a64:affa3a75584de0c2",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -952,7 +952,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bfc9f0182c6f092c",
+      "mechanicsHash": "fnv1a64:b9bacc0f02b5389e",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -963,7 +963,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:23f81487b3c339d5",
+      "mechanicsHash": "fnv1a64:7aec8c7d87e24cd3",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -974,7 +974,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ccf640b307333cae",
+      "mechanicsHash": "fnv1a64:98a032da174539bd",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -985,7 +985,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ea3ee9b10c44a428",
+      "mechanicsHash": "fnv1a64:d8c5e935fc207296",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -996,7 +996,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:e7f87168d6e4094d",
+      "mechanicsHash": "fnv1a64:2e34a7cf2b678558",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1007,7 +1007,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:3ff02b171b7e8717",
+      "mechanicsHash": "fnv1a64:c0cfc06a9911c534",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1018,7 +1018,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:83bfb8d0493f68d2",
+      "mechanicsHash": "fnv1a64:195945e57e98dc8a",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1029,7 +1029,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:4825c494482fef5e",
+      "mechanicsHash": "fnv1a64:bb802eeb9c9e2474",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1040,7 +1040,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:119e578559bf4eac",
+      "mechanicsHash": "fnv1a64:c23d2e16cbbd6c0a",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1051,7 +1051,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:2f0e72259ce3c264",
+      "mechanicsHash": "fnv1a64:ce6055f3508fd69e",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1062,7 +1062,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:96aaed7a6e5effbd",
+      "mechanicsHash": "fnv1a64:fd5482de1157ed0f",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1073,7 +1073,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:d392f1adc4dc03bb",
+      "mechanicsHash": "fnv1a64:8fef61d6d3d95706",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1084,7 +1084,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bafc0f9537f5c568",
+      "mechanicsHash": "fnv1a64:90ae199d787787ca",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1095,7 +1095,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bc53205926ff7c5c",
+      "mechanicsHash": "fnv1a64:dba55a9abfdb7669",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1106,7 +1106,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:d0c8cb2482f7697f",
+      "mechanicsHash": "fnv1a64:89c325280beaa9db",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1117,7 +1117,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:3149deee3856709f",
+      "mechanicsHash": "fnv1a64:b3bbe91c850e8efb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1128,7 +1128,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:023bacf214e5d246",
+      "mechanicsHash": "fnv1a64:0abc271a5fb11012",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1139,7 +1139,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f3edad631af8fc5c",
+      "mechanicsHash": "fnv1a64:7c1b822dd66f9b68",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1150,7 +1150,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:59f4122c65b80444",
+      "mechanicsHash": "fnv1a64:0437cbc289267497",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1161,7 +1161,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:cf8ae43b4091ed2e",
+      "mechanicsHash": "fnv1a64:86e0a8998b0389e5",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1172,7 +1172,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:c6b99e1468c4ef31",
+      "mechanicsHash": "fnv1a64:75dcffec25921043",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1183,7 +1183,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:144d596a7447bc08",
+      "mechanicsHash": "fnv1a64:f5202751905e9603",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1194,7 +1194,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:a3952568fb0ac229",
+      "mechanicsHash": "fnv1a64:45f2afd99185f08f",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1205,7 +1205,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:0c355018631724a1",
+      "mechanicsHash": "fnv1a64:8926f5f9d18969d3",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1216,7 +1216,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:583e7072a0146f51",
+      "mechanicsHash": "fnv1a64:76bd649a4df92b0c",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1227,7 +1227,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:3fb2b4ad7f47d35b",
+      "mechanicsHash": "fnv1a64:40969e39de3d48ad",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1238,7 +1238,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:52c9cc31973cc45d",
+      "mechanicsHash": "fnv1a64:8678548482bd14ef",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1249,7 +1249,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:66cf0d43be203907",
+      "mechanicsHash": "fnv1a64:fa5cc68f0e393bf9",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1260,7 +1260,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:a259b5850a53a5d5",
+      "mechanicsHash": "fnv1a64:c70348970efca22d",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1271,7 +1271,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:c599ac52a62da6ba",
+      "mechanicsHash": "fnv1a64:b8c4ba53d1c06efc",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1282,7 +1282,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:f3738d654889a1fe",
+      "mechanicsHash": "fnv1a64:de4cb7fd892e53a6",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1293,7 +1293,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:41e9ffd1261be0a5",
+      "mechanicsHash": "fnv1a64:8bc5eb95d7604e3e",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1304,7 +1304,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:98a092adb678d23c",
+      "mechanicsHash": "fnv1a64:feee346e043ee5eb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1315,7 +1315,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:57497f1f739b6680",
+      "mechanicsHash": "fnv1a64:bb18e2044be21b48",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1326,7 +1326,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ae2ec3e581376280",
+      "mechanicsHash": "fnv1a64:ccdf015e8d57b5eb",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1337,7 +1337,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:b35fddb3907f91a9",
+      "mechanicsHash": "fnv1a64:8ba026da9712b2da",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1348,7 +1348,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:6258d3f4052649ff",
+      "mechanicsHash": "fnv1a64:a94d24182ebd8be1",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1359,7 +1359,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:609dc120e573b1bc",
+      "mechanicsHash": "fnv1a64:df8e79765565c114",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1370,7 +1370,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:bd12efdf7684a675",
+      "mechanicsHash": "fnv1a64:fe3270094b0f42ce",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1381,7 +1381,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:ed89d46a5a2f0c2b",
+      "mechanicsHash": "fnv1a64:ccaad37e44fd616d",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     },
@@ -1392,7 +1392,7 @@
       "medianEffect": null,
       "maxEffect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:27a769bf695e6152",
+      "mechanicsHash": "fnv1a64:f3240e280187341c",
       "source": "utools",
       "sourceUpdatedAt": "2026-08-29T17:43:06.259Z"
     }
