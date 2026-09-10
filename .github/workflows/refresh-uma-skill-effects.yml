@@ -1,0 +1,50 @@
+name: Refresh Uma skill effects
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-uma-skill-effects.yml"
+      - "uma-training-lab-data/tools/**"
+  workflow_dispatch:
+  schedule:
+    - cron: "23 11 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uma-skill-effect-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Import current JP values
+        working-directory: uma-training-lab-data/tools
+        run: npm run bootstrap:utools
+      - name: Bridge mechanically identical values to Global
+        working-directory: uma-training-lab-data/tools
+        run: npm run bridge:global
+      - name: Rebuild manifest
+        working-directory: uma-training-lab-data/tools
+        run: npm run manifest
+      - name: Validate database
+        working-directory: uma-training-lab-data/tools
+        run: npm run validate
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- uma-training-lab-data/skill-effects; then
+            echo "Skill-effect database is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add uma-training-lab-data/skill-effects
+          git commit -m "data: refresh Uma skill effects"
+          git push
