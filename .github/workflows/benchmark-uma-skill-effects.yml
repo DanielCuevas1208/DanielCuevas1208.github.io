@@ -21,6 +21,11 @@ jobs:
   benchmark:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        course: [10501, 10602, 10606, 10506]
+        style: [runner, leader, betweener, chaser]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,17 +46,25 @@ jobs:
       - name: Install current RaceSolverBuilder benchmark adapter
         run: cp .github/scripts/umalator-current-gain.ts .cache/uma-tools/uma-skill-tools/.training-lab-current-gain.ts
       - name: Compare JP Umalator output against JP U-tools reference values
+        shell: bash
         run: |
+          case "${{ matrix.style }}" in
+            runner) profile=nige ;;
+            leader) profile=senkou ;;
+            betweener) profile=sasi ;;
+            chaser) profile=oikomi ;;
+          esac
           node .github/scripts/benchmark-uma-effects.mjs \
             --tools-dir "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools" \
-            --db "$GITHUB_WORKSPACE/uma-training-lab-data/skill-effects/jp/10606/leader.json" \
-            --profile senkou \
-            --samples 500 \
-            --limit 48
+            --db "$GITHUB_WORKSPACE/uma-training-lab-data/skill-effects/jp/${{ matrix.course }}/${{ matrix.style }}.json" \
+            --profile "$profile" \
+            --samples 750 \
+            --limit 96 \
+            --out "$GITHUB_WORKSPACE/uma-effect-benchmark-${{ matrix.course }}-${{ matrix.style }}.json"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: uma-effect-benchmark
-          path: uma-effect-benchmark.json
+          name: uma-effect-benchmark-${{ matrix.course }}-${{ matrix.style }}
+          path: uma-effect-benchmark-${{ matrix.course }}-${{ matrix.style }}.json
           if-no-files-found: ignore
           retention-days: 7
