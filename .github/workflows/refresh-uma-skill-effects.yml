@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: uma-skill-effect-refresh
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -70,9 +70,13 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: npm run manifest
 
-      - name: Validate database
+      - name: Validate database structure
         working-directory: uma-training-lab-data/tools
         run: npm run validate
+
+      - name: Validate rows against current mechanics
+        working-directory: uma-training-lab-data/tools
+        run: npm run validate:live
 
       - name: Commit refreshed data
         run: |
@@ -89,5 +93,5 @@ jobs:
       - name: Fail if any Global simulations failed
         if: steps.evaluate.outcome == 'failure'
         run: |
-          echo "One or more Global-specific skill evaluations failed. Successful rows were still published; inspect the evaluator log for the remaining pending skills."
+          echo "One or more Global-specific skill evaluations failed. Successful current rows were still published; inspect the evaluator log for the remaining pending skills."
           exit 1
