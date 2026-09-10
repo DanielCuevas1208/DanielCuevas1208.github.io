@@ -17,7 +17,7 @@ import {
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
 const CURRENT_DELTA_EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
-const CURRENT_DELTA_METHOD_VERSION = 2;
+const CURRENT_DELTA_METHOD_VERSION = 3;
 
 function isCurrentGlobalDifferenceRow(row, expectedHash) {
   if (!row || row.mechanicsHash !== expectedHash || !Number.isFinite(Number(row.expectedEffect))) return false;
