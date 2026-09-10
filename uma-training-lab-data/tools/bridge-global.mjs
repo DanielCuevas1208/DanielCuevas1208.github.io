@@ -6,6 +6,7 @@ import {
   STYLES,
   effectFile,
   indexSkills,
+  isGlobalReleased,
   loadSkills,
   mechanicsEqualAcrossServers,
   mechanicsHash,
@@ -38,7 +39,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
     const rows = [];
     for (const row of jp.skills || []) {
       const skill = skills.get(Number(row.id));
-      if (!skill?.loc?.en || !mechanicsEqualAcrossServers(skill)) continue;
+      if (!isGlobalReleased(skill) || !mechanicsEqualAcrossServers(skill)) continue;
       rows.push({
         ...row,
         mechanicsHash: mechanicsHash(skill, 'global'),
