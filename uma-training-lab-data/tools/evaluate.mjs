@@ -38,11 +38,27 @@ if (!fs.existsSync(path.join(toolsDir, 'tools', 'gain.ts'))) throw new Error('to
 
 const skillIds = loadSkillIds(args);
 if (!skillIds.length) throw new Error('Provide --skills 201342,201... or --skills-file path');
-const horsePath = args.horse
+const sourceHorsePath = args.horse
   ? path.resolve(args.horse)
   : path.join(toolsDir, 'tools', `${STYLE_PROFILE[style]}.json`);
-if (!fs.existsSync(horsePath)) throw new Error(`Horse profile not found: ${horsePath}`);
+if (!fs.existsSync(sourceHorsePath)) throw new Error(`Horse profile not found: ${sourceHorsePath}`);
 
+function prepareHorseProfile(sourcePath) {
+  const evaluatorSkillsPath = path.join(toolsDir, 'data', 'skill_data.json');
+  if (!fs.existsSync(evaluatorSkillsPath)) return sourcePath;
+  const evaluatorSkills = readJson(evaluatorSkillsPath);
+  const horse = readJson(sourcePath);
+  const original = Array.isArray(horse.skills) ? horse.skills : [];
+  const filtered = original.filter((id) => Object.prototype.hasOwnProperty.call(evaluatorSkills, String(id)));
+  if (filtered.length === original.length) return sourcePath;
+  const dest = path.join(toolsDir, `.training-lab-${server}-${style}-horse.json`);
+  writeJson(dest, { ...horse, skills: filtered });
+  const removed = original.filter((id) => !filtered.includes(id));
+  process.stdout.write(`profile: removed unavailable presupposed skill(s): ${removed.join(',')}\n`);
+  return dest;
+}
+
+const horsePath = prepareHorseProfile(sourceHorsePath);
 const skillIndex = indexSkills(await loadSkills(skillsUrl));
 const dest = effectFile(dbRoot, server, courseId, style);
 const existing = fs.existsSync(dest)
