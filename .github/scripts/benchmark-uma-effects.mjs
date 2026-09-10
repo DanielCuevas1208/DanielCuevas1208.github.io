@@ -33,25 +33,38 @@ try {
 
 if (!rows.length) throw new Error(`No U-tools reference rows found in ${dbFile}`);
 
+function simulate(row, smoke = false) {
+  const id = Number(row.id);
+  const seed = (0x6d2b79f5 ^ courseId ^ id) >>> 0;
+  const stdout = execFileSync('npx', [
+    'ts-node', '--transpile-only', runner,
+    '--horse', horse,
+    '--course', String(courseId),
+    '--skill', String(id),
+    '--samples', String(smoke ? Math.min(samples, 50) : samples),
+    '--seed', String(seed),
+    '--csv', String(id),
+  ], { cwd: toolsDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+  const line = stdout.split(/\r?\n/).filter(Boolean).at(-1) || '';
+  const cols = line.split(',');
+  const simulated = Number(cols[4]);
+  if (!Number.isFinite(simulated)) throw new Error(`bad output: ${line}`);
+  return simulated;
+}
+
+try {
+  simulate(rows[0], true);
+} catch (error) {
+  console.error(`Benchmark runner preflight failed: ${error.message}`);
+  throw error;
+}
+
 const results = [];
 const failures = [];
 for (const row of rows) {
   const id = Number(row.id);
-  const seed = (0x6d2b79f5 ^ courseId ^ id) >>> 0;
   try {
-    const stdout = execFileSync('npx', [
-      'ts-node', runner,
-      '--horse', horse,
-      '--course', String(courseId),
-      '--skill', String(id),
-      '--samples', String(samples),
-      '--seed', String(seed),
-      '--csv', String(id),
-    ], { cwd: toolsDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
-    const line = stdout.split(/\r?\n/).filter(Boolean).at(-1) || '';
-    const cols = line.split(',');
-    const simulated = Number(cols[4]);
-    if (!Number.isFinite(simulated)) throw new Error(`bad output: ${line}`);
+    const simulated = simulate(row);
     const reference = Number(row.expectedEffect);
     const error = simulated - reference;
     results.push({ id, reference, simulated, error, absError: Math.abs(error) });
