@@ -25,22 +25,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Clone evaluator
-        run: git clone --depth 1 https://github.com/alpha123/uma-skill-tools.git .cache/uma-skill-tools
+      - name: Clone modern Umalator evaluator
+        run: git clone --depth 1 https://github.com/kachi-dev/uma-tools.git .cache/uma-tools
       - name: Install evaluator dependencies
-        working-directory: .cache/uma-skill-tools
+        working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
       - name: Build current Global skill definitions
         working-directory: uma-training-lab-data/tools
-        run: node build-skill-data.mjs --server global --out "$GITHUB_WORKSPACE/.cache/uma-skill-tools/data/skill_data.json"
-      - name: Compare absolute simulator output against U-tools reference values
+        run: node build-skill-data.mjs --server global --out "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools/data/skill_data.json"
+      - name: Compare modern Umalator output against U-tools reference values
         run: |
           node .github/scripts/benchmark-uma-effects.mjs \
-            --tools-dir "$GITHUB_WORKSPACE/.cache/uma-skill-tools" \
+            --tools-dir "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools" \
             --db "$GITHUB_WORKSPACE/uma-training-lab-data/skill-effects/global/10606/leader.json" \
             --profile senkou \
             --samples 500 \
-            --limit 24
+            --limit 48
       - uses: actions/upload-artifact@v4
         with:
           name: uma-effect-benchmark
