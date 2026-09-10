@@ -30,6 +30,8 @@ const samples = Math.max(1, Number(args.samples || args.nsamples || 2000));
 const skillsUrl = args['skills-url'] || DEFAULT_SKILLS_URL;
 const force = !!args.force;
 const seedBase = Number.isInteger(Number(args.seed)) ? Number(args.seed) >>> 0 : 0x6d2b79f5;
+const EVALUATOR = 'kachi-dev/uma-tools/uma-skill-tools';
+const METHOD_VERSION = 2;
 
 if (!toolsDir) throw new Error('--tools-dir is required');
 if (!jpDataPath || !fs.existsSync(jpDataPath)) throw new Error('--jp-data is required');
@@ -114,7 +116,13 @@ for (const id of skillIds) {
   if (!Object.prototype.hasOwnProperty.call(globalData, String(id))) continue;
   const hash = mechanicsHash(skill, 'global');
   const current = rows.get(Number(id));
-  if (!force && current?.source === 'utools-delta-global' && current.mechanicsHash === hash && Number(current.samples) === samples && current.evaluatorRevision === evaluatorRevision) continue;
+  if (!force
+      && current?.source === 'utools-delta-global'
+      && current.mechanicsHash === hash
+      && Number(current.samples) === samples
+      && current.evaluator === EVALUATOR
+      && Number(current.methodVersion) >= METHOD_VERSION
+      && current.evaluatorRevision === evaluatorRevision) continue;
   candidates.push({ id: Number(id), skill, ref, hash, seed: derivedSeed(Number(id)) });
 }
 
@@ -150,6 +158,7 @@ for (const item of candidates) {
   const jpRun = jpRuns.get(item.id);
   const globalRun = globalRuns.get(item.id);
   const correction = globalRun.mean - jpRun.mean;
+  const ratio = Math.abs(jpRun.mean) > 1e-9 ? globalRun.mean / jpRun.mean : null;
   const expectedEffect = Number(item.ref.expectedEffect) + correction;
   if (!Number.isFinite(expectedEffect)) {
     failures.set(item.id, 'non-finite corrected effect');
@@ -166,15 +175,16 @@ for (const item of candidates) {
     seed: item.seed,
     mechanicsHash: item.hash,
     source: 'utools-delta-global',
-    methodVersion: 1,
+    methodVersion: METHOD_VERSION,
     referenceExpectedEffect: Number(item.ref.expectedEffect),
     referenceSourceUpdatedAt: item.ref.sourceUpdatedAt || null,
     simulatedJpEffect: jpRun.mean,
     simulatedGlobalEffect: globalRun.mean,
     simulatedDelta: correction,
+    simulatedRatio: Number.isFinite(ratio) ? ratio : null,
     jpSamplePolicy: jpRun.samplePolicy,
     globalSamplePolicy: globalRun.samplePolicy,
-    evaluator: 'alpha123/uma-skill-tools',
+    evaluator: EVALUATOR,
     evaluatorRevision,
     evaluatedAt: new Date().toISOString(),
   });
@@ -188,9 +198,10 @@ const out = normalizeEffectFile({
   style,
   generatedAt: new Date().toISOString(),
   profile: {
-    evaluator: 'mixed',
-    globalDifferenceMethod: 'U-tools JP expected effect + paired simulator(Global - JP)',
+    evaluator: EVALUATOR,
+    globalDifferenceMethod: 'U-tools JP expected effect + paired modern-Umalator(Global - JP)',
     evaluatorRevision,
+    methodVersion: METHOD_VERSION,
     samples,
   },
   skills: [...rows.values()],
