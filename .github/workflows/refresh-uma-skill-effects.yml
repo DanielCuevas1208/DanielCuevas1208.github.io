@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/refresh-uma-skill-effects.yml"
+      - ".github/scripts/patch-umalator.mjs"
       - ".github/scripts/umalator-current-gain.ts"
       - ".github/scripts/umalator-gain-compat.ts"
       - "uma-training-lab-data/tools/**"
@@ -60,10 +61,10 @@ jobs:
         working-directory: .cache/uma-tools/uma-skill-tools
         run: npm ci
 
-      - name: Patch upstream builder compatibility
+      - name: Patch upstream evaluator compatibility
         if: steps.pending.outputs.count != '0'
         working-directory: .cache/uma-tools/uma-skill-tools
-        run: sed -i "/EnhancedHpPolicy/d" RaceSolverBuilder.ts
+        run: node "$GITHUB_WORKSPACE/.github/scripts/patch-umalator.mjs" RaceSolverBuilder.ts
 
       - name: Install current condition-aware evaluator adapter
         if: steps.pending.outputs.count != '0'
