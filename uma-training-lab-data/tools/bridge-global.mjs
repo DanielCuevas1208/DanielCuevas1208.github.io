@@ -15,6 +15,7 @@ import {
   readJson,
   writeJson,
 } from './lib.mjs';
+import { isGlobalCourseAvailable } from './course-policy.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
@@ -27,6 +28,7 @@ const jpRoot = path.join(root, 'jp');
 let written = 0;
 let droppedStale = 0;
 let droppedLegacySimulation = 0;
+let droppedUnavailableCourses = 0;
 
 if (!fs.existsSync(jpRoot)) throw new Error('No JP files found. Run bootstrap-utools.mjs first or add JP data.');
 
@@ -34,6 +36,16 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
   if (!courseDir.isDirectory() || !/^\d+$/.test(courseDir.name)) continue;
   const courseId = Number(courseDir.name);
   if (onlyCourse && courseId !== onlyCourse) continue;
+
+  if (!isGlobalCourseAvailable(courseId)) {
+    const globalCourseDir = path.join(root, 'global', String(courseId));
+    if (fs.existsSync(globalCourseDir)) {
+      fs.rmSync(globalCourseDir, { recursive: true, force: true });
+      droppedUnavailableCourses += 1;
+    }
+    continue;
+  }
+
   for (const style of onlyStyle ? [onlyStyle] : STYLES) {
     const jpFile = effectFile(root, 'jp', courseId, style);
     if (!fs.existsSync(jpFile)) continue;
@@ -92,4 +104,4 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
   }
 }
 
-process.stdout.write(`wrote ${written} Global bridge files; dropped ${droppedStale} stale row(s) and ${droppedLegacySimulation} legacy absolute-simulation row(s)\n`);
+process.stdout.write(`wrote ${written} Global bridge files; removed ${droppedUnavailableCourses} unavailable Global course director${droppedUnavailableCourses === 1 ? 'y' : 'ies'}; dropped ${droppedStale} stale row(s) and ${droppedLegacySimulation} legacy absolute-simulation row(s)\n`);
