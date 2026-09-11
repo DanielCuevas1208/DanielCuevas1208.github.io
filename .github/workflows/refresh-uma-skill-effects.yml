@@ -29,9 +29,13 @@ jobs:
         with:
           node-version: 22
 
-      - name: Import current JP values
+      - name: Import current JP values from live U-tools
         working-directory: uma-training-lab-data/tools
         run: npm run bootstrap:utools
+
+      - name: Preserve full precision only when verified against live U-tools
+        working-directory: uma-training-lab-data/tools
+        run: node verify-utools-precision.mjs
 
       - name: Bridge mechanically identical values to Global
         working-directory: uma-training-lab-data/tools
@@ -85,6 +89,10 @@ jobs:
             --jp-data "$GITHUB_WORKSPACE/.cache/skill_data.jp.json" \
             --global-data "$GITHUB_WORKSPACE/.cache/skill_data.global.json" \
             --samples 2000
+
+      - name: Apply benchmark-derived Global delta calibration
+        working-directory: uma-training-lab-data/tools
+        run: node calibrate-global-deltas.mjs
 
       - name: Rebuild manifest
         working-directory: uma-training-lab-data/tools
