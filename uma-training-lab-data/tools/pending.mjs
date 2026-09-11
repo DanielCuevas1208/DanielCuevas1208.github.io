@@ -13,6 +13,7 @@ import {
   parseArgs,
   readJson,
 } from './lib.mjs';
+import { isGlobalCourseAvailable } from './course-policy.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
@@ -39,6 +40,7 @@ export async function findGlobalPending({ skillsUrl = DEFAULT_SKILLS_URL, course
     if (!courseDir.isDirectory() || !/^\d+$/.test(courseDir.name)) continue;
     const courseId = Number(courseDir.name);
     if (course && Number(course) !== courseId) continue;
+    if (!isGlobalCourseAvailable(courseId)) continue;
     for (const runStyle of style ? [style] : STYLES) {
       const jpFile = effectFile(root, 'jp', courseId, runStyle);
       if (!fs.existsSync(jpFile)) continue;
