@@ -3,16 +3,15 @@
   "server": "global",
   "courseId": 10611,
   "style": "chaser",
-  "generatedAt": "2026-09-11T01:31:50.934Z",
+  "generatedAt": "2026-09-11T03:33:53.037Z",
   "profile": {
-    "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
+    "evaluator": "mixed",
+    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
     "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global delta",
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; P05-P95 is the preferred typical range",
-    "evaluatorRevision": "4401e25987d9c78707f2d3f8a9dcd02c1c56529c",
-    "methodVersion": 5,
-    "samples": 2000,
     "calibration": "0.90× for ordinary simple skills; 0.60× for unique simple skills; 1.00× for context-dependent skills",
-    "calibrationVersion": 1
+    "calibrationVersion": 1,
+    "methodVersion": 5,
+    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; P05-P95 is the preferred typical range"
   },
   "skills": [
     {

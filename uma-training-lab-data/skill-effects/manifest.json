@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-11T02:42:27.646Z",
-  "revision": "fnv1a64:07d8b369ba867a1c",
+  "generatedAt": "2026-09-11T03:34:12.386Z",
+  "revision": "fnv1a64:650ae53ecbd33177",
   "pathTemplate": "{server}/{courseId}/{style}.json",
   "servers": {
     "global": {
@@ -205,18 +205,6 @@
           "chaser"
         ],
         "11504": [
-          "runner",
-          "leader",
-          "betweener",
-          "chaser"
-        ],
-        "11703": [
-          "runner",
-          "leader",
-          "betweener",
-          "chaser"
-        ],
-        "11709": [
           "runner",
           "leader",
           "betweener",
