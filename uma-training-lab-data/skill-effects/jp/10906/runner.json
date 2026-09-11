@@ -3,7 +3,7 @@
   "server": "jp",
   "courseId": 10906,
   "style": "runner",
-  "generatedAt": "2026-09-11T01:02:10.886Z",
+  "generatedAt": "2026-09-11T15:04:48.865Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10906/effects/runner",
@@ -192,6 +192,19 @@
       "mechanicsHash": "fnv1a64:6c8514338cf3073f",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-08-29T17:44:09.523Z"
+    },
+    {
+      "id": 202441,
+      "expectedEffect": 1.298186,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-09-11T15:04:48.865Z"
     },
     {
       "id": 201602,
@@ -1169,19 +1182,6 @@
       "sourceUpdatedAt": "2026-09-11T01:02:10.886Z"
     },
     {
-      "id": 202441,
-      "expectedEffect": 0.7789116,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-09-11T01:02:10.886Z"
-    },
-    {
       "id": 203382,
       "expectedEffect": 0.77469675,
       "minEffect": null,
@@ -1453,6 +1453,19 @@
       "mechanicsHash": "fnv1a64:c69381d04454b527",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-11T01:02:10.886Z"
+    },
+    {
+      "id": 202442,
+      "expectedEffect": 0.656166,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:8926f5f9d18969d3",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-09-11T15:04:48.865Z"
     },
     {
       "id": 200341,
@@ -3063,19 +3076,6 @@
       "p95Effect": null,
       "samples": null,
       "mechanicsHash": "fnv1a64:bb18e2044be21b48",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-08-29T17:44:09.523Z"
-    },
-    {
-      "id": 202442,
-      "expectedEffect": 0.1968498,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:8926f5f9d18969d3",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-08-29T17:44:09.523Z"
     },

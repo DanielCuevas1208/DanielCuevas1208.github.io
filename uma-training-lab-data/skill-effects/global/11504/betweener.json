@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 11504,
   "style": "betweener",
-  "generatedAt": "2026-09-11T03:39:31.305Z",
+  "generatedAt": "2026-09-11T15:05:10.796Z",
   "profile": {
     "evaluator": "mixed",
     "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
@@ -141,6 +141,19 @@
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
       "calibrationVersion": 2,
       "calibrationMode": "scaled-delta"
+    },
+    {
+      "id": 202441,
+      "expectedEffect": 1.283883,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-11T15:05:04.529Z"
     },
     {
       "id": 201681,
@@ -484,19 +497,6 @@
       "p95Effect": null,
       "samples": null,
       "mechanicsHash": "fnv1a64:d74ce5ab208441b3",
-      "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T01:02:21.212Z"
-    },
-    {
-      "id": 202441,
-      "expectedEffect": 0.7703298000000001,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-11T01:02:21.212Z"
     },

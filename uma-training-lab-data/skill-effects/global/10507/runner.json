@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 10507,
   "style": "runner",
-  "generatedAt": "2026-09-11T03:39:30.915Z",
+  "generatedAt": "2026-09-11T15:05:10.392Z",
   "profile": {
     "evaluator": "mixed",
     "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
@@ -14,6 +14,19 @@
     "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
   },
   "skills": [
+    {
+      "id": 202441,
+      "expectedEffect": 2.283592,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-11T15:04:27.519Z"
+    },
     {
       "id": 202391,
       "expectedEffect": 2.060508725,
@@ -257,19 +270,6 @@
       "p95Effect": null,
       "samples": null,
       "mechanicsHash": "fnv1a64:3bc386e662c0751a",
-      "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T01:01:51.089Z"
-    },
-    {
-      "id": 202441,
-      "expectedEffect": 1.3701552,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-11T01:01:51.089Z"
     },

@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 11303,
   "style": "betweener",
-  "generatedAt": "2026-09-11T03:39:31.261Z",
+  "generatedAt": "2026-09-11T15:05:10.751Z",
   "profile": {
     "evaluator": "mixed",
     "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
@@ -154,6 +154,19 @@
       "mechanicsHash": "fnv1a64:2e84d6a8e943a28e",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-11T01:02:18.058Z"
+    },
+    {
+      "id": 202441,
+      "expectedEffect": 1.161543,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-11T15:04:59.419Z"
     },
     {
       "id": 201612,
@@ -679,19 +692,6 @@
       "mechanicsHash": "fnv1a64:fd363b55bdf1c65b",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-08-29T17:44:45.544Z"
-    },
-    {
-      "id": 202441,
-      "expectedEffect": 0.6969257999999999,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
-      "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T01:02:18.058Z"
     },
     {
       "id": 202001,
@@ -1895,7 +1895,7 @@
       "sourceUpdatedAt": "2026-08-29T17:44:45.544Z"
     },
     {
-      "id": 202002,
+      "id": 201701,
       "expectedEffect": 0,
       "minEffect": 0,
       "p05Effect": 0,
@@ -1906,17 +1906,17 @@
       "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
-      "seed": 3729292759,
-      "mechanicsHash": "fnv1a64:db4ce3d1de51cd4e",
+      "seed": 2521794178,
+      "mechanicsHash": "fnv1a64:e308b9303cfc12a7",
       "source": "utools-delta-global",
       "methodVersion": 6,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
-      "referenceExpectedEffect": 0,
-      "referenceSourceUpdatedAt": "2026-08-29T17:44:45.544Z",
-      "simulatedJpEffect": 0,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
+      "referenceExpectedEffect": 0.79173525,
+      "referenceSourceUpdatedAt": "2026-09-11T01:02:18.058Z",
+      "simulatedJpEffect": 0.854933,
       "simulatedGlobalEffect": 0,
-      "simulatedDelta": 0,
-      "simulatedRatio": null,
+      "simulatedDelta": -0.854933,
+      "simulatedRatio": 0,
       "jpEnvironment": {
         "season": "spring",
         "weather": "sunny",
@@ -1937,12 +1937,12 @@
       "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
       "evaluatorRevision": "4401e25987d9c78707f2d3f8a9dcd02c1c56529c",
       "evaluatedAt": "2026-09-11T02:25:48.310Z",
-      "simulatedDeltaRaw": 0,
-      "simulatedDeltaApplied": 0,
+      "simulatedDeltaRaw": -0.854933,
+      "simulatedDeltaApplied": -0.854933,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
       "calibrationVersion": 2,
-      "calibrationMode": "scaled-delta"
+      "calibrationMode": "ratio-fallback"
     },
     {
       "id": 201702,
@@ -1995,7 +1995,7 @@
       "calibrationMode": "ratio-fallback"
     },
     {
-      "id": 201701,
+      "id": 202002,
       "expectedEffect": 0,
       "minEffect": 0,
       "p05Effect": 0,
@@ -2006,17 +2006,17 @@
       "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
-      "seed": 2521794178,
-      "mechanicsHash": "fnv1a64:e308b9303cfc12a7",
+      "seed": 3729292759,
+      "mechanicsHash": "fnv1a64:db4ce3d1de51cd4e",
       "source": "utools-delta-global",
       "methodVersion": 6,
-      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
-      "referenceExpectedEffect": 0.79173525,
-      "referenceSourceUpdatedAt": "2026-09-11T01:02:18.058Z",
-      "simulatedJpEffect": 0.854933,
+      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "referenceExpectedEffect": 0,
+      "referenceSourceUpdatedAt": "2026-08-29T17:44:45.544Z",
+      "simulatedJpEffect": 0,
       "simulatedGlobalEffect": 0,
-      "simulatedDelta": -0.854933,
-      "simulatedRatio": 0,
+      "simulatedDelta": 0,
+      "simulatedRatio": null,
       "jpEnvironment": {
         "season": "spring",
         "weather": "sunny",
@@ -2037,12 +2037,12 @@
       "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
       "evaluatorRevision": "4401e25987d9c78707f2d3f8a9dcd02c1c56529c",
       "evaluatedAt": "2026-09-11T02:25:48.310Z",
-      "simulatedDeltaRaw": -0.854933,
-      "simulatedDeltaApplied": -0.854933,
+      "simulatedDeltaRaw": 0,
+      "simulatedDeltaApplied": 0,
       "deltaScale": 1,
-      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
       "calibrationVersion": 2,
-      "calibrationMode": "ratio-fallback"
+      "calibrationMode": "scaled-delta"
     }
   ]
 }
