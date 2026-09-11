@@ -3,16 +3,15 @@
   "server": "global",
   "courseId": 10105,
   "style": "runner",
-  "generatedAt": "2026-09-11T03:34:12.386Z",
+  "generatedAt": "2026-09-11T03:39:30.827Z",
   "profile": {
-    "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
-    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global delta",
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; P05-P95 is the preferred typical range",
-    "evaluatorRevision": "4401e25987d9c78707f2d3f8a9dcd02c1c56529c",
-    "methodVersion": 5,
-    "samples": 2000,
-    "calibration": "0.90× for ordinary simple skills; 0.60× for unique simple skills; 1.00× for context-dependent skills",
-    "calibrationVersion": 1
+    "evaluator": "mixed",
+    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
+    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
+    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
+    "calibrationVersion": 2,
+    "methodVersion": 6,
+    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
   },
   "skills": [
     {
@@ -180,7 +179,7 @@
       "seed": 3689732181,
       "mechanicsHash": "fnv1a64:b500b98df992a9e0",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 1.21,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -210,7 +209,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 0.9,
       "calibrationBasis": "ordinary-skill JP benchmark calibration",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201592,
@@ -287,7 +287,7 @@
       "seed": 717926503,
       "mechanicsHash": "fnv1a64:34b81e435386dd27",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 1,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -320,7 +320,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200751,
@@ -468,7 +469,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:5e411dfc9136ec4d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -498,7 +499,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bcba46170b0d9bca",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -513,7 +514,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b9afb231033ae62c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -528,7 +529,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:368fd25587697815",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -543,7 +544,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b7ecb29f6dbd8637",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -573,7 +574,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:ce6055f3508fd69e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -588,7 +589,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:cb2f535f87cfee19",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -603,7 +604,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:62436a25205ca817",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -652,7 +653,7 @@
       "seed": 2377441074,
       "mechanicsHash": "fnv1a64:c8e4db159381a0f3",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.724638525,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -682,7 +683,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 0.9,
       "calibrationBasis": "ordinary-skill JP benchmark calibration",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100031,
@@ -699,7 +701,7 @@
       "seed": 27418137,
       "mechanicsHash": "fnv1a64:b8b8f95f937c53b1",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.71,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -729,7 +731,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 0.6,
       "calibrationBasis": "unique-skill cross-context calibration",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100051,
@@ -791,7 +794,7 @@
       "seed": 1791158781,
       "mechanicsHash": "fnv1a64:8d2e2b19e3fc6d92",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.71,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -823,7 +826,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100261,
@@ -840,7 +844,7 @@
       "seed": 796446463,
       "mechanicsHash": "fnv1a64:a52abfa2cfc161a9",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.71,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -872,7 +876,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100421,
@@ -919,7 +924,7 @@
       "seed": 3797069129,
       "mechanicsHash": "fnv1a64:19bf3ba9bdc9b1ba",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.71,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -949,7 +954,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 0.6,
       "calibrationBasis": "unique-skill cross-context calibration",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 110151,
@@ -992,7 +998,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e088ae6eb2b3df96",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1007,7 +1013,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:86e0a8998b0389e5",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1022,7 +1028,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:75dcffec25921043",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1037,7 +1043,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:f5202751905e9603",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1112,7 +1118,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:82ebf11e16d936c4",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1127,7 +1133,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:5d4d9afa9180b699",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1142,7 +1148,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:531eaaf4f0b8e41f",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1161,7 +1167,7 @@
       "seed": 2827049521,
       "mechanicsHash": "fnv1a64:f3064a1b05b2e17d",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.57,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1193,7 +1199,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202462,
@@ -1210,7 +1217,7 @@
       "seed": 4167998396,
       "mechanicsHash": "fnv1a64:87ef5ed1446b2d20",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.5656698750000001,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1243,7 +1250,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 110051,
@@ -1316,7 +1324,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0f7317c39e300b04",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1331,7 +1339,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bfeddb398880656a",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1425,7 +1433,7 @@
       "seed": 221006341,
       "mechanicsHash": "fnv1a64:b1bdba0823778efb",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.52,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1457,7 +1465,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201591,
@@ -1470,7 +1479,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8a5e0c493336ef54",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1515,7 +1524,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e8f41dd799909fc4",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1560,7 +1569,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0f7aaf3b2f870f98",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1575,7 +1584,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:76c38e2a42fc4dfa",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1590,7 +1599,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:30edf5f2c9b13d2d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1605,7 +1614,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:cc5ee874326acacc",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1620,7 +1629,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:06972a2af9cd2bb2",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1635,7 +1644,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:be00499a83d3a67f",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1665,7 +1674,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:376147df955e12c0",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1680,7 +1689,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8678548482bd14ef",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1695,7 +1704,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:fa5cc68f0e393bf9",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1710,7 +1719,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:c70348970efca22d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1725,7 +1734,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b8c4ba53d1c06efc",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1740,7 +1749,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:7c8baab65375ca26",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1755,7 +1764,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:978b68fc4ca27e7c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1834,7 +1843,7 @@
       "seed": 2549625975,
       "mechanicsHash": "fnv1a64:a932e751f596b287",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.43,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1864,7 +1873,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 0.6,
       "calibrationBasis": "unique-skill cross-context calibration",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100331,
@@ -1881,7 +1891,7 @@
       "seed": 1499544477,
       "mechanicsHash": "fnv1a64:0426febbbd078610",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.43,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1913,7 +1923,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100351,
@@ -1930,7 +1941,7 @@
       "seed": 2692179545,
       "mechanicsHash": "fnv1a64:0c009e3bb5030a5b",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.43,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -1962,7 +1973,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100691,
@@ -2050,7 +2062,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e7a8f51a150b5aed",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2084,7 +2096,7 @@
       "seed": 2006326051,
       "mechanicsHash": "fnv1a64:61e3fbdc641bce8d",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.4,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2116,7 +2128,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 210042,
@@ -2144,7 +2157,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0abc271a5fb11012",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2159,7 +2172,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:7c1b822dd66f9b68",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2178,7 +2191,7 @@
       "seed": 3600306709,
       "mechanicsHash": "fnv1a64:8902231e1a94b66e",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.39,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2210,7 +2223,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200261,
@@ -2223,7 +2237,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8bc5eb95d7604e3e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2238,7 +2252,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:d289af9edb43ce40",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2302,7 +2316,7 @@
       "seed": 3286762481,
       "mechanicsHash": "fnv1a64:0e915aab1c3eee15",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.36,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2334,7 +2348,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100111,
@@ -2351,7 +2366,7 @@
       "seed": 473317257,
       "mechanicsHash": "fnv1a64:82d49ab52996741d",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.35,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2383,7 +2398,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 110211,
@@ -2411,7 +2427,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:76bd649a4df92b0c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2426,7 +2442,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:2e34a7cf2b678558",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2445,7 +2461,7 @@
       "seed": 3171430237,
       "mechanicsHash": "fnv1a64:1576bb432f772348",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.67,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2477,7 +2493,8 @@
       "simulatedDeltaApplied": -0.3542890000000001,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200151,
@@ -2490,7 +2507,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:c0bb38bfb4b208f1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2505,7 +2522,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bd3919c0e81367e1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2550,7 +2567,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bb18e2044be21b48",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2625,7 +2642,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:41b8ca9cfcf1c73b",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2640,7 +2657,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e0caf70746ad91eb",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2734,7 +2751,7 @@
       "seed": 2053524951,
       "mechanicsHash": "fnv1a64:b11e7ac574e536b4",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.14,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2766,7 +2783,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 100311,
@@ -2813,7 +2831,7 @@
       "seed": 3479722869,
       "mechanicsHash": "fnv1a64:4b6af1d32812f73f",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.14,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
@@ -2846,7 +2864,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 120011,
@@ -2919,7 +2938,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:ccdf015e8d57b5eb",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2934,7 +2953,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8ba026da9712b2da",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2994,7 +3013,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:a94d24182ebd8be1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3009,7 +3028,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:df8e79765565c114",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3024,7 +3043,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b281abe34f71519e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3054,27 +3073,27 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:fe3270094b0f42ce",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T03:33:17.859Z",
+      "sourceUpdatedAt": "2026-09-11T03:39:07.273Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
     {
       "id": 100021,
-      "expectedEffect": -0.07149999999999979,
-      "minEffect": -2.224707,
-      "p05Effect": -1.642091,
-      "p25Effect": -0.43211299999999997,
-      "medianEffect": 0.023267999999999844,
-      "p75Effect": 0.46884099999999984,
-      "p95Effect": 1.173807,
-      "maxEffect": 1.3794270000000002,
-      "stddevEffect": 0.789929,
+      "expectedEffect": 0.4751872644022662,
+      "minEffect": 0,
+      "p05Effect": 0.1285764458489085,
+      "p25Effect": 0.39560424940282846,
+      "medianEffect": 0.4961014387816333,
+      "p75Effect": 0.5944341188079898,
+      "p95Effect": 0.7500117595255836,
+      "maxEffect": 0.795389656451608,
+      "stddevEffect": 0.17432796780895554,
       "samples": 2000,
       "seed": 2794420527,
       "mechanicsHash": "fnv1a64:16ddfccf0519b799",
       "source": "utools-delta-global",
-      "methodVersion": 5,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "methodVersion": 6,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.63,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
       "simulatedJpEffect": 2.854707,
@@ -3105,26 +3124,27 @@
       "simulatedDeltaRaw": -0.7014999999999998,
       "simulatedDeltaApplied": -0.7014999999999998,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationVersion": 2,
+      "calibrationMode": "ratio-fallback"
     },
     {
       "id": 110011,
-      "expectedEffect": -1.416157,
-      "minEffect": -1.416157,
-      "p05Effect": -1.416157,
-      "p25Effect": -1.416157,
-      "medianEffect": -1.416157,
-      "p75Effect": -1.416157,
-      "p95Effect": -1.416157,
-      "maxEffect": -1.416157,
+      "expectedEffect": 0,
+      "minEffect": 0,
+      "p05Effect": 0,
+      "p25Effect": 0,
+      "medianEffect": 0,
+      "p75Effect": 0,
+      "p95Effect": 0,
+      "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
       "seed": 3545518605,
       "mechanicsHash": "fnv1a64:90668d67886b12ff",
       "source": "utools-delta-global",
-      "methodVersion": 5,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "methodVersion": 6,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.2,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
       "simulatedJpEffect": 1.616157,
@@ -3155,26 +3175,27 @@
       "simulatedDeltaRaw": -1.616157,
       "simulatedDeltaApplied": -1.616157,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationVersion": 2,
+      "calibrationMode": "ratio-fallback"
     },
     {
       "id": 100281,
-      "expectedEffect": -1.436598,
-      "minEffect": -1.436598,
-      "p05Effect": -1.436598,
-      "p25Effect": -1.436598,
-      "medianEffect": -1.436598,
-      "p75Effect": -1.436598,
-      "p95Effect": -1.436598,
-      "maxEffect": -1.436598,
+      "expectedEffect": 0,
+      "minEffect": 0,
+      "p05Effect": 0,
+      "p25Effect": 0,
+      "medianEffect": 0,
+      "p75Effect": 0,
+      "p95Effect": 0,
+      "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
       "seed": 3147352555,
       "mechanicsHash": "fnv1a64:ef696db0e86fcfa1",
       "source": "utools-delta-global",
-      "methodVersion": 5,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "methodVersion": 6,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.18,
       "referenceSourceUpdatedAt": "2026-09-11T01:01:42.433Z",
       "simulatedJpEffect": 1.616598,
@@ -3204,8 +3225,9 @@
       "simulatedDeltaRaw": -1.616598,
       "simulatedDeltaApplied": -1.616598,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationVersion": 2,
+      "calibrationMode": "ratio-fallback"
     }
   ]
 }

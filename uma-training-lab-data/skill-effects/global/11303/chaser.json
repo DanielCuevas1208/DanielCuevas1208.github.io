@@ -3,15 +3,15 @@
   "server": "global",
   "courseId": 11303,
   "style": "chaser",
-  "generatedAt": "2026-09-11T03:33:53.269Z",
+  "generatedAt": "2026-09-11T03:39:31.265Z",
   "profile": {
     "evaluator": "mixed",
     "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
-    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global delta",
-    "calibration": "0.90× for ordinary simple skills; 0.60× for unique simple skills; 1.00× for context-dependent skills",
-    "calibrationVersion": 1,
-    "methodVersion": 5,
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; P05-P95 is the preferred typical range"
+    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
+    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
+    "calibrationVersion": 2,
+    "methodVersion": 6,
+    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
   },
   "skills": [
     {
@@ -94,7 +94,7 @@
       "seed": 21206831,
       "mechanicsHash": "fnv1a64:21ba3adafae1ee09",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 1.490712425,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -126,7 +126,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200642,
@@ -208,7 +209,7 @@
       "seed": 1510926923,
       "mechanicsHash": "fnv1a64:e653882825d37f1c",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 1.074665,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -240,7 +241,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202261,
@@ -296,7 +298,7 @@
       "seed": 421786436,
       "mechanicsHash": "fnv1a64:151bcff661ae96a6",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.945761625,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -328,7 +330,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200361,
@@ -410,7 +413,7 @@
       "seed": 4141139067,
       "mechanicsHash": "fnv1a64:10fc9f693d37baf3",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.9034271500000001,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -442,7 +445,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202271,
@@ -459,7 +463,7 @@
       "seed": 3916548341,
       "mechanicsHash": "fnv1a64:21fb0622733fdf43",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.9034271500000001,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -491,7 +495,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202381,
@@ -508,7 +513,7 @@
       "seed": 2305725443,
       "mechanicsHash": "fnv1a64:29fbe9daa7d5d4e3",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.9034271500000001,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -540,7 +545,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201592,
@@ -713,7 +719,7 @@
       "seed": 3124501103,
       "mechanicsHash": "fnv1a64:1731c6079ae08280",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.675160275,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
@@ -745,7 +751,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201111,
@@ -1139,7 +1146,7 @@
       "seed": 2021112064,
       "mechanicsHash": "fnv1a64:c2b9caac472856b0",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.39641985,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -1171,7 +1178,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202272,
@@ -1188,7 +1196,7 @@
       "seed": 2185798866,
       "mechanicsHash": "fnv1a64:eab738c03f44f710",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.39641985,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -1220,7 +1228,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 202382,
@@ -1237,7 +1246,7 @@
       "seed": 2480775304,
       "mechanicsHash": "fnv1a64:15007ce11a6ffa56",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.39641985,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -1269,7 +1278,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 200372,
@@ -1689,7 +1699,7 @@
       "seed": 2669341456,
       "mechanicsHash": "fnv1a64:5ad079a2bcbf3b39",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.21634640000000002,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -1721,7 +1731,8 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201601,
@@ -1881,7 +1892,7 @@
       "seed": 828349828,
       "mechanicsHash": "fnv1a64:db4ce3d1de51cd4e",
       "source": "utools-delta-global",
-      "methodVersion": 5,
+      "methodVersion": 6,
       "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
@@ -1913,25 +1924,26 @@
       "simulatedDeltaApplied": 0,
       "deltaScale": 1,
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationVersion": 2,
+      "calibrationMode": "scaled-delta"
     },
     {
       "id": 201702,
-      "expectedEffect": -0.028372799999999976,
-      "minEffect": -0.028372799999999976,
-      "p05Effect": -0.028372799999999976,
-      "p25Effect": -0.028372799999999976,
-      "medianEffect": -0.028372799999999976,
-      "p75Effect": -0.028372799999999976,
-      "p95Effect": -0.028372799999999976,
-      "maxEffect": -0.028372799999999976,
+      "expectedEffect": 0,
+      "minEffect": 0,
+      "p05Effect": 0,
+      "p25Effect": 0,
+      "medianEffect": 0,
+      "p75Effect": 0,
+      "p95Effect": 0,
+      "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
       "seed": 1107666000,
       "mechanicsHash": "fnv1a64:9ffc298a734d6674",
       "source": "utools-delta-global",
-      "methodVersion": 5,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "methodVersion": 6,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.34519520000000004,
       "referenceSourceUpdatedAt": "2026-08-29T17:44:46.892Z",
       "simulatedJpEffect": 0.373568,
@@ -1961,26 +1973,27 @@
       "simulatedDeltaRaw": -0.373568,
       "simulatedDeltaApplied": -0.373568,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationVersion": 2,
+      "calibrationMode": "ratio-fallback"
     },
     {
       "id": 201701,
-      "expectedEffect": -0.06317434999999993,
-      "minEffect": -0.06317434999999993,
-      "p05Effect": -0.06317434999999993,
-      "p25Effect": -0.06317434999999993,
-      "medianEffect": -0.06317434999999993,
-      "p75Effect": -0.06317434999999993,
-      "p95Effect": -0.06317434999999993,
-      "maxEffect": -0.06317434999999993,
+      "expectedEffect": 0,
+      "minEffect": 0,
+      "p05Effect": 0,
+      "p25Effect": 0,
+      "medianEffect": 0,
+      "p75Effect": 0,
+      "p95Effect": 0,
+      "maxEffect": 0,
       "stddevEffect": 0,
       "samples": 2000,
       "seed": 3180103819,
       "mechanicsHash": "fnv1a64:e308b9303cfc12a7",
       "source": "utools-delta-global",
-      "methodVersion": 5,
-      "rangeMethod": "Global Umalator distribution shifted to the calibrated live-U-tools-anchored Global mean; P05-P95 is the preferred typical range",
+      "methodVersion": 6,
+      "rangeMethod": "Global Umalator distribution multiplicatively scaled to the live-U-tools JP anchor using the paired Global/JP simulator ratio; P05-P95 is the preferred typical range",
       "referenceExpectedEffect": 0.7915946500000001,
       "referenceSourceUpdatedAt": "2026-09-11T01:02:18.273Z",
       "simulatedJpEffect": 0.854769,
@@ -2010,8 +2023,9 @@
       "simulatedDeltaRaw": -0.854769,
       "simulatedDeltaApplied": -0.854769,
       "deltaScale": 1,
-      "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
-      "calibrationVersion": 1
+      "calibrationBasis": "ratio fallback: additive correction crossed below zero while both simulator means remained non-negative",
+      "calibrationVersion": 2,
+      "calibrationMode": "ratio-fallback"
     }
   ]
 }
