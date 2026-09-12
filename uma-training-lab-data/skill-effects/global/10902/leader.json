@@ -3,15 +3,16 @@
   "server": "global",
   "courseId": 10902,
   "style": "leader",
-  "generatedAt": "2026-09-11T15:05:10.612Z",
+  "generatedAt": "2026-09-12T14:15:46.166Z",
   "profile": {
-    "evaluator": "mixed",
-    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
+    "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
     "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
-    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
-    "calibrationVersion": 2,
+    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range",
+    "evaluatorRevision": "4401e25987d9c78707f2d3f8a9dcd02c1c56529c",
     "methodVersion": 6,
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
+    "samples": 2000,
+    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
+    "calibrationVersion": 2
   },
   "skills": [
     {
@@ -154,19 +155,6 @@
       "mechanicsHash": "fnv1a64:807e6174c8eba57b",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-11T01:02:07.946Z"
-    },
-    {
-      "id": 202441,
-      "expectedEffect": 0.757469,
-      "minEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
-      "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-11T15:04:46.123Z"
     },
     {
       "id": 200491,

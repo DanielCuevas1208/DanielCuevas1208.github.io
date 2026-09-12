@@ -3,7 +3,7 @@
   "server": "jp",
   "courseId": 10902,
   "style": "chaser",
-  "generatedAt": "2026-09-11T15:04:46.513Z",
+  "generatedAt": "2026-09-12T14:13:03.365Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10902/effects/chaser",
@@ -280,9 +280,9 @@
       "p05Effect": null,
       "p95Effect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:cc701ec9d85c666e",
+      "mechanicsHash": "fnv1a64:7438c164de360cdc",
       "source": "utools-live",
-      "sourceUpdatedAt": "2026-09-11T15:04:46.513Z"
+      "sourceUpdatedAt": "2026-09-12T14:13:03.365Z"
     },
     {
       "id": 202721,
@@ -1151,9 +1151,9 @@
       "p05Effect": null,
       "p95Effect": null,
       "samples": null,
-      "mechanicsHash": "fnv1a64:8926f5f9d18969d3",
+      "mechanicsHash": "fnv1a64:97b38cb9e87012c7",
       "source": "utools-live",
-      "sourceUpdatedAt": "2026-09-11T15:04:46.513Z"
+      "sourceUpdatedAt": "2026-09-12T14:13:03.365Z"
     },
     {
       "id": 200961,
