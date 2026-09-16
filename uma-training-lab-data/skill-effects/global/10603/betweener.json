@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 10603,
   "style": "betweener",
-  "generatedAt": "2026-09-15T15:37:57.661Z",
+  "generatedAt": "2026-09-16T15:29:02.465Z",
   "profile": {
     "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
     "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
@@ -500,6 +500,19 @@
       "p95Effect": null,
       "samples": null,
       "mechanicsHash": "fnv1a64:479360aa998f2dc2",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-11T01:01:53.705Z"
+    },
+    {
+      "id": 201383,
+      "expectedEffect": 0.6127486750000001,
+      "minEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:7793d33c7d4fe829",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-11T01:01:53.705Z"
     },
