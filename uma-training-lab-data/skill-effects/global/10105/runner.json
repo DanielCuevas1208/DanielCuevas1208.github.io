@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 10105,
   "style": "runner",
-  "generatedAt": "2026-09-16T15:27:18.040Z",
+  "generatedAt": "2026-09-18T15:02:31.350Z",
   "profile": {
     "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
     "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
@@ -470,7 +470,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:5e411dfc9136ec4d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -485,7 +485,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bcba46170b0d9bca",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -500,7 +500,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b9afb231033ae62c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -515,7 +515,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:368fd25587697815",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -530,7 +530,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b7ecb29f6dbd8637",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -560,7 +560,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:ce6055f3508fd69e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -575,7 +575,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:cb2f535f87cfee19",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -590,7 +590,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:62436a25205ca817",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -999,7 +999,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e088ae6eb2b3df96",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1014,7 +1014,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:86e0a8998b0389e5",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1029,7 +1029,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:75dcffec25921043",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1044,7 +1044,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:f5202751905e9603",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1119,7 +1119,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:82ebf11e16d936c4",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1134,7 +1134,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:5d4d9afa9180b699",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1149,7 +1149,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:531eaaf4f0b8e41f",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1325,7 +1325,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0f7317c39e300b04",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1340,7 +1340,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bfeddb398880656a",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1480,7 +1480,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8a5e0c493336ef54",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1525,7 +1525,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e8f41dd799909fc4",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1570,7 +1570,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0f7aaf3b2f870f98",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1585,7 +1585,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:76c38e2a42fc4dfa",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1651,7 +1651,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:30edf5f2c9b13d2d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1666,7 +1666,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:cc5ee874326acacc",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1681,7 +1681,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:06972a2af9cd2bb2",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1696,7 +1696,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:be00499a83d3a67f",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1726,7 +1726,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:376147df955e12c0",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1741,7 +1741,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8678548482bd14ef",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1756,7 +1756,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:fa5cc68f0e393bf9",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1771,7 +1771,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:c70348970efca22d",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1786,7 +1786,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b8c4ba53d1c06efc",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1801,7 +1801,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:7c8baab65375ca26",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -1816,7 +1816,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:978b68fc4ca27e7c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2114,7 +2114,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e7a8f51a150b5aed",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2209,7 +2209,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:0abc271a5fb11012",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2224,7 +2224,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:7c1b822dd66f9b68",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2289,7 +2289,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8bc5eb95d7604e3e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2304,7 +2304,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:d289af9edb43ce40",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2479,7 +2479,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:76bd649a4df92b0c",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2494,7 +2494,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:2e34a7cf2b678558",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2559,7 +2559,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:c0bb38bfb4b208f1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2574,7 +2574,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bd3919c0e81367e1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2619,7 +2619,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:bb18e2044be21b48",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2694,7 +2694,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:41b8ca9cfcf1c73b",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -2709,7 +2709,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:e0caf70746ad91eb",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3005,7 +3005,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:ccdf015e8d57b5eb",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3020,7 +3020,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:8ba026da9712b2da",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3080,7 +3080,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:a94d24182ebd8be1",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3095,7 +3095,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:df8e79765565c114",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3110,7 +3110,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:b281abe34f71519e",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
@@ -3140,7 +3140,7 @@
       "samples": null,
       "mechanicsHash": "fnv1a64:fe3270094b0f42ce",
       "source": "utools-compatible",
-      "sourceUpdatedAt": "2026-09-16T15:26:23.974Z",
+      "sourceUpdatedAt": "2026-09-18T15:01:25.413Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
       "referenceVerifiedAgainstLive": true
     },
