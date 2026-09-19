@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 11103,
   "style": "runner",
-  "generatedAt": "2026-09-18T15:08:26.441Z",
+  "generatedAt": "2026-09-19T14:35:58.246Z",
   "profile": {
     "evaluator": "kachi-dev/uma-tools/uma-skill-tools",
     "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
