@@ -21,22 +21,10 @@ jobs:
           const url = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader';
           const res = await fetch(url, {headers:{'user-agent':'Mozilla/5.0'}});
           const html = await res.text();
-          const chunks = [...html.matchAll(/self\.__next_f\.push\(\[1,"((?:\\.|[^"\\])*)"\]\)/g)];
-          const joined = chunks.map(([, chunk]) => chunk
-            .replace(/\\"/g, '"')
-            .replace(/\\n/g, '\n')
-            .replace(/\\\\/g, '\\')).join('');
-          console.log('html', html.length, 'joined', joined.length, 'expectedEffect count', (joined.match(/"expectedEffect":/g)||[]).length);
-          const keys = new Set();
-          for (const m of joined.matchAll(/"expectedEffect":/g)) {
-            const s = joined.slice(Math.max(0,m.index-1500), Math.min(joined.length,m.index+2500));
-            for (const k of s.matchAll(/"([A-Za-z][A-Za-z0-9_]*)":/g)) keys.add(k[1]);
-            if (keys.size > 100) break;
-          }
-          console.log('NEARBY_KEYS', [...keys].sort().join(','));
-          for (const needle of ['200492','余勢を駆って','セイリオス','expectedEffect']) {
-            const i = joined.indexOf(needle);
+          console.log('html', html.length, 'expectedEffect raw count', html.split('expectedEffect').length - 1);
+          for (const needle of ['expectedEffect','200492','余勢を駆って','セイリオス','medianEffect','averageEffect','activationRate','effectiveness']) {
+            const i = html.indexOf(needle);
             console.log('\n===== '+needle+' @ '+i+' =====');
-            if (i >= 0) console.log(joined.slice(Math.max(0,i-2000), i+4500));
+            if (i >= 0) console.log(html.slice(Math.max(0,i-3000), i+7000));
           }
           NODE
