@@ -90,8 +90,42 @@ export async function loadSkills(url = DEFAULT_SKILLS_URL) {
   return data;
 }
 
+export function inheritedSkillRecord(skill) {
+  const gene = skill?.gene_version;
+  const id = Number(gene?.id);
+  if (!gene || !Number.isInteger(id) || id <= 0) return null;
+  const loc = {};
+  for (const [lang, localized] of Object.entries(skill?.loc || {})) {
+    if (localized?.gene_version && typeof localized.gene_version === 'object') {
+      loc[lang] = { ...localized.gene_version };
+    }
+    if (localized?.char != null) {
+      loc[lang] = { ...(loc[lang] || {}), char: localized.char };
+    }
+  }
+  return {
+    ...gene,
+    id,
+    inherited: true,
+    __geneParentId: Number(skill.id),
+    char: skill.char,
+    jpname: skill.jpname,
+    enname: gene.name_en || gene.enname || skill.enname || skill.name_en,
+    name_en: gene.name_en || gene.enname || skill.enname || skill.name_en,
+    unreleased: skill.unreleased,
+    loc,
+  };
+}
+
 export function indexSkills(skills) {
-  return new Map(skills.map((skill) => [Number(skill.id), skill]));
+  const out = new Map();
+  for (const skill of skills || []) {
+    const id = Number(skill?.id);
+    if (Number.isInteger(id) && id > 0) out.set(id, skill);
+    const gene = inheritedSkillRecord(skill);
+    if (gene) out.set(gene.id, gene);
+  }
+  return out;
 }
 
 export function ensureDir(dir) {
