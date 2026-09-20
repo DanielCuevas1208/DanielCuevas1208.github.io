@@ -104,10 +104,26 @@ export function parseUtoolsReaderText(text, nameToId) {
   return rows;
 }
 
-async function fetchText(url, headers = {}) {
-  const response = await fetch(url, { headers });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
-  return response.text();
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchText(url, headers = {}, attempts = 4) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      const response = await fetch(url, { headers });
+      if (response.ok) return response.text();
+      const retryable = response.status === 403 || response.status === 408 || response.status === 425 || response.status === 429 || response.status >= 500;
+      lastError = new Error(`${response.status} ${response.statusText}: ${url}`);
+      if (!retryable || attempt === attempts) throw lastError;
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) throw error;
+    }
+    await sleep(700 * attempt + Math.floor(Math.random() * 250));
+  }
+  throw lastError || new Error(`Unable to fetch ${url}`);
 }
 
 function mergeRows(primary, enrichment) {
