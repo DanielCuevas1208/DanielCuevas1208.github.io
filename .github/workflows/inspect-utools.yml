@@ -9,31 +9,42 @@ on:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inspect U-tools scripts
+      - name: Inspect U-tools live DOM
         shell: bash
         run: |
+          npm install --no-save puppeteer-core@24
+          which google-chrome || which chromium || true
           node --input-type=module <<'NODE'
-          const base='https://xn--gck1f423k.xn--1bvt37a.tools';
-          const page=base+'/race/courses/10606/effects/leader';
-          const html=await (await fetch(page,{headers:{'user-agent':'Mozilla/5.0'}})).text();
-          const srcs=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
-          console.log('scripts',srcs.length);
-          const needles=['expectedEffect','median','activationRate','effectiveness','継承スキル','minEffect','maxEffect'];
-          for(const src of srcs){
-            const url=src.startsWith('http')?src:base+src;
-            let js='';
-            try{js=await (await fetch(url)).text()}catch{continue}
-            const hits=needles.filter(n=>js.includes(n));
-            if(!hits.length)continue;
-            console.log('\nSCRIPT',url,'chars',js.length,'hits',hits.join(','));
-            for(const n of hits){
-              const i=js.indexOf(n);
-              console.log('\n--',n,'--\n',js.slice(Math.max(0,i-1500),i+3500));
-            }
-          }
+          import puppeteer from 'puppeteer-core';
+          const browser=await puppeteer.launch({headless:true,executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+          const page=await browser.newPage();
+          await page.goto('https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader',{waitUntil:'networkidle2',timeout:90000});
+          console.log('TITLE',await page.title());
+          const inputs=await page.$$eval('input',(els)=>els.map((el,i)=>({i,outer:el.outerHTML,text:(el.parentElement?.parentElement?.innerText||el.parentElement?.innerText||'').slice(0,160)})));
+          console.log('INPUTS',JSON.stringify(inputs,null,2));
+          const candidates=await page.$$eval('label,div,span',(els)=>els.map((el,i)=>({tag:el.tagName,text:(el.textContent||'').trim(),html:el.outerHTML.slice(0,500)})).filter(x=>x.text==='継承スキル').slice(0,10));
+          console.log('LABELS',JSON.stringify(candidates,null,2));
+          const before=await page.evaluate(()=>document.body.innerText);
+          console.log('BEFORE_SEIRIOS',before.split('\n').filter(x=>x.includes('セイリオス')).slice(0,10));
+          const clicked=await page.evaluate(()=>{
+            const all=[...document.querySelectorAll('label,div,span')];
+            const el=all.find(e=>(e.textContent||'').trim()==='継承スキル');
+            if(!el)return false;
+            const label=el.closest('label')||el;
+            const inp=label.querySelector('input')||label.parentElement?.querySelector('input')||el.previousElementSibling;
+            if(inp && inp instanceof HTMLInputElement){inp.click();return true}
+            el.click();return true;
+          });
+          console.log('CLICKED',clicked);
+          await new Promise(r=>setTimeout(r,2500));
+          const after=await page.evaluate(()=>document.body.innerText);
+          console.log('AFTER_SEIRIOS_CONTEXT',after.split('\n').map((x,i,a)=>x.includes('セイリオス')?a.slice(Math.max(0,i-2),i+4).join(' | '):null).filter(Boolean).slice(0,20));
+          console.log('AFTER_CERTAIN',after.split('\n').map((x,i,a)=>x.includes('絶対は、ボクだ')?a.slice(Math.max(0,i-2),i+4).join(' | '):null).filter(Boolean).slice(0,20));
+          console.log('URL_AFTER',page.url());
+          await browser.close();
           NODE
