@@ -110,29 +110,85 @@ async function fetchText(url, headers = {}) {
   return response.text();
 }
 
+function mergeRows(primary, enrichment) {
+  const byId = new Map(primary.map((row) => [Number(row.id), { ...row }]));
+  for (const extra of enrichment || []) {
+    const id = Number(extra.id);
+    const current = byId.get(id);
+    if (!current) {
+      byId.set(id, { ...extra });
+      continue;
+    }
+    for (const key of ['minEffect', 'maxEffect', 'averageEffect', 'medianEffect', 'activationRate', 'pointEfficiency']) {
+      if (current[key] == null && extra[key] != null) current[key] = extra[key];
+    }
+  }
+  return [...byId.values()].sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
+}
+
+async function fetchReaderRows(url, nameToId) {
+  if (!nameToId) return [];
+  const text = await fetchText(`https://r.jina.ai/${url}`, {
+    accept: 'text/plain',
+    'user-agent': 'uma-training-lab-skill-db/1.0',
+  });
+  return parseUtoolsReaderText(text, nameToId);
+}
+
 export async function fetchUtoolsExpectedEffects(courseId, style, nameToId = null) {
   const url = `${UTOOLS_SITE_BASE}/${Number(courseId)}/effects/${style}`;
   const fetchedAt = new Date().toISOString();
+  let directError = null;
+  let directRows = [];
+
   try {
     const html = await fetchText(url, {
       accept: 'text/html,application/xhtml+xml',
       'accept-language': 'ja,en;q=0.7',
       'user-agent': 'Mozilla/5.0 (compatible; UmaTrainingLab/1.0; +https://github.com/DanielCuevas1208/DanielCuevas1208.github.io)',
     });
-    const rows = parseUtoolsExpectedEffects(html);
-    if (rows.length < 10) throw new Error(`U-tools raw parse returned only ${rows.length} rows`);
-    return { url, rows, fetchedAt, transport: 'direct-rsc' };
-  } catch (directError) {
-    if (!nameToId) throw directError;
-    const readerUrl = `https://r.jina.ai/${url}`;
-    const text = await fetchText(readerUrl, {
-      accept: 'text/plain',
-      'user-agent': 'uma-training-lab-skill-db/1.0',
-    });
-    const rows = parseUtoolsReaderText(text, nameToId);
-    if (rows.length < 10) {
-      throw new Error(`direct U-tools failed (${directError.message}); reader fallback matched only ${rows.length} skill rows`);
-    }
-    return { url, rows, fetchedAt, transport: 'Jina Reader proxy of live U-tools', directError: directError.message };
+    directRows = parseUtoolsExpectedEffects(html);
+    if (directRows.length < 10) throw new Error(`U-tools raw parse returned only ${directRows.length} rows`);
+  } catch (error) {
+    directError = error;
+    directRows = [];
   }
+
+  if (directRows.length) {
+    if (!nameToId) return { url, rows: directRows, fetchedAt, transport: 'direct-rsc' };
+    try {
+      const readerRows = await fetchReaderRows(url, nameToId);
+      const rows = mergeRows(directRows, readerRows);
+      return {
+        url,
+        rows,
+        fetchedAt,
+        transport: 'direct-rsc + reader-enrichment',
+        directRows: directRows.length,
+        readerRows: readerRows.length,
+        readerOnlyRows: Math.max(0, rows.length - directRows.length),
+      };
+    } catch (readerError) {
+      return {
+        url,
+        rows: directRows,
+        fetchedAt,
+        transport: 'direct-rsc',
+        enrichmentError: readerError.message,
+      };
+    }
+  }
+
+  if (!nameToId) throw directError;
+  const rows = await fetchReaderRows(url, nameToId);
+  if (rows.length < 10) {
+    throw new Error(`direct U-tools failed (${directError?.message || 'unknown'}); reader fallback matched only ${rows.length} skill rows`);
+  }
+  return {
+    url,
+    rows,
+    fetchedAt,
+    transport: 'Jina Reader proxy of live U-tools',
+    directError: directError?.message || null,
+  };
 }
