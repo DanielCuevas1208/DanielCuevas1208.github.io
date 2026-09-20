@@ -28,9 +28,11 @@ const onlyStyle = args.style || null;
 const skillList = await loadSkills(skillsUrl);
 const skills = indexSkills(skillList);
 const nameToId = new Map();
-for (const skill of skillList) {
-  const name = String(skill?.jpname || '').trim();
-  if (name && !nameToId.has(name)) nameToId.set(name, Number(skill.id));
+for (const skill of skills.values()) {
+  for (const rawName of [skill?.jpname, skill?.name_en, skill?.enname]) {
+    const name = String(rawName || '').trim();
+    if (name && !nameToId.has(name)) nameToId.set(name, Number(skill.id));
+  }
 }
 
 const localJpRoot = path.join(root, 'jp');
@@ -75,14 +77,21 @@ for (const courseId of courseIds) {
             && sameNumber(old.expectedEffect, row.expectedEffect)
             && sameNumber(old.minEffect, row.minEffect)
             && sameNumber(old.maxEffect, row.maxEffect)
+            && sameNumber(old.averageEffect, row.averageEffect)
+            && sameNumber(old.medianEffect, row.medianEffect)
+            && sameNumber(old.activationRate, row.activationRate)
+            && sameNumber(old.pointEfficiency, row.pointEfficiency)
             && old.mechanicsHash === hash;
           if (!unchanged) changed = true;
           return {
             id: Number(row.id),
             expectedEffect: Number(row.expectedEffect),
             minEffect: row.minEffect == null ? null : Number(row.minEffect),
-            medianEffect: null,
+            averageEffect: row.averageEffect == null ? null : Number(row.averageEffect),
+            medianEffect: row.medianEffect == null ? null : Number(row.medianEffect),
             maxEffect: row.maxEffect == null ? null : Number(row.maxEffect),
+            activationRate: row.activationRate == null ? null : Number(row.activationRate),
+            pointEfficiency: row.pointEfficiency == null ? null : Number(row.pointEfficiency),
             p05Effect: null,
             p95Effect: null,
             samples: null,
