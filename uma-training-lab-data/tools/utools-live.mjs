@@ -28,17 +28,20 @@ export function parseUtoolsExpectedEffects(html) {
   const rows = [];
   const seen = new Set();
   const re = /"expectedEffect":(-?(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?)/g;
-  let match;
-  while ((match = re.exec(joined))) {
+  const matches = [...joined.matchAll(re)];
+  for (let mi = 0; mi < matches.length; mi++) {
+    const match = matches[mi];
     const expectedEffect = Number(match[1]);
-    const before = joined.slice(Math.max(0, match.index - 8000), match.index);
+    const searchStart = Math.max(0, match.index - 8000);
+    const before = joined.slice(searchStart, match.index);
     const idMatch = lastMatch(before, /"id":(\d+)/g);
     if (!idMatch) continue;
     const id = Number(idMatch[1]);
     if (!Number.isInteger(id) || id <= 0 || seen.has(id) || !Number.isFinite(expectedEffect)) continue;
-    const absoluteIdIndex = Math.max(0, match.index - 8000) + (idMatch.index || 0);
-    const after = joined.slice(match.index, Math.min(joined.length, match.index + 5000));
-    const window = joined.slice(absoluteIdIndex, Math.min(joined.length, match.index + 5000));
+    const absoluteIdIndex = searchStart + (idMatch.index || 0);
+    const nextExpected = mi + 1 < matches.length ? matches[mi + 1].index : joined.length;
+    const rowEnd = Math.min(nextExpected, match.index + 8000);
+    const window = joined.slice(absoluteIdIndex, rowEnd);
     const minEffect = numericField(window, ['minEffect', 'minimumEffect']);
     const maxEffect = numericField(window, ['maxEffect', 'maximumEffect']);
     const averageEffect = numericField(window, ['averageEffect', 'avgEffect', 'meanEffect']);
