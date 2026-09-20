@@ -14,18 +14,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inspect U-tools reader payload
+      - name: Inspect U-tools scripts
         shell: bash
         run: |
           node --input-type=module <<'NODE'
-          const target = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader';
-          const url = 'https://r.jina.ai/' + target;
-          const res = await fetch(url, {headers:{'user-agent':'uma-training-lab-skill-db/1.0','accept':'text/plain'}});
-          const text = await res.text();
-          console.log('status', res.status, 'chars', text.length);
-          for (const needle of ['余勢を駆って','セイリオス','通常シリウス','ニンブルナビゲーター','期待値','中央値','発動率']) {
-            const i = text.indexOf(needle);
-            console.log('\n===== '+needle+' @ '+i+' =====');
-            if (i >= 0) console.log(text.slice(Math.max(0,i-3000), i+9000));
+          const base='https://xn--gck1f423k.xn--1bvt37a.tools';
+          const page=base+'/race/courses/10606/effects/leader';
+          const html=await (await fetch(page,{headers:{'user-agent':'Mozilla/5.0'}})).text();
+          const srcs=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
+          console.log('scripts',srcs.length);
+          const needles=['expectedEffect','median','activationRate','effectiveness','継承スキル','minEffect','maxEffect'];
+          for(const src of srcs){
+            const url=src.startsWith('http')?src:base+src;
+            let js='';
+            try{js=await (await fetch(url)).text()}catch{continue}
+            const hits=needles.filter(n=>js.includes(n));
+            if(!hits.length)continue;
+            console.log('\nSCRIPT',url,'chars',js.length,'hits',hits.join(','));
+            for(const n of hits){
+              const i=js.indexOf(n);
+              console.log('\n--',n,'--\n',js.slice(Math.max(0,i-1500),i+3500));
+            }
           }
           NODE
