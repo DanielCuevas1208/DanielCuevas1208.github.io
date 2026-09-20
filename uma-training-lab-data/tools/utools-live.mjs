@@ -14,6 +14,14 @@ function lastMatch(text, re) {
   return [...text.matchAll(re)].at(-1) || null;
 }
 
+function numericField(window, names) {
+  for (const name of names) {
+    const match = window.match(new RegExp(`"${name}":(-?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:[eE][+-]?\\d+)?)`));
+    if (match) return Number(match[1]);
+  }
+  return null;
+}
+
 export function parseUtoolsExpectedEffects(html) {
   const joined = decodeRscChunks(html);
   if (!joined.includes('"expectedEffect":')) throw new Error('U-tools page did not contain expectedEffect data');
@@ -28,8 +36,17 @@ export function parseUtoolsExpectedEffects(html) {
     if (!idMatch) continue;
     const id = Number(idMatch[1]);
     if (!Number.isInteger(id) || id <= 0 || seen.has(id) || !Number.isFinite(expectedEffect)) continue;
+    const absoluteIdIndex = Math.max(0, match.index - 8000) + (idMatch.index || 0);
+    const after = joined.slice(match.index, Math.min(joined.length, match.index + 5000));
+    const window = joined.slice(absoluteIdIndex, Math.min(joined.length, match.index + 5000));
+    const minEffect = numericField(window, ['minEffect', 'minimumEffect']);
+    const maxEffect = numericField(window, ['maxEffect', 'maximumEffect']);
+    const averageEffect = numericField(window, ['averageEffect', 'avgEffect', 'meanEffect']);
+    const medianEffect = numericField(window, ['medianEffect']);
+    const activationRate = numericField(window, ['activationRate', 'activateRate', 'activationProbability', 'activateProbability']);
+    const pointEfficiency = numericField(window, ['pointEfficiency', 'ptEfficiency', 'efficiency']);
     seen.add(id);
-    rows.push({ id, expectedEffect, minEffect: null, maxEffect: null });
+    rows.push({ id, expectedEffect, minEffect, maxEffect, averageEffect, medianEffect, activationRate, pointEfficiency });
   }
   rows.sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
   return rows;
@@ -50,6 +67,8 @@ export function parseUtoolsReaderText(text, nameToId) {
   const seen = new Set();
   const valueRe = /^(-?\d+(?:\.\d+)?)\[バ\]/;
   const rangeRe = /(?:^|、)(-?\d+(?:\.\d+)?)\s*~\s*(-?\d+(?:\.\d+)?)\[バ\]/;
+  const efficiencyRe = /(?:^|、)(-?\d+(?:\.\d+)?)\[バ\/Pt\]/;
+  const activationRe = /(?:^|、)(-?\d+(?:\.\d+)?)%/;
 
   for (let i = 0; i < lines.length; i++) {
     const valueMatch = lines[i].trim().match(valueRe);
@@ -65,13 +84,20 @@ export function parseUtoolsReaderText(text, nameToId) {
     const id = Number(nameToId?.get(name));
     if (!Number.isInteger(id) || id <= 0 || seen.has(id)) continue;
     const expectedEffect = Number(valueMatch[1]);
-    const rangeMatch = lines[i].trim().match(rangeRe);
+    const rendered = lines[i].trim();
+    const rangeMatch = rendered.match(rangeRe);
+    const efficiencyMatch = rendered.match(efficiencyRe);
+    const activationMatch = rendered.match(activationRe);
     seen.add(id);
     rows.push({
       id,
       expectedEffect,
       minEffect: rangeMatch ? Number(rangeMatch[1]) : null,
       maxEffect: rangeMatch ? Number(rangeMatch[2]) : null,
+      averageEffect: null,
+      medianEffect: null,
+      activationRate: activationMatch ? Number(activationMatch[1]) : null,
+      pointEfficiency: efficiencyMatch ? Number(efficiencyMatch[1]) : null,
     });
   }
   rows.sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
