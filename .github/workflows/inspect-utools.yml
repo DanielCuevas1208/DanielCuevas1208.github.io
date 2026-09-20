@@ -21,11 +21,11 @@ jobs:
           const url = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader';
           const res = await fetch(url, {headers:{'user-agent':'Mozilla/5.0'}});
           const html = await res.text();
-          const chunks = [...html.matchAll(/self\\.__next_f\\.push\\(\\[1,"((?:\\\\.|[^"\\\\])*)"\\]\\)/g)];
-          const joined = chunks.map(([,chunk]) => chunk
-            .replace(/\\\"/g,'"')
-            .replace(/\\\\n/g,'\n')
-            .replace(/\\\\\\\\/g,'\\')).join('');
+          const chunks = [...html.matchAll(/self\.__next_f\.push\(\[1,"((?:\\.|[^"\\])*)"\]\)/g)];
+          const joined = chunks.map(([, chunk]) => chunk
+            .replace(/\\"/g, '"')
+            .replace(/\\n/g, '\n')
+            .replace(/\\\\/g, '\\')).join('');
           console.log('html', html.length, 'joined', joined.length, 'expectedEffect count', (joined.match(/"expectedEffect":/g)||[]).length);
           const keys = new Set();
           for (const m of joined.matchAll(/"expectedEffect":/g)) {
