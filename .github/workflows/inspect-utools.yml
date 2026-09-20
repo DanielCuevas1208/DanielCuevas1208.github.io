@@ -14,17 +14,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inspect live course payload
+      - name: Inspect U-tools reader payload
         shell: bash
         run: |
           node --input-type=module <<'NODE'
-          const url = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader';
-          const res = await fetch(url, {headers:{'user-agent':'Mozilla/5.0'}});
-          const html = await res.text();
-          console.log('html', html.length, 'expectedEffect raw count', html.split('expectedEffect').length - 1);
-          for (const needle of ['expectedEffect','200492','余勢を駆って','セイリオス','medianEffect','averageEffect','activationRate','effectiveness']) {
-            const i = html.indexOf(needle);
+          const target = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/leader';
+          const url = 'https://r.jina.ai/' + target;
+          const res = await fetch(url, {headers:{'user-agent':'uma-training-lab-skill-db/1.0','accept':'text/plain'}});
+          const text = await res.text();
+          console.log('status', res.status, 'chars', text.length);
+          for (const needle of ['余勢を駆って','セイリオス','通常シリウス','ニンブルナビゲーター','期待値','中央値','発動率']) {
+            const i = text.indexOf(needle);
             console.log('\n===== '+needle+' @ '+i+' =====');
-            if (i >= 0) console.log(html.slice(Math.max(0,i-3000), i+7000));
+            if (i >= 0) console.log(text.slice(Math.max(0,i-3000), i+9000));
           }
           NODE
