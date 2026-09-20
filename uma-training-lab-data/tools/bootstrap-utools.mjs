@@ -52,6 +52,9 @@ const courseIds = [...new Set(discovered)]
   .sort((a, b) => a - b);
 const styles = onlyStyle ? [onlyStyle] : STYLES;
 let written = 0;
+let inheritedRows = 0;
+let fullUniqueRows = 0;
+let reusedExisting = 0;
 const failures = [];
 
 function sameNumber(a, b) {
@@ -71,6 +74,8 @@ for (const courseId of courseIds) {
         .map((row) => {
           const skill = skills.get(Number(row.id));
           if (!skill) return null;
+          if (skill.__geneParentId) inheritedRows += 1;
+          else if (Number(skill.rarity) >= 3 && skill.gene_version) fullUniqueRows += 1;
           const hash = mechanicsHash(skill, 'jp');
           const old = oldById.get(Number(row.id));
           const unchanged = !!old
@@ -120,11 +125,18 @@ for (const courseId of courseIds) {
       written += 1;
       process.stdout.write(`jp ${courseId}/${style}: ${rows.length} live U-tools rows via ${source.transport}${changed ? ' (changed)' : ''}\n`);
     } catch (error) {
+      const dest = effectFile(root, 'jp', courseId, style);
+      if (fs.existsSync(dest)) {
+        reusedExisting += 1;
+        process.stderr.write(`WARN ${courseId}/${style}: ${error.message}; retaining previously validated file\n`);
+        continue;
+      }
       failures.push(`${courseId}/${style}: ${error.message}`);
       process.stderr.write(`FAIL ${courseId}/${style}: ${error.message}\n`);
     }
   }
 }
 
-process.stdout.write(`wrote ${written} JP course/style files from live U-tools\n`);
-if (failures.length) throw new Error(`Live U-tools refresh failed for ${failures.length} course/style pages; refusing a partial refresh`);
+process.stdout.write(`wrote ${written} JP course/style files from live U-tools; indexed ${fullUniqueRows} full-unique row occurrence(s) and ${inheritedRows} inherited-unique row occurrence(s); reused ${reusedExisting} previous file(s) after transient fetch failures\n`);
+if (failures.length) throw new Error(`Live U-tools refresh failed for ${failures.length} course/style pages with no previous file available; refusing an incomplete database`);
+if (reusedExisting > 8) throw new Error(`Live U-tools refresh had ${reusedExisting} transient page failures; refusing to publish a refresh with too much stale source data`);
