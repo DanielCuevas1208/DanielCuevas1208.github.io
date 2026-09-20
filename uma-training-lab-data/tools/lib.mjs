@@ -9,7 +9,9 @@ export const STYLE_PROFILE = Object.freeze({
   chaser: 'oikomi',
 });
 
-export const DEFAULT_SKILLS_URL = 'https://daftuyda.moe/assets/skills_all.json';
+export const GAMETORA_MANIFEST_URL = 'https://gametora.com/data/manifests/umamusume.json';
+export const GAMETORA_DATA_ROOT = 'https://gametora.com/data/umamusume';
+export const DEFAULT_SKILLS_URL = 'gametora:skills';
 export const DEFAULT_UTOOLS_EFFECT_ROOT = 'https://raw.githubusercontent.com/Tsuyuchan-jp/umamusume-inherit-skill-list/master/data/effects';
 
 export function stableValue(value) {
@@ -84,14 +86,60 @@ export async function fetchJson(url) {
   return response.json();
 }
 
+export async function loadGameToraDataset(key) {
+  const manifest = await fetchJson(GAMETORA_MANIFEST_URL);
+  const hash = manifest?.[key];
+  if (!hash) throw new Error(`GameTora manifest has no dataset: ${key}`);
+  return fetchJson(`${GAMETORA_DATA_ROOT}/${key}.${hash}.json`);
+}
+
 export async function loadSkills(url = DEFAULT_SKILLS_URL) {
-  const data = await fetchJson(url);
+  const data = url === 'gametora:skills'
+    ? await loadGameToraDataset('skills')
+    : await fetchJson(url);
   if (!Array.isArray(data)) throw new Error('skills source did not return an array');
   return data;
 }
 
+export function inheritedSkillRecord(parent) {
+  const gene = parent?.gene_version;
+  if (!gene || typeof gene !== 'object' || !Number.isInteger(Number(gene.id))) return null;
+
+  const parentEn = parent?.loc?.en || {};
+  const geneEn = parentEn?.gene_version && typeof parentEn.gene_version === 'object'
+    ? parentEn.gene_version
+    : {};
+  const translation = {};
+  for (const key of ['name_en', 'enname', 'desc_en', 'endesc']) {
+    if (Object.prototype.hasOwnProperty.call(parentEn, key)) translation[key] = parentEn[key];
+  }
+
+  return {
+    ...parent,
+    ...gene,
+    id: Number(gene.id),
+    inherited: true,
+    parentSkillId: Number(parent.id),
+    fullUniqueId: Number(parent.id),
+    versions: [Number(parent.id), ...(parent.versions || []).map(Number)],
+    loc: {
+      ...(parent.loc || {}),
+      en: { ...translation, ...geneEn },
+    },
+  };
+}
+
 export function indexSkills(skills) {
-  return new Map(skills.map((skill) => [Number(skill.id), skill]));
+  const out = new Map();
+  for (const raw of skills || []) {
+    if (!raw || !Number.isInteger(Number(raw.id))) continue;
+    const skill = { ...raw };
+    const gene = inheritedSkillRecord(skill);
+    if (gene) skill.geneVersionId = Number(gene.id);
+    out.set(Number(skill.id), skill);
+    if (gene) out.set(Number(gene.id), gene);
+  }
+  return out;
 }
 
 export function ensureDir(dir) {
