@@ -29,7 +29,14 @@ export function parseUtoolsExpectedEffects(html) {
     const id = Number(idMatch[1]);
     if (!Number.isInteger(id) || id <= 0 || seen.has(id) || !Number.isFinite(expectedEffect)) continue;
     seen.add(id);
-    rows.push({ id, expectedEffect, minEffect: null, maxEffect: null });
+    rows.push({
+      id,
+      expectedEffect,
+      minEffect: null,
+      maxEffect: null,
+      displayEfficiency: null,
+      activationRate: null,
+    });
   }
   rows.sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
   return rows;
@@ -40,19 +47,35 @@ function cleanMarkdownName(text) {
     .trim()
     .replace(/^#+\s*/, '')
     .replace(/^\*\*(.*)\*\*$/, '$1')
-    .replace(/\\([*_`~[\]<>])/g, '$1')
+    .replace(/^\[([^\]]+)\]\([^)]*\)$/, '$1')
+    .replace(/\\([*_\`~[\]<>])/g, '$1')
     .trim();
 }
 
-export function parseUtoolsReaderText(text, nameToId) {
+function resolveNameId(name, nameToIds, { preferInherited = false } = {}) {
+  const found = nameToIds?.get(name);
+  const ids = Array.isArray(found) ? found : found == null ? [] : [found];
+  if (!ids.length) return null;
+  const normalized = ids.map((entry) => {
+    if (typeof entry === 'object') return { id: Number(entry.id), inherited: !!entry.inherited };
+    return { id: Number(entry), inherited: false };
+  }).filter((entry) => Number.isInteger(entry.id) && entry.id > 0);
+  if (!normalized.length) return null;
+  const preferred = normalized.find((entry) => entry.inherited === preferInherited);
+  return Number((preferred || normalized[0]).id);
+}
+
+export function parseUtoolsReaderText(text, nameToIds, options = {}) {
   const lines = String(text).split(/\r?\n/);
   const rows = [];
   const seen = new Set();
-  const valueRe = /^(-?\d+(?:\.\d+)?)\[バ\]/;
+  const valueRe = /^(-?\d+(?:\.\d+)?)\[バ\](?:、(-?\d+(?:\.\d+)?)\[バ\/Pt\])?/;
   const rangeRe = /(?:^|、)(-?\d+(?:\.\d+)?)\s*~\s*(-?\d+(?:\.\d+)?)\[バ\]/;
+  const activationRe = /(?:^|、)(\d+(?:\.\d+)?)%/;
 
   for (let i = 0; i < lines.length; i++) {
-    const valueMatch = lines[i].trim().match(valueRe);
+    const line = lines[i].trim();
+    const valueMatch = line.match(valueRe);
     if (!valueMatch) continue;
     let name = '';
     for (let j = i - 1; j >= 0; j--) {
@@ -62,16 +85,21 @@ export function parseUtoolsReaderText(text, nameToId) {
       name = candidate;
       break;
     }
-    const id = Number(nameToId?.get(name));
+    const id = resolveNameId(name, nameToIds, options);
     if (!Number.isInteger(id) || id <= 0 || seen.has(id)) continue;
     const expectedEffect = Number(valueMatch[1]);
-    const rangeMatch = lines[i].trim().match(rangeRe);
+    if (!Number.isFinite(expectedEffect)) continue;
+    const rangeMatch = line.match(rangeRe);
+    const activationMatch = line.match(activationRe);
+    const displayEfficiency = valueMatch[2] == null ? null : Number(valueMatch[2]);
     seen.add(id);
     rows.push({
       id,
       expectedEffect,
       minEffect: rangeMatch ? Number(rangeMatch[1]) : null,
       maxEffect: rangeMatch ? Number(rangeMatch[2]) : null,
+      displayEfficiency: Number.isFinite(displayEfficiency) ? displayEfficiency : null,
+      activationRate: activationMatch ? Number(activationMatch[1]) : null,
     });
   }
   rows.sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
@@ -84,29 +112,79 @@ async function fetchText(url, headers = {}) {
   return response.text();
 }
 
-export async function fetchUtoolsExpectedEffects(courseId, style, nameToId = null) {
+function mergeReaderMetadata(primaryRows, readerRows) {
+  const out = new Map((primaryRows || []).map((row) => [Number(row.id), { ...row }]));
+  for (const reader of readerRows || []) {
+    const id = Number(reader.id);
+    const current = out.get(id);
+    if (!current) {
+      out.set(id, { ...reader });
+      continue;
+    }
+    out.set(id, {
+      ...current,
+      minEffect: reader.minEffect ?? current.minEffect ?? null,
+      maxEffect: reader.maxEffect ?? current.maxEffect ?? null,
+      displayEfficiency: reader.displayEfficiency ?? current.displayEfficiency ?? null,
+      activationRate: reader.activationRate ?? current.activationRate ?? null,
+      readerExpectedEffect: Number(reader.expectedEffect),
+    });
+  }
+  return [...out.values()].sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
+}
+
+export async function fetchUtoolsExpectedEffects(courseId, style, nameToIds = null) {
   const url = `${UTOOLS_SITE_BASE}/${Number(courseId)}/effects/${style}`;
   const fetchedAt = new Date().toISOString();
+  let directRows = null;
+  let directError = null;
   try {
     const html = await fetchText(url, {
       accept: 'text/html,application/xhtml+xml',
       'accept-language': 'ja,en;q=0.7',
       'user-agent': 'Mozilla/5.0 (compatible; UmaTrainingLab/1.0; +https://github.com/DanielCuevas1208/DanielCuevas1208.github.io)',
     });
-    const rows = parseUtoolsExpectedEffects(html);
-    if (rows.length < 10) throw new Error(`U-tools raw parse returned only ${rows.length} rows`);
-    return { url, rows, fetchedAt, transport: 'direct-rsc' };
-  } catch (directError) {
-    if (!nameToId) throw directError;
-    const readerUrl = `https://r.jina.ai/${url}`;
-    const text = await fetchText(readerUrl, {
-      accept: 'text/plain',
-      'user-agent': 'uma-training-lab-skill-db/1.0',
-    });
-    const rows = parseUtoolsReaderText(text, nameToId);
-    if (rows.length < 10) {
-      throw new Error(`direct U-tools failed (${directError.message}); reader fallback matched only ${rows.length} skill rows`);
-    }
-    return { url, rows, fetchedAt, transport: 'Jina Reader proxy of live U-tools', directError: directError.message };
+    directRows = parseUtoolsExpectedEffects(html);
+    if (directRows.length < 10) throw new Error(`U-tools raw parse returned only ${directRows.length} rows`);
+  } catch (error) {
+    directRows = null;
+    directError = error;
   }
+
+  let readerRows = null;
+  let readerError = null;
+  if (nameToIds) {
+    try {
+      const readerUrl = `https://r.jina.ai/${url}`;
+      const text = await fetchText(readerUrl, {
+        accept: 'text/plain',
+        'user-agent': 'uma-training-lab-skill-db/1.0',
+      });
+      readerRows = parseUtoolsReaderText(text, nameToIds);
+      if (readerRows.length < 10) throw new Error(`reader matched only ${readerRows.length} skill rows`);
+    } catch (error) {
+      readerRows = null;
+      readerError = error;
+    }
+  }
+
+  if (directRows) {
+    return {
+      url,
+      rows: readerRows ? mergeReaderMetadata(directRows, readerRows) : directRows,
+      fetchedAt,
+      transport: readerRows ? 'direct-rsc + Jina Reader metadata' : 'direct-rsc',
+      readerError: readerError?.message || null,
+    };
+  }
+  if (readerRows) {
+    return {
+      url,
+      rows: readerRows,
+      fetchedAt,
+      transport: 'Jina Reader proxy of live U-tools',
+      directError: directError?.message || null,
+    };
+  }
+  throw new Error(`direct U-tools failed (${directError?.message || 'unknown'}); reader fallback failed (${readerError?.message || 'unavailable'})`);
 }
