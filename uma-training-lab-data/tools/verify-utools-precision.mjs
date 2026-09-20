@@ -35,7 +35,7 @@ for (const courseDir of fs.readdirSync(jpRoot, { withFileTypes: true })) {
     const file = effectFile(root, 'jp', courseId, style);
     if (!fs.existsSync(file)) continue;
     const data = readJson(file);
-    if (data?.profile?.importedFrom === 'direct-rsc') {
+    if (String(data?.profile?.importedFrom || '').startsWith('direct-rsc')) {
       directExact += (data.skills || []).length;
       continue;
     }
