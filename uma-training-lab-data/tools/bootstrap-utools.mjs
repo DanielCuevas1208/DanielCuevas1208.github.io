@@ -27,10 +27,19 @@ const onlyStyle = args.style || null;
 
 const skillList = await loadSkills(skillsUrl);
 const skills = indexSkills(skillList);
-const nameToId = new Map();
+const nameToIds = new Map();
+function addNameId(name, id, inherited = false) {
+  const key = String(name || '').trim();
+  const n = Number(id);
+  if (!key || !Number.isInteger(n) || n <= 0) return;
+  if (!nameToIds.has(key)) nameToIds.set(key, []);
+  if (!nameToIds.get(key).some((entry) => Number(entry.id) === n)) {
+    nameToIds.get(key).push({ id: n, inherited });
+  }
+}
 for (const skill of skillList) {
-  const name = String(skill?.jpname || '').trim();
-  if (name && !nameToId.has(name)) nameToId.set(name, Number(skill.id));
+  addNameId(skill?.jpname, skill?.id, false);
+  if (skill?.gene_version?.id) addNameId(skill?.jpname, skill.gene_version.id, true);
 }
 
 const localJpRoot = path.join(root, 'jp');
@@ -63,7 +72,7 @@ for (const courseId of courseIds) {
       const dest = effectFile(root, 'jp', courseId, style);
       const existing = fs.existsSync(dest) ? readJson(dest) : null;
       const oldById = new Map((existing?.skills || []).map((row) => [Number(row.id), row]));
-      const source = await fetchUtoolsExpectedEffects(courseId, style, nameToId);
+      const source = await fetchUtoolsExpectedEffects(courseId, style, nameToIds);
       let changed = !existing;
       const rows = source.rows
         .map((row) => {
@@ -81,11 +90,15 @@ for (const courseId of courseIds) {
             id: Number(row.id),
             expectedEffect: Number(row.expectedEffect),
             minEffect: row.minEffect == null ? null : Number(row.minEffect),
-            medianEffect: null,
+            averageEffect: row.averageEffect == null ? null : Number(row.averageEffect),
+            medianEffect: row.medianEffect == null ? null : Number(row.medianEffect),
             maxEffect: row.maxEffect == null ? null : Number(row.maxEffect),
-            p05Effect: null,
-            p95Effect: null,
-            samples: null,
+            p05Effect: row.p05Effect == null ? null : Number(row.p05Effect),
+            p95Effect: row.p95Effect == null ? null : Number(row.p95Effect),
+            activationRate: row.activationRate == null ? null : Number(row.activationRate),
+            effectiveness: row.effectiveness == null ? null : Number(row.effectiveness),
+            displayEfficiency: row.displayEfficiency == null ? null : Number(row.displayEfficiency),
+            samples: row.samples == null ? null : Number(row.samples),
             mechanicsHash: hash,
             source: 'utools-live',
             sourceUpdatedAt: unchanged ? (old.sourceUpdatedAt || source.fetchedAt) : source.fetchedAt,
@@ -103,7 +116,7 @@ for (const courseId of courseIds) {
           evaluator: 'U-tools live',
           sourceUrl: source.url,
           importedFrom: source.transport,
-          precision: source.transport === 'direct-rsc' ? 'full source precision' : 'U-tools displayed precision via reader proxy',
+          precision: source.transport.startsWith('direct-rsc') ? 'full source precision where available; live reader metadata merged' : 'U-tools displayed precision via reader proxy',
         },
         skills: rows,
       });
