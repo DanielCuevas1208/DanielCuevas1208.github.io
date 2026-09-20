@@ -160,7 +160,7 @@ export async function fetchUtoolsExpectedEffects(courseId, style, nameToIds = nu
         accept: 'text/plain',
         'user-agent': 'uma-training-lab-skill-db/1.0',
       });
-      readerRows = parseUtoolsReaderText(text, nameToIds);
+      readerRows = parseUtoolsReaderText(text, nameToIds, { preferInherited: true });
       if (readerRows.length < 10) throw new Error(`reader matched only ${readerRows.length} skill rows`);
     } catch (error) {
       readerRows = null;
