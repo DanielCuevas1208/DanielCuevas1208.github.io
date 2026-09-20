@@ -34,6 +34,10 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: npm run bootstrap:utools
 
+      - name: Cross-check representative U-tools values and ranges
+        working-directory: uma-training-lab-data/tools
+        run: node audit-utools-reference.mjs
+
       - name: Preserve full precision only when verified against live U-tools
         working-directory: uma-training-lab-data/tools
         run: node verify-utools-precision.mjs
