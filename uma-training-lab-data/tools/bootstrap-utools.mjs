@@ -31,7 +31,8 @@ const nameToId = new Map();
 for (const skill of skills.values()) {
   for (const rawName of [skill?.jpname, skill?.name_en, skill?.enname]) {
     const name = String(rawName || '').trim();
-    if (name && !nameToId.has(name)) nameToId.set(name, Number(skill.id));
+    if (!name) continue;
+    if (!nameToId.has(name) || skill.__geneParentId) nameToId.set(name, Number(skill.id));
   }
 }
 
