@@ -112,7 +112,7 @@ for (const courseId of courseIds) {
           evaluator: 'U-tools live',
           sourceUrl: source.url,
           importedFrom: source.transport,
-          precision: source.transport === 'direct-rsc' ? 'full source precision' : 'U-tools displayed precision via reader proxy',
+          precision: source.transport.startsWith('direct-rsc') ? 'full source precision where exposed; reader-enriched rows retain displayed precision' : 'U-tools displayed precision via reader proxy',
         },
         skills: rows,
       });
