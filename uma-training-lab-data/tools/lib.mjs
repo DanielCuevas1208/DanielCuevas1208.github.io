@@ -90,8 +90,35 @@ export async function loadSkills(url = DEFAULT_SKILLS_URL) {
   return data;
 }
 
+export function inheritedSkillRecord(parent) {
+  if (!parent?.gene_version || typeof parent.gene_version !== 'object') return null;
+  const gene = parent.gene_version;
+  const loc = {};
+  for (const [locale, override] of Object.entries(parent.loc || {})) {
+    const geneOverride = override?.gene_version;
+    if (geneOverride && typeof geneOverride === 'object') loc[locale] = geneOverride;
+  }
+  return {
+    ...gene,
+    __geneParentId: Number(parent.id),
+    unreleased: Array.isArray(parent.unreleased) ? [...parent.unreleased] : parent.unreleased,
+    loc,
+  };
+}
+
+export function expandSkillCatalog(skills) {
+  const out = [];
+  for (const skill of skills || []) {
+    if (!skill || !Number.isInteger(Number(skill.id))) continue;
+    out.push(skill);
+    const gene = inheritedSkillRecord(skill);
+    if (gene && Number.isInteger(Number(gene.id))) out.push(gene);
+  }
+  return out;
+}
+
 export function indexSkills(skills) {
-  return new Map(skills.map((skill) => [Number(skill.id), skill]));
+  return new Map(expandSkillCatalog(skills).map((skill) => [Number(skill.id), skill]));
 }
 
 export function ensureDir(dir) {
