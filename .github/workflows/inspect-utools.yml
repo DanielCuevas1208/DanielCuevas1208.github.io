@@ -1,39 +1,38 @@
-name: Inspect U-tools RSC
+name: Test U-tools unique import
 
 on:
   push:
-    branches: [main]
+    branches: [skill-db-uniques-ranges]
     paths:
       - ".github/workflows/inspect-utools.yml"
+      - "uma-training-lab-data/tools/**"
 
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Inspect U-tools scripts
+      - name: Import Tokyo 2400 only
+        working-directory: uma-training-lab-data/tools
+        run: node bootstrap-utools.mjs --course 10606
+      - name: Inspect imported unique rows
         shell: bash
         run: |
           node --input-type=module <<'NODE'
-          const base='https://xn--gck1f423k.xn--1bvt37a.tools';
-          const page=base+'/race/courses/10606/effects/leader';
-          const html=await (await fetch(page,{headers:{'user-agent':'Mozilla/5.0'}})).text();
-          const srcs=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(m=>m[1]);
-          console.log('scripts',srcs.length);
-          const needles=['expectedEffect','median','activationRate','effectiveness','継承スキル','minEffect','maxEffect'];
-          for(const src of srcs){
-            const url=src.startsWith('http')?src:base+src;
-            let js='';
-            try{js=await (await fetch(url)).text()}catch{continue}
-            const hits=needles.filter(n=>js.includes(n));
-            if(!hits.length)continue;
-            console.log('\nSCRIPT',url,'chars',js.length,'hits',hits.join(','));
-            for(const n of hits){
-              const i=js.indexOf(n);
-              console.log('\n--',n,'--\n',js.slice(Math.max(0,i-1500),i+3500));
-            }
+          import fs from 'node:fs';
+          for (const style of ['runner','leader','betweener','chaser']) {
+            const p='uma-training-lab-data/skill-effects/jp/10606/'+style+'.json';
+            const d=JSON.parse(fs.readFileSync(p,'utf8'));
+            const inherited=d.skills.filter(r=>String(r.id).startsWith('9'));
+            const full=d.skills.filter(r=>r.source==='utools-character-live');
+            const ranged=d.skills.filter(r=>r.minEffect!=null||r.maxEffect!=null);
+            const rated=d.skills.filter(r=>r.activationRate!=null);
+            console.log(style,{rows:d.skills.length,inherited:inherited.length,full:full.length,ranged:ranged.length,activationRate:rated.length});
+            console.log('inherited sample',inherited.slice(0,5));
+            console.log('full sample',full.slice(0,5));
           }
           NODE
