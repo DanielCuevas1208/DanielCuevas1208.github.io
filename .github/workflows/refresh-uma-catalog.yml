@@ -1,0 +1,45 @@
+name: Refresh Uma direct catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-uma-catalog.yml"
+      - "uma-training-lab-data/tools/lib.mjs"
+      - "uma-training-lab-data/tools/sync-gametora-catalog.mjs"
+  workflow_dispatch:
+  schedule:
+    - cron: "7 11 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uma-direct-catalog-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync current GameTora catalog directly
+        working-directory: uma-training-lab-data/tools
+        run: node sync-gametora-catalog.mjs
+
+      - name: Commit current catalog
+        run: |
+          if git diff --quiet -- uma-training-lab-data/catalog; then
+            echo "Direct GameTora catalog is already current."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add uma-training-lab-data/catalog
+            git commit -m "data: refresh direct GameTora catalog"
+            git push
+          fi
