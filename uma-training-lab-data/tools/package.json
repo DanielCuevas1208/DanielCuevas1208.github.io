@@ -14,6 +14,7 @@
     "validate:live": "node validate-live.mjs",
     "factor:events": "node build-factor-events.mjs",
     "factor:rankings": "node bootstrap-utools-factor-rankings.mjs",
-    "factor:inputs": "node bootstrap-utools-factor-inputs.mjs"
+    "factor:inputs": "node bootstrap-utools-factor-inputs.mjs",
+    "factor:exact-pages": "node bootstrap-utools-factor-exact-pages.mjs"
   }
 }
