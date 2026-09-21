@@ -12,6 +12,15 @@ async function fetchText(url) {
   return response.text();
 }
 
+function decodeRscChunks(html) {
+  const chunks=[...String(html).matchAll(/self\.__next_f\.push\(\[1,"((?:\\.|[^"\\])*)"\]\)/g)];
+  return chunks.map(([,chunk])=>chunk
+    .replace(/\\"/g,'"')
+    .replace(/\\n/g,'\n')
+    .replace(/\\\\/g,'\\'))
+    .join('');
+}
+
 function snippets(text,needle,radius=1800,limit=8) {
   const out=[];
   let from=0;
@@ -45,6 +54,16 @@ const srcs=[...new Set(
   [...html.matchAll(/<script[^>]+src="([^"]+\.js[^"]*)"/g)].map((m)=>m[1].replace(/&amp;/g,'&'))
 )];
 console.log(`Page scripts: ${srcs.length}`);
+
+const rsc=decodeRscChunks(html);
+console.log(`Decoded page RSC: ${rsc.length} chars`);
+for(const needle of ['"supportCards":','"courseEffectSet":','"hintSkillIds":','"randomSkillInfos":','"sequenceSkillInfos":','"id":30287']){
+  const hits=snippets(rsc,needle,5000,2);
+  console.log(`\n=== RSC ${needle} hits=${hits.length} ===`);
+  for(const hit of hits){
+    console.log(`\n--- RSC ${needle} @ ${hit.index} ---\n${hit.text}\n--- end RSC ---`);
+  }
+}
 
 const needles=[
   'hintSkillIds',
