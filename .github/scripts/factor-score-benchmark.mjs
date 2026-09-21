@@ -539,7 +539,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
   if (rows.length >= 5) datasets[scenario]=rows;
 
   candidatePools[scenario]=[...supportById.values()]
-    .filter((card)=>Number(card.rarity)===3 && !deckIds.has(Number(card.id)))
+    .filter((card)=>Number(card.rarity)>=1 && !deckIds.has(Number(card.id)))
     .map((card)=>buildScenarioCardRow(card,card.name))
     .filter((row)=>row.entries.length || row.exactEvents.length);
 }
@@ -724,7 +724,7 @@ function retrievalMetrics(keys,p,label) {
       `target median rank=${targetPositions.length?targetPositions[Math.floor((targetPositions.length-1)/2)]:'—'}; `+
       `worst target rank=${targetPositions.length?targetPositions.at(-1):'—'}`
     );
-    if (outsiders.length) console.log('  outsiders:', outsiders.map((x)=>`#${x.row.card.id} ${x.row.card.name} (${x.score.toFixed(3)})`).join(' | '));
+    if (outsiders.length) console.log('  outsiders:', outsiders.map((x)=>`#${x.row.card.id} R${x.row.card.rarity} ${x.row.card.name} (${x.score.toFixed(3)})`).join(' | '));
     if (missing.length) console.log('  displaced:', missing.map((row)=>`#${row.card.id} ${row.label} (U-tools #${targetRank.get(Number(row.card.id))})`).join(' | '));
   }
   console.log(`${label} aggregate overlap@20=${totalOverlap}/${totalTargets} (${(100*totalOverlap/Math.max(1,totalTargets)).toFixed(1)}%)`);
