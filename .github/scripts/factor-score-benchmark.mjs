@@ -695,13 +695,46 @@ function retrievalMetrics(keys,p,label) {
   console.log(`${label} aggregate overlap@20=${totalOverlap}/${totalTargets} (${(100*totalOverlap/Math.max(1,totalTargets)).toFixed(1)}%)`);
 }
 
+function evaluateFixedCurrent(p,label) {
+  let cvRho=0,cvRmse=0;
+  for(const holdout of currentScenarios){
+    const train=currentScenarios.filter((scenario)=>scenario!==holdout).flatMap((scenario)=>datasets[scenario]);
+    const scale=scaleFit(train.map((row)=>rawScore(row,p)),train.map((row)=>row.target));
+    const test=datasets[holdout];
+    const predicted=test.map((row)=>rawScore(row,p)*scale);
+    const target=test.map((row)=>row.target);
+    cvRho+=spearman(test,predicted);
+    cvRmse+=nrmse(predicted,target);
+  }
+  cvRho/=Math.max(1,currentScenarios.length);
+  cvRmse/=Math.max(1,currentScenarios.length);
+  const rows=currentScenarios.flatMap((scenario)=>datasets[scenario]);
+  const raw=rows.map((row)=>rawScore(row,p));
+  const target=rows.map((row)=>row.target);
+  const scale=scaleFit(raw,target);
+  const predicted=raw.map((value)=>value*scale);
+  console.log(`${label}: CV Spearman=${cvRho.toFixed(4)} NRMSE=${cvRmse.toFixed(4)}; in-sample Spearman=${spearman(rows,predicted).toFixed(4)} NRMSE=${nrmse(predicted,target).toFixed(4)} scale=${scale.toFixed(6)}`);
+  retrievalMetrics(currentScenarios,p,label);
+}
+
 const v3RetrievalParams={
   a:0,b:0.65,breadth:0,tableExponent:1.10,hintRatePower:0.60,
   eventWeight:0.015,goldSparkMultiplier:1,deckPenalty:0.80,familyDeckPenalty:1,
 };
 if (currentScenarios.length) {
   retrievalMetrics(currentScenarios,v3RetrievalParams,'Factor Lab v3');
-  if (currentFit) retrievalMetrics(currentScenarios,currentFit.p,'Tiered-coverage candidate');
+  if (currentFit) {
+    retrievalMetrics(currentScenarios,currentFit.p,'Tiered-coverage candidate');
+    evaluateFixedCurrent({...currentFit.p,familyDeckPenalty:1},'Full-fit family-overlap ablation');
+  }
+  evaluateFixedCurrent({
+    a:0,b:0.50,breadth:0,tableExponent:1.00,hintRatePower:0.50,
+    eventWeight:0.03,goldSparkMultiplier:1,deckPenalty:0.75,familyDeckPenalty:1,
+  },'Square-root hypothesis');
+  evaluateFixedCurrent({
+    a:0,b:0.50,breadth:0,tableExponent:1.00,hintRatePower:0.50,
+    eventWeight:0.03,goldSparkMultiplier:1,deckPenalty:0.75,familyDeckPenalty:0.95,
+  },'Square-root + family overlap');
 }
 
 const raw=allRows.map(r=>rawScore(r,best.p));
