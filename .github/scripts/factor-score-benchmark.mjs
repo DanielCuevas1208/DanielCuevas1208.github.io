@@ -374,6 +374,41 @@ for (const skill of skillList) {
 const { byName: supportByName, byId: supportById } = parseSupports(supportText);
 const whiteSkills = skillList.filter(s => Number(s.rarity) === 1);
 const sourcesBySkill = new Map(whiteSkills.map(s => [Number(s.id), sourceSet(s, skillById)]));
+
+const familyParent = new Map(whiteSkills.map((skill) => [Number(skill.id), Number(skill.id)]));
+function familyFind(id) {
+  id=Number(id);
+  if (!familyParent.has(id)) return id;
+  const parent=familyParent.get(id);
+  if (parent===id) return id;
+  const root=familyFind(parent);
+  familyParent.set(id,root);
+  return root;
+}
+function familyUnion(a,b) {
+  a=familyFind(a); b=familyFind(b);
+  if (a===b) return;
+  const root=Math.min(a,b), child=Math.max(a,b);
+  familyParent.set(child,root);
+}
+for (const skill of whiteSkills) {
+  for (const versionId of flattenIds(skill.versions)) {
+    const version=skillById.get(Number(versionId));
+    if (version && Number(version.rarity)===1) familyUnion(Number(skill.id),Number(versionId));
+  }
+}
+function canonicalWhiteFamily(id) {
+  const skill=skillById.get(Number(id));
+  if (!skill) return Number(id);
+  if (Number(skill.rarity)===1) return familyFind(Number(skill.id));
+  if (Number(skill.rarity)===2) {
+    for (const versionId of flattenIds(skill.versions)) {
+      const lower=skillById.get(Number(versionId));
+      if (lower && Number(lower.rarity)===1) return familyFind(Number(lower.id));
+    }
+  }
+  return Number(skill.id);
+}
 const whiteByJpName = new Map();
 for (const skill of whiteSkills) {
   const name = String(skill.jpname || '').trim();
@@ -424,6 +459,19 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
     const deckCard=supportById.get(Number(deckId));
     for (const hintName of deckCard?.skills || []) coveredNames.add(String(hintName).trim());
   }
+  const coveredFamilies = new Set();
+  for (const skill of skillList) {
+    const rarity=Number(skill.rarity);
+    if (rarity!==1 && rarity!==2) continue;
+    const family=canonicalWhiteFamily(skill.id);
+    const sources=sourceSet(skill,skillById);
+    for (const deckId of deckIds) {
+      if (sources.has(Number(deckId))) {
+        coveredFamilies.add(family);
+        break;
+      }
+    }
+  }
   const rows=[];
   for (const [label,target,supportId,utoolsLevel] of bench.rows) {
     const card=Number.isInteger(Number(supportId)) && Number(supportId)>0
@@ -447,7 +495,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         name:String(hintName).trim(),
         value:Number(chosen.effect.expectedEffect),
         cost:Number(chosen.skill.cost),
-        covered:coveredNames.has(String(hintName).trim()),
+        covered:coveredFamilies.has(canonicalWhiteFamily(chosen.skill.id)),
         hint:true,
         directHint:!!chosen.src.hint,
         viaHint:!!chosen.src.viaHint,
@@ -466,9 +514,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
           cost: skill ? Number(skill.cost) : NaN,
           rarity: skill ? Number(skill.rarity) : 1,
           covered: (() => {
-            const rewardSkill=skillById.get(Number(reward.skillId));
-            const rewardName=String(rewardSkill?.jpname || '').trim();
-            return rewardName ? coveredNames.has(rewardName) : false;
+            return coveredFamilies.has(canonicalWhiteFamily(reward.skillId));
           })(),
         };
       }).filter((reward) => reward.value > 0)),
