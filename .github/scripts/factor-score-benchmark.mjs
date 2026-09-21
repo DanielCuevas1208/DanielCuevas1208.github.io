@@ -374,6 +374,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
           ...reward,
           value: effect && Number(effect.expectedEffect) > 0 ? Number(effect.expectedEffect) : 0,
           cost: skill ? Number(skill.cost) : NaN,
+          rarity: skill ? Number(skill.rarity) : 1,
           covered: covered.has(Number(reward.canonicalId)),
         };
       }).filter((reward) => reward.value > 0)),
@@ -426,7 +427,8 @@ function rawScore(row,p) {
           const baseCost=Number.isFinite(reward.cost)&&reward.cost>0?reward.cost:null;
           const effCost=baseCost?baseCost*(1-discountForLevel(reward.hintLevel)):null;
           const eff=effCost?reward.value/effCost*100:reward.value;
-          choiceValue+=Math.pow(Math.max(1e-9,reward.value),p.a)*Math.pow(Math.max(1e-9,eff),p.b)*deckMul;
+          const sparkMultiplier = Number(reward.rarity) >= 2 ? p.goldSparkMultiplier : 1;
+          choiceValue+=Math.pow(Math.max(1e-9,reward.value),p.a)*Math.pow(Math.max(1e-9,eff),p.b)*deckMul*sparkMultiplier;
         }
         bestChoice=Math.max(bestChoice,choiceValue);
       }
@@ -448,7 +450,8 @@ const grid={
   breadth:[0.30,0.50,0.70],
   hintRatePower:[0.75,1.00,1.25],
   extraHintPower:[0,0.50,1.00],
-  eventWeight:[0.10,0.25,0.50,0.75,1.00],
+  eventWeight:[0.05,0.10,0.20,0.35,0.50],
+  goldSparkMultiplier:[1.0,1.5,2.0],
   deckPenalty:[0.25,0.50,0.75],
   viaEventWeight:[0.50],
   eventHintLevel:[2],
@@ -456,9 +459,9 @@ const grid={
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
 for(const hintRatePower of grid.hintRatePower)for(const extraHintPower of grid.extraHintPower)
-for(const eventWeight of grid.eventWeight)for(const deckPenalty of grid.deckPenalty)
+for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty of grid.deckPenalty)
 for(const viaEventWeight of grid.viaEventWeight)for(const eventHintLevel of grid.eventHintLevel){
-  const p={a,b,breadth,hintRatePower,extraHintPower,eventWeight,deckPenalty,viaEventWeight,eventHintLevel};
+  const p={a,b,breadth,hintRatePower,extraHintPower,eventWeight,goldSparkMultiplier,deckPenalty,viaEventWeight,eventHintLevel};
   let cvLoss=0,cvRho=0,cvRmse=0;
   for(const holdout of scenarios){
     const train=scenarios.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
