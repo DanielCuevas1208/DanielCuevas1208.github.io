@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/refresh-factor-score.yml"
       - "uma-training-lab-data/tools/build-factor-events.mjs"
+      - "uma-training-lab-data/tools/utools-factor-live.mjs"
+      - "uma-training-lab-data/tools/bootstrap-utools-factor-rankings.mjs"
       - "uma-training-lab-data/factor-score/model.json"
   workflow_dispatch:
   schedule:
@@ -27,6 +29,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Self-test factor ranking parser
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { parseUtoolsFactorReader } from './uma-training-lab-data/tools/utools-factor-live.mjs';
+          const deck=Array.from({length:5},(_,i)=>`![Image ${i+1}: [Deck ${i+1}] Card](https://static.kouryaku.tools/umamusume/images/supports/${30000+i}/thumb.png?width=1200)`).join('\n\n');
+          const rows=Array.from({length:10},(_,i)=>`![Image ${i+6}: [Rank ${i+1}] Card](https://static.kouryaku.tools/umamusume/images/supports/${30100+i}/full.png?width=828&height=400)\n\n${(50-i/2).toFixed(2)}\n\nLv ${i%5}`).join('\n\n');
+          const fixture=`本育成デッキによる減点補正\n\n${deck}\n\n### 不足しているかもしれないスキル\n\n## オススメのサポートカード\n\n${rows}`;
+          const parsed=parseUtoolsFactorReader(fixture);
+          if(parsed.deck.length!==5 || parsed.rows.length!==10) throw new Error(`fixture parse failed: deck=${parsed.deck.length}, rows=${parsed.rows.length}`);
+          if(parsed.rows[0].id!==30100 || parsed.rows[0].name!=='[Rank 1] Card' || parsed.rows[0].score!==50 || parsed.rows[0].level!==0) throw new Error('fixture first row mismatch');
+          console.log('Factor ranking parser fixture passed.');
+          NODE
 
       - name: Build exact support event topology
         working-directory: uma-training-lab-data/tools
@@ -89,5 +105,5 @@ jobs:
           echo "Main advanced during factor refresh; regenerating on the latest tree."
           git fetch origin main
           git reset --hard origin/main
-          (cd uma-training-lab-data/tools && node build-factor-events.mjs)
+          (cd uma-training-lab-data/tools && node build-factor-events.mjs && node bootstrap-utools-factor-rankings.mjs)
           publish_if_changed
