@@ -450,14 +450,14 @@ function rawScore(row,p) {
 const scenarios=Object.keys(datasets);
 const allRows=scenarios.flatMap(s=>datasets[s]);
 const grid={
-  a:[0,0.05,0.10,0.15,0.20],
-  b:[0.65,0.75,0.85,0.95,1.05],
+  a:[0],
+  b:[0.60,0.65,0.70,0.75,0.80,0.85,0.90],
   breadth:[0],
-  tableExponent:[0.80,1.00,1.20],
-  hintRatePower:[0,0.25,0.50,0.75,1.00],
-  eventWeight:[0,0.0125,0.025,0.05],
+  tableExponent:[0.90,1.00,1.10],
+  hintRatePower:[0.30,0.40,0.50,0.60,0.70],
+  eventWeight:[0,0.00625,0.0125,0.01875,0.025],
   goldSparkMultiplier:[1.0],
-  deckPenalty:[0.50,0.65,0.75,0.85,1.00],
+  deckPenalty:[0.75,0.80,0.85,0.90,0.95],
 };
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
