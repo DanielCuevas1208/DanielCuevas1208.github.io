@@ -503,7 +503,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
   if (rows.length >= 5) datasets[scenario]=rows;
 
   candidatePools[scenario]=[...supportById.values()]
-    .filter((card)=>Number(card.rarity)>=1 && !deckIds.has(Number(card.id)))
+    .filter((card)=>Number(card.rarity)>=2 && !deckIds.has(Number(card.id)))
     .map((card)=>buildScenarioCardRow(card,card.name))
     .filter((row)=>row.entries.length || row.exactEvents.length);
 }
