@@ -477,6 +477,40 @@ for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty 
   if(!best||cvLoss<best.cvLoss) best={p,cvLoss,cvRho,cvRmse};
 }
 
+function fitSubset(keys,label) {
+  let subsetTested=0, subsetBest=null;
+  for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
+  for(const hintRatePower of grid.hintRatePower)for(const eventWeight of grid.eventWeight)
+  for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty of grid.deckPenalty){
+    const p={a,b,breadth,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
+    let cvLoss=0,cvRho=0,cvRmse=0;
+    for(const holdout of keys){
+      const train=keys.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
+      const trainRaw=train.map(r=>rawScore(r,p)), trainY=train.map(r=>r.target);
+      const scale=scaleFit(trainRaw,trainY);
+      const test=datasets[holdout];
+      const predicted=test.map(r=>rawScore(r,p)*scale), y=test.map(r=>r.target);
+      const rho=spearman(test,predicted), err=nrmse(predicted,y);
+      cvRho+=rho;cvRmse+=err;cvLoss+=(1-rho)+0.35*err;
+    }
+    cvLoss/=keys.length;cvRho/=keys.length;cvRmse/=keys.length;subsetTested++;
+    if(!subsetBest||cvLoss<subsetBest.cvLoss) subsetBest={p,cvLoss,cvRho,cvRmse};
+  }
+  const rows=keys.flatMap(k=>datasets[k]);
+  const raw=rows.map(r=>rawScore(r,subsetBest.p));
+  const target=rows.map(r=>r.target);
+  const scale=scaleFit(raw,target);
+  const predicted=raw.map(x=>x*scale);
+  console.log(`\n${label}: tested ${subsetTested.toLocaleString()} combinations across ${rows.length} targets`);
+  console.log(`${label} CV: Spearman=${subsetBest.cvRho.toFixed(4)} NRMSE=${subsetBest.cvRmse.toFixed(4)} loss=${subsetBest.cvLoss.toFixed(4)}`);
+  console.log(`${label} parameters: ${JSON.stringify({...subsetBest.p,scale:Number(scale.toFixed(6))})}`);
+  console.log(`${label} in-sample: Spearman=${spearman(rows,predicted).toFixed(4)} NRMSE=${nrmse(predicted,target).toFixed(4)}`);
+  return {...subsetBest,scale};
+}
+
+const currentScenarios=scenarios.filter(s=>s.startsWith('current_'));
+const currentFit=currentScenarios.length>=2?fitSubset(currentScenarios,'Current U-tools'):null;
+
 const raw=allRows.map(r=>rawScore(r,best.p));
 const targets=allRows.map(r=>r.target);
 const scale=scaleFit(raw,targets);
