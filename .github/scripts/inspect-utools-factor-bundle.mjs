@@ -1,5 +1,4 @@
 const BASE='https://xn--gck1f423k.xn--1bvt37a.tools';
-const PAGE=`${BASE}/race/vsevents/chm2/factor/chaser`;
 
 async function fetchText(url) {
   const response=await fetch(url,{
@@ -25,7 +24,23 @@ function snippets(text,needle,radius=1800,limit=8) {
   return out;
 }
 
-const html=await fetchText(PAGE);
+let html=null;
+let page=null;
+for(const style of ['leader','betweener','chaser','runner']){
+  const candidate=`${BASE}/race/vsevents/chm2/factor/${style}`;
+  try{
+    html=await fetchText(candidate);
+    page=candidate;
+    console.log(`Using raw factor page: ${style} (${html.length} chars)`);
+    break;
+  }catch(error){
+    console.log(`SKIP raw ${style}: ${error.message}`);
+  }
+}
+if(!html){
+  console.log('No raw factor page was accessible; bundle inspection skipped.');
+  process.exit(0);
+}
 const srcs=[...new Set(
   [...html.matchAll(/<script[^>]+src="([^"]+\.js[^"]*)"/g)].map((m)=>m[1].replace(/&amp;/g,'&'))
 )];
@@ -58,5 +73,8 @@ for(const src of srcs){
     }
   }
 }
-if(!hits.length) throw new Error('No factor-related client chunk found');
-console.log('\nMatched chunks:',hits);
+if(!hits.length) {
+  console.log('No factor-related client chunk found among page scripts.');
+} else {
+  console.log('\nMatched chunks:',hits);
+}
