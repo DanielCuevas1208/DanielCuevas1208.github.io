@@ -29,7 +29,7 @@ async function fetchText(url,attempts=4) {
 function imageRows(text,kind) {
   const suffix=kind==='deck'?'thumb':'full';
   const re=new RegExp(
-    String.raw`!\\[Image \\d+: ([^\\]]+)\\]\\(https://static\\.kouryaku\\.tools/umamusume/images/supports/(\\d+)/${suffix}\\.png[^)]*\\)`,
+    String.raw`!\\[Image \\d+: (.+?)\\]\\(https://static\\.kouryaku\\.tools/umamusume/images/supports/(\\d+)/${suffix}\\.png[^)]*\\)`,
     'g',
   );
   return [...String(text).matchAll(re)].map((match)=>({
