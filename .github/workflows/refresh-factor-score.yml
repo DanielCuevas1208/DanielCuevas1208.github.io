@@ -50,7 +50,7 @@ jobs:
 
       - name: Commit refreshed factor data
         run: |
-          if git diff --quiet -- uma-training-lab-data/factor-score; then
+          if [ -z "$(git status --porcelain -- uma-training-lab-data/factor-score)" ]; then
             echo "Factor-score data is already current."
           else
             git config user.name "github-actions[bot]"
