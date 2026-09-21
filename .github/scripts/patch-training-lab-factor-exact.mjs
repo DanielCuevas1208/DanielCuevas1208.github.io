@@ -454,6 +454,9 @@ function runSelfTest(){
         const server = $("skillServer")?.value || "global";
         const deckIds = new Set(skillDeckCards.map((entry) => Number(entry.id)));
       }
+      function tooltipFixture() {
+        return STATE.skillRecMode === "factor" ? "Lab factor-farming score contribution" : "Unique remaining-skill course value";
+      }
       function inspect() {
         const p05 = Number(row.p05Effect), p95 = Number(row.p95Effect), median = Number(row.medianEffect);
         const min = Number(row.minEffect), max = Number(row.maxEffect), average = Number(row.averageEffect), activationRate = Number(row.activationRate);
