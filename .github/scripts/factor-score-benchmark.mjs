@@ -423,7 +423,7 @@ function rawScore(row,p) {
   }
 
   const usefulHints=row.entries.length;
-  const tableQuality=hintSum/tableSize;
+  const tableQuality=hintSum/Math.pow(tableSize,p.tableExponent);
   const breadth=1+p.breadth*Math.log1p(usefulHints);
   let eventSum=0;
   for (const event of row.exactEvents || []) {
@@ -450,19 +450,21 @@ function rawScore(row,p) {
 const scenarios=Object.keys(datasets);
 const allRows=scenarios.flatMap(s=>datasets[s]);
 const grid={
-  a:[0.15,0.20,0.30,0.45],
-  b:[0.35,0.50,0.65],
-  breadth:[0,0.15,0.30,0.50],
-  hintRatePower:[0.75,1.00,1.25,1.50],
-  eventWeight:[0,0.025,0.05,0.10,0.20],
-  goldSparkMultiplier:[1.0,1.5,2.0],
-  deckPenalty:[0.25,0.50,0.75,1.00],
+  a:[0.10,0.15,0.20],
+  b:[0.55,0.65,0.75],
+  breadth:[0],
+  tableExponent:[0.75,1.00,1.25,1.50],
+  hintRatePower:[0.50,0.75,1.00],
+  eventWeight:[0,0.025,0.05],
+  goldSparkMultiplier:[1.0],
+  deckPenalty:[0.50,0.75,1.00],
 };
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
-for(const hintRatePower of grid.hintRatePower)for(const eventWeight of grid.eventWeight)
-for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty of grid.deckPenalty){
-  const p={a,b,breadth,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
+for(const tableExponent of grid.tableExponent)for(const hintRatePower of grid.hintRatePower)
+for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)
+for(const deckPenalty of grid.deckPenalty){
+  const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
   let cvLoss=0,cvRho=0,cvRmse=0;
   for(const holdout of scenarios){
     const train=scenarios.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
@@ -480,9 +482,10 @@ for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty 
 function fitSubset(keys,label) {
   let subsetTested=0, subsetBest=null;
   for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
-  for(const hintRatePower of grid.hintRatePower)for(const eventWeight of grid.eventWeight)
-  for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty of grid.deckPenalty){
-    const p={a,b,breadth,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
+  for(const tableExponent of grid.tableExponent)for(const hintRatePower of grid.hintRatePower)
+  for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)
+  for(const deckPenalty of grid.deckPenalty){
+    const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
     let cvLoss=0,cvRho=0,cvRmse=0;
     for(const holdout of keys){
       const train=keys.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
