@@ -399,15 +399,15 @@ function rawScore(row,p) {
 const scenarios=Object.keys(datasets);
 const allRows=scenarios.flatMap(s=>datasets[s]);
 const grid={
-  a:[0.25,0.5,0.75,1],
-  b:[0,0.25,0.5,0.75,1],
-  breadth:[0,0.15,0.3,0.5],
-  hintRatePower:[0,0.5,1],
-  extraHintPower:[0,0.5,1],
-  eventWeight:[0.25,0.5,0.75,1,1.5,2],
-  deckPenalty:[0,0.25,0.5,0.75,1],
-  viaEventWeight:[0.5,0.75,1],
-  eventHintLevel:[1,2],
+  a:[0.20,0.25,0.35,0.50],
+  b:[0.35,0.50,0.65],
+  breadth:[0.30,0.50,0.70],
+  hintRatePower:[0.75,1.00,1.25],
+  extraHintPower:[0,0.50,1.00],
+  eventWeight:[0.10,0.25,0.50,0.75,1.00],
+  deckPenalty:[0.25,0.50,0.75],
+  viaEventWeight:[0.50],
+  eventHintLevel:[2],
 };
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
