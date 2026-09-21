@@ -44,7 +44,19 @@ for (const style of ['runner','leader','betweener','chaser']) {
     },
   });
   if(!response.ok) {
-    console.log(`SKIP ${style}: direct factor HTML returned ${response.status} ${response.statusText}`);
+    console.log(`SKIP raw ${style}: direct factor HTML returned ${response.status} ${response.statusText}`);
+    const reader=await fetch(`https://r.jina.ai/${url}`,{
+      headers:{
+        accept:'text/plain',
+        'user-agent':'UmaTrainingLabFactorInspector/1.0',
+      },
+    });
+    if(reader.ok){
+      const text=await reader.text();
+      console.log(`\n=== ${style} Jina reader chars=${text.length} ===\n${text.slice(0,12000)}\n=== end reader ===`);
+    } else {
+      console.log(`SKIP reader ${style}: ${reader.status} ${reader.statusText}`);
+    }
     continue;
   }
   inspected++;
