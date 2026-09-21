@@ -332,7 +332,10 @@ function patchHtml(source){
             card.hintCount ? (card.hintCount + " hints") : "",
             card.eventCount ? (card.eventCount + " event rewards") : "",
           ].filter(Boolean).join(" · ");
-          return `<button class="skillRecCard" data-skill-rec="${card.id}" title="${esc(group ? cardLabel(group) : `Support #${card.id}`)}">${group ? cardArt(group, "lg") : `<span class="cardart lg">#${card.id}</span>`}<b>${card.score.toFixed(2)}</b><small>${esc(detail)}</small></button>`;
+          const label = group ? cardLabel(group) : ("Support #" + card.id);
+          const art = group ? cardArt(group, "lg") : ('<span class="cardart lg">#' + card.id + '</span>');
+          return '<button class="skillRecCard" data-skill-rec="' + card.id + '" title="' + esc(label) + '">' +
+            art + '<b>' + card.score.toFixed(2) + '</b><small>' + esc(detail) + '</small></button>';
         }).join("");
         grid.querySelectorAll("[data-skill-rec]").forEach((button) => {
           const enter = () =>
