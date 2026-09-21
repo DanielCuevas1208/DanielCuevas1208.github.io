@@ -338,6 +338,20 @@ const raw=allRows.map(r=>rawScore(r,best.p));
 const targets=allRows.map(r=>r.target);
 const scale=scaleFit(raw,targets);
 const pred=raw.map(x=>x*scale);
+const diagnostics=allRows.map((r,i)=>({
+  scenario:r.scenario,
+  label:r.label,
+  target:r.target,
+  predicted:pred[i],
+  residual:r.target-pred[i],
+  hintTable:r.card.skills.length,
+  usefulHints:r.entries.filter(x=>x.hint).length,
+  eventSkills:r.entries.filter(x=>x.event).length,
+  covered:r.entries.filter(x=>x.covered).length,
+  hintLevel:acquiredHintLevel(r.card),
+  hintChance:hintChance(r.card),
+  extraHints:hintCountUp(r.card),
+}));
 console.log(`Tested ${tested.toLocaleString()} interpretable parameter combinations across ${allRows.length} U-tools card/scenario targets.`);
 console.log(`Best leave-one-scenario-out: Spearman=${best.cvRho.toFixed(4)} NRMSE=${best.cvRmse.toFixed(4)} loss=${best.cvLoss.toFixed(4)}`);
 console.log(`Parameters: ${JSON.stringify({...best.p,scale:Number(scale.toFixed(6))})}`);
@@ -347,4 +361,9 @@ for(const scenario of scenarios){
   const pairs=rows.map(r=>({label:r.label,target:r.target,pred:rawScore(r,best.p)*scale}));
   console.log(`\n${scenario}: rho=${spearman(rows,pairs.map(x=>x.pred)).toFixed(4)} nrmse=${nrmse(pairs.map(x=>x.pred),pairs.map(x=>x.target)).toFixed(4)}`);
   for(const x of pairs.slice().sort((a,b)=>b.pred-a.pred).slice(0,10)) console.log(`${x.pred.toFixed(2)} vs ${x.target.toFixed(2)}  ${x.label}`);
+}
+
+console.log('\nLargest absolute residuals:');
+for(const d of diagnostics.slice().sort((a,b)=>Math.abs(b.residual)-Math.abs(a.residual)).slice(0,25)){
+  console.log(`${d.residual>=0?'+':''}${d.residual.toFixed(2)} · target ${d.target.toFixed(2)} pred ${d.predicted.toFixed(2)} · Lv${d.hintLevel} pHint=${d.hintChance.toFixed(3)} table=${d.hintTable} useful=${d.usefulHints} event=${d.eventSkills} covered=${d.covered} extra=${d.extraHints} · ${d.scenario} · ${d.label}`);
 }
