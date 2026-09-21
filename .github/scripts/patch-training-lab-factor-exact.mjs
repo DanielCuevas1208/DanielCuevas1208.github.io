@@ -468,6 +468,9 @@ function runSelfTest(){
     'function skillFactorExactCardScore',
     'renderSkillFactorExactRecommendations(server, deckIds, section, grid, formula)',
     'U-tools exact',
+    'if (server === "jp") await loadSkillFactorExact(courseId, style);',
+    'else SKILL_DB.factorExact = null;',
+    'skillServer() === "jp" && SKILL_DB.factorExact',
     'row.p05Effect != null ? Number(row.p05Effect) : NaN',
   ]){
     if(!patched.includes(expected)) throw new Error('Self-test missing: '+expected);
