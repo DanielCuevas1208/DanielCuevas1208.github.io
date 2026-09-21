@@ -453,7 +453,7 @@ function runSelfTest() {
     'factorModel: null',
     'renderSkillFactorRecommendations(server, deckIds, section, grid, formula);',
     'row.p05Effect != null ? Number(row.p05Effect) : NaN',
-    'Factor Lab v3: literal hint tables (no version double-counting)',
+    'Factor Lab v3: SR/SSR only, literal hint tables (no version double-counting)',
   ]) {
     if (!patched.includes(expected)) throw new Error(`Self-test missing: ${expected}`);
   }
