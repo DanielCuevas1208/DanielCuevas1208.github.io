@@ -37,16 +37,20 @@ for (const skill of skills.values()) {
 }
 
 const localJpRoot = path.join(root, 'jp');
-let discovered = [];
-if (fs.existsSync(localJpRoot)) {
-  discovered = fs.readdirSync(localJpRoot, { withFileTypes: true })
+const localCourses = fs.existsSync(localJpRoot)
+  ? fs.readdirSync(localJpRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && /^\d+$/.test(entry.name))
-    .map((entry) => Number(entry.name));
-}
-if (!discovered.length) {
+    .map((entry) => Number(entry.name))
+  : [];
+let upstreamCourses = [];
+try {
   const index = await fetchJson(`${discoveryRoot}/available.json`);
-  discovered = (index.courseIds || []).map(Number);
+  upstreamCourses = (index.courseIds || []).map(Number);
+} catch (error) {
+  if (!localCourses.length) throw error;
+  process.stderr.write(`WARN course discovery: ${error.message}; using local course set only\n`);
 }
+const discovered = [...localCourses, ...upstreamCourses];
 
 const courseIds = [...new Set(discovered)]
   .filter((id) => Number.isInteger(id) && (!onlyCourse || id === onlyCourse))
