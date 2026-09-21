@@ -4,6 +4,8 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const SKILLS_URL = 'https://daftuyda.moe/assets/skills_all.json';
 const SUPPORT_URL = 'https://raw.githubusercontent.com/mee1080/umasim/main/data/support_card.txt';
+const GAMETORA_BASE = 'https://gametora.com';
+const GT_REWARD_OFFSET = 36;
 
 const STATUS_KEYS = [
   'friend','motivation','speedBonus','staminaBonus','powerBonus','gutsBonus','wisdomBonus','training',
@@ -198,6 +200,55 @@ async function fetchText(url) {
   return r.text();
 }
 
+async function fetchJson(url) {
+  return JSON.parse(await fetchText(url));
+}
+
+async function loadEventTopology(canonicalWhiteByAnyId) {
+  const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
+  const manifestUrl = (key) => {
+    const hash = manifest[key];
+    if (!hash) throw new Error(`GameTora manifest has no ${key}`);
+    return `${GAMETORA_BASE}/data/umamusume/${key}.${hash}.json`;
+  };
+  const [evrew, ssr, sr] = await Promise.all([
+    fetchJson(manifestUrl('dict/evrew')),
+    fetchJson(manifestUrl('training_events/ssr')),
+    fetchJson(manifestUrl('training_events/sr')),
+  ]);
+  const bySupport = new Map();
+  for (const entry of [...(ssr || []), ...(sr || [])]) {
+    if (!Array.isArray(entry) || entry.length < 2) continue;
+    const supportId = Number(entry[0]);
+    if (!Number.isInteger(supportId)) continue;
+    const events = [];
+    for (const evt of entry[1] || []) {
+      if (!Array.isArray(evt) || !Array.isArray(evt[1])) continue;
+      const choices = [];
+      for (const choice of evt[1]) {
+        if (!Array.isArray(choice) || !Array.isArray(choice[1])) continue;
+        const hints = [];
+        for (const rewardId of choice[1]) {
+          const reward = evrew?.[Number(rewardId) - GT_REWARD_OFFSET];
+          if (!Array.isArray(reward) || reward[0] !== 'sk') continue;
+          const skillId = Number(reward[2]);
+          const hintLevel = Math.max(1, Math.min(5, Math.abs(Number(reward[1])) || 1));
+          if (!Number.isInteger(skillId) || skillId <= 0) continue;
+          hints.push({
+            skillId,
+            canonicalId: canonicalWhiteByAnyId.get(skillId) || skillId,
+            hintLevel,
+          });
+        }
+        if (hints.length) choices.push(hints);
+      }
+      if (choices.length) events.push({ choices });
+    }
+    if (events.length) bySupport.set(supportId, events);
+  }
+  return bySupport;
+}
+
 const availableBenchmarks = Object.fromEntries(Object.entries(BENCHMARKS).filter(([key, bench]) => {
   const file=path.join(ROOT,'uma-training-lab-data','skill-effects','jp',String(bench.courseId),`${bench.style}.json`);
   if (fs.existsSync(file)) return true;
@@ -219,6 +270,18 @@ for (const skill of skillList) {
 const { byName: supportByName } = parseSupports(supportText);
 const whiteSkills = skillList.filter(s => Number(s.rarity) === 1);
 const sourcesBySkill = new Map(whiteSkills.map(s => [Number(s.id), sourceSet(s, skillById)]));
+const canonicalWhiteByAnyId = new Map();
+for (const skill of whiteSkills) {
+  canonicalWhiteByAnyId.set(Number(skill.id), Number(skill.id));
+  for (const versionId of flattenIds(skill.versions)) canonicalWhiteByAnyId.set(Number(versionId), Number(skill.id));
+}
+let eventTopology = new Map();
+try {
+  eventTopology = await loadEventTopology(canonicalWhiteByAnyId);
+  console.log(`Loaded exact GameTora event topology for ${eventTopology.size} support cards.`);
+} catch (error) {
+  console.error(`WARN: exact support-event topology unavailable: ${error.message}`);
+}
 
 const datasets = {};
 const missingCards = new Set();
@@ -259,7 +322,19 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         viaEvent:src.viaEvent,
       });
     }
-    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries });
+    const exactEvents = (eventTopology.get(card.id) || []).map((event) => ({
+      choices: event.choices.map((choice) => choice.map((reward) => {
+        const skill = skillById.get(Number(reward.skillId));
+        const effect = effectById.get(Number(reward.skillId));
+        return {
+          ...reward,
+          value: effect && Number(effect.expectedEffect) > 0 ? Number(effect.expectedEffect) : 0,
+          cost: skill ? Number(skill.cost) : NaN,
+          covered: covered.has(Number(reward.canonicalId)),
+        };
+      }).filter((reward) => reward.value > 0)),
+    })).filter((event) => event.choices.some((choice) => choice.length));
+    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents });
   }
   if (rows.length >= 5) datasets[scenario]=rows;
 }
@@ -273,7 +348,7 @@ function rawScore(row,p) {
   const pHint=hintChance(card);
   const extra=hintCountUp(card);
   const tableSize=Math.max(1,card.skills.length);
-  let hintSum=0,eventSum=0,usefulHints=0;
+  let hintSum=0,genericEventSum=0,usefulHints=0;
   for(const x of row.entries){
     const deckMul=x.covered?p.deckPenalty:1;
     if(deckMul<=0) continue;
@@ -291,7 +366,27 @@ function rawScore(row,p) {
       const eff=effCost?x.value/effCost*100:x.value;
       let u=Math.pow(Math.max(1e-9,x.value),p.a)*Math.pow(Math.max(1e-9,eff),p.b);
       if(x.viaEvent&&!x.directEvent) u*=p.viaEventWeight;
-      eventSum+=u*deckMul;
+      genericEventSum+=u*deckMul;
+    }
+  }
+  let eventSum=genericEventSum;
+  if (row.exactEvents?.length) {
+    eventSum=0;
+    for (const event of row.exactEvents) {
+      let bestChoice=0;
+      for (const choice of event.choices) {
+        let choiceValue=0;
+        for (const reward of choice) {
+          const deckMul=reward.covered?p.deckPenalty:1;
+          if(deckMul<=0) continue;
+          const baseCost=Number.isFinite(reward.cost)&&reward.cost>0?reward.cost:null;
+          const effCost=baseCost?baseCost*(1-discountForLevel(reward.hintLevel)):null;
+          const eff=effCost?reward.value/effCost*100:reward.value;
+          choiceValue+=Math.pow(Math.max(1e-9,reward.value),p.a)*Math.pow(Math.max(1e-9,eff),p.b)*deckMul;
+        }
+        bestChoice=Math.max(bestChoice,choiceValue);
+      }
+      eventSum+=bestChoice;
     }
   }
   const tableQuality=hintSum/tableSize;
@@ -347,6 +442,7 @@ const diagnostics=allRows.map((r,i)=>({
   hintTable:r.card.skills.length,
   usefulHints:r.entries.filter(x=>x.hint).length,
   eventSkills:r.entries.filter(x=>x.event).length,
+  exactEvents:r.exactEvents?.length || 0,
   covered:r.entries.filter(x=>x.covered).length,
   hintLevel:acquiredHintLevel(r.card),
   hintChance:hintChance(r.card),
@@ -365,5 +461,5 @@ for(const scenario of scenarios){
 
 console.log('\nLargest absolute residuals:');
 for(const d of diagnostics.slice().sort((a,b)=>Math.abs(b.residual)-Math.abs(a.residual)).slice(0,25)){
-  console.log(`${d.residual>=0?'+':''}${d.residual.toFixed(2)} · target ${d.target.toFixed(2)} pred ${d.predicted.toFixed(2)} · Lv${d.hintLevel} pHint=${d.hintChance.toFixed(3)} table=${d.hintTable} useful=${d.usefulHints} event=${d.eventSkills} covered=${d.covered} extra=${d.extraHints} · ${d.scenario} · ${d.label}`);
+  console.log(`${d.residual>=0?'+':''}${d.residual.toFixed(2)} · target ${d.target.toFixed(2)} pred ${d.predicted.toFixed(2)} · Lv${d.hintLevel} pHint=${d.hintChance.toFixed(3)} table=${d.hintTable} useful=${d.usefulHints} event=${d.eventSkills}/${d.exactEvents} covered=${d.covered} extra=${d.extraHints} · ${d.scenario} · ${d.label}`);
 }
