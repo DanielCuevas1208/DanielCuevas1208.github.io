@@ -27,17 +27,19 @@ async function fetchText(url,attempts=4) {
 }
 
 function imageRows(text,kind) {
-  const suffix=kind==='deck'?'thumb':'full';
-  const re=new RegExp(
-    String.raw`!\\[Image \\d+: (.+?)\\]\\(https://static\\.kouryaku\\.tools/umamusume/images/supports/(\\d+)/${suffix}\\.png[^)]*\\)`,
-    'g',
-  );
-  return [...String(text).matchAll(re)].map((match)=>({
-    name:match[1].trim(),
-    id:Number(match[2]),
-    index:match.index,
-    end:match.index+match[0].length,
-  }));
+  const wanted=kind==='deck'?'thumb':'full';
+  const re=/^!\[Image \d+: (.+)\]\(https:\/\/static\.kouryaku\.tools\/umamusume\/images\/supports\/(\d+)\/(thumb|full)\.png[^)]*\)$/gm;
+  const rows=[];
+  for(const match of String(text).matchAll(re)){
+    if(match[3]!==wanted) continue;
+    rows.push({
+      name:match[1].trim(),
+      id:Number(match[2]),
+      index:match.index,
+      end:match.index+match[0].length,
+    });
+  }
+  return rows;
 }
 
 export function parseUtoolsFactorReader(text) {
