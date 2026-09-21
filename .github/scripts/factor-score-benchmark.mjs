@@ -409,6 +409,12 @@ function canonicalWhiteFamily(id) {
   }
   return Number(skill.id);
 }
+function skillDirectSupportIds(skill) {
+  return new Set([
+    ...flattenIds(skill?.sup_hint),
+    ...flattenIds(skill?.sup_e),
+  ].map(Number));
+}
 const whiteByJpName = new Map();
 for (const skill of whiteSkills) {
   const name = String(skill.jpname || '').trim();
@@ -495,7 +501,8 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         name:String(hintName).trim(),
         value:Number(chosen.effect.expectedEffect),
         cost:Number(chosen.skill.cost),
-        covered:coveredFamilies.has(canonicalWhiteFamily(chosen.skill.id)),
+        exactCovered:coveredNames.has(String(hintName).trim()),
+        familyCovered:coveredFamilies.has(canonicalWhiteFamily(chosen.skill.id)),
         hint:true,
         directHint:!!chosen.src.hint,
         viaHint:!!chosen.src.viaHint,
@@ -513,9 +520,12 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
           value: effect && Number(effect.expectedEffect) > 0 ? Number(effect.expectedEffect) : 0,
           cost: skill ? Number(skill.cost) : NaN,
           rarity: skill ? Number(skill.rarity) : 1,
-          covered: (() => {
-            return coveredFamilies.has(canonicalWhiteFamily(reward.skillId));
+          exactCovered: (() => {
+            const direct=skillDirectSupportIds(skill);
+            for (const deckId of deckIds) if (direct.has(Number(deckId))) return true;
+            return false;
           })(),
+          familyCovered:coveredFamilies.has(canonicalWhiteFamily(reward.skillId)),
         };
       }).filter((reward) => reward.value > 0)),
     })).filter((event) => event.choices.some((choice) => choice.length));
@@ -542,6 +552,12 @@ if (levelMismatches.length) {
   console.error('WARN Hint Lv mismatches:', levelMismatches.slice(0,20));
 }
 
+function deckCoverageMultiplier(item,p) {
+  if (item.exactCovered) return p.deckPenalty;
+  if (item.familyCovered) return p.familyDeckPenalty;
+  return 1;
+}
+
 function rawScore(row,p) {
   const card=row.card;
   const hintDiscount=discountForLevel(acquiredHintLevel(card));
@@ -551,7 +567,7 @@ function rawScore(row,p) {
   let hintSum=0;
 
   for(const x of row.entries){
-    const deckMul=x.covered?p.deckPenalty:1;
+    const deckMul=deckCoverageMultiplier(x,p);
     if(deckMul<=0) continue;
     const baseCost=Number.isFinite(x.cost)&&x.cost>0?x.cost:null;
     const effCost=baseCost?baseCost*(1-hintDiscount):null;
@@ -569,7 +585,7 @@ function rawScore(row,p) {
     for (const choice of event.choices) {
       let choiceValue=0;
       for (const reward of choice) {
-        const deckMul=reward.covered?p.deckPenalty:1;
+        const deckMul=deckCoverageMultiplier(reward,p);
         if(deckMul<=0) continue;
         const baseCost=Number.isFinite(reward.cost)&&reward.cost>0?reward.cost:null;
         const effCost=baseCost?baseCost*(1-discountForLevel(reward.hintLevel)):null;
@@ -596,13 +612,14 @@ const grid={
   eventWeight:[0.010,0.015,0.01875,0.0225,0.025,0.030],
   goldSparkMultiplier:[1.0],
   deckPenalty:[0.70,0.75,0.80,0.85,0.90],
+  familyDeckPenalty:[0.80,0.85,0.90,0.95,1.00],
 };
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
 for(const tableExponent of grid.tableExponent)for(const hintRatePower of grid.hintRatePower)
 for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)
-for(const deckPenalty of grid.deckPenalty){
-  const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
+for(const deckPenalty of grid.deckPenalty)for(const familyDeckPenalty of grid.familyDeckPenalty){
+  const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty,familyDeckPenalty};
   let cvLoss=0,cvRho=0,cvRmse=0;
   for(const holdout of scenarios){
     const train=scenarios.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
@@ -622,8 +639,8 @@ function fitSubset(keys,label) {
   for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
   for(const tableExponent of grid.tableExponent)for(const hintRatePower of grid.hintRatePower)
   for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)
-  for(const deckPenalty of grid.deckPenalty){
-    const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
+  for(const deckPenalty of grid.deckPenalty)for(const familyDeckPenalty of grid.familyDeckPenalty){
+    const p={a,b,breadth,tableExponent,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty,familyDeckPenalty};
     let cvLoss=0,cvRho=0,cvRmse=0;
     for(const holdout of keys){
       const train=keys.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
@@ -684,7 +701,8 @@ const diagnostics=allRows.map((r,i)=>({
   usefulHints:r.entries.filter(x=>x.hint).length,
   eventSkills:r.entries.filter(x=>x.event).length,
   exactEvents:r.exactEvents?.length || 0,
-  covered:r.entries.filter(x=>x.covered).length,
+  covered:r.entries.filter(x=>x.exactCovered).length,
+  familyCovered:r.entries.filter(x=>!x.exactCovered&&x.familyCovered).length,
   hintLevel:acquiredHintLevel(r.card),
   hintChance:hintChance(r.card),
   extraHints:hintCountUp(r.card),
@@ -702,5 +720,5 @@ for(const scenario of scenarios){
 
 console.log('\nLargest absolute residuals:');
 for(const d of diagnostics.slice().sort((a,b)=>Math.abs(b.residual)-Math.abs(a.residual)).slice(0,25)){
-  console.log(`${d.residual>=0?'+':''}${d.residual.toFixed(2)} · target ${d.target.toFixed(2)} pred ${d.predicted.toFixed(2)} · Lv${d.hintLevel} pHint=${d.hintChance.toFixed(3)} table=${d.hintTable} useful=${d.usefulHints} event=${d.eventSkills}/${d.exactEvents} covered=${d.covered} extra=${d.extraHints} · ${d.scenario} · ${d.label}`);
+  console.log(`${d.residual>=0?'+':''}${d.residual.toFixed(2)} · target ${d.target.toFixed(2)} pred ${d.predicted.toFixed(2)} · Lv${d.hintLevel} pHint=${d.hintChance.toFixed(3)} table=${d.hintTable} useful=${d.usefulHints} event=${d.eventSkills}/${d.exactEvents} covered=${d.covered}+${d.familyCovered}fam extra=${d.extraHints} · ${d.scenario} · ${d.label}`);
 }
