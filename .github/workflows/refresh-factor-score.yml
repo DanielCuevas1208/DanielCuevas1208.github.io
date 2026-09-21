@@ -81,8 +81,10 @@ jobs:
             style,
             JSON.parse(fs.readFileSync(`uma-training-lab-data/factor-score/rankings/chm2/${style}.json`,'utf8')),
           ]));
-          if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v3') throw new Error('Unexpected factor model schema/version');
-          if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.86)) throw new Error('Factor model validation regressed');
+          if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-exact-v1') throw new Error('Unexpected factor model schema/version');
+          if (Number(model.validation?.exactScoreMatches) !== 192 || Number(model.validation?.exactRankMatches) !== 192) {
+            throw new Error('Exact factor model parity metadata regressed');
+          }
           if (!Array.isArray(exactInputs.cards) || exactInputs.cards.length < 100) throw new Error('Exact U-tools support input asset is missing or too small');
           const exactNeo=exactInputs.cards.find(card=>Number(card.id)===30287);
           if (!exactNeo || !Array.isArray(exactNeo.hintSkillIds) || !Array.isArray(exactNeo.randomSkillInfos) || !Array.isArray(exactNeo.sequenceSkillInfos)) {
