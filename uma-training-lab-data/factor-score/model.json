@@ -1,49 +1,67 @@
 {
   "schemaVersion": 1,
-  "modelVersion": "utools-copycat-v3",
-  "status": "experimental-calibrated",
-  "calibratedAt": "2026-09-21T05:02:08Z",
-  "target": {
-    "source": "U-tools factor support ranking",
-    "courseId": 11203,
+  "modelVersion": "utools-exact-v1",
+  "status": "exact-client-formula",
+  "recoveredAt": "2026-09-21T14:17:15Z",
+  "source": {
+    "site": "U-tools",
+    "surface": "factor farming support ranking",
+    "method": "Public client-bundle formula and serialized Next.js RSC inputs",
+    "rankingRowsPerStyle": 48
+  },
+  "formula": {
+    "baseline": 10,
+    "roundDigits": 2,
+    "supportOverlapMultiplier": 0.5,
+    "baseSkillFamilyMultiplier": 1.4999999999999998,
+    "hintTableMinimumSize": 7,
+    "missingHintSlotContribution": -2,
+    "hintCoefficientDefault": 7,
+    "hintCoefficientAtLevel4": 8.4,
+    "hintPointDiscount": {
+      "0": 1,
+      "1": 0.9,
+      "2": 0.8,
+      "3": 0.7,
+      "4": 0.65,
+      "5": 0.6
+    },
+    "eventScalar": 750,
+    "randomEventRate": 0.5,
+    "sequenceEventRate": 0.9
+  },
+  "algorithm": {
+    "perSkill": "Use the factor page's courseEffectSet row. Score the base-family course effect; halve it when the selected main deck already provides the skill/family; multiply upgraded/base-linked skills by 1.4999999999999998; round to 2 decimals.",
+    "hintTable": "Score each literal hintSkillId as 1000*skillScore/point. Pad tables shorter than 7 with -2 entries, average across the padded table, multiply by 7 (or 8.4 at Hint Lv Up 4) and the reciprocal hint-Pt discount, then round to 2 decimals.",
+    "eventChoice": "For each event choice, average hint level for each skill across its result outcomes and use occurrence frequency as drop rate. Sum skillScore*dropRate*hintMultiplier*eventTypeRate*750/point. Use the highest scoring choice per event.",
+    "events": "Random event rate is 0.5; sequence/continuous event rate is 0.9. Round each event-group total to 2 decimals.",
+    "total": "round2(10 + hint + random + sequence). Exclude selected main-deck cards, sort descending by total, and display the first 48."
+  },
+  "courseEffectSet": {
+    "note": "The exact factor scorer consumes U-tools' factor-page courseEffectSet. This is not interchangeable with the normal prerequisite-free course expected-effect dataset.",
+    "exactWhen": "A matching U-tools factor page has been imported for the selected event/course/style.",
+    "fallback": "For courses without an imported U-tools factor courseEffectSet, the Training Lab must label any derived score as an approximation rather than U-tools-exact."
+  },
+  "validation": {
+    "eventKey": "chm2",
     "styles": [
       "runner",
       "leader",
       "betweener",
       "chaser"
     ],
-    "targets": 80,
-    "scope": "current Longchamp 2400m pages"
-  },
-  "formula": {
-    "valueExponent": 0,
-    "efficiencyExponent": 0.65,
-    "tableExponent": 1.1,
-    "hintFrequencyExponent": 0.6,
-    "eventWeight": 0.015,
-    "deckCoveredMultiplier": 0.8,
-    "scale": 62.795762
-  },
-  "validation": {
-    "leaveOneStyleOutSpearman": 0.8654,
-    "leaveOneStyleOutNrmse": 0.0929,
-    "inSampleSpearman": 0.9115,
-    "inSampleNrmse": 0.0894
-  },
-  "algorithm": {
-    "hintTable": "Use each support card's literal published hint list exactly once; alternate/version IDs do not create additional hint opportunities.",
-    "hintValue": "Compute course-specific horse-length per effective skill point, then raise that efficiency to 0.65. There is no additional independent raw-length exponent in the fitted live model.",
-    "tableQuality": "Divide the summed usable hint utility by literal hint-table size^1.10.",
-    "hintFrequency": "Multiply hint-table score by (1 + Hint Frequency Up / 100)^0.60.",
-    "deckOverlap": "Multiply contributions already represented by literal hints in the selected main deck by 0.80.",
-    "events": "Use exact GameTora support-event topology. For each event, evaluate mutually-exclusive choices, keep the highest-value choice, and add 0.015 times its summed utility.",
-    "eventHints": "Use the exact granted skill ID and event-granted hint level when computing skill-point efficiency.",
-    "scale": "Multiply the combined raw score by 62.795762 to match the current U-tools score scale."
+    "rowsPerStyle": 48,
+    "totalRows": 192,
+    "exactScoreMatches": 192,
+    "exactRankMatches": 192,
+    "exactTopSetMatches": 192,
+    "scoreParity": 1,
+    "rankParity": 1
   },
   "provenance": {
-    "benchmarkWorkflow": ".github/workflows/benchmark-factor-score.yml",
-    "benchmarkScript": ".github/scripts/factor-score-benchmark.mjs",
-    "liveTargetTransport": "Jina-rendered current U-tools factor pages keyed by support ID",
-    "liveHintLevelAudit": "80/80 displayed Lv values matched card Hint Lv Up"
+    "exactScorer": "uma-training-lab-data/tools/utools-factor-score-exact.mjs",
+    "exactInputs": "uma-training-lab-data/factor-score/exact-pages/chm2/",
+    "liveRankings": "uma-training-lab-data/factor-score/rankings/chm2/",
+    "parityTest": "uma-training-lab-data/tools/verify-utools-factor-exact.mjs"
   }
 }
