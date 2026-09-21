@@ -41,7 +41,7 @@ export function scoreCourseSkill({
   );
   return {
     point,
-    score: round2((covered ? 0.5 * baseEffect : baseEffect) * (baseId ? 1.5 : 1)),
+    score: round2((covered ? 0.5 * baseEffect : baseEffect) * (baseId ? 1.4999999999999998 : 1)),
     effect: round2(effect),
     baseId,
     covered,
