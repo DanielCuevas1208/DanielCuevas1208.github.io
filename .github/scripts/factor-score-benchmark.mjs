@@ -444,6 +444,7 @@ try {
 }
 
 const datasets = {};
+const candidatePools = {};
 const missingCards = new Set();
 for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
   const effects = JSON.parse(fs.readFileSync(path.join(ROOT,'uma-training-lab-data','skill-effects','jp',String(bench.courseId),`${bench.style}.json`),'utf8'));
@@ -478,12 +479,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
       }
     }
   }
-  const rows=[];
-  for (const [label,target,supportId,utoolsLevel] of bench.rows) {
-    const card=Number.isInteger(Number(supportId)) && Number(supportId)>0
-      ? supportById.get(Number(supportId))
-      : supportByName.get(normalizeName(label));
-    if(!card){missingCards.add(label);continue;}
+  function buildScenarioCardRow(card,label,target=NaN,utoolsLevel=null) {
     const entries=[];
     for (const hintName of card.skills || []) {
       const candidates=(whiteByJpName.get(String(hintName).trim()) || [])
@@ -529,9 +525,23 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         };
       }).filter((reward) => reward.value > 0)),
     })).filter((event) => event.choices.some((choice) => choice.length));
-    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents,utoolsLevel,verifiedExtraHints:supportHintCountMeta.get(card.id) || 0 });
+    return { scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents,utoolsLevel,verifiedExtraHints:supportHintCountMeta.get(card.id) || 0 };
+  }
+
+  const rows=[];
+  for (const [label,target,supportId,utoolsLevel] of bench.rows) {
+    const card=Number.isInteger(Number(supportId)) && Number(supportId)>0
+      ? supportById.get(Number(supportId))
+      : supportByName.get(normalizeName(label));
+    if(!card){missingCards.add(label);continue;}
+    rows.push(buildScenarioCardRow(card,label,target,utoolsLevel));
   }
   if (rows.length >= 5) datasets[scenario]=rows;
+
+  candidatePools[scenario]=[...supportById.values()]
+    .filter((card)=>Number(card.rarity)===3 && !deckIds.has(Number(card.id)))
+    .map((card)=>buildScenarioCardRow(card,card.name))
+    .filter((row)=>row.entries.length || row.exactEvents.length);
 }
 
 if (missingCards.size) console.error(`WARN: ${missingCards.size} benchmark card(s) did not map: ${[...missingCards].join(' | ')}`);
@@ -685,6 +695,48 @@ if (currentFit) {
   const scale=scaleFit(rows.map(r=>rawScore(r,noEvent)),rows.map(r=>r.target));
   const predicted=rows.map(r=>rawScore(r,noEvent)*scale), target=rows.map(r=>r.target);
   console.log(`Current hint-only ablation: CV Spearman=${cvRho.toFixed(4)} NRMSE=${cvRmse.toFixed(4)}; in-sample Spearman=${spearman(rows,predicted).toFixed(4)} NRMSE=${nrmse(predicted,target).toFixed(4)} scale=${scale.toFixed(6)}`);
+}
+
+function retrievalMetrics(keys,p,label) {
+  console.log(`\n${label} full-pool retrieval:`);
+  let totalOverlap=0,totalTargets=0;
+  for (const scenario of keys) {
+    const targets=datasets[scenario] || [];
+    const targetIds=new Set(targets.map((row)=>Number(row.card.id)));
+    const targetRank=new Map(targets.map((row,index)=>[Number(row.card.id),index+1]));
+    const ranked=(candidatePools[scenario] || [])
+      .map((row)=>({row,score:rawScore(row,p)}))
+      .sort((a,b)=>b.score-a.score || b.row.card.id-a.row.card.id);
+    const top=ranked.slice(0,20);
+    const overlap=top.filter((x)=>targetIds.has(Number(x.row.card.id))).length;
+    totalOverlap+=overlap;
+    totalTargets+=Math.min(20,targets.length);
+    const targetPositions=[...targetIds]
+      .map((id)=>ranked.findIndex((x)=>Number(x.row.card.id)===id)+1)
+      .filter((rank)=>rank>0)
+      .sort((a,b)=>a-b);
+    const outsiders=top.filter((x)=>!targetIds.has(Number(x.row.card.id))).slice(0,5);
+    const missing=targets
+      .filter((row)=>!top.some((x)=>Number(x.row.card.id)===Number(row.card.id)))
+      .slice(0,5);
+    console.log(
+      `${scenario}: overlap@20=${overlap}/${Math.min(20,targets.length)}; `+
+      `target median rank=${targetPositions.length?targetPositions[Math.floor((targetPositions.length-1)/2)]:'—'}; `+
+      `worst target rank=${targetPositions.length?targetPositions.at(-1):'—'}`
+    );
+    if (outsiders.length) console.log('  outsiders:', outsiders.map((x)=>`#${x.row.card.id} ${x.row.card.name} (${x.score.toFixed(3)})`).join(' | '));
+    if (missing.length) console.log('  displaced:', missing.map((row)=>`#${row.card.id} ${row.label} (U-tools #${targetRank.get(Number(row.card.id))})`).join(' | '));
+  }
+  console.log(`${label} aggregate overlap@20=${totalOverlap}/${totalTargets} (${(100*totalOverlap/Math.max(1,totalTargets)).toFixed(1)}%)`);
+}
+
+const v3RetrievalParams={
+  a:0,b:0.65,breadth:0,tableExponent:1.10,hintRatePower:0.60,
+  eventWeight:0.015,goldSparkMultiplier:1,deckPenalty:0.80,familyDeckPenalty:1,
+};
+if (currentScenarios.length) {
+  retrievalMetrics(currentScenarios,v3RetrievalParams,'Factor Lab v3');
+  if (currentFit) retrievalMetrics(currentScenarios,currentFit.p,'Tiered-coverage candidate');
 }
 
 const raw=allRows.map(r=>rawScore(r,best.p));
