@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/benchmark-factor-score.yml"
       - ".github/scripts/factor-score-benchmark.mjs"
+      - ".github/scripts/patch-training-lab-factor-v2.mjs"
       - "uma-training-lab-data/skill-effects/jp/11203/**"
   workflow_dispatch:
 
@@ -25,6 +26,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Self-test factor v2 HTML patcher
+        run: node .github/scripts/patch-training-lab-factor-v2.mjs --self-test
+
       - name: Fit interpretable U-tools factor model
         shell: bash
         run: |
