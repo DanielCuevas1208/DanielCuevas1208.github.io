@@ -7,6 +7,7 @@ on:
       - ".github/workflows/benchmark-factor-score.yml"
       - ".github/scripts/factor-score-benchmark.mjs"
       - ".github/scripts/patch-training-lab-factor-v2.mjs"
+      - ".github/scripts/inspect-utools-factor-rsc.mjs"
       - "uma-training-lab-data/skill-effects/jp/11203/**"
   workflow_dispatch:
 
@@ -29,6 +30,9 @@ jobs:
       - name: Self-test factor v2 HTML patcher
         run: node .github/scripts/patch-training-lab-factor-v2.mjs --self-test
 
+      - name: Inspect U-tools factor page payload
+        run: node .github/scripts/inspect-utools-factor-rsc.mjs > utools-factor-rsc.txt
+
       - name: Fit interpretable U-tools factor model
         shell: bash
         run: |
@@ -37,4 +41,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: factor-score-benchmark
-          path: factor-score-benchmark.txt
+          path: |
+            factor-score-benchmark.txt
+            utools-factor-rsc.txt
