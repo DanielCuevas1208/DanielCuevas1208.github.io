@@ -22,7 +22,10 @@ jobs:
         with:
           node-version: 22
       - name: Fit interpretable U-tools factor model
-        run: node .github/scripts/factor-score-benchmark.mjs | tee factor-score-benchmark.txt
+        shell: bash
+        run: |
+          set -o pipefail
+          node .github/scripts/factor-score-benchmark.mjs | tee factor-score-benchmark.txt
       - uses: actions/upload-artifact@v4
         with:
           name: factor-score-benchmark
