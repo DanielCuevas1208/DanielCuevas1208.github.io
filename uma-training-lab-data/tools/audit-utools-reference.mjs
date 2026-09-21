@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { effectFile, readJson } from './lib.mjs';
+import { parseUtoolsReaderText } from './utools-live.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
@@ -50,5 +51,30 @@ for (const check of checks) {
   }
   process.stdout.write(`PASS ${check.label}: expected=${row.expectedEffect}${row.minEffect != null ? `, min=${row.minEffect}` : ''}${row.maxEffect != null ? `, max=${row.maxEffect}` : ''}\n`);
 }
+
+const duplicateNames = new Map([['同名ユニーク', [101091, 901091]]]);
+const resolved = parseUtoolsReaderText(
+  '同名ユニーク\n0.25[バ]、0.10 ~ 0.40[バ]、0.12[バ/Pt]\n',
+  duplicateNames,
+  [
+    { id: 101091, expectedEffect: 0.251 },
+    { id: 901091, expectedEffect: 0.051 },
+  ],
+);
+if (resolved.length !== 1 || resolved[0].id !== 101091 || resolved[0].minEffect !== 0.10 || resolved[0].maxEffect !== 0.40) {
+  throw new Error(`Duplicate-name reader resolver attached enrichment to the wrong row: ${JSON.stringify(resolved)}`);
+}
+const ambiguous = parseUtoolsReaderText(
+  '同名ユニーク\n0.25[バ]、0.10 ~ 0.40[バ]\n',
+  duplicateNames,
+  [
+    { id: 101091, expectedEffect: 0.251 },
+    { id: 901091, expectedEffect: 0.249 },
+  ],
+);
+if (ambiguous.length !== 0) {
+  throw new Error(`Ambiguous duplicate-name reader row should be skipped, got ${JSON.stringify(ambiguous)}`);
+}
+process.stdout.write('PASS duplicate full/inherited reader disambiguation.\n');
 
 process.stdout.write('U-tools reference audit passed.\n');
