@@ -1,0 +1,35 @@
+name: Inspect U-tools factor bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-utools-factor.yml"
+      - ".github/scripts/inspect-utools-factor-bundle.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: inspect-utools-factor-bundle
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect U-tools factor client bundle
+        shell: bash
+        run: |
+          set -o pipefail
+          node .github/scripts/inspect-utools-factor-bundle.mjs | tee utools-factor-bundle.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: utools-factor-bundle
+          path: utools-factor-bundle.txt
