@@ -39,8 +39,8 @@ jobs:
           import fs from 'node:fs';
           const model=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/model.json','utf8'));
           const events=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/support-events.json','utf8'));
-          if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v2') throw new Error('Unexpected factor model schema/version');
-          if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.79)) throw new Error('Factor model validation regressed');
+          if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v3') throw new Error('Unexpected factor model schema/version');
+          if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.86)) throw new Error('Factor model validation regressed');
           const neo=events.cards?.['30287'] || [];
           if (!neo.some(event => (event.choices || []).some(choice => (choice || []).length >= 2))) {
             throw new Error('Neo Universe 30287 multi-hint event topology is missing');
