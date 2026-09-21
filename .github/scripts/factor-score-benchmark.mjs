@@ -207,16 +207,34 @@ async function fetchJson(url) {
 
 async function loadSupportHintCountMeta() {
   const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
-  const hash = manifest['support-cards'];
-  if (!hash) throw new Error('GameTora manifest has no support-cards');
-  const cards = await fetchJson(`${GAMETORA_BASE}/data/umamusume/support-cards.${hash}.json`);
+  const cardHash = manifest['support-cards'];
+  const effectsHash = manifest['support_effects'];
+  if (!cardHash) throw new Error('GameTora manifest has no support-cards');
+  if (!effectsHash) throw new Error('GameTora manifest has no support_effects');
+  const [cards, effectDefs] = await Promise.all([
+    fetchJson(`${GAMETORA_BASE}/data/umamusume/support-cards.${cardHash}.json`),
+    fetchJson(`${GAMETORA_BASE}/data/umamusume/support_effects.${effectsHash}.json`),
+  ]);
+  const hintCountIds = new Set();
+  for (const effect of effectDefs || []) {
+    const text = [effect?.name_en, effect?.name, effect?.name_ja, effect?.symbol]
+      .filter(Boolean).join(' ').toLowerCase();
+    if ((text.includes('hint') && (text.includes('count') || text.includes('number')))
+        || text.includes('ヒント獲得数')) {
+      hintCountIds.add(Number(effect.id));
+    }
+  }
+  if (!hintCountIds.size) {
+    throw new Error('Could not resolve GameTora Hint Count Up support-effect ID');
+  }
+  console.log(`GameTora Hint Count Up effect ID(s): ${[...hintCountIds].join(',')}`);
   const out = new Map();
   for (const card of cards || []) {
     const id = Number(card?.support_id);
     if (!Number.isInteger(id)) continue;
     let hintCount = 0;
     for (const effect of card?.unique?.effects || []) {
-      if (Number(effect?.type) === 33) hintCount += Math.max(0, Number(effect?.value) || 0);
+      if (hintCountIds.has(Number(effect?.type))) hintCount += Math.max(0, Number(effect?.value) || 0);
     }
     if (hintCount > 0) out.set(id, hintCount);
   }
