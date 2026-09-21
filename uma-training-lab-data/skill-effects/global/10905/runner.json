@@ -3,7 +3,7 @@
   "server": "global",
   "courseId": 10905,
   "style": "runner",
-  "generatedAt": "2026-09-21T04:36:08.594Z",
+  "generatedAt": "2026-09-21T04:55:27.841Z",
   "profile": {
     "evaluator": "mixed",
     "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas."
