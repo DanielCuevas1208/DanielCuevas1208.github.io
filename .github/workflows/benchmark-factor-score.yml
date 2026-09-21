@@ -7,6 +7,7 @@ on:
       - ".github/workflows/benchmark-factor-score.yml"
       - ".github/scripts/factor-score-benchmark.mjs"
       - ".github/scripts/patch-training-lab-factor-v2.mjs"
+      - ".github/scripts/patch-training-lab-factor-exact.mjs"
       - ".github/scripts/inspect-utools-factor-rsc.mjs"
       - "uma-training-lab-data/skill-effects/jp/11203/**"
   workflow_dispatch:
@@ -27,8 +28,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Self-test factor v2 HTML patcher
-        run: node .github/scripts/patch-training-lab-factor-v2.mjs --self-test
+      - name: Self-test factor HTML patchers
+        run: |
+          node .github/scripts/patch-training-lab-factor-v2.mjs --self-test
+          node .github/scripts/patch-training-lab-factor-exact.mjs --self-test
 
       - name: Inspect U-tools factor page payload
         shell: bash
