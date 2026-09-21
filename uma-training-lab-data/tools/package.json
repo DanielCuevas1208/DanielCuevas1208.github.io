@@ -12,6 +12,7 @@
     "manifest": "node build-manifest.mjs",
     "validate": "node validate.mjs",
     "validate:live": "node validate-live.mjs",
-    "factor:events": "node build-factor-events.mjs"
+    "factor:events": "node build-factor-events.mjs",
+    "factor:rankings": "node bootstrap-utools-factor-rankings.mjs"
   }
 }
