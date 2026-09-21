@@ -32,6 +32,10 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: node build-factor-events.mjs
 
+      - name: Import full live U-tools factor rankings
+        working-directory: uma-training-lab-data/tools
+        run: node bootstrap-utools-factor-rankings.mjs
+
       - name: Validate factor-score assets
         shell: bash
         run: |
@@ -39,13 +43,26 @@ jobs:
           import fs from 'node:fs';
           const model=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/model.json','utf8'));
           const events=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/support-events.json','utf8'));
+          const styles=['runner','leader','betweener','chaser'];
+          const rankings=Object.fromEntries(styles.map(style=>[
+            style,
+            JSON.parse(fs.readFileSync(`uma-training-lab-data/factor-score/rankings/chm2/${style}.json`,'utf8')),
+          ]));
           if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v3') throw new Error('Unexpected factor model schema/version');
           if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.86)) throw new Error('Factor model validation regressed');
           const neo=events.cards?.['30287'] || [];
           if (!neo.some(event => (event.choices || []).some(choice => (choice || []).length >= 2))) {
             throw new Error('Neo Universe 30287 multi-hint event topology is missing');
           }
-          console.log(`Validated factor model and ${Object.keys(events.cards || {}).length} support event topologies.`);
+          for (const style of styles) {
+            const ranking=rankings[style];
+            if ((ranking.deck || []).length !== 5) throw new Error(`${style}: expected 5 main-deck supports`);
+            if ((ranking.rows || []).length < 20) throw new Error(`${style}: expected at least 20 factor ranking rows`);
+            if (!ranking.rows.every((row,index)=>Number(row.rank)===index+1 && Number.isInteger(Number(row.id)) && Number.isFinite(Number(row.score)))) {
+              throw new Error(`${style}: malformed factor ranking row`);
+            }
+          }
+          console.log(`Validated factor model, ${Object.keys(events.cards || {}).length} support event topologies, and full rankings: ${styles.map(style=>style+'='+rankings[style].rows.length).join(', ')}.`);
           NODE
 
       - name: Commit refreshed factor data
