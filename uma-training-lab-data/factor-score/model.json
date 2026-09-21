@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "utools-copycat-v2",
+  "status": "experimental-calibrated",
+  "calibratedAt": "2026-09-21T04:30:27Z",
+  "target": {
+    "source": "U-tools factor support ranking",
+    "courseId": 11203,
+    "styles": [
+      "runner",
+      "leader",
+      "betweener",
+      "chaser"
+    ],
+    "targets": 80,
+    "scope": "current Longchamp 2400m pages"
+  },
+  "formula": {
+    "valueExponent": 0.15,
+    "efficiencyExponent": 0.65,
+    "hintFrequencyExponent": 0.75,
+    "eventWeight": 0.025,
+    "deckCoveredMultiplier": 0.75,
+    "scale": 50.25863
+  },
+  "validation": {
+    "leaveOneStyleOutSpearman": 0.7974,
+    "leaveOneStyleOutNrmse": 0.1071,
+    "inSampleSpearman": 0.8591,
+    "inSampleNrmse": 0.1038
+  },
+  "algorithm": {
+    "hintTable": "Use each support card's literal published hint list once; do not expand alternate/version IDs into additional hint opportunities.",
+    "hintValue": "(expected course effect^valueExponent) * ((expected course effect / discounted skill point cost * 100)^efficiencyExponent)",
+    "hintFrequency": "Multiply hint-table score by (1 + Hint Frequency Up / 100)^hintFrequencyExponent.",
+    "deckOverlap": "Multiply contributions already covered by the selected main deck by deckCoveredMultiplier.",
+    "events": "For each support event, score each mutually-exclusive choice from exact GameTora event topology, keep the best choice, and add eventWeight times the summed event value.",
+    "eventHints": "Use the exact granted skill ID, granted hint level, course effect, and skill point cost."
+  },
+  "provenance": {
+    "benchmarkWorkflow": ".github/workflows/benchmark-factor-score.yml",
+    "benchmarkScript": ".github/scripts/factor-score-benchmark.mjs"
+  }
+}
