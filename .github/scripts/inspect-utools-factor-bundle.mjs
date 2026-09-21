@@ -67,6 +67,15 @@ for(const src of srcs){
   if(!matched.length) continue;
   hits.push({src,url,size:js.length,matched});
   console.log(`\n=== MATCH ${src} size=${js.length} needles=${matched.join(',')} ===`);
+  const scoringStart=Math.max(0,js.indexOf('function v(e)')-7000);
+  const scoringEnd=js.indexOf('var k=',scoringStart);
+  if(scoringStart>=0 && scoringEnd>scoringStart){
+    console.log(`\n=== EXACT SCORING REGION ${scoringStart}..${scoringEnd} ===\n${js.slice(scoringStart,scoringEnd)}\n=== END EXACT SCORING ===`);
+  }
+  const fwUses=[...js.matchAll(/\.fw\)/g)].map((m)=>m.index);
+  for(const idx of fwUses.slice(0,8)){
+    console.log(`\n=== fw use @ ${idx} ===\n${js.slice(Math.max(0,idx-5000),Math.min(js.length,idx+1800))}\n=== end fw use ===`);
+  }
   for(const needle of matched){
     for(const hit of snippets(js,needle,2200,4)){
       console.log(`\n--- ${needle} @ ${hit.index} ---\n${hit.text}\n--- end ---`);
@@ -77,4 +86,16 @@ if(!hits.length) {
   console.log('No factor-related client chunk found among page scripts.');
 } else {
   console.log('\nMatched chunks:',hits);
+}
+console.log('\n=== SEARCHING PAGE CHUNKS FOR fw EXPORT ===');
+for(const src of srcs){
+  const url=src.startsWith('http')?src:`${BASE}${src}`;
+  let js;
+  try{js=await fetchText(url);}catch{continue;}
+  for(const re of [/fw:\(\)=>/g,/fw:=>/g,/fw/g]){
+    const match=re.exec(js);
+    if(!match) continue;
+    console.log(`\n=== POSSIBLE fw DEFINITION ${src} @ ${match.index} ===\n${js.slice(Math.max(0,match.index-2400),Math.min(js.length,match.index+3000))}\n=== end possible fw ===`);
+    break;
+  }
 }
