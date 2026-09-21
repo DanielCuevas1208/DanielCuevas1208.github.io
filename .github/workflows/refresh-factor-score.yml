@@ -8,6 +8,9 @@ on:
       - "uma-training-lab-data/tools/build-factor-events.mjs"
       - "uma-training-lab-data/tools/utools-factor-live.mjs"
       - "uma-training-lab-data/tools/bootstrap-utools-factor-rankings.mjs"
+      - "uma-training-lab-data/tools/bootstrap-utools-factor-inputs.mjs"
+      - "uma-training-lab-data/tools/utools-factor-rsc.mjs"
+      - "uma-training-lab-data/tools/utools-factor-score-exact.mjs"
       - "uma-training-lab-data/factor-score/model.json"
   workflow_dispatch:
   schedule:
@@ -44,6 +47,10 @@ jobs:
           console.log('Factor ranking parser fixture passed.');
           NODE
 
+      - name: Import exact U-tools factor support inputs
+        working-directory: uma-training-lab-data/tools
+        run: node bootstrap-utools-factor-inputs.mjs
+
       - name: Build exact support event topology
         working-directory: uma-training-lab-data/tools
         run: node build-factor-events.mjs
@@ -59,6 +66,7 @@ jobs:
           import fs from 'node:fs';
           const model=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/model.json','utf8'));
           const events=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/support-events.json','utf8'));
+          const exactInputs=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/utools-support-cards.json','utf8'));
           const styles=['runner','leader','betweener','chaser'];
           const rankings=Object.fromEntries(styles.map(style=>[
             style,
@@ -66,6 +74,11 @@ jobs:
           ]));
           if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v3') throw new Error('Unexpected factor model schema/version');
           if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.86)) throw new Error('Factor model validation regressed');
+          if (!Array.isArray(exactInputs.cards) || exactInputs.cards.length < 100) throw new Error('Exact U-tools support input asset is missing or too small');
+          const exactNeo=exactInputs.cards.find(card=>Number(card.id)===30287);
+          if (!exactNeo || !Array.isArray(exactNeo.hintSkillIds) || !Array.isArray(exactNeo.randomSkillInfos) || !Array.isArray(exactNeo.sequenceSkillInfos)) {
+            throw new Error('Exact U-tools Neo Universe factor inputs are incomplete');
+          }
           const neo=events.cards?.['30287'] || [];
           if (!neo.some(event => (event.choices || []).some(choice => (choice || []).length >= 2))) {
             throw new Error('Neo Universe 30287 multi-hint event topology is missing');
@@ -78,7 +91,7 @@ jobs:
               throw new Error(`${style}: malformed factor ranking row`);
             }
           }
-          console.log(`Validated factor model, ${Object.keys(events.cards || {}).length} support event topologies, and full rankings: ${styles.map(style=>style+'='+rankings[style].rows.length).join(', ')}.`);
+          console.log(`Validated factor model, ${exactInputs.cards.length} exact U-tools support inputs, ${Object.keys(events.cards || {}).length} support event topologies, and full rankings: ${styles.map(style=>style+'='+rankings[style].rows.length).join(', ')}.`);
           NODE
 
       - name: Commit refreshed factor data
