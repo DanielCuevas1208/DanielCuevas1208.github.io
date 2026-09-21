@@ -1,0 +1,29 @@
+name: Benchmark factor score
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/benchmark-factor-score.yml"
+      - ".github/scripts/factor-score-benchmark.mjs"
+      - "uma-training-lab-data/skill-effects/jp/11203/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fit interpretable U-tools factor model
+        run: node .github/scripts/factor-score-benchmark.mjs | tee factor-score-benchmark.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: factor-score-benchmark
+          path: factor-score-benchmark.txt
