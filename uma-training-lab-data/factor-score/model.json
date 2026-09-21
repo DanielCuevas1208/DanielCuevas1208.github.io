@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "modelVersion": "utools-copycat-v2",
+  "modelVersion": "utools-copycat-v3",
   "status": "experimental-calibrated",
-  "calibratedAt": "2026-09-21T04:30:27Z",
+  "calibratedAt": "2026-09-21T05:02:08Z",
   "target": {
     "source": "U-tools factor support ranking",
     "courseId": 11203,
@@ -16,29 +16,34 @@
     "scope": "current Longchamp 2400m pages"
   },
   "formula": {
-    "valueExponent": 0.15,
+    "valueExponent": 0,
     "efficiencyExponent": 0.65,
-    "hintFrequencyExponent": 0.75,
-    "eventWeight": 0.025,
-    "deckCoveredMultiplier": 0.75,
-    "scale": 50.25863
+    "tableExponent": 1.1,
+    "hintFrequencyExponent": 0.6,
+    "eventWeight": 0.015,
+    "deckCoveredMultiplier": 0.8,
+    "scale": 62.795762
   },
   "validation": {
-    "leaveOneStyleOutSpearman": 0.7974,
-    "leaveOneStyleOutNrmse": 0.1071,
-    "inSampleSpearman": 0.8591,
-    "inSampleNrmse": 0.1038
+    "leaveOneStyleOutSpearman": 0.8654,
+    "leaveOneStyleOutNrmse": 0.0929,
+    "inSampleSpearman": 0.9115,
+    "inSampleNrmse": 0.0894
   },
   "algorithm": {
-    "hintTable": "Use each support card's literal published hint list once; do not expand alternate/version IDs into additional hint opportunities.",
-    "hintValue": "(expected course effect^valueExponent) * ((expected course effect / discounted skill point cost * 100)^efficiencyExponent)",
-    "hintFrequency": "Multiply hint-table score by (1 + Hint Frequency Up / 100)^hintFrequencyExponent.",
-    "deckOverlap": "Multiply contributions already covered by the selected main deck by deckCoveredMultiplier.",
-    "events": "For each support event, score each mutually-exclusive choice from exact GameTora event topology, keep the best choice, and add eventWeight times the summed event value.",
-    "eventHints": "Use the exact granted skill ID, granted hint level, course effect, and skill point cost."
+    "hintTable": "Use each support card's literal published hint list exactly once; alternate/version IDs do not create additional hint opportunities.",
+    "hintValue": "Compute course-specific horse-length per effective skill point, then raise that efficiency to 0.65. There is no additional independent raw-length exponent in the fitted live model.",
+    "tableQuality": "Divide the summed usable hint utility by literal hint-table size^1.10.",
+    "hintFrequency": "Multiply hint-table score by (1 + Hint Frequency Up / 100)^0.60.",
+    "deckOverlap": "Multiply contributions already represented by literal hints in the selected main deck by 0.80.",
+    "events": "Use exact GameTora support-event topology. For each event, evaluate mutually-exclusive choices, keep the highest-value choice, and add 0.015 times its summed utility.",
+    "eventHints": "Use the exact granted skill ID and event-granted hint level when computing skill-point efficiency.",
+    "scale": "Multiply the combined raw score by 62.795762 to match the current U-tools score scale."
   },
   "provenance": {
     "benchmarkWorkflow": ".github/workflows/benchmark-factor-score.yml",
-    "benchmarkScript": ".github/scripts/factor-score-benchmark.mjs"
+    "benchmarkScript": ".github/scripts/factor-score-benchmark.mjs",
+    "liveTargetTransport": "Jina-rendered current U-tools factor pages keyed by support ID",
+    "liveHintLevelAudit": "80/80 displayed Lv values matched card Hint Lv Up"
   }
 }
