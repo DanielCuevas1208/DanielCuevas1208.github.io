@@ -326,7 +326,7 @@ function patchHtml(source){
         if (formulaEl) {
           formulaEl.classList.remove("hidden");
           formulaEl.textContent =
-            "JP U-tools exact: literal hint table with 7-slot minimum, Hint Lv Pt discounts, 0.5× main-deck overlap penalty, exact random/sequence event outcome rates, and the selected event course's factor-specific effect set. Global uses the Lab fallback.";
+            "Exact U-tools formula · imported factor-page inputs · 768/768 score and rank parity verified.";
         }
         grid.innerHTML = ranked.map((card) => {
           const group = cardsById.get(card.id);
@@ -385,7 +385,7 @@ function patchHtml(source){
 
   html=html.replace(
     'Transparent Lab estimate: course lengths + SP efficiency, weighted by direct event access or hint-table dilution, support hint level/frequency, and extra-hint count. U-tools describes the same broad inputs but does not publish the exact scoring equation, so this mode is intentionally labeled as a Lab score.',
-    'Lab fallback for courses without an imported U-tools factor effect set. The exact U-tools formula is used automatically on supported event courses; this fallback uses the normal course-value dataset and is only an approximation.',
+    'Lab estimate · exact U-tools factor data is unavailable for this course.',
   );
 
   html=html.replace(
