@@ -9,6 +9,7 @@ on:
       - "uma-training-lab-data/tools/utools-factor-live.mjs"
       - "uma-training-lab-data/tools/bootstrap-utools-factor-rankings.mjs"
       - "uma-training-lab-data/tools/bootstrap-utools-factor-inputs.mjs"
+      - "uma-training-lab-data/tools/bootstrap-utools-factor-exact-pages.mjs"
       - "uma-training-lab-data/tools/utools-factor-rsc.mjs"
       - "uma-training-lab-data/tools/utools-factor-score-exact.mjs"
       - "uma-training-lab-data/factor-score/model.json"
@@ -50,6 +51,10 @@ jobs:
       - name: Import exact U-tools factor support inputs
         working-directory: uma-training-lab-data/tools
         run: node bootstrap-utools-factor-inputs.mjs
+
+      - name: Import exact U-tools factor pages
+        working-directory: uma-training-lab-data/tools
+        run: node bootstrap-utools-factor-exact-pages.mjs
 
       - name: Build exact support event topology
         working-directory: uma-training-lab-data/tools
