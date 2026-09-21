@@ -297,6 +297,7 @@ function patchHtml(source){
         };
       }
       function buildSkillFactorExactRanking(server, deckIds) {
+        if (server !== "jp") return [];
         const page = SKILL_DB.factorExact;
         const selectedCourse = Number($("skillCourse")?.value);
         const selectedStyle = $("skillStyle")?.value || "runner";
@@ -324,7 +325,7 @@ function patchHtml(source){
         if (formulaEl) {
           formulaEl.classList.remove("hidden");
           formulaEl.textContent =
-            "Exact U-tools factor formula and factor-page inputs: literal hint table with 7-slot minimum, Hint Lv Pt discounts, 0.5× main-deck overlap penalty, exact random/sequence event outcome rates, and the selected event course's factor-specific effect set.";
+            "JP U-tools exact: literal hint table with 7-slot minimum, Hint Lv Pt discounts, 0.5× main-deck overlap penalty, exact random/sequence event outcome rates, and the selected event course's factor-specific effect set. Global uses the Lab fallback.";
         }
         grid.innerHTML = ranked.map((card) => {
           const group = cardsById.get(card.id);
