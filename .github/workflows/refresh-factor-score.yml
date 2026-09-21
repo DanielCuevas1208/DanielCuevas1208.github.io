@@ -59,6 +59,10 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: node bootstrap-utools-factor-rankings.mjs
 
+      - name: Verify exact U-tools factor parity
+        working-directory: uma-training-lab-data/tools
+        run: node verify-utools-factor-exact.mjs
+
       - name: Validate factor-score assets
         shell: bash
         run: |
