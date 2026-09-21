@@ -119,6 +119,8 @@ export async function fetchUtoolsFactorSupportCards({
           style,
           fetchedAt:new Date().toISOString(),
           cards:parsed.supportCards,
+          skillMap:parsed.skillMap,
+          courseEffectSet:parsed.courseEffectSet,
         };
       }catch(error){
         errors.push(`${eventKey}/${style}: ${error.message}`);
