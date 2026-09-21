@@ -75,6 +75,37 @@ const BENCHMARKS = {
   }
 };
 
+const CURRENT_FACTOR_RANKING_ROOT=path.join(
+  ROOT,
+  'uma-training-lab-data',
+  'factor-score',
+  'rankings',
+  'chm2',
+);
+for (const style of ['runner','leader','betweener','chaser']) {
+  const key=`current_${style}`;
+  const file=path.join(CURRENT_FACTOR_RANKING_ROOT,`${style}.json`);
+  if (!fs.existsSync(file) || !BENCHMARKS[key]) continue;
+  const live=JSON.parse(fs.readFileSync(file,'utf8'));
+  if (!Array.isArray(live.rows) || live.rows.length<20) {
+    throw new Error(`Current factor ranking ${style} has only ${live.rows?.length || 0} rows`);
+  }
+  BENCHMARKS[key].deckIds=(live.deck || []).map((row)=>Number(row.id)).filter(Number.isInteger);
+  BENCHMARKS[key].rows=live.rows.map((row)=>[
+    String(row.name || ''),
+    Number(row.score),
+    Number(row.id),
+    Number(row.level),
+  ]);
+  BENCHMARKS[key].liveRankingFile=file;
+}
+console.log(
+  'Current U-tools live ranking rows:',
+  ['runner','leader','betweener','chaser']
+    .map((style)=>`${style}=${BENCHMARKS[`current_${style}`]?.rows?.length || 0}`)
+    .join(', '),
+);
+
 function normalizeName(s) {
   return String(s || '').normalize('NFKC').replace(/\s+/g, '').replace(/[［【]/g, '[').replace(/[］】]/g, ']');
 }
@@ -702,7 +733,8 @@ function retrievalMetrics(keys,p,label) {
   let totalOverlap=0,totalTargets=0;
   for (const scenario of keys) {
     const targets=datasets[scenario] || [];
-    const targetIds=new Set(targets.map((row)=>Number(row.card.id)));
+    const topTargets=targets.slice(0,20);
+    const targetIds=new Set(topTargets.map((row)=>Number(row.card.id)));
     const targetRank=new Map(targets.map((row,index)=>[Number(row.card.id),index+1]));
     const ranked=(candidatePools[scenario] || [])
       .map((row)=>({row,score:rawScore(row,p)}))
@@ -710,13 +742,13 @@ function retrievalMetrics(keys,p,label) {
     const top=ranked.slice(0,20);
     const overlap=top.filter((x)=>targetIds.has(Number(x.row.card.id))).length;
     totalOverlap+=overlap;
-    totalTargets+=Math.min(20,targets.length);
+    totalTargets+=Math.min(20,topTargets.length);
     const targetPositions=[...targetIds]
       .map((id)=>ranked.findIndex((x)=>Number(x.row.card.id)===id)+1)
       .filter((rank)=>rank>0)
       .sort((a,b)=>a-b);
     const outsiders=top.filter((x)=>!targetIds.has(Number(x.row.card.id))).slice(0,5);
-    const missing=targets
+    const missing=topTargets
       .filter((row)=>!top.some((x)=>Number(x.row.card.id)===Number(row.card.id)))
       .slice(0,5);
     console.log(
