@@ -96,6 +96,27 @@ async function fetchRaw(url,attempts=2){
   throw last || new Error(`Unable to fetch ${url}`);
 }
 
+export async function fetchUtoolsFactorPage(eventKey,style){
+  const url=`${UTOOLS_BASE}/race/vsevents/${eventKey}/factor/${style}`;
+  const {text,finalUrl}=await fetchRaw(url);
+  const parsed=parseUtoolsFactorRsc(text);
+  if(!parsed.supportCards?.length) throw new Error(`${eventKey}/${style}: no supportCards array`);
+  if(!parsed.courseEffectSet?.effects || !Object.keys(parsed.courseEffectSet.effects).length) {
+    throw new Error(`${eventKey}/${style}: no courseEffectSet.effects`);
+  }
+  return {
+    schemaVersion:1,
+    pageUrl:url,
+    finalUrl,
+    eventKey:String(eventKey),
+    style:String(style),
+    fetchedAt:new Date().toISOString(),
+    cards:parsed.supportCards,
+    skillMap:parsed.skillMap,
+    courseEffectSet:parsed.courseEffectSet,
+  };
+}
+
 export async function fetchUtoolsFactorSupportCards({
   eventKeys=['chm2','chm','loh2','loh'],
   styles=['runner','leader','betweener','chaser'],
@@ -103,25 +124,8 @@ export async function fetchUtoolsFactorSupportCards({
   const errors=[];
   for(const eventKey of eventKeys){
     for(const style of styles){
-      const url=`${UTOOLS_BASE}/race/vsevents/${eventKey}/factor/${style}`;
       try{
-        const {text,finalUrl}=await fetchRaw(url);
-        const parsed=parseUtoolsFactorRsc(text);
-        if(!parsed.supportCards?.length){
-          errors.push(`${eventKey}/${style}: no supportCards array`);
-          continue;
-        }
-        return {
-          schemaVersion:1,
-          pageUrl:url,
-          finalUrl,
-          eventKey,
-          style,
-          fetchedAt:new Date().toISOString(),
-          cards:parsed.supportCards,
-          skillMap:parsed.skillMap,
-          courseEffectSet:parsed.courseEffectSet,
-        };
+        return await fetchUtoolsFactorPage(eventKey,style);
       }catch(error){
         errors.push(`${eventKey}/${style}: ${error.message}`);
       }
