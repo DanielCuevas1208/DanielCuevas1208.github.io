@@ -1,0 +1,62 @@
+name: Refresh factor score data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-factor-score.yml"
+      - "uma-training-lab-data/tools/build-factor-events.mjs"
+      - "uma-training-lab-data/factor-score/model.json"
+  workflow_dispatch:
+  schedule:
+    - cron: "41 11 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: factor-score-data-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build exact support event topology
+        working-directory: uma-training-lab-data/tools
+        run: node build-factor-events.mjs
+
+      - name: Validate factor-score assets
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const model=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/model.json','utf8'));
+          const events=JSON.parse(fs.readFileSync('uma-training-lab-data/factor-score/support-events.json','utf8'));
+          if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-copycat-v2') throw new Error('Unexpected factor model schema/version');
+          if (!(Number(model.validation?.leaveOneStyleOutSpearman) >= 0.79)) throw new Error('Factor model validation regressed');
+          const neo=events.cards?.['30287'] || [];
+          if (!neo.some(event => (event.choices || []).some(choice => (choice || []).length >= 2))) {
+            throw new Error('Neo Universe 30287 multi-hint event topology is missing');
+          }
+          console.log(`Validated factor model and ${Object.keys(events.cards || {}).length} support event topologies.`);
+          NODE
+
+      - name: Commit refreshed factor data
+        run: |
+          if git diff --quiet -- uma-training-lab-data/factor-score; then
+            echo "Factor-score data is already current."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add uma-training-lab-data/factor-score
+            git commit -m "data: refresh factor-score support events"
+            git pull --rebase origin main
+            git push
+          fi
