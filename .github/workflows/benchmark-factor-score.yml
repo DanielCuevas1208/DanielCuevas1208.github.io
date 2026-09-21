@@ -8,6 +8,7 @@ on:
       - ".github/scripts/factor-score-benchmark.mjs"
       - ".github/scripts/patch-training-lab-factor-v2.mjs"
       - ".github/scripts/inspect-utools-factor-rsc.mjs"
+      - ".github/scripts/inspect-utools-factor-bundle.mjs"
       - "uma-training-lab-data/skill-effects/jp/11203/**"
   workflow_dispatch:
 
@@ -36,6 +37,12 @@ jobs:
           set -o pipefail
           node .github/scripts/inspect-utools-factor-rsc.mjs | tee utools-factor-rsc.txt
 
+      - name: Inspect U-tools factor client bundle
+        shell: bash
+        run: |
+          set -o pipefail
+          node .github/scripts/inspect-utools-factor-bundle.mjs | tee utools-factor-bundle.txt
+
       - name: Fit interpretable U-tools factor model
         shell: bash
         run: |
@@ -47,3 +54,4 @@ jobs:
           path: |
             factor-score-benchmark.txt
             utools-factor-rsc.txt
+            utools-factor-bundle.txt
