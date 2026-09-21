@@ -12,6 +12,7 @@ on:
       - "uma-training-lab-data/tools/bootstrap-utools-factor-exact-pages.mjs"
       - "uma-training-lab-data/tools/utools-factor-rsc.mjs"
       - "uma-training-lab-data/tools/utools-factor-score-exact.mjs"
+      - "uma-training-lab-data/tools/verify-utools-factor-exact.mjs"
       - "uma-training-lab-data/factor-score/model.json"
   workflow_dispatch:
   schedule:
