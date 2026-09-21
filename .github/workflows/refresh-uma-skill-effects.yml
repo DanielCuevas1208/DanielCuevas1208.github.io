@@ -21,9 +21,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  refresh:
+  refresh-live:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -45,6 +45,38 @@ jobs:
       - name: Bridge mechanically identical values to Global
         working-directory: uma-training-lab-data/tools
         run: npm run bridge:global
+
+      - name: Rebuild manifest
+        working-directory: uma-training-lab-data/tools
+        run: npm run manifest
+
+      - name: Validate database structure
+        working-directory: uma-training-lab-data/tools
+        run: npm run validate
+
+      - name: Commit live U-tools refresh
+        run: |
+          if git diff --quiet -- uma-training-lab-data/skill-effects; then
+            echo "Live U-tools data is already current."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add uma-training-lab-data/skill-effects
+            git commit -m "data: refresh live U-tools skill effects"
+            git push
+          fi
+
+  correct-global:
+    needs: refresh-live
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Find Global values that need correction
         id: pending
@@ -93,7 +125,8 @@ jobs:
             --tools-dir "$GITHUB_WORKSPACE/.cache/uma-tools/uma-skill-tools" \
             --jp-data "$GITHUB_WORKSPACE/.cache/skill_data.jp.json" \
             --global-data "$GITHUB_WORKSPACE/.cache/skill_data.global.json" \
-            --samples 2000
+            --samples 2000 \
+            --jobs 2
 
       - name: Apply benchmark-derived Global delta calibration
         working-directory: uma-training-lab-data/tools
@@ -111,15 +144,15 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: npm run validate:live
 
-      - name: Commit refreshed data
+      - name: Commit refreshed Global corrections
         run: |
           if git diff --quiet -- uma-training-lab-data/skill-effects; then
-            echo "Skill-effect database is already current."
+            echo "Global skill-effect database is already current."
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add uma-training-lab-data/skill-effects
-            git commit -m "data: refresh Uma skill effects"
+            git commit -m "data: refresh Global skill corrections"
             git push
           fi
 
