@@ -5,7 +5,6 @@ const ROOT = process.cwd();
 const SKILLS_URL = 'https://daftuyda.moe/assets/skills_all.json';
 const SUPPORT_URL = 'https://raw.githubusercontent.com/mee1080/umasim/main/data/support_card.txt';
 const GAMETORA_BASE = 'https://gametora.com';
-const UTOOLS_CURRENT_FACTOR_BASE = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm2/factor';
 const GT_REWARD_OFFSET = 36;
 
 const STATUS_KEYS = [
@@ -236,71 +235,6 @@ async function fetchJson(url) {
   return JSON.parse(await fetchText(url));
 }
 
-function nextNonEmpty(lines, start) {
-  for (let i=start;i<lines.length;i++) {
-    const value=String(lines[i] || '').trim();
-    if (value) return { value, index:i };
-  }
-  return null;
-}
-
-function parseUtoolsFactorReader(text) {
-  const lines=String(text).split(/\r?\n/);
-  const recommendIndex=lines.findIndex((line)=>String(line).includes('オススメのサポートカード'));
-  if (recommendIndex < 0) throw new Error('U-tools factor reader did not contain recommendation heading');
-  const imageRe=/^!\[Image \d+: (.+?)\]\(https:\/\/static\.kouryaku\.tools\/umamusume\/images\/supports\/(\d+)\/(thumb|full)\.png/i;
-  const deckIds=[];
-  const rows=[];
-  for (let i=0;i<lines.length;i++) {
-    const match=String(lines[i]).trim().match(imageRe);
-    if (!match) continue;
-    const label=match[1].trim();
-    const supportId=Number(match[2]);
-    const kind=match[3].toLowerCase();
-    if (i < recommendIndex && kind === 'thumb') {
-      if (!deckIds.includes(supportId)) deckIds.push(supportId);
-      continue;
-    }
-    if (i <= recommendIndex || kind !== 'full') continue;
-    const scoreLine=nextNonEmpty(lines,i+1);
-    if (!scoreLine || !/^-?\d+(?:\.\d+)?$/.test(scoreLine.value)) continue;
-    const score=Number(scoreLine.value);
-    const lvLabel=nextNonEmpty(lines,scoreLine.index+1);
-    const lvValue=lvLabel && /^Lv$/i.test(lvLabel.value)
-      ? nextNonEmpty(lines,lvLabel.index+1)
-      : null;
-    const level=lvValue && /^\d+$/.test(lvValue.value) ? Number(lvValue.value) : null;
-    rows.push([label,score,supportId,level]);
-  }
-  return { deckIds, rows };
-}
-
-async function refreshCurrentBenchmarksFromUtools() {
-  let refreshed=0;
-  for (const style of ['runner','leader','betweener','chaser']) {
-    const key=`current_${style}`;
-    const bench=BENCHMARKS[key];
-    if (!bench) continue;
-    const page=`${UTOOLS_CURRENT_FACTOR_BASE}/${style}`;
-    try {
-      const text=await fetchText(`https://r.jina.ai/${page}`);
-      const parsed=parseUtoolsFactorReader(text);
-      if (parsed.deckIds.length < 4 || parsed.rows.length < 15) {
-        throw new Error(`parsed only ${parsed.deckIds.length} deck cards and ${parsed.rows.length} ranking rows`);
-      }
-      bench.deckIds=parsed.deckIds;
-      bench.rows=parsed.rows.slice(0,20);
-      bench.liveSource=page;
-      refreshed++;
-      console.log(`Live U-tools ${style}: ${bench.rows.length} targets, deck ${bench.deckIds.join(',')}`);
-    } catch (error) {
-      console.error(`WARN live U-tools ${style} benchmark refresh failed: ${error.message}; using embedded fallback`);
-    }
-  }
-  return refreshed;
-}
-
-
 async function loadSupportHintCountMeta() {
   const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
   const cardHash = manifest['support-cards'];
@@ -382,7 +316,6 @@ async function loadEventTopology(canonicalWhiteByAnyId) {
   return bySupport;
 }
 
-await refreshCurrentBenchmarksFromUtools();
 
 const availableBenchmarks = Object.fromEntries(Object.entries(BENCHMARKS).filter(([key, bench]) => {
   const file=path.join(ROOT,'uma-training-lab-data','skill-effects','jp',String(bench.courseId),`${bench.style}.json`);
