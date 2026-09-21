@@ -49,14 +49,28 @@ jobs:
           NODE
 
       - name: Commit refreshed factor data
+        shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- uma-training-lab-data/factor-score)" ]; then
-            echo "Factor-score data is already current."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          publish_if_changed() {
+            if [ -z "$(git status --porcelain -- uma-training-lab-data/factor-score)" ]; then
+              echo "Factor-score data is already current."
+              return 0
+            fi
             git add uma-training-lab-data/factor-score
             git commit -m "data: refresh factor-score support events"
-            git pull --rebase origin main
             git push
+          }
+
+          if publish_if_changed; then
+            exit 0
           fi
+
+          echo "Main advanced during factor refresh; regenerating on the latest tree."
+          git fetch origin main
+          git reset --hard origin/main
+          (cd uma-training-lab-data/tools && node build-factor-events.mjs)
+          publish_if_changed
