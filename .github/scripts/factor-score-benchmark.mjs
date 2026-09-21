@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const SKILLS_URL = 'https://daftuyda.moe/assets/skills_all.json';
 const SUPPORT_URL = 'https://raw.githubusercontent.com/mee1080/umasim/main/data/support_card.txt';
 const GAMETORA_BASE = 'https://gametora.com';
+const UTOOLS_CURRENT_FACTOR_BASE = 'https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm2/factor';
 const GT_REWARD_OFFSET = 36;
 
 const STATUS_KEYS = [
@@ -204,6 +205,70 @@ async function fetchJson(url) {
   return JSON.parse(await fetchText(url));
 }
 
+function nextNonEmpty(lines, start) {
+  for (let i=start;i<lines.length;i++) {
+    const value=String(lines[i] || '').trim();
+    if (value) return { value, index:i };
+  }
+  return null;
+}
+
+function parseUtoolsFactorReader(text) {
+  const lines=String(text).split(/\r?\n/);
+  const recommendIndex=lines.findIndex((line)=>String(line).includes('オススメのサポートカード'));
+  if (recommendIndex < 0) throw new Error('U-tools factor reader did not contain recommendation heading');
+  const imageRe=/^!\[Image \d+: (.+?)\]\(https:\/\/static\.kouryaku\.tools\/umamusume\/images\/supports\/(\d+)\/(thumb|full)\.png/i;
+  const deckIds=[];
+  const rows=[];
+  for (let i=0;i<lines.length;i++) {
+    const match=String(lines[i]).trim().match(imageRe);
+    if (!match) continue;
+    const label=match[1].trim();
+    const supportId=Number(match[2]);
+    const kind=match[3].toLowerCase();
+    if (i < recommendIndex && kind === 'thumb') {
+      if (!deckIds.includes(supportId)) deckIds.push(supportId);
+      continue;
+    }
+    if (i <= recommendIndex || kind !== 'full') continue;
+    const scoreLine=nextNonEmpty(lines,i+1);
+    if (!scoreLine || !/^-?\d+(?:\.\d+)?$/.test(scoreLine.value)) continue;
+    const score=Number(scoreLine.value);
+    const lvLabel=nextNonEmpty(lines,scoreLine.index+1);
+    const lvValue=lvLabel && /^Lv$/i.test(lvLabel.value)
+      ? nextNonEmpty(lines,lvLabel.index+1)
+      : null;
+    const level=lvValue && /^\d+$/.test(lvValue.value) ? Number(lvValue.value) : null;
+    rows.push([label,score,supportId,level]);
+  }
+  return { deckIds, rows };
+}
+
+async function refreshCurrentBenchmarksFromUtools() {
+  let refreshed=0;
+  for (const style of ['runner','leader','betweener','chaser']) {
+    const key=`current_${style}`;
+    const bench=BENCHMARKS[key];
+    if (!bench) continue;
+    const page=`${UTOOLS_CURRENT_FACTOR_BASE}/${style}`;
+    try {
+      const text=await fetchText(`https://r.jina.ai/${page}`);
+      const parsed=parseUtoolsFactorReader(text);
+      if (parsed.deckIds.length < 4 || parsed.rows.length < 15) {
+        throw new Error(`parsed only ${parsed.deckIds.length} deck cards and ${parsed.rows.length} ranking rows`);
+      }
+      bench.deckIds=parsed.deckIds;
+      bench.rows=parsed.rows.slice(0,20);
+      bench.liveSource=page;
+      refreshed++;
+      console.log(`Live U-tools ${style}: ${bench.rows.length} targets, deck ${bench.deckIds.join(',')}`);
+    } catch (error) {
+      console.error(`WARN live U-tools ${style} benchmark refresh failed: ${error.message}; using embedded fallback`);
+    }
+  }
+  return refreshed;
+}
+
 
 async function loadSupportHintCountMeta() {
   const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
@@ -286,6 +351,8 @@ async function loadEventTopology(canonicalWhiteByAnyId) {
   return bySupport;
 }
 
+await refreshCurrentBenchmarksFromUtools();
+
 const availableBenchmarks = Object.fromEntries(Object.entries(BENCHMARKS).filter(([key, bench]) => {
   const file=path.join(ROOT,'uma-training-lab-data','skill-effects','jp',String(bench.courseId),`${bench.style}.json`);
   if (fs.existsSync(file)) return true;
@@ -304,7 +371,7 @@ for (const skill of skillList) {
   skillById.set(Number(skill.id), skill);
   if (skill.gene_version?.id) skillById.set(Number(skill.gene_version.id), { ...skill.gene_version, __geneParentId:Number(skill.id) });
 }
-const { byName: supportByName } = parseSupports(supportText);
+const { byName: supportByName, byId: supportById } = parseSupports(supportText);
 const whiteSkills = skillList.filter(s => Number(s.rarity) === 1);
 const sourcesBySkill = new Map(whiteSkills.map(s => [Number(s.id), sourceSet(s, skillById)]));
 const whiteByJpName = new Map();
@@ -341,18 +408,27 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
   const effects = JSON.parse(fs.readFileSync(path.join(ROOT,'uma-training-lab-data','skill-effects','jp',String(bench.courseId),`${bench.style}.json`),'utf8'));
   const effectById = new Map((effects.skills || []).map(r => [Number(r.id),r]));
   const deckIds = new Set();
-  for (const label of bench.deck) {
-    const card=supportByName.get(normalizeName(label));
-    if(card) deckIds.add(card.id); else missingCards.add(label);
+  if (Array.isArray(bench.deckIds) && bench.deckIds.length) {
+    for (const id of bench.deckIds) {
+      if (supportById.has(Number(id))) deckIds.add(Number(id));
+      else missingCards.add(`Support #${id}`);
+    }
+  } else {
+    for (const label of bench.deck) {
+      const card=supportByName.get(normalizeName(label));
+      if(card) deckIds.add(card.id); else missingCards.add(label);
+    }
   }
   const coveredNames = new Set();
   for (const deckId of deckIds) {
-    const deckCard=[...supportByName.values()].find(card=>card.id===deckId);
+    const deckCard=supportById.get(Number(deckId));
     for (const hintName of deckCard?.skills || []) coveredNames.add(String(hintName).trim());
   }
   const rows=[];
-  for (const [label,target] of bench.rows) {
-    const card=supportByName.get(normalizeName(label));
+  for (const [label,target,supportId,utoolsLevel] of bench.rows) {
+    const card=Number.isInteger(Number(supportId)) && Number(supportId)>0
+      ? supportById.get(Number(supportId))
+      : supportByName.get(normalizeName(label));
     if(!card){missingCards.add(label);continue;}
     const entries=[];
     for (const hintName of card.skills || []) {
@@ -397,7 +473,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         };
       }).filter((reward) => reward.value > 0)),
     })).filter((event) => event.choices.some((choice) => choice.length));
-    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents,verifiedExtraHints:supportHintCountMeta.get(card.id) || 0 });
+    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents,utoolsLevel,verifiedExtraHints:supportHintCountMeta.get(card.id) || 0 });
   }
   if (rows.length >= 5) datasets[scenario]=rows;
 }
