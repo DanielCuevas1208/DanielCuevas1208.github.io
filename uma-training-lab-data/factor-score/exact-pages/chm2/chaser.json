@@ -4,7 +4,7 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm2/factor/chaser",
   "eventKey": "chm2",
   "style": "chaser",
-  "fetchedAt": "2026-09-21T14:22:50.284Z",
+  "fetchedAt": "2026-09-21T14:27:45.454Z",
   "cards": [
     {
       "id": 30317,
@@ -51935,5 +51935,6 @@
         "effect": 0.341
       }
     }
-  }
+  },
+  "courseId": 11203
 }

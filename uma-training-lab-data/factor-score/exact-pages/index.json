@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "courses": {
+    "10504": {
+      "courseId": 10504,
+      "eventKey": "loh2",
+      "label": "2026-08 League of Heroes",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/loh2/runner.json",
+          "effects": 230
+        },
+        "leader": {
+          "path": "exact-pages/loh2/leader.json",
+          "effects": 274
+        },
+        "betweener": {
+          "path": "exact-pages/loh2/betweener.json",
+          "effects": 268
+        },
+        "chaser": {
+          "path": "exact-pages/loh2/chaser.json",
+          "effects": 251
+        }
+      }
+    },
+    "10603": {
+      "courseId": 10603,
+      "eventKey": "chm",
+      "label": "2026-09 Champions Meeting",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/chm/runner.json",
+          "effects": 182
+        },
+        "leader": {
+          "path": "exact-pages/chm/leader.json",
+          "effects": 228
+        },
+        "betweener": {
+          "path": "exact-pages/chm/betweener.json",
+          "effects": 220
+        },
+        "chaser": {
+          "path": "exact-pages/chm/chaser.json",
+          "effects": 206
+        }
+      }
+    },
+    "10808": {
+      "courseId": 10808,
+      "eventKey": "chm3",
+      "label": "2026-10 Champions Meeting",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/chm3/runner.json",
+          "effects": 231
+        },
+        "leader": {
+          "path": "exact-pages/chm3/leader.json",
+          "effects": 278
+        },
+        "betweener": {
+          "path": "exact-pages/chm3/betweener.json",
+          "effects": 272
+        },
+        "chaser": {
+          "path": "exact-pages/chm3/chaser.json",
+          "effects": 252
+        }
+      }
+    },
+    "11203": {
+      "courseId": 11203,
+      "eventKey": "chm2",
+      "label": "2026-09 Special Champions Meeting",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/chm2/runner.json",
+          "effects": 227
+        },
+        "leader": {
+          "path": "exact-pages/chm2/leader.json",
+          "effects": 276
+        },
+        "betweener": {
+          "path": "exact-pages/chm2/betweener.json",
+          "effects": 274
+        },
+        "chaser": {
+          "path": "exact-pages/chm2/chaser.json",
+          "effects": 254
+        }
+      }
+    }
+  }
+}

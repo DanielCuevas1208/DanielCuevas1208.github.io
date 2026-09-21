@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm2/factor/runner",
-  "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm2/factor/runner",
-  "eventKey": "chm2",
+  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm3/factor/runner",
+  "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm3/factor/runner",
+  "eventKey": "chm3",
   "style": "runner",
-  "fetchedAt": "2026-09-21T14:27:45.117Z",
+  "fetchedAt": "2026-09-21T14:27:45.641Z",
   "cards": [
     {
       "id": 30317,
@@ -50798,308 +50798,317 @@
   },
   "courseEffectSet": {
     "base": {
-      "effect": 0.30107177500000004,
+      "effect": 0.27642052500000003,
       "point": 170
     },
     "effects": {
       "200011": {
         "point": 200,
-        "effect": 0.623,
+        "effect": 0.537,
         "baseId": 200012
       },
       "200012": {
         "point": 90,
-        "effect": 0.417
+        "effect": 0.359
       },
       "200014": {
         "point": 330,
-        "effect": 0.938,
+        "effect": 0.743,
         "baseId": 200012
       },
-      "200161": {
+      "200151": {
         "point": 200,
-        "effect": 0.312,
-        "baseId": 200162
+        "effect": 0.203,
+        "baseId": 200152
       },
-      "200162": {
+      "200152": {
         "point": 90,
-        "effect": 0.211
+        "effect": 0.137
       },
-      "200164": {
+      "200154": {
         "point": 330,
-        "effect": 0.938,
-        "baseId": 200162
+        "effect": 0.743,
+        "baseId": 200152
       },
       "200191": {
         "point": 200,
-        "effect": 0.623,
+        "effect": 0.537,
         "baseId": 200192
       },
       "200192": {
         "point": 90,
-        "effect": 0.417
+        "effect": 0.359
       },
       "200194": {
         "point": 330,
-        "effect": 0.938,
+        "effect": 0.743,
         "baseId": 200192
       },
       "200211": {
         "point": 200,
-        "effect": 0.094,
+        "effect": 0.084,
         "baseId": 200212
       },
       "200212": {
         "point": 90,
-        "effect": 0.063
+        "effect": 0.056
       },
       "200261": {
         "point": 200,
-        "effect": 0.393,
+        "effect": 0.338,
         "baseId": 200262
       },
       "200262": {
         "point": 90,
-        "effect": 0.263
+        "effect": 0.227
       },
       "200271": {
         "point": 200,
-        "effect": 0.827,
+        "effect": 0.712,
         "baseId": 200272
       },
       "200272": {
         "point": 90,
-        "effect": 0.623
+        "effect": 0.537
       },
       "200281": {
         "point": 200,
-        "effect": 0.312,
+        "effect": 0.203,
         "baseId": 200282
       },
       "200282": {
         "point": 90,
-        "effect": 0.211
+        "effect": 0.137
       },
       "200291": {
         "point": 200,
-        "effect": 0.094,
+        "effect": 0.084,
         "baseId": 200292
       },
       "200292": {
         "point": 90,
-        "effect": 0.063
+        "effect": 0.056
       },
       "200301": {
         "point": 200,
-        "effect": 0.623,
+        "effect": 0.537,
         "baseId": 200302
       },
       "200302": {
         "point": 90,
-        "effect": 0.417
+        "effect": 0.359
       },
       "200331": {
         "point": 360,
-        "effect": 1.072,
+        "effect": 0.822,
         "baseId": 200332
       },
       "200332": {
         "point": 180,
-        "effect": 0.471
+        "effect": 0.36
       },
       "200341": {
         "point": 360,
-        "effect": 0.672,
+        "effect": 0.396,
         "baseId": 200342
       },
       "200342": {
         "point": 180,
-        "effect": 0.395
+        "effect": 0.24
       },
       "200361": {
         "point": 340,
-        "effect": 0.927,
+        "effect": 0.978,
         "baseId": 200362
       },
       "200362": {
         "point": 170,
-        "effect": 0.406
+        "effect": 0.427
       },
       "200371": {
         "point": 340,
-        "effect": 0.544,
+        "effect": 0.459,
         "baseId": 200372
       },
       "200372": {
         "point": 170,
-        "effect": 0.073
+        "effect": 0.014
       },
       "200461": {
         "point": 340,
-        "effect": 0.73,
+        "effect": 0.684,
         "baseId": 200462
       },
       "200462": {
         "point": 170,
-        "effect": 0.325
+        "effect": 0.299
       },
       "200491": {
         "point": 300,
-        "effect": 0.153,
+        "effect": 0.501,
         "baseId": 200492
       },
       "200492": {
         "point": 150,
-        "effect": 0.095
+        "effect": 0.32
       },
       "200511": {
         "point": 340,
-        "effect": 0.781,
+        "effect": 0.715,
         "baseId": 200512
       },
       "200512": {
         "point": 170,
-        "effect": 0.341
+        "effect": 0.312
       },
       "200531": {
         "point": 240,
-        "effect": 0.818,
+        "effect": 0.813,
         "baseId": 200532
       },
       "200532": {
         "point": 120,
-        "effect": 0.484
+        "effect": 0.466
       },
       "200541": {
         "point": 360,
-        "effect": 1.286,
+        "effect": 1.198,
         "baseId": 200542
       },
       "200542": {
         "point": 180,
-        "effect": 0.564
+        "effect": 0.523
       },
       "200551": {
         "point": 360,
-        "effect": 1.343,
+        "effect": 0.083,
         "baseId": 200552
       },
       "200552": {
         "point": 180,
-        "effect": 0.791
+        "effect": 0.053
       },
       "200721": {
         "point": 320,
-        "effect": 1.032,
+        "effect": 0.961,
         "baseId": 200722
       },
       "200722": {
         "point": 160,
-        "effect": 0.455
+        "effect": 0.422
       },
       "200731": {
         "point": 320,
-        "effect": 1.08,
+        "effect": 0.761,
         "baseId": 200732
       },
       "200732": {
         "point": 160,
-        "effect": 0.485
+        "effect": 0.329
       },
       "201101": {
         "point": 210,
-        "effect": 0.669,
+        "effect": 0.705,
         "baseId": 201102
       },
       "201102": {
         "point": 100,
-        "effect": 0.406
+        "effect": 0.427
       },
       "201103": {
         "point": 360,
-        "effect": 0.927,
+        "effect": 0.978,
         "baseId": 201102
       },
       "201111": {
         "point": 210,
-        "effect": 0.942,
+        "effect": 0.744,
         "baseId": 201112
       },
       "201112": {
         "point": 100,
-        "effect": 0.569
+        "effect": 0.452
       },
       "201113": {
         "point": 360,
-        "effect": 1.304,
+        "effect": 1.031,
         "baseId": 201112
       },
       "201131": {
         "point": 280,
-        "effect": 0.229,
+        "effect": 0.267,
         "baseId": 201132
       },
       "201132": {
         "point": 140,
-        "effect": 0.168
+        "effect": 0.197
       },
       "201241": {
         "point": 270,
-        "effect": 0.669,
+        "effect": 0.705,
         "baseId": 201242
       },
       "201242": {
         "point": 130,
-        "effect": 0.406
+        "effect": 0.427
       },
       "201243": {
         "point": 420,
-        "effect": 0.927,
+        "effect": 0.978,
         "baseId": 201242
       },
       "201251": {
         "point": 270,
-        "effect": 0.942,
+        "effect": 0.744,
         "baseId": 201252
       },
       "201252": {
         "point": 130,
-        "effect": 0.569
+        "effect": 0.452
       },
       "201253": {
         "point": 420,
-        "effect": 1.304,
+        "effect": 1.031,
         "baseId": 201252
       },
       "201271": {
         "point": 360,
-        "effect": 1.252,
+        "effect": 1.148,
         "baseId": 201272
       },
       "201272": {
         "point": 180,
-        "effect": 0.546
+        "effect": 0.498
       },
       "201292": {
         "point": 180,
-        "effect": 0.176
+        "effect": 0.265
       },
       "201561": {
         "point": 220,
-        "effect": 0.039,
+        "effect": 0.031,
         "baseId": 201562
       },
       "201562": {
         "point": 110,
-        "effect": 0.026
+        "effect": 0.021
+      },
+      "201581": {
+        "point": 160,
+        "effect": 0.027
+      },
+      "201582": {
+        "point": 320,
+        "effect": 0.05,
+        "baseId": 201581
       },
       "201591": {
         "point": 160,
-        "effect": 0.538
+        "effect": 0.492
       },
       "201592": {
         "point": 320,
-        "effect": 1.245,
+        "effect": 1.138,
         "baseId": 201591
       },
       "201601": {
@@ -51108,160 +51117,160 @@
       },
       "201602": {
         "point": 280,
-        "effect": 0.818,
+        "effect": 0.819,
         "baseId": 201601
       },
       "201611": {
         "point": 100,
-        "effect": 0.566
+        "effect": 0.526
       },
       "201612": {
         "point": 280,
-        "effect": 1.29,
+        "effect": 1.205,
         "baseId": 201611
       },
       "201631": {
         "point": 70,
-        "effect": 0.417
+        "effect": 0.359
       },
       "201632": {
         "point": 220,
-        "effect": 0.623,
+        "effect": 0.537,
         "baseId": 201631
       },
       "201641": {
         "point": 70,
-        "effect": 0.417
+        "effect": 0.359
       },
       "201651": {
         "point": 160,
-        "effect": 0.34
+        "effect": 0.32
       },
       "201652": {
         "point": 320,
-        "effect": 0.776,
+        "effect": 0.737,
         "baseId": 201651
       },
       "201661": {
         "point": 160,
-        "effect": 0.34
+        "effect": 0.32
       },
       "201662": {
         "point": 320,
-        "effect": 0.776,
+        "effect": 0.737,
         "baseId": 201661
       },
       "201701": {
         "point": 320,
-        "effect": 0.983,
+        "effect": 0.9,
         "baseId": 201702
       },
       "201702": {
         "point": 160,
-        "effect": 0.427
+        "effect": 0.392
       },
       "202031": {
         "point": 240,
-        "effect": 0.749,
+        "effect": 0.669,
         "baseId": 202032
       },
       "202032": {
         "point": 120,
-        "effect": 0.429
+        "effect": 0.388
       },
       "202091": {
         "point": 320,
-        "effect": 0.91,
+        "effect": 0.831,
         "baseId": 202092
       },
       "202092": {
         "point": 160,
-        "effect": 0.4
+        "effect": 0.361
       },
       "202171": {
         "point": 340,
-        "effect": 1.081,
+        "effect": 0.852,
         "baseId": 202172
       },
       "202172": {
         "point": 170,
-        "effect": 0.477
+        "effect": 0.392
       },
       "202391": {
         "point": 360,
-        "effect": 1.42,
+        "effect": 1.328,
         "baseId": 202392
       },
       "202392": {
         "point": 180,
-        "effect": 0.811
+        "effect": 0.747
       },
       "202441": {
         "point": 360,
-        "effect": 1.368,
+        "effect": 1.097,
         "baseId": 202442
       },
       "202442": {
         "point": 180,
-        "effect": 0.692
+        "effect": 0.554
       },
       "202461": {
         "point": 360,
-        "effect": 0.995,
+        "effect": 0.91,
         "baseId": 202462
       },
       "202462": {
         "point": 180,
-        "effect": 0.563
+        "effect": 0.516
       },
       "202531": {
         "point": 360,
-        "effect": 1.032,
+        "effect": 0.961,
         "baseId": 202532
       },
       "202532": {
         "point": 180,
-        "effect": 0.455
+        "effect": 0.422
       },
       "202551": {
         "point": 400,
-        "effect": 1.088,
+        "effect": 1.022,
         "baseId": 202552
       },
       "202552": {
         "point": 200,
-        "effect": 0.462
+        "effect": 0.434
       },
       "202601": {
         "point": 320,
-        "effect": 1.071,
+        "effect": 0.994,
         "baseId": 202602
       },
       "202602": {
         "point": 160,
-        "effect": 0.449
+        "effect": 0.416
       },
       "202651": {
         "point": 360,
-        "effect": 0.938,
+        "effect": 0.743,
         "baseId": 202652
       },
       "202652": {
         "point": 180,
-        "effect": 0.316
+        "effect": 0.25
       },
       "202661": {
         "point": 360,
-        "effect": 1.033,
+        "effect": 0.952,
         "baseId": 202662
       },
       "202662": {
         "point": 180,
-        "effect": 0.437
+        "effect": 0.404
       },
       "202691": {
         "point": 240,
-        "effect": 0.818,
+        "effect": 0.819,
         "baseId": 202692
       },
       "202692": {
@@ -51270,549 +51279,558 @@
       },
       "202721": {
         "point": 360,
-        "effect": 1.243,
+        "effect": 1.165,
         "baseId": 202722
       },
       "202722": {
         "point": 180,
-        "effect": 0.253
+        "effect": 0.238
       },
       "202741": {
         "point": 360,
-        "effect": 1.329,
+        "effect": 1.35,
         "baseId": 202742
       },
       "202742": {
         "point": 180,
-        "effect": 0.56
+        "effect": 0.58
       },
       "202791": {
         "point": 320,
-        "effect": 0.772,
+        "effect": 0.721,
         "baseId": 202792
       },
       "202792": {
         "point": 160,
-        "effect": 0.342
+        "effect": 0.317
       },
       "202801": {
         "point": 320,
-        "effect": 0.739,
+        "effect": 0.67,
         "baseId": 202802
       },
       "202802": {
         "point": 160,
-        "effect": 0.324
+        "effect": 0.294
       },
       "203031": {
         "point": 360,
-        "effect": 1.032,
+        "effect": 0.961,
         "baseId": 203032
       },
       "203032": {
         "point": 180,
-        "effect": 0.455
+        "effect": 0.422
       },
       "203051": {
         "point": 320,
-        "effect": 1.074,
+        "effect": 1.001,
         "baseId": 203052
       },
       "203052": {
         "point": 160,
-        "effect": 0.471
+        "effect": 0.444
       },
       "203111": {
         "point": 320,
-        "effect": 0.563,
+        "effect": 0.828,
         "baseId": 203112
       },
       "203112": {
         "point": 160,
-        "effect": 0.35
+        "effect": 0.518
       },
       "203141": {
         "point": 400,
-        "effect": 1.229,
+        "effect": 1.138,
         "baseId": 203142
       },
       "203142": {
         "point": 200,
-        "effect": 0.25
+        "effect": 0.231
       },
       "203171": {
         "point": 320,
-        "effect": 0.863,
+        "effect": 0.826,
         "baseId": 203172
       },
       "203172": {
         "point": 160,
-        "effect": 0.375
+        "effect": 0.368
       },
       "203201": {
         "point": 360,
-        "effect": 1.229,
+        "effect": 1.138,
         "baseId": 203202
       },
       "203202": {
         "point": 180,
-        "effect": 0.25
+        "effect": 0.231
       },
       "203241": {
         "point": 400,
-        "effect": 0.456,
+        "effect": 0.412,
         "baseId": 203242
       },
       "203242": {
         "point": 200,
-        "effect": 0.105
+        "effect": 0.095
       },
       "203272": {
         "point": 180,
-        "effect": 0.435
+        "effect": 0.395
       },
       "203311": {
         "point": 280,
-        "effect": 0.772,
+        "effect": 0.721,
         "baseId": 203312
       },
       "203312": {
         "point": 140,
-        "effect": 0.342
+        "effect": 0.317
       },
       "203371": {
         "point": 360,
-        "effect": 0.973,
+        "effect": 0.893,
         "baseId": 203372
       },
       "203372": {
         "point": 180,
-        "effect": 0.193
+        "effect": 0.177
       },
       "203381": {
         "point": 360,
-        "effect": 1.693,
+        "effect": 0.591,
         "baseId": 203382
       },
       "203382": {
         "point": 180,
-        "effect": 0.915
+        "effect": 0.358
       },
       "203391": {
         "point": 340,
-        "effect": 1.329,
+        "effect": 1.35,
         "baseId": 203392
       },
       "203392": {
         "point": 170,
-        "effect": 0.56
+        "effect": 0.58
       },
       "203401": {
         "point": 340,
-        "effect": 1.044,
+        "effect": 1.382,
         "baseId": 203402
       },
       "203402": {
         "point": 170,
-        "effect": 0.615
+        "effect": 0.8
       },
       "203431": {
         "point": 340,
-        "effect": 0.983,
+        "effect": 0.9,
         "baseId": 203432
       },
       "203432": {
         "point": 170,
-        "effect": 0.427
+        "effect": 0.392
       },
       "203461": {
         "point": 360,
-        "effect": 0.778,
+        "effect": 0.826,
         "baseId": 203462
       },
       "203462": {
         "point": 180,
-        "effect": 0.342
+        "effect": 0.365
       },
       "203471": {
         "point": 360,
-        "effect": 0.831,
+        "effect": 0.764,
         "baseId": 203472
       },
       "203472": {
         "point": 180,
-        "effect": 0.35
+        "effect": 0.321
       },
       "203501": {
         "point": 400,
-        "effect": 1.369,
+        "effect": 1.273,
         "baseId": 203502
       },
       "203502": {
         "point": 200,
-        "effect": 0.579
+        "effect": 0.538
       },
       "203631": {
         "point": 360,
-        "effect": 1.088,
+        "effect": 1.022,
         "baseId": 203632
       },
       "203632": {
         "point": 180,
-        "effect": 0.462
+        "effect": 0.434
       },
       "203641": {
         "point": 360,
-        "effect": 1.033,
+        "effect": 0.952,
         "baseId": 203642
       },
       "203642": {
         "point": 180,
-        "effect": 0.437
+        "effect": 0.404
       },
       "203651": {
         "point": 360,
-        "effect": 1.032,
+        "effect": 0.961,
         "baseId": 203652
       },
       "203652": {
         "point": 180,
-        "effect": 0.455
+        "effect": 0.422
       },
       "203661": {
         "point": 360,
-        "effect": 1.229,
+        "effect": 1.138,
         "baseId": 203662
       },
       "203662": {
         "point": 180,
-        "effect": 0.25
+        "effect": 0.231
       },
       "203721": {
         "point": 360,
-        "effect": 1.088
+        "effect": 1.022
       },
       "203801": {
         "point": 400,
-        "effect": 1.399,
+        "effect": 1.423,
         "baseId": 203802
       },
       "203802": {
         "point": 200,
-        "effect": 0.289
+        "effect": 0.293
       },
       "203851": {
         "point": 360,
-        "effect": 1.032,
+        "effect": 0.961,
         "baseId": 203852
       },
       "203852": {
         "point": 180,
-        "effect": 0.455
+        "effect": 0.422
       },
       "203861": {
         "point": 360,
-        "effect": 1.33,
+        "effect": 1.209,
         "baseId": 203862
       },
       "203862": {
         "point": 180,
-        "effect": 0.561
+        "effect": 0.509
       },
       "204031": {
         "point": 360,
-        "effect": 1.243,
+        "effect": 1.165,
         "baseId": 204032
       },
       "204032": {
         "point": 180,
-        "effect": 0.253
+        "effect": 0.238
       },
       "204041": {
         "point": 240,
-        "effect": 1.075,
+        "effect": 0.982,
         "baseId": 204042
       },
       "204042": {
         "point": 120,
-        "effect": 0.452
+        "effect": 0.412
       },
       "204051": {
         "point": 360,
-        "effect": 0.835,
+        "effect": 0.795,
         "baseId": 204052
       },
       "204052": {
         "point": 180,
-        "effect": 0.353
+        "effect": 0.339
       },
       "204071": {
         "point": 360,
-        "effect": 1.074,
+        "effect": 1.001,
         "baseId": 204072
       },
       "204072": {
         "point": 180,
-        "effect": 0.471
+        "effect": 0.444
       },
       "204092": {
         "point": 180,
-        "effect": 0.455
+        "effect": 0.422
       },
       "204121": {
         "point": 400,
-        "effect": 0.995,
+        "effect": 0.91,
         "baseId": 204122
       },
       "204122": {
         "point": 200,
-        "effect": 0.563
+        "effect": 0.516
       },
       "204141": {
         "point": 360,
-        "effect": 0.623,
+        "effect": 0.537,
         "baseId": 204142
+      },
+      "204161": {
+        "point": 360,
+        "effect": 0.101,
+        "baseId": 204162
+      },
+      "204162": {
+        "point": 180,
+        "effect": 0.065
       },
       "204181": {
         "point": 360,
-        "effect": 0.971,
+        "effect": 0.934,
         "baseId": 204182
       },
       "204182": {
         "point": 180,
-        "effect": 0.397
+        "effect": 0.381
       },
       "204202": {
         "point": 180,
-        "effect": 0.316
+        "effect": 0.25
       },
       "204222": {
         "point": 180,
-        "effect": 0.43
+        "effect": 0.334
       },
       "204262": {
         "point": 200,
-        "effect": 0.669
+        "effect": 0.58
       },
       "204322": {
         "point": 180,
-        "effect": 0.748
+        "effect": 0.695
       },
       "204342": {
         "point": 180,
-        "effect": 0.471
+        "effect": 0.444
       },
       "204391": {
         "point": 380,
-        "effect": 0.456,
+        "effect": 0.412,
         "baseId": 204392
       },
       "204392": {
         "point": 190,
-        "effect": 0.105
+        "effect": 0.095
       },
       "204453": {
         "point": 140,
-        "effect": 0.185
+        "effect": 0.168
       },
       "204472": {
         "point": 180,
-        "effect": 0.56
+        "effect": 0.58
       },
       "204492": {
         "point": 120,
-        "effect": 0.438
+        "effect": 0.396
       },
       "204501": {
         "point": 400,
-        "effect": 1.198,
+        "effect": 1.098,
         "baseId": 204502
       },
       "204502": {
         "point": 200,
-        "effect": 0.254
+        "effect": 0.23
       },
       "204511": {
         "point": 400,
-        "effect": 1.251,
+        "effect": 1.157,
         "baseId": 204512
       },
       "204512": {
         "point": 200,
-        "effect": 0.549
+        "effect": 0.501
       },
       "204531": {
         "point": 380,
-        "effect": 1.369,
+        "effect": 1.273,
         "baseId": 204532
       },
       "204532": {
         "point": 190,
-        "effect": 0.579
+        "effect": 0.538
       },
       "204541": {
         "point": 340,
-        "effect": 1.286,
+        "effect": 1.198,
         "baseId": 204542
       },
       "204542": {
         "point": 170,
-        "effect": 0.564
+        "effect": 0.523
       },
       "204552": {
         "point": 180,
-        "effect": 0.427
+        "effect": 0.392
       },
       "204562": {
         "point": 120,
-        "effect": 0.417
+        "effect": 0.359
       },
       "204622": {
         "point": 200,
-        "effect": 0.748
+        "effect": 0.695
       },
       "204691": {
         "point": 360,
-        "effect": 0.987,
+        "effect": 0.888,
         "baseId": 204692
       },
       "204692": {
         "point": 180,
-        "effect": 0.415
+        "effect": 0.372
       },
       "204701": {
         "point": 400,
-        "effect": 1.271,
+        "effect": 1.176,
         "baseId": 204702
       },
       "204702": {
         "point": 200,
-        "effect": 0.252
+        "effect": 0.233
       },
       "210012": {
         "point": 200,
-        "effect": 0.408
+        "effect": 0.38
       },
       "210032": {
         "point": 200,
-        "effect": 0.186
+        "effect": 0.265
       },
       "210042": {
         "point": 200,
-        "effect": 0.195
+        "effect": 0.235
       },
       "210062": {
         "point": 200,
-        "effect": 0.114
+        "effect": 0.119
       },
       "210072": {
         "point": 200,
-        "effect": 0.241
+        "effect": 0.23
       },
       "210082": {
         "point": 200,
-        "effect": 0.282
+        "effect": 0.263
       },
       "210091": {
         "point": 150,
-        "effect": 0.397
+        "effect": 0.371
       },
       "210101": {
         "point": 150,
-        "effect": 0.55
+        "effect": 0.512
       },
       "210111": {
         "point": 150,
-        "effect": 0.458
+        "effect": 0.466
       },
       "210131": {
         "point": 150,
-        "effect": 0.364
+        "effect": 0.296
       },
       "210262": {
         "point": 200,
-        "effect": 0.355
+        "effect": 0.323
       },
       "210272": {
         "point": 200,
-        "effect": 0.089
+        "effect": 0.1
       },
       "210282": {
         "point": 200,
-        "effect": 0.408
+        "effect": 0.374
       },
       "210292": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210301": {
         "point": 400,
-        "effect": 0.916,
+        "effect": 0.855,
         "baseId": 210302
       },
       "210302": {
         "point": 200,
-        "effect": 0.342
+        "effect": 0.317
       },
       "210311": {
         "point": 170,
-        "effect": 0.355
+        "effect": 0.344
       },
       "210341": {
         "point": 400,
-        "effect": 0.781,
+        "effect": 0.715,
         "baseId": 210342
       },
       "210342": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210351": {
         "point": 400,
-        "effect": 0.931,
+        "effect": 0.852,
         "baseId": 210352
       },
       "210352": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210361": {
         "point": 400,
-        "effect": 0.931,
+        "effect": 0.852,
         "baseId": 210362
       },
       "210362": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210371": {
         "point": 400,
-        "effect": 0.931,
+        "effect": 0.852,
         "baseId": 210372
       },
       "210372": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210381": {
         "point": 400,
-        "effect": 0.931,
+        "effect": 0.852,
         "baseId": 210382
       },
       "210382": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       },
       "210391": {
         "point": 400,
-        "effect": 0.781,
+        "effect": 0.715,
         "baseId": 210392
       },
       "210392": {
         "point": 200,
-        "effect": 0.341
+        "effect": 0.312
       }
     }
   },
-  "courseId": 11203
+  "courseId": 10808
 }
