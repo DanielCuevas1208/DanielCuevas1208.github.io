@@ -113,7 +113,8 @@ function patchHtml(source){
     html=replaceOnce(
       html,
       '        const key = `${server}/${courseId}/${style}`;',
-      `        await loadSkillFactorExact(courseId, style);
+      `        if (server === "jp") await loadSkillFactorExact(courseId, style);
+        else SKILL_DB.factorExact = null;
         const key = \`\${server}/\${courseId}/\${style}\`;`,
       'load exact factor page with course effects',
     );
@@ -389,7 +390,7 @@ function patchHtml(source){
 
   html=html.replace(
     'STATE.skillRecMode === "factor" ? "Lab factor-farming score contribution" : "Unique remaining-skill course value"',
-    'STATE.skillRecMode === "factor" ? (SKILL_DB.factorExact ? "U-tools exact factor-farming score contribution" : "Lab factor-farming score contribution") : "Unique remaining-skill course value"',
+    'STATE.skillRecMode === "factor" ? (skillServer() === "jp" && SKILL_DB.factorExact ? "U-tools exact factor-farming score contribution" : "Lab factor-farming score contribution") : "Unique remaining-skill course value"',
   );
 
   html=replaceOnce(
