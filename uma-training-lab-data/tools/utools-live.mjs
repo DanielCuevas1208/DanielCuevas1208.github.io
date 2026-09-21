@@ -64,10 +64,43 @@ function cleanMarkdownName(text) {
     .trim();
 }
 
-export function parseUtoolsReaderText(text, nameToId) {
+function candidateIdsForName(nameToIds, name) {
+  const raw = nameToIds?.get(name);
+  if (Array.isArray(raw)) return [...new Set(raw.map(Number).filter(Number.isInteger))];
+  const id = Number(raw);
+  return Number.isInteger(id) && id > 0 ? [id] : [];
+}
+
+function matchesDisplayedValue(value, displayedText) {
+  if (!Number.isFinite(Number(value))) return false;
+  const text = String(displayedText);
+  const decimals = (text.split('.')[1] || '').length;
+  const scale = 10 ** decimals;
+  return Math.round((Number(value) + Number.EPSILON) * scale) / scale === Number(text);
+}
+
+function resolveReaderId(name, displayedText, nameToIds, directById, seen) {
+  const candidates = candidateIdsForName(nameToIds, name).filter((id) => !seen.has(id));
+  if (!candidates.length) return null;
+  if (candidates.length === 1) return candidates[0];
+
+  const directCandidates = candidates.filter((id) => directById.has(id));
+  const displayedMatches = directCandidates.filter((id) =>
+    matchesDisplayedValue(directById.get(id)?.expectedEffect, displayedText));
+
+  if (displayedMatches.length === 1) return displayedMatches[0];
+
+  // Duplicate names are common for full vs inherited uniques. If the displayed
+  // rounded value cannot distinguish them, skipping enrichment is safer than
+  // attaching a min/max range or efficiency to the wrong mechanics row.
+  return null;
+}
+
+export function parseUtoolsReaderText(text, nameToIds, directRows = []) {
   const lines = String(text).split(/\r?\n/);
   const rows = [];
   const seen = new Set();
+  const directById = new Map((directRows || []).map((row) => [Number(row.id), row]));
   const valueRe = /^(-?\d+(?:\.\d+)?)\[バ\]/;
   const rangeRe = /(?:^|、)(-?\d+(?:\.\d+)?)\s*~\s*(-?\d+(?:\.\d+)?)\[バ\]/;
   const efficiencyRe = /(?:^|、)(-?\d+(?:\.\d+)?)\[バ\/Pt\]/;
@@ -84,9 +117,10 @@ export function parseUtoolsReaderText(text, nameToId) {
       name = candidate;
       break;
     }
-    const id = Number(nameToId?.get(name));
-    if (!Number.isInteger(id) || id <= 0 || seen.has(id)) continue;
-    const expectedEffect = Number(valueMatch[1]);
+    const displayedEffect = valueMatch[1];
+    const id = resolveReaderId(name, displayedEffect, nameToIds, directById, seen);
+    if (!Number.isInteger(id) || id <= 0) continue;
+    const expectedEffect = Number(displayedEffect);
     const rendered = lines[i].trim();
     const rangeMatch = rendered.match(rangeRe);
     const efficiencyMatch = rendered.match(efficiencyRe);
@@ -145,16 +179,16 @@ function mergeRows(primary, enrichment) {
   return [...byId.values()].sort((a, b) => b.expectedEffect - a.expectedEffect || a.id - b.id);
 }
 
-async function fetchReaderRows(url, nameToId) {
-  if (!nameToId) return [];
+async function fetchReaderRows(url, nameToIds, directRows = []) {
+  if (!nameToIds) return [];
   const text = await fetchText(`https://r.jina.ai/${url}`, {
     accept: 'text/plain',
     'user-agent': 'uma-training-lab-skill-db/1.0',
   });
-  return parseUtoolsReaderText(text, nameToId);
+  return parseUtoolsReaderText(text, nameToIds, directRows);
 }
 
-export async function fetchUtoolsExpectedEffects(courseId, style, nameToId = null) {
+export async function fetchUtoolsExpectedEffects(courseId, style, nameToIds = null) {
   const url = `${UTOOLS_SITE_BASE}/${Number(courseId)}/effects/${style}`;
   const fetchedAt = new Date().toISOString();
   let directError = null;
@@ -174,9 +208,9 @@ export async function fetchUtoolsExpectedEffects(courseId, style, nameToId = nul
   }
 
   if (directRows.length) {
-    if (!nameToId) return { url, rows: directRows, fetchedAt, transport: 'direct-rsc' };
+    if (!nameToIds) return { url, rows: directRows, fetchedAt, transport: 'direct-rsc' };
     try {
-      const readerRows = await fetchReaderRows(url, nameToId);
+      const readerRows = await fetchReaderRows(url, nameToIds, directRows);
       const rows = mergeRows(directRows, readerRows);
       return {
         url,
@@ -198,8 +232,8 @@ export async function fetchUtoolsExpectedEffects(courseId, style, nameToId = nul
     }
   }
 
-  if (!nameToId) throw directError;
-  const rows = await fetchReaderRows(url, nameToId);
+  if (!nameToIds) throw directError;
+  const rows = await fetchReaderRows(url, nameToIds);
   if (rows.length < 10) {
     throw new Error(`direct U-tools failed (${directError?.message || 'unknown'}); reader fallback matched only ${rows.length} skill rows`);
   }
