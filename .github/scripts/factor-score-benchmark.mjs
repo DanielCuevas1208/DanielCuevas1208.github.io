@@ -69,8 +69,7 @@ function parseSpecial(text) {
 function parseSupports(text) {
   const byName = new Map();
   const byId = new Map();
-  for (const line of String(text).split(/?
-/)) {
+  for (const line of String(text).split(/\r?\n/)) {
     if (!line.trim()) continue;
     const a = line.split('	');
     if (a.length < 60) continue;
