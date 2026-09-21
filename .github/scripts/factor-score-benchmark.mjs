@@ -510,6 +510,24 @@ function fitSubset(keys,label) {
 
 const currentScenarios=scenarios.filter(s=>s.startsWith('current_'));
 const currentFit=currentScenarios.length>=2?fitSubset(currentScenarios,'Current U-tools'):null;
+if (currentFit) {
+  const noEvent={...currentFit.p,eventWeight:0};
+  let cvRho=0,cvRmse=0;
+  for(const holdout of currentScenarios){
+    const train=currentScenarios.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
+    const scale=scaleFit(train.map(r=>rawScore(r,noEvent)),train.map(r=>r.target));
+    const test=datasets[holdout];
+    const predicted=test.map(r=>rawScore(r,noEvent)*scale), target=test.map(r=>r.target);
+    cvRho+=spearman(test,predicted);
+    cvRmse+=nrmse(predicted,target);
+  }
+  cvRho/=currentScenarios.length;
+  cvRmse/=currentScenarios.length;
+  const rows=currentScenarios.flatMap(s=>datasets[s]);
+  const scale=scaleFit(rows.map(r=>rawScore(r,noEvent)),rows.map(r=>r.target));
+  const predicted=rows.map(r=>rawScore(r,noEvent)*scale), target=rows.map(r=>r.target);
+  console.log(`Current hint-only ablation: CV Spearman=${cvRho.toFixed(4)} NRMSE=${cvRmse.toFixed(4)}; in-sample Spearman=${spearman(rows,predicted).toFixed(4)} NRMSE=${nrmse(predicted,target).toFixed(4)} scale=${scale.toFixed(6)}`);
+}
 
 const raw=allRows.map(r=>rawScore(r,best.p));
 const targets=allRows.map(r=>r.target);
