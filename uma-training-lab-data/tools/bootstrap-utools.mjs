@@ -27,12 +27,15 @@ const onlyStyle = args.style || null;
 
 const skillList = await loadSkills(skillsUrl);
 const skills = indexSkills(skillList);
-const nameToId = new Map();
+const nameToIds = new Map();
 for (const skill of skills.values()) {
   for (const rawName of [skill?.jpname, skill?.name_en, skill?.enname]) {
     const name = String(rawName || '').trim();
     if (!name) continue;
-    if (!nameToId.has(name) || skill.__geneParentId) nameToId.set(name, Number(skill.id));
+    const ids = nameToIds.get(name) || [];
+    const id = Number(skill.id);
+    if (!ids.includes(id)) ids.push(id);
+    nameToIds.set(name, ids);
   }
 }
 
@@ -73,7 +76,7 @@ for (const courseId of courseIds) {
       const dest = effectFile(root, 'jp', courseId, style);
       const existing = fs.existsSync(dest) ? readJson(dest) : null;
       const oldById = new Map((existing?.skills || []).map((row) => [Number(row.id), row]));
-      const source = await fetchUtoolsExpectedEffects(courseId, style, nameToId);
+      const source = await fetchUtoolsExpectedEffects(courseId, style, nameToIds);
       let changed = !existing;
       const rows = source.rows
         .map((row) => {
