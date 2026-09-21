@@ -83,7 +83,7 @@ jobs:
             JSON.parse(fs.readFileSync(`uma-training-lab-data/factor-score/rankings/chm2/${style}.json`,'utf8')),
           ]));
           if (model.schemaVersion !== 1 || model.modelVersion !== 'utools-exact-v1') throw new Error('Unexpected factor model schema/version');
-          if (Number(model.validation?.exactScoreMatches) !== 192 || Number(model.validation?.exactRankMatches) !== 192) {
+          if (Number(model.validation?.exactScoreMatches) !== 768 || Number(model.validation?.exactRankMatches) !== 768 || Number(model.validation?.exactTopSetMatches) !== 768) {
             throw new Error('Exact factor model parity metadata regressed');
           }
           if (!Array.isArray(exactInputs.cards) || exactInputs.cards.length < 100) throw new Error('Exact U-tools support input asset is missing or too small');
