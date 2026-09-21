@@ -1,26 +1,27 @@
-name: Benchmark factor score
+name: Verify factor score
 
 on:
   push:
     branches: [main]
     paths:
       - ".github/workflows/benchmark-factor-score.yml"
-      - ".github/scripts/factor-score-benchmark.mjs"
-      - ".github/scripts/patch-training-lab-factor-v2.mjs"
       - ".github/scripts/patch-training-lab-factor-exact.mjs"
-      - ".github/scripts/inspect-utools-factor-rsc.mjs"
-      - "uma-training-lab-data/skill-effects/jp/11203/**"
+      - "uma-training-lab-data/tools/utools-factor-score-exact.mjs"
+      - "uma-training-lab-data/tools/verify-utools-factor-exact.mjs"
+      - "uma-training-lab-data/factor-score/model.json"
+      - "uma-training-lab-data/factor-score/exact-pages/**"
+      - "uma-training-lab-data/factor-score/rankings/**"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: factor-score-benchmark
+  group: factor-score-verification
   cancel-in-progress: true
 
 jobs:
-  benchmark:
+  verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -28,25 +29,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Self-test factor HTML patchers
-        run: |
-          node .github/scripts/patch-training-lab-factor-v2.mjs --self-test
-          node .github/scripts/patch-training-lab-factor-exact.mjs --self-test
+
+      - name: Self-test exact factor HTML migration
+        run: node .github/scripts/patch-training-lab-factor-exact.mjs --self-test
+
+      - name: Verify exact U-tools factor parity
+        working-directory: uma-training-lab-data/tools
+        run: node verify-utools-factor-exact.mjs
 
       - name: Inspect U-tools factor page payload
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           set -o pipefail
           node .github/scripts/inspect-utools-factor-rsc.mjs | tee utools-factor-rsc.txt
 
-      - name: Fit interpretable U-tools factor model
+      - name: Fit legacy interpretable approximation
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           set -o pipefail
           node .github/scripts/factor-score-benchmark.mjs | tee factor-score-benchmark.txt
+
       - uses: actions/upload-artifact@v4
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         with:
-          name: factor-score-benchmark
+          name: factor-score-research
           path: |
             factor-score-benchmark.txt
             utools-factor-rsc.txt
