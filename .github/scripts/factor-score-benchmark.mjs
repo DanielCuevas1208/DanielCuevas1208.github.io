@@ -307,6 +307,14 @@ for (const skill of skillList) {
 const { byName: supportByName } = parseSupports(supportText);
 const whiteSkills = skillList.filter(s => Number(s.rarity) === 1);
 const sourcesBySkill = new Map(whiteSkills.map(s => [Number(s.id), sourceSet(s, skillById)]));
+const whiteByJpName = new Map();
+for (const skill of whiteSkills) {
+  const name = String(skill.jpname || '').trim();
+  if (!name) continue;
+  const rows = whiteByJpName.get(name) || [];
+  rows.push(skill);
+  whiteByJpName.set(name, rows);
+}
 const canonicalWhiteByAnyId = new Map();
 for (const skill of whiteSkills) {
   canonicalWhiteByAnyId.set(Number(skill.id), Number(skill.id));
@@ -337,33 +345,39 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
     const card=supportByName.get(normalizeName(label));
     if(card) deckIds.add(card.id); else missingCards.add(label);
   }
-  const covered = new Set();
-  for (const skill of whiteSkills) {
-    const src = sourcesBySkill.get(Number(skill.id));
-    if (!src) continue;
-    for (const deckId of deckIds) if (src.has(deckId)) { covered.add(Number(skill.id)); break; }
+  const coveredNames = new Set();
+  for (const deckId of deckIds) {
+    const deckCard=[...supportByName.values()].find(card=>card.id===deckId);
+    for (const hintName of deckCard?.skills || []) coveredNames.add(String(hintName).trim());
   }
   const rows=[];
   for (const [label,target] of bench.rows) {
     const card=supportByName.get(normalizeName(label));
     if(!card){missingCards.add(label);continue;}
     const entries=[];
-    for (const skill of whiteSkills) {
-      const effect=effectById.get(Number(skill.id));
-      if(!effect || !(Number(effect.expectedEffect)>0)) continue;
-      const src=sourcesBySkill.get(Number(skill.id))?.get(card.id);
-      if(!src) continue;
+    for (const hintName of card.skills || []) {
+      const candidates=(whiteByJpName.get(String(hintName).trim()) || [])
+        .map((skill) => {
+          const effect=effectById.get(Number(skill.id));
+          const src=sourcesBySkill.get(Number(skill.id))?.get(card.id);
+          return {skill,effect,src};
+        })
+        .filter((x)=>x.effect && Number(x.effect.expectedEffect)>0 && x.src && (x.src.hint||x.src.viaHint))
+        .sort((a,b)=>Number(b.effect.expectedEffect)-Number(a.effect.expectedEffect));
+      const chosen=candidates[0];
+      if(!chosen) continue;
       entries.push({
-        id:Number(skill.id),
-        value:Number(effect.expectedEffect),
-        cost:Number(skill.cost),
-        covered:covered.has(Number(skill.id)),
-        hint:src.hint||src.viaHint,
-        directHint:src.hint,
-        viaHint:src.viaHint,
-        event:src.event||src.viaEvent,
-        directEvent:src.event,
-        viaEvent:src.viaEvent,
+        id:Number(chosen.skill.id),
+        name:String(hintName).trim(),
+        value:Number(chosen.effect.expectedEffect),
+        cost:Number(chosen.skill.cost),
+        covered:coveredNames.has(String(hintName).trim()),
+        hint:true,
+        directHint:!!chosen.src.hint,
+        viaHint:!!chosen.src.viaHint,
+        event:false,
+        directEvent:false,
+        viaEvent:false,
       });
     }
     const exactEvents = (eventTopology.get(card.id) || []).map((event) => ({
@@ -375,7 +389,11 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
           value: effect && Number(effect.expectedEffect) > 0 ? Number(effect.expectedEffect) : 0,
           cost: skill ? Number(skill.cost) : NaN,
           rarity: skill ? Number(skill.rarity) : 1,
-          covered: covered.has(Number(reward.canonicalId)),
+          covered: (() => {
+            const rewardSkill=skillById.get(Number(reward.skillId));
+            const rewardName=String(rewardSkill?.jpname || '').trim();
+            return rewardName ? coveredNames.has(rewardName) : false;
+          })(),
         };
       }).filter((reward) => reward.value > 0)),
     })).filter((event) => event.choices.some((choice) => choice.length));
@@ -386,107 +404,65 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
 
 if (missingCards.size) console.error(`WARN: ${missingCards.size} benchmark card(s) did not map: ${[...missingCards].join(' | ')}`);
 
-function poissonHintUtility(lambda, hintLevelPerDraw, value, baseCost, p) {
-  if (!(lambda > 0) || !(value > 0)) return 0;
-  const maxK = 16;
-  let pk = Math.exp(-lambda);
-  let total = 0;
-  let mass = pk;
-  for (let k = 1; k <= maxK; k++) {
-    pk *= lambda / k;
-    mass += pk;
-    const totalHintLevel = Math.min(5, k * hintLevelPerDraw);
-    const effectiveCost = Number.isFinite(baseCost) && baseCost > 0
-      ? baseCost * (1 - discountForLevel(totalHintLevel))
-      : null;
-    const efficiency = effectiveCost ? value / effectiveCost * 100 : value;
-    total += pk * Math.pow(Math.max(1e-9, value), p.a) * Math.pow(Math.max(1e-9, efficiency), p.b);
-  }
-  if (mass < 0.999999) {
-    const totalHintLevel = 5;
-    const effectiveCost = Number.isFinite(baseCost) && baseCost > 0
-      ? baseCost * (1 - discountForLevel(totalHintLevel))
-      : null;
-    const efficiency = effectiveCost ? value / effectiveCost * 100 : value;
-    total += (1 - mass) * Math.pow(Math.max(1e-9, value), p.a) * Math.pow(Math.max(1e-9, efficiency), p.b);
-  }
-  return total;
-}
-
 function rawScore(row,p) {
   const card=row.card;
-  const hintLevelPerDraw=acquiredHintLevel(card);
-  const extra=Math.max(hintCountUp(card), Number(row.verifiedExtraHints) || 0);
-  const tableSize=Math.max(1,card.skills.length);
+  const hintDiscount=discountForLevel(acquiredHintLevel(card));
   const hintFreq=Math.max(0,Number(card.status.hintFrequency)||0)+Math.max(0,Number(card.unique.hintFrequency)||0);
-  const specialty=Math.max(0,Number(card.status.specialtyRate)||0)+Math.max(0,Number(card.unique.specialtyRate)||0);
-  const baseAppearance=500/550;
-  const appearance=(500+specialty)/(550+specialty);
-  const appearanceRatio=appearance/baseAppearance;
-  const totalHintDraws=p.baseHintDraws*(1+hintFreq/100)*appearanceRatio*(1+Math.max(0,extra));
-  const lambda=totalHintDraws/tableSize;
-  let hintSum=0,genericEventSum=0;
+  const hintRate=Math.pow(1+hintFreq/100,p.hintRatePower);
+  const tableSize=Math.max(1,card.skills.length);
+  let hintSum=0;
 
   for(const x of row.entries){
     const deckMul=x.covered?p.deckPenalty:1;
     if(deckMul<=0) continue;
     const baseCost=Number.isFinite(x.cost)&&x.cost>0?x.cost:null;
-    if(x.hint){
-      hintSum+=poissonHintUtility(lambda,hintLevelPerDraw,x.value,baseCost,p)*deckMul;
-    }
-    if(x.event){
-      const eventDiscount=discountForLevel(p.eventHintLevel);
-      const effCost=baseCost?baseCost*(1-eventDiscount):null;
-      const eff=effCost?x.value/effCost*100:x.value;
-      let u=Math.pow(Math.max(1e-9,x.value),p.a)*Math.pow(Math.max(1e-9,eff),p.b);
-      if(x.viaEvent&&!x.directEvent) u*=p.viaEventWeight;
-      genericEventSum+=u*deckMul;
-    }
+    const effCost=baseCost?baseCost*(1-hintDiscount):null;
+    const eff=effCost?x.value/effCost*100:x.value;
+    hintSum+=Math.pow(Math.max(1e-9,x.value),p.a)
+      *Math.pow(Math.max(1e-9,eff),p.b)*deckMul;
   }
 
-  let eventSum=genericEventSum;
-  if (row.exactEvents?.length) {
-    eventSum=0;
-    for (const event of row.exactEvents) {
-      let bestChoice=0;
-      for (const choice of event.choices) {
-        let choiceValue=0;
-        for (const reward of choice) {
-          const deckMul=reward.covered?p.deckPenalty:1;
-          if(deckMul<=0) continue;
-          const baseCost=Number.isFinite(reward.cost)&&reward.cost>0?reward.cost:null;
-          const effCost=baseCost?baseCost*(1-discountForLevel(reward.hintLevel)):null;
-          const eff=effCost?reward.value/effCost*100:reward.value;
-          const sparkMultiplier=Number(reward.rarity)>=2?p.goldSparkMultiplier:1;
-          choiceValue+=Math.pow(Math.max(1e-9,reward.value),p.a)
-            *Math.pow(Math.max(1e-9,eff),p.b)*deckMul*sparkMultiplier;
-        }
-        bestChoice=Math.max(bestChoice,choiceValue);
+  const usefulHints=row.entries.length;
+  const tableQuality=hintSum/tableSize;
+  const breadth=1+p.breadth*Math.log1p(usefulHints);
+  let eventSum=0;
+  for (const event of row.exactEvents || []) {
+    let bestChoice=0;
+    for (const choice of event.choices) {
+      let choiceValue=0;
+      for (const reward of choice) {
+        const deckMul=reward.covered?p.deckPenalty:1;
+        if(deckMul<=0) continue;
+        const baseCost=Number.isFinite(reward.cost)&&reward.cost>0?reward.cost:null;
+        const effCost=baseCost?baseCost*(1-discountForLevel(reward.hintLevel)):null;
+        const eff=effCost?reward.value/effCost*100:reward.value;
+        const sparkMultiplier=Number(reward.rarity)>=2?p.goldSparkMultiplier:1;
+        choiceValue+=Math.pow(Math.max(1e-9,reward.value),p.a)
+          *Math.pow(Math.max(1e-9,eff),p.b)*deckMul*sparkMultiplier;
       }
-      eventSum+=bestChoice;
+      bestChoice=Math.max(bestChoice,choiceValue);
     }
+    eventSum+=bestChoice;
   }
-  return hintSum+p.eventWeight*eventSum;
+  return tableQuality*breadth*hintRate+p.eventWeight*eventSum;
 }
 
 const scenarios=Object.keys(datasets);
 const allRows=scenarios.flatMap(s=>datasets[s]);
 const grid={
-  a:[0.20,0.35,0.50,0.75],
-  b:[0.35,0.50,0.65,0.80],
-  baseHintDraws:[2,3,4,5,6,7],
-  eventWeight:[0.025,0.05,0.10,0.20],
+  a:[0.15,0.20,0.30,0.45],
+  b:[0.35,0.50,0.65],
+  breadth:[0,0.15,0.30,0.50],
+  hintRatePower:[0.75,1.00,1.25,1.50],
+  eventWeight:[0,0.025,0.05,0.10,0.20],
   goldSparkMultiplier:[1.0,1.5,2.0],
   deckPenalty:[0.25,0.50,0.75,1.00],
-  viaEventWeight:[0.50],
-  eventHintLevel:[2],
 };
 let tested=0,best=null;
-for(const a of grid.a)for(const b of grid.b)for(const baseHintDraws of grid.baseHintDraws)
-for(const eventWeight of grid.eventWeight)for(const goldSparkMultiplier of grid.goldSparkMultiplier)
-for(const deckPenalty of grid.deckPenalty)for(const viaEventWeight of grid.viaEventWeight)
-for(const eventHintLevel of grid.eventHintLevel){
-  const p={a,b,baseHintDraws,eventWeight,goldSparkMultiplier,deckPenalty,viaEventWeight,eventHintLevel};
+for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
+for(const hintRatePower of grid.hintRatePower)for(const eventWeight of grid.eventWeight)
+for(const goldSparkMultiplier of grid.goldSparkMultiplier)for(const deckPenalty of grid.deckPenalty){
+  const p={a,b,breadth,hintRatePower,eventWeight,goldSparkMultiplier,deckPenalty};
   let cvLoss=0,cvRho=0,cvRmse=0;
   for(const holdout of scenarios){
     const train=scenarios.filter(s=>s!==holdout).flatMap(s=>datasets[s]);
