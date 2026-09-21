@@ -93,12 +93,13 @@ function patchHtml(source) {
       function skillFactorFormula() {
         const formula = SKILL_DB.factorModel?.formula || {};
         return {
-          valueExponent: Number.isFinite(Number(formula.valueExponent)) ? Number(formula.valueExponent) : 0.15,
+          valueExponent: Number.isFinite(Number(formula.valueExponent)) ? Number(formula.valueExponent) : 0,
           efficiencyExponent: Number.isFinite(Number(formula.efficiencyExponent)) ? Number(formula.efficiencyExponent) : 0.65,
-          hintFrequencyExponent: Number.isFinite(Number(formula.hintFrequencyExponent)) ? Number(formula.hintFrequencyExponent) : 0.75,
-          eventWeight: Number.isFinite(Number(formula.eventWeight)) ? Number(formula.eventWeight) : 0.025,
-          deckCoveredMultiplier: Number.isFinite(Number(formula.deckCoveredMultiplier)) ? Number(formula.deckCoveredMultiplier) : 0.75,
-          scale: Number.isFinite(Number(formula.scale)) ? Number(formula.scale) : 50.25863,
+          tableExponent: Number.isFinite(Number(formula.tableExponent)) ? Number(formula.tableExponent) : 1.10,
+          hintFrequencyExponent: Number.isFinite(Number(formula.hintFrequencyExponent)) ? Number(formula.hintFrequencyExponent) : 0.60,
+          eventWeight: Number.isFinite(Number(formula.eventWeight)) ? Number(formula.eventWeight) : 0.015,
+          deckCoveredMultiplier: Number.isFinite(Number(formula.deckCoveredMultiplier)) ? Number(formula.deckCoveredMultiplier) : 0.80,
+          scale: Number.isFinite(Number(formula.scale)) ? Number(formula.scale) : 62.795762,
         };
       }
       function skillFactorCardContext(cardId) {
@@ -221,7 +222,7 @@ function patchHtml(source) {
               ? formula.deckCoveredMultiplier
               : 1;
             const contribution =
-              (utility.utility / ctx.hintTable) *
+              (utility.utility / Math.pow(ctx.hintTable, formula.tableExponent)) *
               hintFrequencyMultiplier *
               deckMultiplier *
               formula.scale;
@@ -327,13 +328,13 @@ function patchHtml(source) {
         $("skillRecTitle").textContent = "Factor-farm support ranking";
         const validation = SKILL_DB.factorModel?.validation;
         $("skillRecMeta").textContent = validation
-          ? \`Lab v2 · CV ρ \${Number(validation.leaveOneStyleOutSpearman).toFixed(2)}\`
-          : "Lab v2";
+          ? \`Lab v3 · CV ρ \${Number(validation.leaveOneStyleOutSpearman).toFixed(2)}\`
+          : "Lab v3";
         if (formulaEl) {
           formulaEl.classList.remove("hidden");
           const eventState = SKILL_DB.factorEvents ? "exact event choices" : "hint-only fallback";
           formulaEl.textContent =
-            \`Calibrated U-tools copycat: literal hint tables (no version double-counting), course value^0.15 × SP efficiency^0.65, Hint Frequency^0.75, 0.75× for deck-covered hints, plus \${eventState} at 0.025×. Fit to the current four Longchamp U-tools style rankings; experimental, not U-tools' published formula.\`;
+            \`Factor Lab v3: literal hint tables (no version double-counting), course length-per-SP efficiency^0.65 ÷ table size^1.10, Hint Frequency^0.60, 0.80× for deck-covered hints, plus \${eventState} at 0.015×. Live-calibrated to the current four Longchamp U-tools style rankings; experimental, not U-tools' published formula.\`;
         }
         grid.innerHTML = ranked.map((card) => {
           const group = cardsById.get(card.id);
@@ -452,7 +453,7 @@ function runSelfTest() {
     'factorModel: null',
     'renderSkillFactorRecommendations(server, deckIds, section, grid, formula);',
     'row.p05Effect != null ? Number(row.p05Effect) : NaN',
-    'literal hint tables (no version double-counting)',
+    'Factor Lab v3: literal hint tables (no version double-counting)',
   ]) {
     if (!patched.includes(expected)) throw new Error(`Self-test missing: ${expected}`);
   }
