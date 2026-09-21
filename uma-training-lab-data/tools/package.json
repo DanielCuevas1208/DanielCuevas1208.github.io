@@ -11,6 +11,7 @@
     "evaluate:pending": "node evaluate-pending.mjs",
     "manifest": "node build-manifest.mjs",
     "validate": "node validate.mjs",
-    "validate:live": "node validate-live.mjs"
+    "validate:live": "node validate-live.mjs",
+    "factor:events": "node build-factor-events.mjs"
   }
 }
