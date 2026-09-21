@@ -203,7 +203,7 @@ function patchHtml(source) {
           if (!Number.isInteger(id) || deckIds.has(id)) continue;
           if (!skillSourceAllowed(id, server)) continue;
           const ctx = skillFactorCardContext(id);
-          if (!ctx || !ctx.hintTable) continue;
+          if (!ctx || !ctx.hintTable || Number(ctx.card?.rarity) < 2) continue;
 
           const hintFrequencyMultiplier = Math.pow(
             1 + ctx.hintFreq / 100,
@@ -334,7 +334,7 @@ function patchHtml(source) {
           formulaEl.classList.remove("hidden");
           const eventState = SKILL_DB.factorEvents ? "exact event choices" : "hint-only fallback";
           formulaEl.textContent =
-            \`Factor Lab v3: literal hint tables (no version double-counting), course length-per-SP efficiency^0.65 ÷ table size^1.10, Hint Frequency^0.60, 0.80× for deck-covered hints, plus \${eventState} at 0.015×. Live-calibrated to the current four Longchamp U-tools style rankings; experimental, not U-tools' published formula.\`;
+            \`Factor Lab v3: SR/SSR only, literal hint tables (no version double-counting), course length-per-SP efficiency^0.65 ÷ table size^1.10, Hint Frequency^0.60, 0.80× for deck-covered hints, plus \${eventState} at 0.015×. Live-calibrated to the current four Longchamp U-tools style rankings; experimental, not U-tools' published formula.\`;
         }
         grid.innerHTML = ranked.map((card) => {
           const group = cardsById.get(card.id);
