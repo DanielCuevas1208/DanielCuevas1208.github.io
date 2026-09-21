@@ -33,6 +33,7 @@ function keyFrequency(text) {
   return [...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
 }
 
+let inspected=0;
 for (const style of ['runner','leader','betweener','chaser']) {
   const url=`${BASE}/${style}`;
   const response=await fetch(url,{
@@ -42,7 +43,11 @@ for (const style of ['runner','leader','betweener','chaser']) {
       'user-agent':'Mozilla/5.0 (compatible; UmaTrainingLabFactorInspector/1.0)',
     },
   });
-  if(!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
+  if(!response.ok) {
+    console.log(`SKIP ${style}: direct factor HTML returned ${response.status} ${response.statusText}`);
+    continue;
+  }
+  inspected++;
   const html=await response.text();
   const rsc=decodeRscChunks(html);
   console.log(`\n=== ${style} html=${html.length} rsc=${rsc.length} ===`);
@@ -55,4 +60,8 @@ for (const style of ['runner','leader','betweener','chaser']) {
   for(const hit of windowsAround(rsc,probes,1200)){
     console.log(`\n--- ${style} probe ${hit.needle} @ ${hit.index} ---\n${hit.text}\n--- end ---`);
   }
+}
+
+if (!inspected) {
+  console.log('No raw factor pages were directly accessible from this runner; rendered-page verification remains available through the benchmark targets.');
 }
