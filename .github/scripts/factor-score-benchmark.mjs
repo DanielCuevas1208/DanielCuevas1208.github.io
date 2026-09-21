@@ -480,6 +480,22 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
 
 if (missingCards.size) console.error(`WARN: ${missingCards.size} benchmark card(s) did not map: ${[...missingCards].join(' | ')}`);
 
+const levelChecks=Object.entries(datasets)
+  .filter(([scenario])=>scenario.startsWith('current_'))
+  .flatMap(([scenario,rows])=>rows
+    .filter((row)=>Number.isFinite(Number(row.utoolsLevel)))
+    .map((row)=>({
+      scenario,
+      label:row.label,
+      utools:Number(row.utoolsLevel),
+      card:hintBonusLevel(row.card),
+    })));
+const levelMismatches=levelChecks.filter((row)=>row.utools!==row.card);
+console.log(`U-tools displayed Lv audit: ${levelChecks.length-levelMismatches.length}/${levelChecks.length} match card Hint Lv Up.`);
+if (levelMismatches.length) {
+  console.error('WARN Hint Lv mismatches:', levelMismatches.slice(0,20));
+}
+
 function rawScore(row,p) {
   const card=row.card;
   const hintDiscount=discountForLevel(acquiredHintLevel(card));
@@ -527,13 +543,13 @@ const scenarios=Object.keys(datasets);
 const allRows=scenarios.flatMap(s=>datasets[s]);
 const grid={
   a:[0],
-  b:[0.60,0.65,0.70,0.75,0.80,0.85,0.90],
+  b:[0.55,0.60,0.65,0.70,0.75],
   breadth:[0],
-  tableExponent:[0.90,1.00,1.10],
-  hintRatePower:[0.30,0.40,0.50,0.60,0.70],
-  eventWeight:[0,0.00625,0.0125,0.01875,0.025],
+  tableExponent:[1.00,1.05,1.10,1.15,1.20,1.25,1.30],
+  hintRatePower:[0.40,0.50,0.60,0.70,0.80],
+  eventWeight:[0.010,0.015,0.01875,0.0225,0.025,0.030],
   goldSparkMultiplier:[1.0],
-  deckPenalty:[0.75,0.80,0.85,0.90,0.95],
+  deckPenalty:[0.70,0.75,0.80,0.85,0.90],
 };
 let tested=0,best=null;
 for(const a of grid.a)for(const b of grid.b)for(const breadth of grid.breadth)
