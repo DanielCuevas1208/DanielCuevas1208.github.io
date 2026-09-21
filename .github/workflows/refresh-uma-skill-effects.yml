@@ -34,6 +34,10 @@ jobs:
         working-directory: uma-training-lab-data/tools
         run: npm run bootstrap:utools
 
+      - name: Build support event topology for factor scoring
+        working-directory: uma-training-lab-data/tools
+        run: npm run factor:events
+
       - name: Cross-check representative U-tools values and ranges
         working-directory: uma-training-lab-data/tools
         run: node audit-utools-reference.mjs
@@ -56,13 +60,13 @@ jobs:
 
       - name: Commit live U-tools refresh
         run: |
-          if git diff --quiet -- uma-training-lab-data/skill-effects; then
-            echo "Live U-tools data is already current."
+          if git diff --quiet -- uma-training-lab-data/skill-effects uma-training-lab-data/factor-score; then
+            echo "Live U-tools and factor-score data are already current."
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add uma-training-lab-data/skill-effects
-            git commit -m "data: refresh live U-tools skill effects"
+            git add uma-training-lab-data/skill-effects uma-training-lab-data/factor-score
+            git commit -m "data: refresh live U-tools and factor-score data"
             git pull --rebase origin main
             git push
           fi
