@@ -14,6 +14,7 @@ function stablePayload(data){
     eventKey:data.eventKey,
     style:data.style,
     cards:data.cards,
+    skillMap:data.skillMap,
   };
 }
 
