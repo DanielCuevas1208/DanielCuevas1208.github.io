@@ -87,6 +87,16 @@ if(!hits.length) {
 } else {
   console.log('\nMatched chunks:',hits);
 }
+console.log('\n=== SEARCHING PAGE CHUNKS FOR BASE-SKILL HELPER MODULE 88881 ===');
+for(const src of srcs){
+  const url=src.startsWith('http')?src:`${BASE}${src}`;
+  let js;
+  try{js=await fetchText(url);}catch{continue;}
+  const idx=js.indexOf('88881:');
+  if(idx<0) continue;
+  console.log(`\n=== MODULE 88881 ${src} @ ${idx} ===\n${js.slice(Math.max(0,idx-1800),Math.min(js.length,idx+7000))}\n=== END MODULE 88881 ===`);
+}
+
 console.log('\n=== SEARCHING PAGE CHUNKS FOR fw EXPORT ===');
 for(const src of srcs){
   const url=src.startsWith('http')?src:`${BASE}${src}`;
