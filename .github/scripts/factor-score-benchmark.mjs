@@ -204,6 +204,25 @@ async function fetchJson(url) {
   return JSON.parse(await fetchText(url));
 }
 
+
+async function loadSupportHintCountMeta() {
+  const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
+  const hash = manifest['support-cards'];
+  if (!hash) throw new Error('GameTora manifest has no support-cards');
+  const cards = await fetchJson(`${GAMETORA_BASE}/data/umamusume/support-cards.${hash}.json`);
+  const out = new Map();
+  for (const card of cards || []) {
+    const id = Number(card?.support_id);
+    if (!Number.isInteger(id)) continue;
+    let hintCount = 0;
+    for (const effect of card?.unique?.effects || []) {
+      if (Number(effect?.type) === 33) hintCount += Math.max(0, Number(effect?.value) || 0);
+    }
+    if (hintCount > 0) out.set(id, hintCount);
+  }
+  return out;
+}
+
 async function loadEventTopology(canonicalWhiteByAnyId) {
   const manifest = await fetchJson(`${GAMETORA_BASE}/data/manifests/umamusume.json`);
   const manifestUrl = (key) => {
@@ -282,6 +301,13 @@ try {
 } catch (error) {
   console.error(`WARN: exact support-event topology unavailable: ${error.message}`);
 }
+let supportHintCountMeta = new Map();
+try {
+  supportHintCountMeta = await loadSupportHintCountMeta();
+  console.log(`Loaded Hint Count Up metadata for ${supportHintCountMeta.size} GameTora support cards.`);
+} catch (error) {
+  console.error(`WARN: GameTora support unique metadata unavailable: ${error.message}`);
+}
 
 const datasets = {};
 const missingCards = new Set();
@@ -334,7 +360,7 @@ for (const [scenario, bench] of Object.entries(availableBenchmarks)) {
         };
       }).filter((reward) => reward.value > 0)),
     })).filter((event) => event.choices.some((choice) => choice.length));
-    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents });
+    rows.push({ scenario,style:bench.style,courseId:bench.courseId,label,target,card,entries,exactEvents,verifiedExtraHints:supportHintCountMeta.get(card.id) || 0 });
   }
   if (rows.length >= 5) datasets[scenario]=rows;
 }
@@ -346,7 +372,7 @@ function rawScore(row,p) {
   const level=acquiredHintLevel(card);
   const hintDiscount=discountForLevel(level);
   const pHint=hintChance(card);
-  const extra=hintCountUp(card);
+  const extra=Math.max(hintCountUp(card), Number(row.verifiedExtraHints) || 0);
   const tableSize=Math.max(1,card.skills.length);
   let hintSum=0,genericEventSum=0,usefulHints=0;
   for(const x of row.entries){
