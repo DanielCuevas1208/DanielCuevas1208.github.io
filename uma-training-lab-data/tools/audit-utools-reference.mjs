@@ -77,4 +77,16 @@ if (ambiguous.length !== 0) {
 }
 process.stdout.write('PASS duplicate full/inherited reader disambiguation.\n');
 
+const factorEventsFile = path.resolve(here, '..', 'factor-score', 'support-events.json');
+if (!fs.existsSync(factorEventsFile)) throw new Error('Missing factor-score/support-events.json');
+const factorEvents = readJson(factorEventsFile);
+const neoEvents = factorEvents.cards?.['30287'] || [];
+if (!neoEvents.length) throw new Error('Factor event topology is missing Neo Universe support 30287');
+const neoMultiHintChoice = neoEvents.some((event) =>
+  (event.choices || []).some((choice) => Array.isArray(choice) && choice.length >= 2));
+if (!neoMultiHintChoice) {
+  throw new Error('Neo Universe support 30287 should contain a multi-skill event choice in exact topology');
+}
+process.stdout.write(`PASS factor event topology: ${Object.keys(factorEvents.cards || {}).length} cards; Neo multi-hint event preserved.\n`);
+
 process.stdout.write('U-tools reference audit passed.\n');
