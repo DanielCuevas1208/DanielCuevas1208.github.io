@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10906,
   "style": "runner",
-  "generatedAt": "2026-09-21T02:50:16.059Z",
+  "generatedAt": "2026-10-01T17:30:10.104Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10906/effects/runner",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 117,
-    "liveDisplayOnlyRows": 442
+    "liveDisplayOnlyRows": 447
   },
   "skills": [
     {
@@ -1364,6 +1364,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 204721,
+      "expectedEffect": 0.93209105,
+      "minEffect": 0.83,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 2.3,
+      "activationRate": null,
+      "pointEfficiency": 0.29,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:87da35e63a817298",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-01T17:30:10.104Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 204041,
       "expectedEffect": 0.915025725,
       "minEffect": 0.06,
@@ -2080,6 +2098,42 @@
       "mechanicsHash": "fnv1a64:6a347cf30f099599",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:50:16.059Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 920181,
+      "expectedEffect": 0.732593525,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:e661b3bc04754dc8",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-01T17:30:10.104Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 120181,
+      "expectedEffect": 0.73,
+      "minEffect": 0.66,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 1.67,
+      "activationRate": null,
+      "pointEfficiency": 0.37,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:097dba1f21674e73",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-01T17:30:10.104Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
@@ -5018,6 +5072,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 204722,
+      "expectedEffect": 0.406543975,
+      "minEffect": 0.37,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 1.02,
+      "activationRate": null,
+      "pointEfficiency": 0.25,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:7ee969f317c0f90b",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-01T17:30:10.104Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 910141,
       "expectedEffect": 0.40627757500000006,
       "minEffect": null,
@@ -6635,6 +6707,24 @@
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:50:16.059Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 204792,
+      "expectedEffect": 0.343821,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": 0.19,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:93bc26495af7ad65",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-01T17:30:10.104Z",
+      "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
     {
