@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10907,
   "style": "betweener",
-  "generatedAt": "2026-10-01T17:30:27.566Z",
+  "generatedAt": "2026-10-14T15:57:54.396Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10907/effects/betweener",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 135,
-    "liveDisplayOnlyRows": 544
+    "liveDisplayOnlyRows": 546
   },
   "skills": [
     {
@@ -2732,6 +2732,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 911081,
+      "expectedEffect": 0.800958425,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:f72f47b859f56a97",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-14T15:57:54.396Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 920181,
       "expectedEffect": 0.800958425,
       "minEffect": null,
@@ -2746,6 +2764,24 @@
       "mechanicsHash": "fnv1a64:e661b3bc04754dc8",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-10-01T17:30:27.566Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 111081,
+      "expectedEffect": 0.8,
+      "minEffect": 0.73,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 1.79,
+      "activationRate": null,
+      "pointEfficiency": 0.4,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:6f09afff1a14fcf3",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-10-14T15:57:54.396Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
