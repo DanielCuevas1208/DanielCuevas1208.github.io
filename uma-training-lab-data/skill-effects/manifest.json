@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-15T15:54:02.180Z",
-  "revision": "fnv1a64:fc8a61ba56aa6871",
+  "generatedAt": "2026-10-16T15:35:38.800Z",
+  "revision": "fnv1a64:7c9693be439df26e",
   "pathTemplate": "{server}/{courseId}/{style}.json",
   "servers": {
     "global": {
