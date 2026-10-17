@@ -14,6 +14,7 @@ import {
   readJson,
 } from './lib.mjs';
 import { isGlobalCourseAvailable } from './course-policy.mjs';
+import {hasCurrentConditionPolicy} from './global-delta-policy.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', 'skill-effects');
@@ -57,7 +58,8 @@ export async function findGlobalPending({ skillsUrl = DEFAULT_SKILLS_URL, course
         if (mechanicsEqualAcrossServers(skill)) continue;
         const expectedHash = mechanicsHash(skill, 'global');
         const row = globalRows.get(id);
-        if (!isCurrentGlobalDifferenceRow(row, expectedHash, Number(jpRow.expectedEffect))) pending.push(id);
+        if (!isCurrentGlobalDifferenceRow(row, expectedHash, Number(jpRow.expectedEffect))
+            || (row?.source!=='manual' && !hasCurrentConditionPolicy(skill,row))) pending.push(id);
       }
 
       if (pending.length) groups.push({ courseId, style: runStyle, skillIds: pending });

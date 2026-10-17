@@ -31,3 +31,28 @@ if (/EnhancedHpPolicy/.test(source)) {
 
 if (changed) fs.writeFileSync(target, source, 'utf8');
 process.stdout.write(`Umalator compatibility patch ${changed ? 'applied' : 'already present'}: ${target}\n`);
+
+const conditionsFile=path.join(path.dirname(target),'ActivationConditions.ts');
+let conditions=fs.readFileSync(conditionsFile,'utf8');
+if(!conditions.includes('random_lot_shared:')){
+  const anchor='\trandom_lot: immediate({';
+  if(!conditions.includes(anchor)) throw new Error('Cannot locate upstream random lottery condition');
+  conditions=conditions.replace(anchor,`\trandom_lot_shared: immediate({
+    filterEq(regions: RegionList, lot: number) {
+      return [regions, (s: RaceState) => s.randomLot < lot] as [RegionList, DynamicCondition];
+    }
+  }),
+${anchor}`);
+}
+if(conditions.includes('popularity: noopImmediate,')){
+  const comparisons={Eq:'===',Neq:'!==',Lt:'<',Lte:'<=',Gt:'>',Gte:'>='};
+  const filters=Object.entries(comparisons).map(([name,op])=>`
+    filter${name}(regions: RegionList, value: number, _0: CourseData, _1: HorseParameters, extra: RaceParameters) {
+      return extra.popularity ${op} value ? regions : new RegionList();
+    }`).join(',');
+  conditions=conditions.replace('popularity: noopImmediate,',`popularity: immediate({${filters}\n  }),`);
+}else if(!conditions.includes('return extra.popularity === value')){
+  throw new Error('Upstream popularity condition changed; audit compatibility patch');
+}
+fs.writeFileSync(conditionsFile,conditions,'utf8');
+console.log('Umalator shared lottery and popularity compatibility verified.');

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import {CONDITION_POLICY_VERSION,hasCurrentConditionPolicy} from './global-delta-policy.mjs';
 import {
   DEFAULT_SKILLS_URL,
   STYLE_PROFILE,
@@ -180,6 +181,7 @@ for (const id of skillIds) {
       && Number(current.samples) === samples
       && current.evaluator === EVALUATOR
       && Number(current.methodVersion) >= METHOD_VERSION
+      && hasCurrentConditionPolicy(skill,current)
       && current.evaluatorRevision === evaluatorRevision
       && Number.isFinite(Number(current.referenceExpectedEffect))
       && Math.abs(Number(current.referenceExpectedEffect) - Number(ref.expectedEffect)) <= 1e-12) continue;
@@ -251,6 +253,7 @@ for (const item of candidates) {
     mechanicsHash: item.hash,
     source: 'utools-delta-global',
     methodVersion: METHOD_VERSION,
+    conditionPolicyVersion: CONDITION_POLICY_VERSION,
     rangeMethod: 'Global Umalator distribution shifted to the live U-tools-anchored corrected mean',
     referenceExpectedEffect: Number(item.ref.expectedEffect),
     referenceSourceUpdatedAt: item.ref.sourceUpdatedAt || null,

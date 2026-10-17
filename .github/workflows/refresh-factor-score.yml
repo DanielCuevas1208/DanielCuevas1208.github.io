@@ -11,6 +11,7 @@ on:
       - "uma-training-lab-data/tools/bootstrap-utools-factor-inputs.mjs"
       - "uma-training-lab-data/tools/bootstrap-utools-factor-exact-pages.mjs"
       - "uma-training-lab-data/tools/utools-factor-rsc.mjs"
+      - "uma-training-lab-data/tools/factor-snapshot.mjs"
       - "uma-training-lab-data/tools/utools-factor-score-exact.mjs"
       - "uma-training-lab-data/tools/verify-utools-factor-exact.mjs"
       - "uma-training-lab-data/factor-score/model.json"
@@ -34,6 +35,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Test historical snapshot handling
+        run: node --test uma-training-lab-data/tools/factor-snapshot.test.mjs
 
       - name: Self-test factor ranking parser
         shell: bash
@@ -118,8 +122,8 @@ jobs:
               echo "Factor-score data is already current."
               return 0
             fi
-            git add uma-training-lab-data/factor-score
-            git commit -m "data: refresh factor-score support events"
+            git add uma-training-lab-data/factor-score || return $?
+            git commit -m "data: refresh factor-score support events" || return $?
             git push
           }
 
@@ -130,5 +134,10 @@ jobs:
           echo "Main advanced during factor refresh; regenerating on the latest tree."
           git fetch origin main
           git reset --hard origin/main
-          (cd uma-training-lab-data/tools && node build-factor-events.mjs && node bootstrap-utools-factor-rankings.mjs)
+          (cd uma-training-lab-data/tools && \
+            node bootstrap-utools-factor-inputs.mjs && \
+            node bootstrap-utools-factor-exact-pages.mjs && \
+            node build-factor-events.mjs && \
+            node bootstrap-utools-factor-rankings.mjs && \
+            node verify-utools-factor-exact.mjs)
           publish_if_changed

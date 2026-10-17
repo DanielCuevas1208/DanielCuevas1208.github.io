@@ -1,4 +1,5 @@
 const UTOOLS_BASE='https://xn--gck1f423k.xn--1bvt37a.tools';
+export class FactorPageUnavailableError extends Error {}
 
 function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
 
@@ -52,6 +53,7 @@ function jsonValuesForKey(text,key,open,close){
 
 export function parseUtoolsFactorRsc(html){
   const rsc=decodeRscChunks(html);
+  if(rsc.includes('NEXT_HTTP_ERROR_FALLBACK;404')) throw new FactorPageUnavailableError('U-tools event page is no longer published (Next.js 404)');
   if(!rsc) throw new Error('Factor page contained no decodable Next.js RSC payload');
 
   const supportCards=jsonValuesForKey(rsc,'supportCards','[',']')
@@ -86,6 +88,7 @@ async function fetchRaw(url,attempts=2){
         },
         redirect:'follow',
       });
+      if(response.status===404) throw new FactorPageUnavailableError(`404: ${url}`);
       if(!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
       return {text:await response.text(),finalUrl:response.url};
     }catch(error){

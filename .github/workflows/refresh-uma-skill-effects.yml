@@ -117,6 +117,13 @@ jobs:
           cp .github/scripts/umalator-current-gain.ts .cache/uma-tools/uma-skill-tools/.training-lab-current-gain.ts
           cp .github/scripts/umalator-gain-compat.ts .cache/uma-tools/uma-skill-tools/tools/gain.ts
 
+      - name: Verify shared lottery and popularity conditions
+        if: steps.pending.outputs.count != '0'
+        working-directory: .cache/uma-tools/uma-skill-tools
+        run: |
+          cp "$GITHUB_WORKSPACE/.github/scripts/umalator-condition-regression.ts" .training-lab-condition-regression.ts
+          npx ts-node --transpile-only .training-lab-condition-regression.ts
+
       - name: Build current JP and Global skill definitions
         if: steps.pending.outputs.count != '0'
         working-directory: uma-training-lab-data/tools

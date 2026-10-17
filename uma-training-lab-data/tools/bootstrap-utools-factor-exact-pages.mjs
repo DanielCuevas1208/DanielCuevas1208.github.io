@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { fetchUtoolsFactorPage } from './utools-factor-rsc.mjs';
+import { fetchFactorPageOrSnapshot } from './factor-snapshot.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..','factor-score','exact-pages');
@@ -42,8 +42,10 @@ for(const event of events){
     styles:{},
   };
   for(const style of styles){
+    const snapshot=await fetchFactorPageOrSnapshot(event.eventKey,style);
+    if(snapshot.archived) console.log(`${event.eventKey}/${style}: upstream event unavailable; preserving verified historical snapshot from ${snapshot.page.fetchedAt}`);
     const data={
-      ...(await fetchUtoolsFactorPage(event.eventKey,style)),
+      ...snapshot.page,
       courseId:event.courseId,
     };
     const dir=path.join(root,event.eventKey);
