@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { fetchUtoolsFactorRanking } from './utools-factor-live.mjs';
+import { fetchFactorPageOrSnapshot } from './factor-snapshot.mjs';
 
 const here=path.dirname(fileURLToPath(import.meta.url));
 const root=path.resolve(here,'..','factor-score','rankings');
@@ -25,6 +26,11 @@ function stablePayload(data){
 let changed=0;
 for(const eventKey of events){
   for(const style of styles){
+    const snapshot=await fetchFactorPageOrSnapshot(eventKey,style);
+    if(snapshot.archived){
+      console.log(`${eventKey}/${style}: upstream event unavailable; preserving historical ranking and exact inputs`);
+      continue;
+    }
     const data=await fetchUtoolsFactorRanking(eventKey,style);
     const dir=path.join(root,eventKey);
     const file=path.join(dir,style+'.json');

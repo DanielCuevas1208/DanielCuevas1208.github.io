@@ -6,11 +6,15 @@ on:
       - "uma-training-lab-data/skill-effects/**"
       - "uma-training-lab-data/tools/**"
       - ".github/workflows/validate-uma-skill-effects.yml"
+      - ".github/scripts/patch-umalator.mjs"
+      - ".github/scripts/umalator-condition-regression.ts"
   pull_request:
     paths:
       - "uma-training-lab-data/skill-effects/**"
       - "uma-training-lab-data/tools/**"
       - ".github/workflows/validate-uma-skill-effects.yml"
+      - ".github/scripts/patch-umalator.mjs"
+      - ".github/scripts/umalator-condition-regression.ts"
 
 jobs:
   validate:
@@ -23,3 +27,12 @@ jobs:
       - run: node uma-training-lab-data/tools/build-manifest.mjs
       - run: git diff --exit-code -- uma-training-lab-data/skill-effects/manifest.json
       - run: node uma-training-lab-data/tools/validate.mjs
+      - run: node --test uma-training-lab-data/tools/factor-snapshot.test.mjs
+      - name: Check evaluator compatibility against current upstream
+        run: |
+          git clone --depth 1 https://github.com/kachi-dev/uma-tools.git .cache/uma-tools
+          cd .cache/uma-tools/uma-skill-tools
+          npm ci
+          node "$GITHUB_WORKSPACE/.github/scripts/patch-umalator.mjs" RaceSolverBuilder.ts
+          cp "$GITHUB_WORKSPACE/.github/scripts/umalator-condition-regression.ts" .training-lab-condition-regression.ts
+          npx ts-node --transpile-only .training-lab-condition-regression.ts
