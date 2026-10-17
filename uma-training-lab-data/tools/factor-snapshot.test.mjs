@@ -5,6 +5,13 @@ import os from 'node:os';
 import path from 'node:path';
 import {fetchFactorPageOrSnapshot} from './factor-snapshot.mjs';
 import {FactorPageUnavailableError,parseUtoolsFactorRsc} from './utools-factor-rsc.mjs';
+import {hasCurrentConditionPolicy} from './global-delta-policy.mjs';
+
+test('refreshes older popularity calculations without invalidating unrelated rows',()=>{
+  assert.equal(hasCurrentConditionPolicy({condition:'popularity>=4'},{}),false);
+  assert.equal(hasCurrentConditionPolicy({condition:'popularity<=3'},{conditionPolicyVersion:1}),true);
+  assert.equal(hasCurrentConditionPolicy({condition:'phase==2'},{}),true);
+});
 
 test('detects Next.js soft 404 responses',()=>{
   const payload='1:E{"digest":"NEXT_HTTP_ERROR_FALLBACK;404"}\n';
