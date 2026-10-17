@@ -4,8 +4,464 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh2/factor/chaser",
   "eventKey": "loh2",
   "style": "chaser",
-  "fetchedAt": "2026-09-21T14:27:44.542Z",
+  "fetchedAt": "2026-10-17T22:37:08.442Z",
   "cards": [
+    {
+      "id": 30321,
+      "ev": true,
+      "name": "ドゥラメンテ",
+      "title": "[“最強”なる眷属]",
+      "color": "bf3344",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 2,
+      "hintSkillIds": [
+        200512,
+        201492,
+        202382,
+        202882,
+        202922,
+        203152,
+        203752,
+        204182
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202602
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201463
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30320,
+      "ev": false,
+      "name": "アドマイヤグルーヴ",
+      "title": "[冷凜なるビスクドール]",
+      "color": "344d99",
+      "rarity": 3,
+      "hintLv": 4,
+      "command": 4,
+      "hintSkillIds": [
+        200492,
+        201102,
+        201112,
+        201611,
+        200192,
+        202532,
+        202652,
+        203852,
+        204052,
+        204222,
+        204122,
+        204722,
+        203802
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202082
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201651
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203801
+                  },
+                  {
+                    "hintLv": 1,
+                    "skillId": 204721
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30319,
+      "ev": false,
+      "name": "ナリタブライアン",
+      "title": "[晩餐]",
+      "color": "75358C",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 4,
+      "hintSkillIds": [
+        201312,
+        201532,
+        201322,
+        202372,
+        202472,
+        202482,
+        202982,
+        203132,
+        203992,
+        204112,
+        204082,
+        204222,
+        204362,
+        204372,
+        204152
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201641
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 204412
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202371
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204151
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30318,
+      "ev": true,
+      "name": "ライスシャワー",
+      "title": "[めぐるぐるぐるトレセン日和]",
+      "color": "384A86",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 3,
+      "hintSkillIds": [
+        200562,
+        201581,
+        201591,
+        200582,
+        201532,
+        200062,
+        201342,
+        204332
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 200152
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201323
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": 30317,
       "ev": false,
@@ -11381,18 +11837,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -23059,18 +23515,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -27766,18 +28222,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -29400,18 +29856,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -32093,18 +32549,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -50555,6 +51011,31 @@
       "iconId": 20011,
       "skillPt": 190
     },
+    "204721": {
+      "name": "一往直前",
+      "iconId": 20012,
+      "skillPt": 160
+    },
+    "204722": {
+      "name": "怯むことなく",
+      "iconId": 20011,
+      "skillPt": 160
+    },
+    "204792": {
+      "name": "遊び心",
+      "iconId": 10011,
+      "skillPt": 180
+    },
+    "204801": {
+      "name": "抜山蓋世",
+      "iconId": 20012,
+      "skillPt": 190
+    },
+    "204802": {
+      "name": "規格外",
+      "iconId": 20011,
+      "skillPt": 190
+    },
     "210011": {
       "name": "アオハル燃焼・速",
       "iconId": 20102,
@@ -51797,6 +52278,28 @@
       "204702": {
         "point": 200,
         "effect": 0.222
+      },
+      "204721": {
+        "point": 320,
+        "effect": 0.885,
+        "baseId": 204722
+      },
+      "204722": {
+        "point": 160,
+        "effect": 0.387
+      },
+      "204792": {
+        "point": 180,
+        "effect": 0.273
+      },
+      "204801": {
+        "point": 380,
+        "effect": 1.126,
+        "baseId": 204802
+      },
+      "204802": {
+        "point": 190,
+        "effect": 0.473
       },
       "210012": {
         "point": 200,

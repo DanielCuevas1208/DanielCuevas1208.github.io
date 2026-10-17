@@ -4,8 +4,464 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/leader",
   "eventKey": "chm",
   "style": "leader",
-  "fetchedAt": "2026-09-21T14:27:44.770Z",
+  "fetchedAt": "2026-10-17T22:37:08.745Z",
   "cards": [
+    {
+      "id": 30321,
+      "ev": true,
+      "name": "ドゥラメンテ",
+      "title": "[“最強”なる眷属]",
+      "color": "bf3344",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 2,
+      "hintSkillIds": [
+        200512,
+        201492,
+        202382,
+        202882,
+        202922,
+        203152,
+        203752,
+        204182
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202602
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201463
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30320,
+      "ev": false,
+      "name": "アドマイヤグルーヴ",
+      "title": "[冷凜なるビスクドール]",
+      "color": "344d99",
+      "rarity": 3,
+      "hintLv": 4,
+      "command": 4,
+      "hintSkillIds": [
+        200492,
+        201102,
+        201112,
+        201611,
+        200192,
+        202532,
+        202652,
+        203852,
+        204052,
+        204222,
+        204122,
+        204722,
+        203802
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202082
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201651
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203801
+                  },
+                  {
+                    "hintLv": 1,
+                    "skillId": 204721
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30319,
+      "ev": false,
+      "name": "ナリタブライアン",
+      "title": "[晩餐]",
+      "color": "75358C",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 4,
+      "hintSkillIds": [
+        201312,
+        201532,
+        201322,
+        202372,
+        202472,
+        202482,
+        202982,
+        203132,
+        203992,
+        204112,
+        204082,
+        204222,
+        204362,
+        204372,
+        204152
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201641
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 204412
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 202371
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204151
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 30318,
+      "ev": true,
+      "name": "ライスシャワー",
+      "title": "[めぐるぐるぐるトレセン日和]",
+      "color": "384A86",
+      "rarity": 3,
+      "hintLv": 2,
+      "command": 3,
+      "hintSkillIds": [
+        200562,
+        201581,
+        201591,
+        200582,
+        201532,
+        200062,
+        201342,
+        204332
+      ],
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 200152
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201323
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": 30317,
       "ev": false,
@@ -11381,18 +11837,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -23059,18 +23515,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -27766,18 +28222,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -29400,18 +29856,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -32093,18 +32549,18 @@
             {
               "hasEventEnd": false,
               "results": [
-                []
-              ]
-            },
-            {
-              "hasEventEnd": false,
-              "results": [
                 [
                   {
                     "hintLv": 1,
                     "skillId": 201641
                   }
                 ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
               ]
             }
           ]
@@ -50555,6 +51011,31 @@
       "iconId": 20011,
       "skillPt": 190
     },
+    "204721": {
+      "name": "一往直前",
+      "iconId": 20012,
+      "skillPt": 160
+    },
+    "204722": {
+      "name": "怯むことなく",
+      "iconId": 20011,
+      "skillPt": 160
+    },
+    "204792": {
+      "name": "遊び心",
+      "iconId": 10011,
+      "skillPt": 180
+    },
+    "204801": {
+      "name": "抜山蓋世",
+      "iconId": 20012,
+      "skillPt": 190
+    },
+    "204802": {
+      "name": "規格外",
+      "iconId": 20011,
+      "skillPt": 190
+    },
     "210011": {
       "name": "アオハル燃焼・速",
       "iconId": 20102,
@@ -50798,1025 +51279,1263 @@
   },
   "courseEffectSet": {
     "base": {
-      "effect": 0.224002625,
+      "effect": 0.276048675,
       "point": 170
     },
     "effects": {
-      "200021": {
+      "200011": {
         "point": 200,
-        "effect": 0.384,
-        "baseId": 200022
+        "effect": 0.498,
+        "baseId": 200012
       },
-      "200022": {
+      "200012": {
         "point": 90,
-        "effect": 0.258
+        "effect": 0.333
       },
-      "200024": {
+      "200014": {
         "point": 330,
-        "effect": 0.583,
-        "baseId": 200022
+        "effect": 0.75,
+        "baseId": 200012
       },
       "200151": {
         "point": 200,
-        "effect": 0.194,
+        "effect": 0.248,
         "baseId": 200152
       },
       "200152": {
         "point": 90,
-        "effect": 0.131
+        "effect": 0.167
       },
       "200154": {
         "point": 330,
-        "effect": 0.583,
+        "effect": 0.75,
         "baseId": 200152
       },
       "200191": {
         "point": 200,
-        "effect": 0.384,
+        "effect": 0.498,
         "baseId": 200192
       },
       "200192": {
         "point": 90,
-        "effect": 0.258
+        "effect": 0.333
       },
       "200194": {
         "point": 330,
-        "effect": 0.583,
+        "effect": 0.75,
         "baseId": 200192
       },
-      "200211": {
+      "200221": {
         "point": 200,
-        "effect": 0.051,
-        "baseId": 200212
+        "effect": 0.065,
+        "baseId": 200222
       },
-      "200212": {
+      "200222": {
         "point": 90,
-        "effect": 0.034
+        "effect": 0.043
       },
       "200261": {
         "point": 200,
-        "effect": 0.242,
+        "effect": 0.314,
         "baseId": 200262
       },
       "200262": {
         "point": 90,
-        "effect": 0.163
+        "effect": 0.21
       },
       "200271": {
         "point": 200,
-        "effect": 0.51,
+        "effect": 0.661,
         "baseId": 200272
       },
       "200272": {
         "point": 90,
-        "effect": 0.384
+        "effect": 0.498
       },
       "200281": {
         "point": 200,
-        "effect": 0.194,
+        "effect": 0.248,
         "baseId": 200282
       },
       "200282": {
         "point": 90,
-        "effect": 0.131
+        "effect": 0.167
       },
       "200291": {
         "point": 200,
-        "effect": 0.051,
+        "effect": 0.065,
         "baseId": 200292
       },
       "200292": {
         "point": 90,
-        "effect": 0.034
+        "effect": 0.043
       },
       "200301": {
         "point": 200,
-        "effect": 0.384,
+        "effect": 0.498,
         "baseId": 200302
       },
       "200302": {
         "point": 90,
-        "effect": 0.258
+        "effect": 0.333
       },
       "200331": {
         "point": 360,
-        "effect": 0.721,
+        "effect": 0.827,
         "baseId": 200332
       },
       "200332": {
         "point": 180,
-        "effect": 0.32
+        "effect": 0.361
       },
       "200341": {
         "point": 360,
-        "effect": 0.483,
+        "effect": 0.585,
         "baseId": 200342
       },
       "200342": {
         "point": 180,
-        "effect": 0.288
+        "effect": 0.354
       },
       "200361": {
         "point": 340,
-        "effect": 0.744,
+        "effect": 1.115,
         "baseId": 200362
       },
       "200362": {
         "point": 170,
-        "effect": 0.328
+        "effect": 0.588
       },
       "200371": {
         "point": 340,
-        "effect": 0.378,
+        "effect": 0.693,
         "baseId": 200372
       },
       "200372": {
         "point": 170,
-        "effect": 0.023
+        "effect": 0.041
       },
       "200461": {
         "point": 340,
-        "effect": 0.548,
+        "effect": 0.683,
         "baseId": 200462
       },
       "200462": {
         "point": 170,
-        "effect": 0.242
+        "effect": 0.298
       },
       "200491": {
         "point": 300,
-        "effect": 0.479,
+        "effect": 0.845,
         "baseId": 200492
       },
       "200492": {
         "point": 150,
-        "effect": 0.304
+        "effect": 0.543
       },
       "200511": {
         "point": 340,
-        "effect": 0.576,
+        "effect": 0.715,
         "baseId": 200512
       },
       "200512": {
         "point": 170,
-        "effect": 0.253
+        "effect": 0.312
       },
       "200581": {
         "point": 360,
-        "effect": 0.597,
+        "effect": 0.352,
         "baseId": 200582
       },
       "200582": {
         "point": 180,
-        "effect": 0.275
+        "effect": 0.156
       },
-      "200681": {
+      "200721": {
         "point": 320,
-        "effect": 0.94,
-        "baseId": 200682
+        "effect": 0.988,
+        "baseId": 200722
       },
-      "200682": {
+      "200722": {
         "point": 160,
-        "effect": 0.41
+        "effect": 0.432
       },
-      "200701": {
+      "200731": {
         "point": 320,
-        "effect": 0.579,
-        "baseId": 200702
+        "effect": 0.731,
+        "baseId": 200732
       },
-      "200702": {
+      "200732": {
         "point": 160,
-        "effect": 0.368
+        "effect": 0.32
       },
-      "201031": {
+      "201101": {
         "point": 210,
-        "effect": 0.539,
-        "baseId": 201032
+        "effect": 0.855,
+        "baseId": 201102
       },
-      "201032": {
+      "201102": {
         "point": 100,
-        "effect": 0.328
+        "effect": 0.588
       },
-      "201033": {
+      "201103": {
         "point": 360,
-        "effect": 0.744,
-        "baseId": 201032
+        "effect": 1.115,
+        "baseId": 201102
       },
-      "201041": {
+      "201111": {
         "point": 210,
-        "effect": 0.651,
-        "baseId": 201042
+        "effect": 0.747,
+        "baseId": 201112
       },
-      "201042": {
+      "201112": {
         "point": 100,
-        "effect": 0.397
+        "effect": 0.452
       },
-      "201043": {
+      "201113": {
         "point": 360,
-        "effect": 0.902,
-        "baseId": 201042
+        "effect": 1.036,
+        "baseId": 201112
       },
-      "201051": {
-        "point": 320,
-        "effect": 0.812,
-        "baseId": 201052
+      "201131": {
+        "point": 280,
+        "effect": 0.365,
+        "baseId": 201132
       },
-      "201052": {
-        "point": 160,
-        "effect": 0.354
-      },
-      "201061": {
-        "point": 320,
-        "effect": 0.734,
-        "baseId": 201062
-      },
-      "201062": {
-        "point": 160,
-        "effect": 0.436
-      },
-      "201071": {
-        "point": 240,
-        "effect": 0.523,
-        "baseId": 201072
-      },
-      "201072": {
-        "point": 120,
-        "effect": 0.229
+      "201132": {
+        "point": 140,
+        "effect": 0.267
       },
       "201311": {
         "point": 270,
-        "effect": 0.539,
+        "effect": 0.855,
         "baseId": 201312
       },
       "201312": {
         "point": 130,
-        "effect": 0.328
+        "effect": 0.588
       },
       "201313": {
         "point": 420,
-        "effect": 0.744,
+        "effect": 1.115,
         "baseId": 201312
       },
       "201321": {
         "point": 270,
-        "effect": 0.651,
+        "effect": 0.747,
         "baseId": 201322
       },
       "201322": {
         "point": 130,
-        "effect": 0.397
+        "effect": 0.452
       },
       "201323": {
         "point": 420,
-        "effect": 0.902,
+        "effect": 1.036,
         "baseId": 201322
       },
       "201331": {
         "point": 240,
-        "effect": 0.207,
+        "effect": 0.253,
         "baseId": 201332
       },
       "201332": {
         "point": 120,
-        "effect": 0.152
+        "effect": 0.187
+      },
+      "201341": {
+        "point": 240,
+        "effect": 2.511,
+        "baseId": 201342
+      },
+      "201342": {
+        "point": 120,
+        "effect": 1.846
       },
       "201361": {
         "point": 240,
-        "effect": 0.184,
+        "effect": 0.245,
         "baseId": 201362
       },
       "201362": {
         "point": 120,
-        "effect": 0.13
+        "effect": 0.176
       },
       "201561": {
         "point": 220,
-        "effect": 0.024,
+        "effect": 0.031,
         "baseId": 201562
       },
       "201562": {
         "point": 110,
-        "effect": 0.016
+        "effect": 0.021
       },
       "201581": {
         "point": 160,
-        "effect": 0.011
+        "effect": 0.034
       },
       "201582": {
         "point": 320,
-        "effect": 0.017,
+        "effect": 0.064,
         "baseId": 201581
       },
       "201591": {
         "point": 160,
-        "effect": 0.194
+        "effect": 0.632
       },
       "201592": {
         "point": 320,
-        "effect": 0.431,
+        "effect": 0.94,
         "baseId": 201591
       },
       "201601": {
         "point": 100,
-        "effect": 0.321
+        "effect": 0.343
       },
       "201602": {
         "point": 280,
-        "effect": 0.59,
+        "effect": 0.619,
         "baseId": 201601
       },
       "201611": {
         "point": 100,
-        "effect": 0.445
+        "effect": 0.541
       },
       "201612": {
         "point": 280,
-        "effect": 1.019,
+        "effect": 1.242,
         "baseId": 201611
       },
       "201631": {
         "point": 70,
-        "effect": 0.258
+        "effect": 0.333
       },
       "201632": {
         "point": 220,
-        "effect": 0.384,
+        "effect": 0.498,
         "baseId": 201631
       },
       "201641": {
         "point": 70,
-        "effect": 0.258
+        "effect": 0.333
       },
       "201651": {
         "point": 160,
-        "effect": 0.2
+        "effect": 0.322
       },
       "201652": {
         "point": 320,
-        "effect": 0.459,
+        "effect": 0.74,
         "baseId": 201651
       },
       "201661": {
         "point": 160,
-        "effect": 0.2
+        "effect": 0.322
       },
       "201662": {
         "point": 320,
-        "effect": 0.459,
+        "effect": 0.74,
         "baseId": 201661
+      },
+      "201701": {
+        "point": 320,
+        "effect": 0.9,
+        "baseId": 201702
+      },
+      "201702": {
+        "point": 160,
+        "effect": 0.392
       },
       "201901": {
         "point": 360,
-        "effect": 1.114,
+        "effect": 1.376,
         "baseId": 201902
       },
       "201902": {
         "point": 180,
-        "effect": 0.658
+        "effect": 0.839
       },
       "202031": {
         "point": 240,
-        "effect": 0.539,
+        "effect": 0.676,
         "baseId": 202032
       },
       "202032": {
         "point": 120,
-        "effect": 0.312
+        "effect": 0.391
       },
-      "202111": {
+      "202081": {
         "point": 320,
-        "effect": 0.597,
-        "baseId": 202112
+        "effect": 1.376,
+        "baseId": 202082
       },
-      "202112": {
+      "202082": {
         "point": 160,
-        "effect": 0.275
+        "effect": 0.839
+      },
+      "202091": {
+        "point": 320,
+        "effect": 0.829,
+        "baseId": 202092
+      },
+      "202092": {
+        "point": 160,
+        "effect": 0.361
+      },
+      "202101": {
+        "point": 320,
+        "effect": 0.988,
+        "baseId": 202102
+      },
+      "202102": {
+        "point": 160,
+        "effect": 0.432
       },
       "202171": {
         "point": 340,
-        "effect": 0.746,
+        "effect": 1.009,
         "baseId": 202172
       },
       "202172": {
         "point": 170,
-        "effect": 0.325
+        "effect": 0.458
       },
       "202371": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 202372
       },
       "202372": {
         "point": 180,
-        "effect": 0.354
-      },
-      "202401": {
-        "point": 360,
-        "effect": 0.609,
-        "baseId": 202402
-      },
-      "202402": {
-        "point": 180,
-        "effect": 0.368
+        "effect": 0.432
       },
       "202411": {
         "point": 360,
-        "effect": 1.503,
+        "effect": 1.811,
         "baseId": 202412
       },
       "202412": {
         "point": 180,
-        "effect": 0.313
+        "effect": 0.376
+      },
+      "202431": {
+        "point": 340,
+        "effect": 1.417,
+        "baseId": 202432
+      },
+      "202432": {
+        "point": 170,
+        "effect": 0.379
       },
       "202441": {
         "point": 360,
-        "effect": 0.841,
+        "effect": 1.08,
         "baseId": 202442
       },
       "202442": {
         "point": 180,
-        "effect": 0.425
+        "effect": 0.545
       },
       "202471": {
         "point": 360,
-        "effect": 0.578,
+        "effect": 0.861,
         "baseId": 202472
       },
       "202472": {
         "point": 180,
-        "effect": 0.25
+        "effect": 0.379
       },
-      "202501": {
+      "202521": {
         "point": 360,
-        "effect": 0.883,
-        "baseId": 202502
+        "effect": 1.504,
+        "baseId": 202522
       },
-      "202502": {
+      "202522": {
         "point": 180,
-        "effect": 0.384
+        "effect": 0.645
       },
       "202531": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 202532
       },
       "202532": {
         "point": 180,
-        "effect": 0.354
+        "effect": 0.432
       },
       "202551": {
         "point": 400,
-        "effect": 0.878,
+        "effect": 1.056,
         "baseId": 202552
       },
       "202552": {
         "point": 200,
-        "effect": 0.374
+        "effect": 0.449
+      },
+      "202601": {
+        "point": 320,
+        "effect": 0.993,
+        "baseId": 202602
+      },
+      "202602": {
+        "point": 160,
+        "effect": 0.416
       },
       "202651": {
         "point": 360,
-        "effect": 0.583,
+        "effect": 0.75,
         "baseId": 202652
       },
       "202652": {
         "point": 180,
-        "effect": 0.196
+        "effect": 0.252
       },
-      "202671": {
-        "point": 320,
-        "effect": 1.114,
-        "baseId": 202672
+      "202661": {
+        "point": 360,
+        "effect": 0.984,
+        "baseId": 202662
       },
-      "202672": {
-        "point": 160,
-        "effect": 0.658
+      "202662": {
+        "point": 180,
+        "effect": 0.421
+      },
+      "202691": {
+        "point": 240,
+        "effect": 0.074,
+        "baseId": 202692
+      },
+      "202692": {
+        "point": 120,
+        "effect": 0.043
+      },
+      "202701": {
+        "point": 240,
+        "effect": 0.661,
+        "baseId": 202702
+      },
+      "202702": {
+        "point": 120,
+        "effect": 0.333
+      },
+      "202711": {
+        "point": 360,
+        "effect": 1.057,
+        "baseId": 202712
+      },
+      "202712": {
+        "point": 180,
+        "effect": 0.591
       },
       "202721": {
         "point": 360,
-        "effect": 1.009,
+        "effect": 1.211,
         "baseId": 202722
       },
       "202722": {
         "point": 180,
-        "effect": 0.205
+        "effect": 0.247
       },
       "202741": {
         "point": 360,
-        "effect": 1.001,
+        "effect": 1.504,
         "baseId": 202742
       },
       "202742": {
         "point": 180,
-        "effect": 0.419
+        "effect": 0.645
       },
       "202761": {
         "point": 360,
-        "effect": 0.956,
+        "effect": 1.163,
         "baseId": 202762
       },
       "202762": {
         "point": 180,
-        "effect": 0.194
+        "effect": 0.237
       },
       "202791": {
         "point": 320,
-        "effect": 0.609,
+        "effect": 0.742,
         "baseId": 202792
       },
       "202792": {
         "point": 160,
-        "effect": 0.266
+        "effect": 0.326
       },
       "202801": {
         "point": 320,
-        "effect": 0.549,
+        "effect": 0.682,
         "baseId": 202802
       },
       "202802": {
         "point": 160,
-        "effect": 0.244
-      },
-      "202961": {
-        "point": 360,
-        "effect": 0.883,
-        "baseId": 202962
-      },
-      "202962": {
-        "point": 180,
-        "effect": 0.384
+        "effect": 0.301
       },
       "202981": {
         "point": 360,
-        "effect": 0.883,
+        "effect": 1.058,
         "baseId": 202982
       },
       "202982": {
         "point": 180,
-        "effect": 0.384
-      },
-      "203021": {
-        "point": 280,
-        "effect": 0.609,
-        "baseId": 203022
-      },
-      "203022": {
-        "point": 140,
-        "effect": 0.266
+        "effect": 0.464
       },
       "203031": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 203032
       },
       "203032": {
         "point": 180,
-        "effect": 0.354
+        "effect": 0.432
       },
-      "203041": {
-        "point": 360,
-        "effect": 0.737,
-        "baseId": 203042
-      },
-      "203042": {
-        "point": 180,
-        "effect": 0.321
-      },
-      "203161": {
+      "203051": {
         "point": 320,
-        "effect": 1.028,
-        "baseId": 203162
+        "effect": 1.058,
+        "baseId": 203052
       },
-      "203162": {
+      "203052": {
         "point": 160,
-        "effect": 0.586
+        "effect": 0.464
+      },
+      "203111": {
+        "point": 320,
+        "effect": 1.376,
+        "baseId": 203112
+      },
+      "203112": {
+        "point": 160,
+        "effect": 0.839
+      },
+      "203121": {
+        "point": 340,
+        "effect": 1.229,
+        "baseId": 203122
+      },
+      "203122": {
+        "point": 170,
+        "effect": 0.537
+      },
+      "203131": {
+        "point": 360,
+        "effect": 0.91,
+        "baseId": 203132
+      },
+      "203132": {
+        "point": 180,
+        "effect": 0.516
+      },
+      "203141": {
+        "point": 400,
+        "effect": 1.163,
+        "baseId": 203142
+      },
+      "203142": {
+        "point": 200,
+        "effect": 0.237
+      },
+      "203171": {
+        "point": 320,
+        "effect": 0.898,
+        "baseId": 203172
+      },
+      "203172": {
+        "point": 160,
+        "effect": 0.41
       },
       "203221": {
         "point": 320,
-        "effect": 1.028,
+        "effect": 1.256,
         "baseId": 203222
       },
       "203222": {
         "point": 160,
-        "effect": 0.586
+        "effect": 0.712
       },
       "203231": {
         "point": 360,
-        "effect": 0.745,
+        "effect": 0.922,
         "baseId": 203232
       },
       "203232": {
         "point": 180,
-        "effect": 0.327
+        "effect": 0.404
       },
       "203241": {
         "point": 400,
-        "effect": 0.337,
+        "effect": 0.412,
         "baseId": 203242
       },
       "203242": {
         "point": 200,
-        "effect": 0.077
+        "effect": 0.095
       },
-      "203351": {
-        "point": 320,
-        "effect": 1.028,
-        "baseId": 203352
+      "203251": {
+        "point": 360,
+        "effect": 0.984,
+        "baseId": 203252
       },
-      "203352": {
-        "point": 160,
-        "effect": 0.586
+      "203252": {
+        "point": 180,
+        "effect": 0.421
+      },
+      "203311": {
+        "point": 280,
+        "effect": 0.742,
+        "baseId": 203312
+      },
+      "203312": {
+        "point": 140,
+        "effect": 0.326
       },
       "203361": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 203362
       },
       "203362": {
         "point": 180,
-        "effect": 0.354
+        "effect": 0.432
+      },
+      "203371": {
+        "point": 360,
+        "effect": 0.893,
+        "baseId": 203372
+      },
+      "203372": {
+        "point": 180,
+        "effect": 0.177
       },
       "203421": {
         "point": 360,
-        "effect": 0.727,
+        "effect": 0.9,
         "baseId": 203422
       },
       "203422": {
         "point": 180,
-        "effect": 0.318
+        "effect": 0.392
+      },
+      "203431": {
+        "point": 340,
+        "effect": 0.9,
+        "baseId": 203432
+      },
+      "203432": {
+        "point": 170,
+        "effect": 0.392
+      },
+      "203441": {
+        "point": 340,
+        "effect": 1.996,
+        "baseId": 203442
+      },
+      "203442": {
+        "point": 170,
+        "effect": 1.109
       },
       "203471": {
         "point": 360,
-        "effect": 0.629,
+        "effect": 0.764,
         "baseId": 203472
       },
       "203472": {
         "point": 180,
-        "effect": 0.264
+        "effect": 0.321
       },
       "203501": {
         "point": 400,
-        "effect": 1.075,
+        "effect": 1.302,
         "baseId": 203502
       },
       "203502": {
         "point": 200,
-        "effect": 0.453
+        "effect": 0.551
       },
-      "203541": {
+      "203511": {
+        "point": 400,
+        "effect": 1.155,
+        "baseId": 203512
+      },
+      "203512": {
+        "point": 200,
+        "effect": 0.501
+      },
+      "203571": {
         "point": 320,
-        "effect": 1.114,
-        "baseId": 203542
+        "effect": 1.058,
+        "baseId": 203572
       },
-      "203542": {
+      "203572": {
         "point": 160,
-        "effect": 0.658
+        "effect": 0.464
       },
-      "203552": {
-        "point": 160,
-        "effect": 0.354
-      },
-      "203711": {
+      "203631": {
         "point": 360,
-        "effect": 0.746,
-        "baseId": 203712
+        "effect": 1.056,
+        "baseId": 203632
       },
-      "203712": {
+      "203632": {
         "point": 180,
-        "effect": 0.427
+        "effect": 0.449
+      },
+      "203641": {
+        "point": 360,
+        "effect": 0.984,
+        "baseId": 203642
+      },
+      "203642": {
+        "point": 180,
+        "effect": 0.421
+      },
+      "203651": {
+        "point": 360,
+        "effect": 0.988,
+        "baseId": 203652
+      },
+      "203652": {
+        "point": 180,
+        "effect": 0.432
+      },
+      "203661": {
+        "point": 360,
+        "effect": 1.163,
+        "baseId": 203662
+      },
+      "203662": {
+        "point": 180,
+        "effect": 0.237
       },
       "203721": {
         "point": 360,
-        "effect": 0.878
+        "effect": 1.056
       },
       "203791": {
         "point": 360,
-        "effect": 1.001,
+        "effect": 1.504,
         "baseId": 203792
       },
       "203792": {
         "point": 180,
-        "effect": 0.419
+        "effect": 0.645
       },
       "203801": {
         "point": 400,
-        "effect": 1.349,
+        "effect": 1.585,
         "baseId": 203802
       },
       "203802": {
         "point": 200,
-        "effect": 0.278
+        "effect": 0.325
+      },
+      "203841": {
+        "point": 320,
+        "effect": 1.163,
+        "baseId": 203842
+      },
+      "203842": {
+        "point": 160,
+        "effect": 0.237
       },
       "203851": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 203852
       },
       "203852": {
         "point": 180,
-        "effect": 0.354
+        "effect": 0.432
       },
-      "203941": {
+      "203861": {
         "point": 360,
-        "effect": 0.812,
-        "baseId": 203942
+        "effect": 1.221,
+        "baseId": 203862
       },
-      "203942": {
+      "203862": {
         "point": 180,
-        "effect": 0.354
-      },
-      "203961": {
-        "point": 340,
-        "effect": 1.009,
-        "baseId": 203962
-      },
-      "203962": {
-        "point": 170,
-        "effect": 0.441
+        "effect": 0.515
       },
       "203991": {
         "point": 360,
-        "effect": 0.878,
+        "effect": 1.061,
         "baseId": 203992
       },
       "203992": {
         "point": 180,
-        "effect": 0.366
+        "effect": 0.445
       },
       "204001": {
         "point": 360,
-        "effect": 1.004,
+        "effect": 1.221,
         "baseId": 204002
       },
       "204002": {
         "point": 180,
-        "effect": 0.421
+        "effect": 0.515
       },
       "204012": {
         "point": 190,
-        "effect": 0.728
+        "effect": 0.887
+      },
+      "204031": {
+        "point": 360,
+        "effect": 1.211,
+        "baseId": 204032
+      },
+      "204032": {
+        "point": 180,
+        "effect": 0.247
+      },
+      "204041": {
+        "point": 240,
+        "effect": 0.992,
+        "baseId": 204042
+      },
+      "204042": {
+        "point": 120,
+        "effect": 0.416
       },
       "204051": {
         "point": 360,
-        "effect": 0.737,
+        "effect": 0.859,
         "baseId": 204052
       },
       "204052": {
         "point": 180,
-        "effect": 0.321
+        "effect": 0.37
       },
       "204071": {
         "point": 360,
-        "effect": 0.883,
+        "effect": 1.058,
         "baseId": 204072
       },
       "204072": {
         "point": 180,
-        "effect": 0.384
+        "effect": 0.464
       },
       "204081": {
         "point": 240,
-        "effect": 0.625,
+        "effect": 0.917,
         "baseId": 204082
       },
       "204082": {
         "point": 120,
-        "effect": 0.28
+        "effect": 0.401
       },
       "204111": {
         "point": 360,
-        "effect": 0.812,
+        "effect": 0.988,
         "baseId": 204112
       },
       "204112": {
         "point": 180,
-        "effect": 0.354
+        "effect": 0.432
+      },
+      "204121": {
+        "point": 400,
+        "effect": 0.91,
+        "baseId": 204122
+      },
+      "204122": {
+        "point": 200,
+        "effect": 0.516
+      },
+      "204141": {
+        "point": 360,
+        "effect": 0.498,
+        "baseId": 204142
       },
       "204151": {
         "point": 360,
-        "effect": 1.009,
+        "effect": 1.211,
         "baseId": 204152
       },
       "204152": {
         "point": 180,
-        "effect": 0.205
+        "effect": 0.247
       },
       "204161": {
         "point": 360,
-        "effect": 0.574,
+        "effect": 0.048,
         "baseId": 204162
       },
       "204162": {
         "point": 180,
-        "effect": 0.331
-      },
-      "204171": {
-        "point": 340,
-        "effect": 0.727,
-        "baseId": 204172
-      },
-      "204172": {
-        "point": 170,
-        "effect": 0.318
+        "effect": 0.031
       },
       "204181": {
         "point": 360,
-        "effect": 0.741,
+        "effect": 0.919,
         "baseId": 204182
       },
       "204182": {
         "point": 180,
-        "effect": 0.325
+        "effect": 0.4
+      },
+      "204202": {
+        "point": 180,
+        "effect": 0.252
       },
       "204211": {
         "point": 380,
-        "effect": 1.01,
+        "effect": 1.216,
         "baseId": 204212
       },
       "204212": {
         "point": 190,
-        "effect": 0.206
+        "effect": 0.249
+      },
+      "204222": {
+        "point": 180,
+        "effect": 0.309
       },
       "204262": {
         "point": 200,
-        "effect": 0.388
+        "effect": 0.567
+      },
+      "204301": {
+        "point": 320,
+        "effect": 1.12,
+        "baseId": 204302
+      },
+      "204302": {
+        "point": 160,
+        "effect": 0.225
       },
       "204322": {
         "point": 180,
-        "effect": 0.586
+        "effect": 0.712
       },
       "204331": {
         "point": 280,
-        "effect": 0.609,
+        "effect": 0.742,
         "baseId": 204332
       },
       "204332": {
         "point": 140,
-        "effect": 0.266
+        "effect": 0.326
       },
       "204362": {
         "point": 180,
-        "effect": 0.586
+        "effect": 0.712
       },
       "204372": {
         "point": 180,
-        "effect": 0.384
+        "effect": 0.464
+      },
+      "204391": {
+        "point": 380,
+        "effect": 0.412,
+        "baseId": 204392
+      },
+      "204392": {
+        "point": 190,
+        "effect": 0.095
       },
       "204412": {
         "point": 160,
-        "effect": 0.324
+        "effect": 0.399
       },
       "204453": {
         "point": 140,
-        "effect": 0.407
+        "effect": 0.501
       },
-      "204462": {
-        "point": 160,
-        "effect": 0.41
+      "204472": {
+        "point": 180,
+        "effect": 0.645
+      },
+      "204501": {
+        "point": 400,
+        "effect": 1.097,
+        "baseId": 204502
+      },
+      "204502": {
+        "point": 200,
+        "effect": 0.23
+      },
+      "204511": {
+        "point": 400,
+        "effect": 1.155,
+        "baseId": 204512
+      },
+      "204512": {
+        "point": 200,
+        "effect": 0.501
+      },
+      "204531": {
+        "point": 380,
+        "effect": 1.302,
+        "baseId": 204532
+      },
+      "204532": {
+        "point": 190,
+        "effect": 0.551
       },
       "204571": {
         "point": 360,
-        "effect": 0.878,
+        "effect": 1.056,
         "baseId": 204572
       },
       "204572": {
         "point": 180,
-        "effect": 0.374
+        "effect": 0.449
       },
       "204622": {
         "point": 200,
-        "effect": 0.585
+        "effect": 0.713
       },
       "204691": {
         "point": 360,
-        "effect": 0.587,
+        "effect": 0.888,
         "baseId": 204692
       },
       "204692": {
         "point": 180,
-        "effect": 0.244
+        "effect": 0.372
       },
       "204701": {
         "point": 400,
-        "effect": 0.99,
+        "effect": 1.201,
         "baseId": 204702
       },
       "204702": {
         "point": 200,
-        "effect": 0.196
+        "effect": 0.238
+      },
+      "204721": {
+        "point": 320,
+        "effect": 0.988,
+        "baseId": 204722
+      },
+      "204722": {
+        "point": 160,
+        "effect": 0.432
+      },
+      "204792": {
+        "point": 180,
+        "effect": 0.333
       },
       "210012": {
         "point": 200,
-        "effect": 0.318
+        "effect": 0.39
       },
       "210032": {
         "point": 200,
-        "effect": 0.324
+        "effect": 0.413
       },
       "210042": {
         "point": 200,
-        "effect": 0.262
+        "effect": 0.328
       },
       "210062": {
         "point": 200,
-        "effect": 0.115
+        "effect": 0.144
       },
       "210072": {
         "point": 200,
-        "effect": 0.199
+        "effect": 0.247
       },
       "210082": {
         "point": 200,
-        "effect": 0.209
+        "effect": 0.262
       },
       "210091": {
         "point": 150,
-        "effect": 0.325
+        "effect": 0.389
       },
       "210101": {
         "point": 150,
-        "effect": 0.404
+        "effect": 0.51
       },
       "210111": {
         "point": 150,
-        "effect": 0.3
+        "effect": 0.465
       },
       "210131": {
         "point": 150,
-        "effect": 0.271
+        "effect": 0.296
       },
       "210262": {
         "point": 200,
-        "effect": 0.209
+        "effect": 0.322
       },
       "210272": {
         "point": 200,
-        "effect": 0.184
+        "effect": 0.172
       },
       "210282": {
         "point": 200,
-        "effect": 0.284
+        "effect": 0.368
+      },
+      "210292": {
+        "point": 200,
+        "effect": 0.312
       },
       "210301": {
         "point": 400,
-        "effect": 0.722,
+        "effect": 0.88,
         "baseId": 210302
       },
       "210302": {
         "point": 200,
-        "effect": 0.266
+        "effect": 0.326
       },
       "210311": {
         "point": 170,
-        "effect": 0.312
+        "effect": 0.368
       },
-      "210321": {
+      "210341": {
         "point": 400,
-        "effect": 0.625,
-        "baseId": 210322
+        "effect": 0.715,
+        "baseId": 210342
       },
-      "210322": {
+      "210342": {
         "point": 200,
-        "effect": 0.219
-      },
-      "210331": {
-        "point": 170,
-        "effect": 0.324
+        "effect": 0.312
       },
       "210351": {
         "point": 400,
-        "effect": 0.685,
+        "effect": 0.852,
         "baseId": 210352
       },
       "210352": {
         "point": 200,
-        "effect": 0.253
+        "effect": 0.312
+      },
+      "210361": {
+        "point": 400,
+        "effect": 0.852,
+        "baseId": 210362
+      },
+      "210362": {
+        "point": 200,
+        "effect": 0.312
       },
       "210371": {
         "point": 400,
-        "effect": 0.685,
+        "effect": 0.852,
         "baseId": 210372
       },
       "210372": {
         "point": 200,
-        "effect": 0.253
+        "effect": 0.312
       },
       "210381": {
         "point": 400,
-        "effect": 0.685,
+        "effect": 0.852,
         "baseId": 210382
       },
       "210382": {
         "point": 200,
-        "effect": 0.253
+        "effect": 0.312
       },
       "210391": {
         "point": 400,
-        "effect": 0.576,
+        "effect": 0.715,
         "baseId": 210392
       },
       "210392": {
         "point": 200,
-        "effect": 0.253
+        "effect": 0.312
       }
     }
   },
