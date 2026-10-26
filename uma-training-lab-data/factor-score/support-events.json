@@ -4,7 +4,7 @@
     "provider": "GameTora",
     "manifest": {
       "evrew": "8bda1ecc",
-      "ssr": "67768ea7",
+      "ssr": "79289151",
       "sr": "ef204eb5"
     }
   },
@@ -8928,5 +8928,5 @@
       }
     ]
   },
-  "generatedAt": "2026-09-30T17:03:13.383Z"
+  "generatedAt": "2026-10-26T17:37:52.765Z"
 }

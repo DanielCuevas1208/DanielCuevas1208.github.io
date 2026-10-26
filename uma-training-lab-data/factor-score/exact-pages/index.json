@@ -8,19 +8,19 @@
       "styles": {
         "runner": {
           "path": "exact-pages/loh2/runner.json",
-          "effects": 233
+          "effects": 210
         },
         "leader": {
           "path": "exact-pages/loh2/leader.json",
-          "effects": 277
+          "effects": 245
         },
         "betweener": {
           "path": "exact-pages/loh2/betweener.json",
-          "effects": 271
+          "effects": 240
         },
         "chaser": {
           "path": "exact-pages/loh2/chaser.json",
-          "effects": 256
+          "effects": 225
         }
       }
     },
@@ -31,19 +31,19 @@
       "styles": {
         "runner": {
           "path": "exact-pages/chm/runner.json",
-          "effects": 234
+          "effects": 209
         },
         "leader": {
           "path": "exact-pages/chm/leader.json",
-          "effects": 281
+          "effects": 244
         },
         "betweener": {
           "path": "exact-pages/chm/betweener.json",
-          "effects": 275
+          "effects": 237
         },
         "chaser": {
           "path": "exact-pages/chm/chaser.json",
-          "effects": 257
+          "effects": 223
         }
       }
     },
