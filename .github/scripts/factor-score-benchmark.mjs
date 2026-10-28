@@ -79,7 +79,7 @@ const CURRENT_FACTOR_RANKING_ROOT=path.join(
   'uma-training-lab-data',
   'factor-score',
   'rankings',
-  'chm2',
+  'spchm-2026-09',
 );
 for (const style of ['runner','leader','betweener','chaser']) {
   const key=`current_${style}`;

@@ -92,6 +92,7 @@ export async function fetchUtoolsFactorRanking(eventKey,style) {
     pageUrl,
     fetchedAt:new Date().toISOString(),
     transport:'Jina Reader proxy of live U-tools',
+    pageTitle:String(text).match(/^Title:\s*(.*)$/m)?.[1]?.trim() || '',
     ...parsed,
   };
 }

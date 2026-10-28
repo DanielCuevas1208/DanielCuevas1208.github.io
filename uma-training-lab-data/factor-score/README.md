@@ -8,12 +8,23 @@ For imported U-tools factor-event pages, the Lab reproduces the public U-tools c
 
 The current exact dataset covers:
 
-- 2026-08 League of Heroes — course 10504 (`loh2`)
-- 2026-09 Champions Meeting — course 10603 (`chm`)
-- 2026-10 Champions Meeting — course 10808 (`chm3`)
-- 2026-09 Special Champions Meeting — course 11203 (`chm2`)
+- 2026-08 League of Heroes — course 10504 (`loh-2026-08`)
+- 2026-09 Champions Meeting — course 10603 (`chm-2026-09`)
+- 2026-09 Special Champions Meeting — course 11203 (`spchm-2026-09`)
+- 2026-10 Champions Meeting — course 10808 (`chm-2026-10`)
+- 2026-11 League of Heroes — course 10810, Kyoto 3000 (`loh-2026-11`)
+- 2026-12 Champions Meeting — course 10506, Nakayama 2500 (`chm-2026-12`)
 
-All four running styles are stored for each event. The parity test currently checks 16 pages × 48 displayed cards = 768 ranking rows and requires exact score, rank, and top-set equality.
+All four running styles are stored for each event. The parity test currently checks 24 pages × 48 displayed cards = 1152 ranking rows and requires exact score, rank, and top-set equality.
+
+### Event identity
+
+U-tools reuses its event URL slugs (`loh`, `loh2`, `chm`, …) for whichever event is current, so a slug says nothing about the course. The importer reads the identity from U-tools itself:
+
+- event kind and month from the page title `【YYYY/MM】リーグオブヒーローズ…` / `…チャンピオンズミーティング…`, on both the event overview and every factor page (they must agree);
+- the course id from the overview's single `/race/courses/<id>` link.
+
+Snapshots are stored as `exact-pages/<kind>-<YYYY-MM>/<style>.json` (kind `loh`, `chm` or `spchm`) with `courseId`, `eventMonth`, `eventKind`, `label` and the `slug` they were fetched from. A slug that now serves a later event creates a new snapshot directory; earlier ones are never overwritten, and a saved snapshot is never rewritten with a different course. Unpublished slugs are skipped and their snapshots kept. `exact-pages/index.json` is rebuilt from the directories on disk, newest event per course. A ranking is saved only if it reproduces 48/48 from the saved exact page, which proves both came from the same event.
 
 ### Recovered score
 
@@ -50,8 +61,8 @@ A cross-check on course 11203 showed that factor-page effects are not a simple r
 
 - `model.json` — recovered formula metadata and validation
 - `exact-pages/index.json` — exact course/style availability
-- `exact-pages/<event>/<style>.json` — serialized U-tools factor inputs
-- `rankings/<event>/<style>.json` — live U-tools top-48 ranking oracle
+- `exact-pages/<kind>-<YYYY-MM>/<style>.json` — serialized U-tools factor inputs
+- `rankings/<kind>-<YYYY-MM>/<style>.json` — live U-tools top-48 ranking oracle for the same event
 - `utools-support-cards.json` — current generic support metadata snapshot
 - `support-events.json` — legacy GameTora event topology used by the earlier fitted approximation; not required by the exact scorer
 

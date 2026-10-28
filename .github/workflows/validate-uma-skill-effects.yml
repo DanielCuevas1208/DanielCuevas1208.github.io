@@ -27,7 +27,7 @@ jobs:
       - run: node uma-training-lab-data/tools/build-manifest.mjs
       - run: git diff --exit-code -- uma-training-lab-data/skill-effects/manifest.json
       - run: node uma-training-lab-data/tools/validate.mjs
-      - run: node --test uma-training-lab-data/tools/factor-snapshot.test.mjs
+      - run: node --test uma-training-lab-data/tools/utools-factor-events.test.mjs
       - name: Check evaluator compatibility against current upstream
         run: |
           git clone --depth 1 https://github.com/kachi-dev/uma-tools.git .cache/uma-tools
