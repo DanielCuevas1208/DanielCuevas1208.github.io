@@ -2,9 +2,10 @@
   "schemaVersion": 1,
   "eventKey": "loh-2026-11",
   "style": "runner",
-  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh2/factor/runner",
-  "fetchedAt": "2026-10-26T17:37:54.886Z",
+  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/runner",
+  "fetchedAt": "2026-10-28T09:59:13.581Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（逃げ）",
   "deck": [
     {
       "id": 30290,
@@ -365,7 +366,7 @@
       "level": 4
     }
   ],
-  "slug": "loh2",
+  "slug": "loh",
   "eventMonth": "2026-11",
   "eventKind": "loh",
   "label": "2026-11 League of Heroes",

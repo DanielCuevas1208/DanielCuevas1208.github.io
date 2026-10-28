@@ -2,9 +2,10 @@
   "schemaVersion": 1,
   "eventKey": "loh-2026-11",
   "style": "chaser",
-  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh2/factor/chaser",
-  "fetchedAt": "2026-10-26T17:37:58.228Z",
+  "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/chaser",
+  "fetchedAt": "2026-10-28T10:00:00.887Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（追込）",
   "deck": [
     {
       "id": 30290,
@@ -365,7 +366,7 @@
       "level": 2
     }
   ],
-  "slug": "loh2",
+  "slug": "loh",
   "eventMonth": "2026-11",
   "eventKind": "loh",
   "label": "2026-11 League of Heroes",
