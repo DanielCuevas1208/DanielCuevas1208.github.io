@@ -39,26 +39,32 @@
   },
   "courseEffectSet": {
     "note": "The exact factor scorer consumes U-tools' factor-page courseEffectSet. This is not interchangeable with the normal prerequisite-free course expected-effect dataset.",
-    "exactWhen": "A matching U-tools factor page has been imported for the selected event/course/style.",
+    "exactWhen": "A U-tools factor page has been imported for the selected course/style. Snapshots are keyed by event kind and month read from the page (exact-pages/<kind>-<YYYY-MM>/), never by U-tools URL slug, because U-tools reuses slugs for later events.",
     "fallback": "For courses without an imported U-tools factor courseEffectSet, the Training Lab must label any derived score as an approximation rather than U-tools-exact.",
     "exactCourses": {
-      "10504": "2026-08 League of Heroes · loh2",
-      "10603": "2026-09 Champions Meeting · chm",
-      "10808": "2026-10 Champions Meeting · chm3",
-      "11203": "2026-09 Special Champions Meeting · chm2"
+      "10504": "2026-08 League of Heroes · loh-2026-08",
+      "10506": "2026-12 Champions Meeting · chm-2026-12",
+      "10603": "2026-09 Champions Meeting · chm-2026-09",
+      "10808": "2026-10 Champions Meeting · chm-2026-10",
+      "10810": "2026-11 League of Heroes · loh-2026-11",
+      "11203": "2026-09 Special Champions Meeting · spchm-2026-09"
     }
   },
   "validation": {
     "eventKeys": [
-      "loh2",
-      "chm",
-      "chm2",
-      "chm3"
+      "chm-2026-09",
+      "chm-2026-10",
+      "chm-2026-12",
+      "loh-2026-08",
+      "loh-2026-11",
+      "spchm-2026-09"
     ],
     "courses": [
       10504,
+      10506,
       10603,
       10808,
+      10810,
       11203
     ],
     "styles": [
@@ -67,12 +73,12 @@
       "betweener",
       "chaser"
     ],
-    "pages": 16,
+    "pages": 24,
     "rowsPerPage": 48,
-    "totalRows": 768,
-    "exactScoreMatches": 768,
-    "exactRankMatches": 768,
-    "exactTopSetMatches": 768,
+    "totalRows": 1152,
+    "exactScoreMatches": 1152,
+    "exactRankMatches": 1152,
+    "exactTopSetMatches": 1152,
     "scoreParity": 1,
     "rankParity": 1
   },

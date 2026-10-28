@@ -99,10 +99,22 @@ async function fetchRaw(url,attempts=2){
   throw last || new Error(`Unable to fetch ${url}`);
 }
 
+export async function fetchUtoolsEventOverview(slug){
+  const url=`${UTOOLS_BASE}/race/vsevents/${slug}`;
+  const {text}=await fetchRaw(url);
+  if(decodeRscChunks(text).includes('NEXT_HTTP_ERROR_FALLBACK;404')) throw new FactorPageUnavailableError(`${slug}: U-tools event is no longer published (Next.js 404)`);
+  return text;
+}
+
+export function pageTitle(html){
+  return String(html).match(/<title>([^<]*)<\/title>/)?.[1] || '';
+}
+
 export async function fetchUtoolsFactorPage(eventKey,style){
   const url=`${UTOOLS_BASE}/race/vsevents/${eventKey}/factor/${style}`;
   const {text,finalUrl}=await fetchRaw(url);
   const parsed=parseUtoolsFactorRsc(text);
+  const title=pageTitle(text);
   if(!parsed.supportCards?.length) throw new Error(`${eventKey}/${style}: no supportCards array`);
   if(!parsed.courseEffectSet?.effects || !Object.keys(parsed.courseEffectSet.effects).length) {
     throw new Error(`${eventKey}/${style}: no courseEffectSet.effects`);
@@ -114,6 +126,7 @@ export async function fetchUtoolsFactorPage(eventKey,style){
     eventKey:String(eventKey),
     style:String(style),
     fetchedAt:new Date().toISOString(),
+    pageTitle:title,
     cards:parsed.supportCards,
     skillMap:parsed.skillMap,
     courseEffectSet:parsed.courseEffectSet,

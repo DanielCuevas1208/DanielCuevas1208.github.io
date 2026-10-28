@@ -3,92 +3,144 @@
   "courses": {
     "10504": {
       "courseId": 10504,
-      "eventKey": "loh2",
+      "eventKey": "loh-2026-08",
       "label": "2026-08 League of Heroes",
+      "month": "2026-08",
       "styles": {
         "runner": {
-          "path": "exact-pages/loh2/runner.json",
-          "effects": 210
+          "path": "exact-pages/loh-2026-08/runner.json",
+          "effects": 230
         },
         "leader": {
-          "path": "exact-pages/loh2/leader.json",
-          "effects": 245
+          "path": "exact-pages/loh-2026-08/leader.json",
+          "effects": 274
         },
         "betweener": {
-          "path": "exact-pages/loh2/betweener.json",
-          "effects": 240
+          "path": "exact-pages/loh-2026-08/betweener.json",
+          "effects": 268
         },
         "chaser": {
-          "path": "exact-pages/loh2/chaser.json",
-          "effects": 225
+          "path": "exact-pages/loh-2026-08/chaser.json",
+          "effects": 251
+        }
+      }
+    },
+    "10506": {
+      "courseId": 10506,
+      "eventKey": "chm-2026-12",
+      "label": "2026-12 Champions Meeting",
+      "month": "2026-12",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/chm-2026-12/runner.json",
+          "effects": 209
+        },
+        "leader": {
+          "path": "exact-pages/chm-2026-12/leader.json",
+          "effects": 244
+        },
+        "betweener": {
+          "path": "exact-pages/chm-2026-12/betweener.json",
+          "effects": 237
+        },
+        "chaser": {
+          "path": "exact-pages/chm-2026-12/chaser.json",
+          "effects": 223
         }
       }
     },
     "10603": {
       "courseId": 10603,
-      "eventKey": "chm",
+      "eventKey": "chm-2026-09",
       "label": "2026-09 Champions Meeting",
+      "month": "2026-09",
       "styles": {
         "runner": {
-          "path": "exact-pages/chm/runner.json",
-          "effects": 209
+          "path": "exact-pages/chm-2026-09/runner.json",
+          "effects": 182
         },
         "leader": {
-          "path": "exact-pages/chm/leader.json",
-          "effects": 244
+          "path": "exact-pages/chm-2026-09/leader.json",
+          "effects": 228
         },
         "betweener": {
-          "path": "exact-pages/chm/betweener.json",
-          "effects": 237
+          "path": "exact-pages/chm-2026-09/betweener.json",
+          "effects": 220
         },
         "chaser": {
-          "path": "exact-pages/chm/chaser.json",
-          "effects": 223
+          "path": "exact-pages/chm-2026-09/chaser.json",
+          "effects": 206
         }
       }
     },
     "10808": {
       "courseId": 10808,
-      "eventKey": "chm3",
+      "eventKey": "chm-2026-10",
       "label": "2026-10 Champions Meeting",
+      "month": "2026-10",
       "styles": {
         "runner": {
-          "path": "exact-pages/chm3/runner.json",
+          "path": "exact-pages/chm-2026-10/runner.json",
           "effects": 231
         },
         "leader": {
-          "path": "exact-pages/chm3/leader.json",
+          "path": "exact-pages/chm-2026-10/leader.json",
           "effects": 278
         },
         "betweener": {
-          "path": "exact-pages/chm3/betweener.json",
+          "path": "exact-pages/chm-2026-10/betweener.json",
           "effects": 272
         },
         "chaser": {
-          "path": "exact-pages/chm3/chaser.json",
+          "path": "exact-pages/chm-2026-10/chaser.json",
           "effects": 252
+        }
+      }
+    },
+    "10810": {
+      "courseId": 10810,
+      "eventKey": "loh-2026-11",
+      "label": "2026-11 League of Heroes",
+      "month": "2026-11",
+      "styles": {
+        "runner": {
+          "path": "exact-pages/loh-2026-11/runner.json",
+          "effects": 210
+        },
+        "leader": {
+          "path": "exact-pages/loh-2026-11/leader.json",
+          "effects": 245
+        },
+        "betweener": {
+          "path": "exact-pages/loh-2026-11/betweener.json",
+          "effects": 240
+        },
+        "chaser": {
+          "path": "exact-pages/loh-2026-11/chaser.json",
+          "effects": 225
         }
       }
     },
     "11203": {
       "courseId": 11203,
-      "eventKey": "chm2",
+      "eventKey": "spchm-2026-09",
       "label": "2026-09 Special Champions Meeting",
+      "month": "2026-09",
       "styles": {
         "runner": {
-          "path": "exact-pages/chm2/runner.json",
+          "path": "exact-pages/spchm-2026-09/runner.json",
           "effects": 227
         },
         "leader": {
-          "path": "exact-pages/chm2/leader.json",
+          "path": "exact-pages/spchm-2026-09/leader.json",
           "effects": 276
         },
         "betweener": {
-          "path": "exact-pages/chm2/betweener.json",
+          "path": "exact-pages/spchm-2026-09/betweener.json",
           "effects": 274
         },
         "chaser": {
-          "path": "exact-pages/chm2/chaser.json",
+          "path": "exact-pages/spchm-2026-09/chaser.json",
           "effects": 254
         }
       }
