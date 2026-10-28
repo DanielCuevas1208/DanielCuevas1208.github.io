@@ -3,15 +3,10 @@
   "server": "global",
   "courseId": 10507,
   "style": "chaser",
-  "generatedAt": "2026-10-25T15:05:49.176Z",
+  "generatedAt": "2026-10-28T10:07:37.922Z",
   "profile": {
     "evaluator": "mixed",
-    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
-    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
-    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
-    "calibrationVersion": 2,
-    "methodVersion": 6,
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
+    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas."
   },
   "skills": [
     {
@@ -1723,6 +1718,24 @@
       "calibrationVersion": 2
     },
     {
+      "id": 210071,
+      "expectedEffect": 0.8883135750000001,
+      "minEffect": 0.02,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 4.15,
+      "activationRate": null,
+      "pointEfficiency": 0.22,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:97245868b7799ec0",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-10-28T09:58:03.625Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 100211,
       "expectedEffect": 0.86,
       "minEffect": 0.02,
@@ -1963,6 +1976,24 @@
       "mechanicsHash": "fnv1a64:85fca3ecbb6987ff",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-21T02:46:48.744Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 210061,
+      "expectedEffect": 0.7773237500000001,
+      "minEffect": 0.03,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 4.89,
+      "activationRate": null,
+      "pointEfficiency": 0.19,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:98026df9c68e5524",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-10-28T09:58:03.625Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
