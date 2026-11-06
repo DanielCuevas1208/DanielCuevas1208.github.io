@@ -3,15 +3,10 @@
   "server": "global",
   "courseId": 10905,
   "style": "chaser",
-  "generatedAt": "2026-11-05T18:58:22.453Z",
+  "generatedAt": "2026-11-06T18:19:12.372Z",
   "profile": {
     "evaluator": "mixed",
-    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas.",
-    "globalDifferenceMethod": "live U-tools JP anchor + calibrated condition-aware modern-Umalator JP→Global response",
-    "calibration": "0.90× delta for ordinary simple skills; 0.60× delta for unique simple skills; 1.00× delta for context-dependent skills; positive simulator pairs use a ratio fallback if additive anchoring would cross below zero",
-    "calibrationVersion": 2,
-    "methodVersion": 6,
-    "rangeMethod": "Calibrated mean with shifted Global Umalator distribution; ratio-fallback rows use multiplicatively scaled Global distributions; P05-P95 is the preferred typical range"
+    "note": "Mechanically identical JP rows bridge directly from live U-tools; changed Global mechanics use live-U-tools-anchored JP→Global simulation deltas."
   },
   "skills": [
     {
@@ -278,6 +273,24 @@
       "calibrationMode": "scaled-delta",
       "calibrationBasis": "ordinary-skill JP benchmark calibration",
       "calibrationVersion": 2
+    },
+    {
+      "id": 202171,
+      "expectedEffect": 1.156088125,
+      "minEffect": 0,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 3.01,
+      "activationRate": null,
+      "pointEfficiency": 0.34,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:4795e52e4ba9f14e",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
     },
     {
       "id": 201612,
@@ -3641,6 +3654,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 910271,
+      "expectedEffect": 0.34041757500000003,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:4b0d02e1e7c02510",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 100121,
       "expectedEffect": 0.34,
       "minEffect": 0.27993900000000016,
@@ -3737,6 +3768,24 @@
       "calibrationMode": "scaled-delta",
       "calibrationBasis": "context-dependent: preserve paired JP→Global delta",
       "calibrationVersion": 2
+    },
+    {
+      "id": 110271,
+      "expectedEffect": 0.34,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": 0.17,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:a62864d40ac6c055",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
     },
     {
       "id": 110341,
@@ -4891,6 +4940,24 @@
       "calibrationMode": "scaled-delta"
     },
     {
+      "id": 100651,
+      "expectedEffect": 0.18,
+      "minEffect": 0.15,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 0.38,
+      "activationRate": null,
+      "pointEfficiency": 0.09,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:0b07617ab0907be9",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 100981,
       "expectedEffect": 0.18,
       "minEffect": 0.15,
@@ -4903,6 +4970,24 @@
       "p95Effect": null,
       "samples": null,
       "mechanicsHash": "fnv1a64:e2b3a1c5051041f4",
+      "source": "utools-compatible",
+      "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 900651,
+      "expectedEffect": 0.17768695,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:eb1d1077e60c11fe",
       "source": "utools-compatible",
       "sourceUpdatedAt": "2026-09-21T02:50:12.496Z",
       "referencePrecision": "live-display",
