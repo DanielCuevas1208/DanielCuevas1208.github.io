@@ -33,19 +33,19 @@
       "styles": {
         "runner": {
           "path": "exact-pages/chm-2026-12/runner.json",
-          "effects": 209
+          "effects": 203
         },
         "leader": {
           "path": "exact-pages/chm-2026-12/leader.json",
-          "effects": 244
+          "effects": 238
         },
         "betweener": {
           "path": "exact-pages/chm-2026-12/betweener.json",
-          "effects": 237
+          "effects": 233
         },
         "chaser": {
           "path": "exact-pages/chm-2026-12/chaser.json",
-          "effects": 223
+          "effects": 217
         }
       }
     },
@@ -105,19 +105,19 @@
       "styles": {
         "runner": {
           "path": "exact-pages/loh-2026-11/runner.json",
-          "effects": 210
+          "effects": 204
         },
         "leader": {
           "path": "exact-pages/loh-2026-11/leader.json",
-          "effects": 245
+          "effects": 239
         },
         "betweener": {
           "path": "exact-pages/loh-2026-11/betweener.json",
-          "effects": 240
+          "effects": 236
         },
         "chaser": {
           "path": "exact-pages/loh-2026-11/chaser.json",
-          "effects": 225
+          "effects": 219
         }
       }
     },

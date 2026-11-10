@@ -3,8 +3,9 @@
   "eventKey": "chm-2026-12",
   "style": "betweener",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/betweener",
-  "fetchedAt": "2026-10-26T17:38:02.287Z",
+  "fetchedAt": "2026-11-10T18:48:56.735Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（差し）",
   "deck": [
     {
       "id": 30290,
@@ -100,38 +101,38 @@
     },
     {
       "rank": 11,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 32.12,
+      "level": 4
+    },
+    {
+      "rank": 12,
       "id": 30261,
       "name": "[水面のプリンシパル] ウインバリアシオン",
       "score": 30.45,
       "level": 3
     },
     {
-      "rank": 12,
+      "rank": 13,
       "id": 30285,
       "name": "[私のためのショッピング] キングヘイロー",
       "score": 30.39,
       "level": 3
     },
     {
-      "rank": 13,
+      "rank": 14,
       "id": 20095,
       "name": "[Fervent Yearning] レッドディザイア",
       "score": 30.32,
       "level": 1
     },
     {
-      "rank": 14,
+      "rank": 15,
       "id": 30244,
       "name": "[春、来たれり] メジロブライト",
       "score": 29.52,
       "level": 3
-    },
-    {
-      "rank": 15,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 28.73,
-      "level": 4
     },
     {
       "rank": 16,
@@ -296,17 +297,17 @@
     },
     {
       "rank": 39,
+      "id": 30283,
+      "name": "[ゆかし、きらめきの旅路] ファインモーション",
+      "score": 19.64,
+      "level": 2
+    },
+    {
+      "rank": 40,
       "id": 30108,
       "name": "[一天地六に身を任せ] ナカヤマフェスタ",
       "score": 19.36,
       "level": 3
-    },
-    {
-      "rank": 40,
-      "id": 30283,
-      "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 19.3,
-      "level": 2
     },
     {
       "rank": 41,
@@ -338,30 +339,30 @@
     },
     {
       "rank": 45,
+      "id": 20102,
+      "name": "[黄昏に馳せる追憶] ステイゴールド",
+      "score": 18.69,
+      "level": 3
+    },
+    {
+      "rank": 46,
       "id": 30168,
       "name": "[波をかきわけ夢がゆく] ゴールドシップ",
       "score": 18.52,
       "level": 3
     },
     {
-      "rank": 46,
+      "rank": 47,
       "id": 30088,
       "name": "[SPECIAL DREAMERS!!] サトノダイヤモンド",
       "score": 18.07,
       "level": 1
     },
     {
-      "rank": 47,
+      "rank": 48,
       "id": 30057,
       "name": "[ウマ王伝説・最強になった件] ゴールドシップ",
       "score": 18.07,
-      "level": 3
-    },
-    {
-      "rank": 48,
-      "id": 30012,
-      "name": "[B・N・Winner!!] ウイニングチケット",
-      "score": 17.84,
       "level": 3
     }
   ],

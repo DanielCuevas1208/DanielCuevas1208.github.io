@@ -3,7 +3,7 @@
   "eventKey": "loh-2026-11",
   "style": "runner",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/runner",
-  "fetchedAt": "2026-10-28T09:59:13.581Z",
+  "fetchedAt": "2026-11-10T18:48:19.535Z",
   "transport": "Jina Reader proxy of live U-tools",
   "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（逃げ）",
   "deck": [
@@ -45,45 +45,45 @@
     },
     {
       "rank": 3,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 38.54,
+      "level": 4
+    },
+    {
+      "rank": 4,
       "id": 30154,
       "name": "[カモメのように] メジロパーマー",
       "score": 38.16,
       "level": 3
     },
     {
-      "rank": 4,
+      "rank": 5,
       "id": 30304,
       "name": "[その執念は怒濤が如く] メイショウドトウ",
       "score": 36.17,
       "level": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "id": 30261,
       "name": "[水面のプリンシパル] ウインバリアシオン",
       "score": 35.8,
       "level": 3
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": 30112,
       "name": "[TT Ignition!] ツインターボ",
       "score": 34.96,
       "level": 3
     },
     {
-      "rank": 7,
+      "rank": 8,
       "id": 30116,
       "name": "[お日さま天使ちゃん♪] ダイタクヘリオス",
       "score": 34.92,
       "level": 3
-    },
-    {
-      "rank": 8,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 34.58,
-      "level": 4
     },
     {
       "rank": 9,
@@ -311,17 +311,17 @@
     },
     {
       "rank": 41,
+      "id": 30283,
+      "name": "[ゆかし、きらめきの旅路] ファインモーション",
+      "score": 19.09,
+      "level": 2
+    },
+    {
+      "rank": 42,
       "id": 30069,
       "name": "[天嗤う鏑矢] ナリタブライアン",
       "score": 19.09,
       "level": 1
-    },
-    {
-      "rank": 42,
-      "id": 30283,
-      "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 18.64,
-      "level": 2
     },
     {
       "rank": 43,

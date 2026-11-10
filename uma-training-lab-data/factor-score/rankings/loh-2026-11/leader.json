@@ -3,7 +3,7 @@
   "eventKey": "loh-2026-11",
   "style": "leader",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/leader",
-  "fetchedAt": "2026-10-28T09:59:29.273Z",
+  "fetchedAt": "2026-11-10T18:48:35.328Z",
   "transport": "Jina Reader proxy of live U-tools",
   "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（先行）",
   "deck": [
@@ -108,31 +108,31 @@
     },
     {
       "rank": 12,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 40.11,
+      "level": 4
+    },
+    {
+      "rank": 13,
       "id": 30261,
       "name": "[水面のプリンシパル] ウインバリアシオン",
       "score": 38.85,
       "level": 3
     },
     {
-      "rank": 13,
+      "rank": 14,
       "id": 30256,
       "name": "[白き稲妻の如く] タマモクロス",
       "score": 37.41,
       "level": 3
     },
     {
-      "rank": 14,
+      "rank": 15,
       "id": 30172,
       "name": "[かっとばせー！ですわ！？] メジロマックイーン",
       "score": 37.22,
       "level": 3
-    },
-    {
-      "rank": 15,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 35.74,
-      "level": 4
     },
     {
       "rank": 16,
@@ -145,7 +145,7 @@
       "rank": 17,
       "id": 30283,
       "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 34.31,
+      "score": 34.76,
       "level": 2
     },
     {

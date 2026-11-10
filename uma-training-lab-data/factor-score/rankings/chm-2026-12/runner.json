@@ -3,8 +3,9 @@
   "eventKey": "chm-2026-12",
   "style": "runner",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/runner",
-  "fetchedAt": "2026-10-26T17:37:59.339Z",
+  "fetchedAt": "2026-11-10T18:48:47.202Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（逃げ）",
   "deck": [
     {
       "id": 30290,
@@ -51,31 +52,31 @@
     },
     {
       "rank": 4,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 32.69,
+      "level": 4
+    },
+    {
+      "rank": 5,
       "id": 30304,
       "name": "[その執念は怒濤が如く] メイショウドトウ",
       "score": 31.26,
       "level": 4
     },
     {
-      "rank": 5,
+      "rank": 6,
       "id": 30112,
       "name": "[TT Ignition!] ツインターボ",
       "score": 30.62,
       "level": 3
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": 30261,
       "name": "[水面のプリンシパル] ウインバリアシオン",
       "score": 30.5,
       "level": 3
-    },
-    {
-      "rank": 7,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 29.42,
-      "level": 4
     },
     {
       "rank": 8,
@@ -163,24 +164,24 @@
     },
     {
       "rank": 20,
+      "id": 30283,
+      "name": "[ゆかし、きらめきの旅路] ファインモーション",
+      "score": 19.77,
+      "level": 2
+    },
+    {
+      "rank": 21,
       "id": 30173,
       "name": "[大地と我らのアンサンブル] サウンズオブアース",
       "score": 19.76,
       "level": 1
     },
     {
-      "rank": 21,
+      "rank": 22,
       "id": 30181,
       "name": "[ウタエミンナノ] ツインターボ",
       "score": 19.52,
       "level": 1
-    },
-    {
-      "rank": 22,
-      "id": 30283,
-      "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 19.43,
-      "level": 2
     },
     {
       "rank": 23,

@@ -3,8 +3,9 @@
   "eventKey": "chm-2026-12",
   "style": "chaser",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/chaser",
-  "fetchedAt": "2026-10-26T17:38:03.548Z",
+  "fetchedAt": "2026-11-10T18:48:59.522Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（追込）",
   "deck": [
     {
       "id": 30290,
@@ -79,16 +80,16 @@
     },
     {
       "rank": 8,
-      "id": 30164,
-      "name": "[炎々、闘志を抱き] ヒシアマゾン",
-      "score": 29.01,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 32.1,
       "level": 4
     },
     {
       "rank": 9,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 28.69,
+      "id": 30164,
+      "name": "[炎々、闘志を抱き] ヒシアマゾン",
+      "score": 29.01,
       "level": 4
     },
     {
@@ -219,16 +220,16 @@
     },
     {
       "rank": 28,
-      "id": 30178,
-      "name": "[血脈の胎動] ドゥラメンテ",
-      "score": 19.63,
+      "id": 30283,
+      "name": "[ゆかし、きらめきの旅路] ファインモーション",
+      "score": 19.67,
       "level": 2
     },
     {
       "rank": 29,
-      "id": 30283,
-      "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 19.33,
+      "id": 30178,
+      "name": "[血脈の胎動] ドゥラメンテ",
+      "score": 19.63,
       "level": 2
     },
     {

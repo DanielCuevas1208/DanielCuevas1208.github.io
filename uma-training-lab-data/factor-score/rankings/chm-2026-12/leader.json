@@ -3,8 +3,9 @@
   "eventKey": "chm-2026-12",
   "style": "leader",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/leader",
-  "fetchedAt": "2026-10-26T17:38:01.122Z",
+  "fetchedAt": "2026-11-10T18:48:55.614Z",
   "transport": "Jina Reader proxy of live U-tools",
+  "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（先行）",
   "deck": [
     {
       "id": 30290,
@@ -107,31 +108,31 @@
     },
     {
       "rank": 12,
+      "id": 30322,
+      "name": "[Time of Departure] マヤノトップガン",
+      "score": 32.26,
+      "level": 4
+    },
+    {
+      "rank": 13,
       "id": 30256,
       "name": "[白き稲妻の如く] タマモクロス",
       "score": 32.03,
       "level": 3
     },
     {
-      "rank": 13,
+      "rank": 14,
       "id": 30261,
       "name": "[水面のプリンシパル] ウインバリアシオン",
       "score": 30.46,
       "level": 3
     },
     {
-      "rank": 14,
+      "rank": 15,
       "id": 30283,
       "name": "[ゆかし、きらめきの旅路] ファインモーション",
-      "score": 29.54,
+      "score": 29.88,
       "level": 2
-    },
-    {
-      "rank": 15,
-      "id": 30322,
-      "name": "[Time of Departure] マヤノトップガン",
-      "score": 28.97,
-      "level": 4
     },
     {
       "rank": 16,

@@ -4,9 +4,37 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/leader",
   "eventKey": "chm-2026-12",
   "style": "leader",
-  "fetchedAt": "2026-10-28T09:58:54.012Z",
+  "fetchedAt": "2026-11-10T18:48:14.211Z",
   "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（先行） | U-tools（ウマ娘攻略ツール集）",
   "cards": [
+    {
+      "id": 30324,
+      "ev": false,
+      "name": "ノーリーズン",
+      "title": "[馳せて奪うは映山紅]",
+      "color": "cb243e",
+      "rarity": 3,
+      "hintLv": 4,
+      "command": 1,
+      "hintSkillIds": [
+        201102,
+        201112,
+        202152,
+        202602,
+        203432,
+        203682,
+        204042,
+        204112,
+        203742,
+        203622,
+        204132,
+        204372,
+        204772,
+        203822
+      ],
+      "randomSkillInfos": [],
+      "sequenceSkillInfos": []
+    },
     {
       "id": 30323,
       "ev": false,
@@ -45,8 +73,157 @@
         204762,
         204512
       ],
-      "randomSkillInfos": [],
-      "sequenceSkillInfos": []
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 200362
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 210052
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204731
+                  }
+                ],
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 1,
+                    "skillId": 204731
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204741
+                  }
+                ],
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 1,
+                    "skillId": 204741
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204751
+                  }
+                ],
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 203501
+                  },
+                  {
+                    "hintLv": 1,
+                    "skillId": 204751
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 30321,
@@ -37427,6 +37604,29 @@
       ]
     },
     {
+      "id": 20102,
+      "ev": false,
+      "name": "ステイゴールド",
+      "title": "[黄昏に馳せる追憶]",
+      "color": "bfb33e",
+      "rarity": 2,
+      "hintLv": 3,
+      "command": 2,
+      "hintSkillIds": [
+        200602,
+        200192,
+        202152,
+        203432,
+        203172,
+        203852,
+        203862,
+        204362,
+        204442
+      ],
+      "randomSkillInfos": [],
+      "sequenceSkillInfos": []
+    },
+    {
       "id": 20101,
       "ev": false,
       "name": "ゼンノロブロイ",
@@ -51098,6 +51298,16 @@
       "iconId": 20041,
       "skillPt": 180
     },
+    "204771": {
+      "name": "出陣",
+      "iconId": 20012,
+      "skillPt": 140
+    },
+    "204772": {
+      "name": "狼煙を上げて",
+      "iconId": 20011,
+      "skillPt": 140
+    },
     "204792": {
       "name": "遊び心",
       "iconId": 10011,
@@ -52340,19 +52550,9 @@
         "point": 200,
         "effect": 0.231
       },
-      "210061": {
-        "point": 400,
-        "effect": 0.51,
-        "baseId": 210062
-      },
       "210062": {
         "point": 200,
         "effect": 0.128
-      },
-      "210071": {
-        "point": 400,
-        "effect": 0.608,
-        "baseId": 210072
       },
       "210072": {
         "point": 200,
@@ -52378,37 +52578,17 @@
         "point": 150,
         "effect": 0.38
       },
-      "210261": {
-        "point": 400,
-        "effect": 0.699,
-        "baseId": 210262
-      },
       "210262": {
         "point": 200,
-        "effect": 0.307
-      },
-      "210271": {
-        "point": 400,
-        "effect": 0.232,
-        "baseId": 210272
+        "effect": 0.367
       },
       "210272": {
         "point": 200,
-        "effect": 0.143
-      },
-      "210281": {
-        "point": 400,
-        "effect": 0.816,
-        "baseId": 210282
+        "effect": 0.164
       },
       "210282": {
         "point": 200,
-        "effect": 0.356
-      },
-      "210291": {
-        "point": 400,
-        "effect": 0.974,
-        "baseId": 210292
+        "effect": 0.426
       },
       "210292": {
         "point": 200,
