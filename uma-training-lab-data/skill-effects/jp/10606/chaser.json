@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10606,
   "style": "chaser",
-  "generatedAt": "2026-10-28T09:59:00.840Z",
+  "generatedAt": "2026-11-11T18:51:08.686Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10606/effects/chaser",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 126,
-    "liveDisplayOnlyRows": 548
+    "liveDisplayOnlyRows": 544
   },
   "skills": [
     {
@@ -2336,24 +2336,6 @@
       "referenceVerifiedAgainstLive": true
     },
     {
-      "id": 210291,
-      "expectedEffect": 0.866663025,
-      "minEffect": null,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": null,
-      "activationRate": null,
-      "pointEfficiency": 0.22,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:fa49ba6926686b72",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
       "id": 210361,
       "expectedEffect": 0.866663025,
       "minEffect": null,
@@ -3272,24 +3254,6 @@
       "referenceVerifiedAgainstLive": true
     },
     {
-      "id": 210281,
-      "expectedEffect": 0.699030825,
-      "minEffect": 0.57,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 0.83,
-      "activationRate": null,
-      "pointEfficiency": 0.17,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:de3d4df24fc8670d",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
       "id": 202522,
       "expectedEffect": 0.6967951,
       "minEffect": 0.56,
@@ -4100,24 +4064,6 @@
       "referenceVerifiedAgainstLive": true
     },
     {
-      "id": 210071,
-      "expectedEffect": 0.6416567750000001,
-      "minEffect": 0.02,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 3.17,
-      "activationRate": null,
-      "pointEfficiency": 0.16,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:97245868b7799ec0",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
       "id": 100011,
       "expectedEffect": 0.64,
       "minEffect": 0.02,
@@ -4424,24 +4370,6 @@
       "referenceVerifiedAgainstLive": true
     },
     {
-      "id": 210061,
-      "expectedEffect": 0.6035005250000001,
-      "minEffect": 0.03,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 3.65,
-      "activationRate": null,
-      "pointEfficiency": 0.15,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:98026df9c68e5524",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
       "id": 901111,
       "expectedEffect": 0.6030778,
       "minEffect": null,
@@ -4474,24 +4402,6 @@
       "mechanicsHash": "fnv1a64:0e9af4c938ba9c12",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:36.920Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
-      "id": 210261,
-      "expectedEffect": 0.59953875,
-      "minEffect": 0.27,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 2.11,
-      "activationRate": null,
-      "pointEfficiency": 0.15,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:2bef3a40ac749736",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
@@ -6692,6 +6602,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 920291,
+      "expectedEffect": 0.4348203,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:fcb0f67624b08aa8",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-11T18:51:08.686Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 200722,
       "expectedEffect": 0.43440127500000003,
       "minEffect": 0.23,
@@ -6887,6 +6815,24 @@
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:36.920Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 120291,
+      "expectedEffect": 0.43,
+      "minEffect": 0.34,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 0.55,
+      "activationRate": null,
+      "pointEfficiency": 0.22,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:8f6653a5e03a63aa",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-11T18:51:08.686Z",
+      "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
     {
@@ -8438,6 +8384,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 210282,
+      "expectedEffect": 0.365538725,
+      "minEffect": 0.29,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 0.42,
+      "activationRate": null,
+      "pointEfficiency": 0.18,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:83b8aaa372631d12",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-11T18:51:08.686Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 900791,
       "expectedEffect": 0.36346765000000003,
       "minEffect": null,
@@ -9230,6 +9194,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 210262,
+      "expectedEffect": 0.313254025,
+      "minEffect": 0.14,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 1.12,
+      "activationRate": null,
+      "pointEfficiency": 0.16,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:e0d6b57fce77c6f1",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-11T18:51:08.686Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 200512,
       "expectedEffect": 0.312565825,
       "minEffect": 0.32,
@@ -9424,24 +9406,6 @@
       "mechanicsHash": "fnv1a64:e52332370a36085f",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:36.920Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
-      "id": 210282,
-      "expectedEffect": 0.30560335,
-      "minEffect": 0.24,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 0.34,
-      "activationRate": null,
-      "pointEfficiency": 0.15,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:83b8aaa372631d12",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
@@ -9676,24 +9640,6 @@
       "mechanicsHash": "fnv1a64:249ccb45eddcb0ba",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:36.920Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
-      "id": 210262,
-      "expectedEffect": 0.261783325,
-      "minEffect": 0.12,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 0.93,
-      "activationRate": null,
-      "pointEfficiency": 0.13,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:e0d6b57fce77c6f1",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
@@ -11786,24 +11732,6 @@
       "referenceVerifiedAgainstLive": true
     },
     {
-      "id": 210271,
-      "expectedEffect": 0.10021357500000001,
-      "minEffect": 0,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 0.31,
-      "activationRate": null,
-      "pointEfficiency": 0.03,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:3eaffc7879440156",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
       "id": 203902,
       "expectedEffect": 0.0962925,
       "minEffect": 0,
@@ -11966,6 +11894,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 210272,
+      "expectedEffect": 0.071708775,
+      "minEffect": 0,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 0.23,
+      "activationRate": null,
+      "pointEfficiency": 0.04,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:cd99114ca635580d",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-11T18:51:08.686Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 201581,
       "expectedEffect": 0.06757402500000001,
       "minEffect": 0.01,
@@ -11981,24 +11927,6 @@
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:36.920Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
-      "referenceVerifiedAgainstLive": true
-    },
-    {
-      "id": 210272,
-      "expectedEffect": 0.062752925,
-      "minEffect": 0,
-      "averageEffect": null,
-      "medianEffect": null,
-      "maxEffect": 0.2,
-      "activationRate": null,
-      "pointEfficiency": 0.03,
-      "p05Effect": null,
-      "p95Effect": null,
-      "samples": null,
-      "mechanicsHash": "fnv1a64:cd99114ca635580d",
-      "source": "utools-live",
-      "sourceUpdatedAt": "2026-10-28T09:59:00.840Z",
-      "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
     {
