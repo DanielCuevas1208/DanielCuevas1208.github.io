@@ -41,7 +41,7 @@
         },
         "betweener": {
           "path": "exact-pages/chm-2026-12/betweener.json",
-          "effects": 233
+          "effects": 235
         },
         "chaser": {
           "path": "exact-pages/chm-2026-12/chaser.json",
@@ -113,7 +113,7 @@
         },
         "betweener": {
           "path": "exact-pages/loh-2026-11/betweener.json",
-          "effects": 236
+          "effects": 238
         },
         "chaser": {
           "path": "exact-pages/loh-2026-11/chaser.json",

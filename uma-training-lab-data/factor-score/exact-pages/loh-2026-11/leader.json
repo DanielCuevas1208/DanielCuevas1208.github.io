@@ -4,7 +4,7 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/leader",
   "eventKey": "loh-2026-11",
   "style": "leader",
-  "fetchedAt": "2026-11-10T18:48:13.027Z",
+  "fetchedAt": "2026-11-16T21:12:31.844Z",
   "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（先行） | U-tools（ウマ娘攻略ツール集）",
   "cards": [
     {
@@ -32,8 +32,66 @@
         204772,
         203822
       ],
-      "randomSkillInfos": [],
-      "sequenceSkillInfos": []
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201702
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203621
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204771
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 30323,
@@ -37623,8 +37681,84 @@
         204362,
         204442
       ],
-      "randomSkillInfos": [],
-      "sequenceSkillInfos": []
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 200362
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 203742
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 20101,
@@ -51335,6 +51469,16 @@
     },
     "204892": {
       "name": "直情",
+      "iconId": 20011,
+      "skillPt": 190
+    },
+    "204911": {
+      "name": "ワイルドハント",
+      "iconId": 20012,
+      "skillPt": 190
+    },
+    "204912": {
+      "name": "静寂を裂いて",
       "iconId": 20011,
       "skillPt": 190
     },

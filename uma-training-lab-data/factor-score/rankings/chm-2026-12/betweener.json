@@ -3,7 +3,7 @@
   "eventKey": "chm-2026-12",
   "style": "betweener",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/betweener",
-  "fetchedAt": "2026-11-10T18:48:56.735Z",
+  "fetchedAt": "2026-11-16T21:13:27.979Z",
   "transport": "Jina Reader proxy of live U-tools",
   "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（差し）",
   "deck": [
@@ -311,38 +311,38 @@
     },
     {
       "rank": 41,
+      "id": 20102,
+      "name": "[黄昏に馳せる追憶] ステイゴールド",
+      "score": 19.3,
+      "level": 3
+    },
+    {
+      "rank": 42,
       "id": 30193,
       "name": "[Over the Ocean] シュヴァルグラン",
       "score": 19.15,
       "level": 3
     },
     {
-      "rank": 42,
+      "rank": 43,
       "id": 30208,
       "name": "[朝焼け苺の畑にて] ニシノフラワー",
       "score": 19.14,
       "level": 3
     },
     {
-      "rank": 43,
+      "rank": 44,
       "id": 30191,
       "name": "[ブリッランテな旋律を君と] サウンズオブアース",
       "score": 18.74,
       "level": 0
     },
     {
-      "rank": 44,
+      "rank": 45,
       "id": 30163,
       "name": "[鉄火場に咲く菫] ナカヤマフェスタ",
       "score": 18.7,
       "level": 0
-    },
-    {
-      "rank": 45,
-      "id": 20102,
-      "name": "[黄昏に馳せる追憶] ステイゴールド",
-      "score": 18.69,
-      "level": 3
     },
     {
       "rank": 46,

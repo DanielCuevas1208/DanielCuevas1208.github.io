@@ -4,7 +4,7 @@
   "finalUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/chm/factor/betweener",
   "eventKey": "chm-2026-12",
   "style": "betweener",
-  "fetchedAt": "2026-11-10T18:48:14.397Z",
+  "fetchedAt": "2026-11-16T21:12:33.105Z",
   "pageTitle": "【2026/12】チャンピオンズミーティングの因子周回（差し） | U-tools（ウマ娘攻略ツール集）",
   "cards": [
     {
@@ -32,8 +32,66 @@
         204772,
         203822
       ],
-      "randomSkillInfos": [],
-      "sequenceSkillInfos": []
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 201702
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 2,
+                    "skillId": 203621
+                  },
+                  {
+                    "hintLv": 2,
+                    "skillId": 204771
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 30323,
@@ -37623,8 +37681,84 @@
         204362,
         204442
       ],
-      "randomSkillInfos": [],
-      "sequenceSkillInfos": []
+      "randomSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 200362
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ],
+      "sequenceSkillInfos": [
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        },
+        {
+          "choiceis": [
+            {
+              "hasEventEnd": false,
+              "results": [
+                [
+                  {
+                    "hintLv": 1,
+                    "skillId": 203742
+                  }
+                ]
+              ]
+            },
+            {
+              "hasEventEnd": false,
+              "results": [
+                []
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 20101,
@@ -51338,6 +51472,16 @@
       "iconId": 20011,
       "skillPt": 190
     },
+    "204911": {
+      "name": "ワイルドハント",
+      "iconId": 20012,
+      "skillPt": 190
+    },
+    "204912": {
+      "name": "静寂を裂いて",
+      "iconId": 20011,
+      "skillPt": 190
+    },
     "210011": {
       "name": "アオハル燃焼・速",
       "iconId": 20102,
@@ -52515,6 +52659,15 @@
       "204812": {
         "point": 160,
         "effect": 0.409
+      },
+      "204911": {
+        "point": 380,
+        "effect": 1.317,
+        "baseId": 204912
+      },
+      "204912": {
+        "point": 190,
+        "effect": 0.267
       },
       "210012": {
         "point": 200,

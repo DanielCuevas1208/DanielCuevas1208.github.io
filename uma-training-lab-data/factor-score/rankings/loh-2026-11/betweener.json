@@ -3,7 +3,7 @@
   "eventKey": "loh-2026-11",
   "style": "betweener",
   "pageUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/vsevents/loh/factor/betweener",
-  "fetchedAt": "2026-11-10T18:48:39.203Z",
+  "fetchedAt": "2026-11-16T21:13:03.191Z",
   "transport": "Jina Reader proxy of live U-tools",
   "pageTitle": "【2026/11】リーグオブヒーローズの因子周回（差し）",
   "deck": [
@@ -143,17 +143,17 @@
     },
     {
       "rank": 17,
+      "id": 20102,
+      "name": "[黄昏に馳せる追憶] ステイゴールド",
+      "score": 32.24,
+      "level": 3
+    },
+    {
+      "rank": 18,
       "id": 30152,
       "name": "[All'alba vincerò!] テイエムオペラオー",
       "score": 31.82,
       "level": 2
-    },
-    {
-      "rank": 18,
-      "id": 20102,
-      "name": "[黄昏に馳せる追憶] ステイゴールド",
-      "score": 31.41,
-      "level": 3
     },
     {
       "rank": 19,
