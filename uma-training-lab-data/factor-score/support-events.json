@@ -3,7 +3,7 @@
   "source": {
     "provider": "GameTora",
     "manifest": {
-      "evrew": "e1b6ae1e",
+      "evrew": "a687fca9",
       "ssr": "fa74f9c4",
       "sr": "74378236"
     }
@@ -9026,5 +9026,5 @@
       }
     ]
   },
-  "generatedAt": "2026-11-16T21:12:34.295Z"
+  "generatedAt": "2026-11-17T19:59:22.714Z"
 }
