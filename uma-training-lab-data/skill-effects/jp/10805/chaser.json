@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10805,
   "style": "chaser",
-  "generatedAt": "2026-11-11T18:52:36.484Z",
+  "generatedAt": "2026-11-18T19:29:53.457Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10805/effects/chaser",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 100,
-    "liveDisplayOnlyRows": 406
+    "liveDisplayOnlyRows": 408
   },
   "skills": [
     {
@@ -6746,6 +6746,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 100751,
+      "expectedEffect": 0.19,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": 0.09,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:93a7d61901005bd3",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:29:53.457Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 101451,
       "expectedEffect": 0.19,
       "minEffect": null,
@@ -6779,6 +6797,24 @@
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:48:36.571Z",
       "referencePrecision": "mirror-full-precision-live-display-verified",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 900751,
+      "expectedEffect": 0.185911125,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:be9b9b1b68b7a79b",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:29:53.457Z",
+      "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
     {

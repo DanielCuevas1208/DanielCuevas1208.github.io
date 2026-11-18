@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10701,
   "style": "runner",
-  "generatedAt": "2026-11-11T18:51:18.719Z",
+  "generatedAt": "2026-11-18T19:28:49.063Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10701/effects/runner",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 91,
-    "liveDisplayOnlyRows": 345
+    "liveDisplayOnlyRows": 347
   },
   "skills": [
     {
@@ -6026,6 +6026,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 100751,
+      "expectedEffect": 0.1,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": 0.05,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:93a7d61901005bd3",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:28:49.063Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 101091,
       "expectedEffect": 0.1,
       "minEffect": null,
@@ -6328,6 +6346,24 @@
       "mechanicsHash": "fnv1a64:8437d9de80114ed0",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:47:52.047Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 900751,
+      "expectedEffect": 0.0988344,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:be9b9b1b68b7a79b",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:28:49.063Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },

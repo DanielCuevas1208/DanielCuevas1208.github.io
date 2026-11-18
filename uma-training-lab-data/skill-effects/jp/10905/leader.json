@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 10905,
   "style": "leader",
-  "generatedAt": "2026-11-11T18:54:03.175Z",
+  "generatedAt": "2026-11-18T19:34:52.736Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/10905/effects/leader",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 138,
-    "liveDisplayOnlyRows": 594
+    "liveDisplayOnlyRows": 596
   },
   "skills": [
     {
@@ -10130,6 +10130,24 @@
       "referenceVerifiedAgainstLive": true
     },
     {
+      "id": 100751,
+      "expectedEffect": 0.24,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": 0.12,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:93a7d61901005bd3",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:34:52.736Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
       "id": 101441,
       "expectedEffect": 0.24,
       "minEffect": 0.26,
@@ -10234,6 +10252,24 @@
       "mechanicsHash": "fnv1a64:c80244ff100079ff",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:50:07.114Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 900751,
+      "expectedEffect": 0.235008275,
+      "minEffect": null,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": null,
+      "activationRate": null,
+      "pointEfficiency": null,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:be9b9b1b68b7a79b",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:34:52.736Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },

@@ -3,14 +3,14 @@
   "server": "jp",
   "courseId": 11303,
   "style": "betweener",
-  "generatedAt": "2026-11-14T17:21:18.934Z",
+  "generatedAt": "2026-11-18T19:39:05.415Z",
   "profile": {
     "evaluator": "U-tools live",
     "sourceUrl": "https://xn--gck1f423k.xn--1bvt37a.tools/race/courses/11303/effects/betweener",
     "importedFrom": "direct-rsc + reader-enrichment",
     "precision": "Live U-tools is authoritative; mirror full precision is retained only when it rounds exactly to the current live displayed value.",
     "mirrorVerifiedExactRows": 157,
-    "liveDisplayOnlyRows": 570
+    "liveDisplayOnlyRows": 572
   },
   "skills": [
     {
@@ -676,6 +676,24 @@
       "mechanicsHash": "fnv1a64:2e84d6a8e943a28e",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:51:46.677Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 204911,
+      "expectedEffect": 1.1655314500000002,
+      "minEffect": 1.07,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 2.17,
+      "activationRate": null,
+      "pointEfficiency": 0.31,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:b225fb36131a0741",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:39:05.415Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
@@ -10576,6 +10594,24 @@
       "mechanicsHash": "fnv1a64:c0e300a2882be7c8",
       "source": "utools-live",
       "sourceUpdatedAt": "2026-09-21T02:51:46.677Z",
+      "referencePrecision": "live-display",
+      "referenceVerifiedAgainstLive": true
+    },
+    {
+      "id": 204912,
+      "expectedEffect": 0.237368875,
+      "minEffect": 0.22,
+      "averageEffect": null,
+      "medianEffect": null,
+      "maxEffect": 0.45,
+      "activationRate": null,
+      "pointEfficiency": 0.12,
+      "p05Effect": null,
+      "p95Effect": null,
+      "samples": null,
+      "mechanicsHash": "fnv1a64:4a86bec1e0abf970",
+      "source": "utools-live",
+      "sourceUpdatedAt": "2026-11-18T19:39:05.415Z",
       "referencePrecision": "live-display",
       "referenceVerifiedAgainstLive": true
     },
